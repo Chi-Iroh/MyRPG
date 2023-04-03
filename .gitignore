@@ -2,6 +2,8 @@
 ## .gitignore for my_rpg
 ##
 
+.vscode
+
 # main
 my_rpg
 test*
