@@ -4,6 +4,6 @@
 ** File description:
 ** header for main.c
 */
-#ifndef MAIN
-    #define MAIN
+#ifndef MY_PRG_H
+    #define MY_RPG_H
 #endif
