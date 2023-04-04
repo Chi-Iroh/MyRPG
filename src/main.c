@@ -4,9 +4,9 @@
 ** File description:
 ** main for my_rgpg
 */
-#include "../include/main.h"
+#include "../include/my_rpg.h"
 
-int main(int argc, char ** argv)
+int main(int argc, char **argv)
 {
     return 0;
 }

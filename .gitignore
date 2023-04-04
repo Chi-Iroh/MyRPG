@@ -2,8 +2,12 @@
 ## .gitignore for my_rpg
 ##
 
+# Miscelleanous
+.vscode
+*.pdf
+
 # main
-my_paint
+my_rpg
 test*
 
 ## Binary

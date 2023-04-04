@@ -17,7 +17,7 @@ RELEASE = -O0 -fno-builtin
 SANITIZE    =   -fsanitize=address,undefined
 
 CFLAGS  +=  -Wall -Wextra -pedantic -fsigned-char       \
--funsigned-bitfields -Wno-unused-parameter -std=gnu2x
+-funsigned-bitfields -Wno-unused-parameter -std=gnu2x -fms-extensions
 
 NAME    =   my_rpg
 
