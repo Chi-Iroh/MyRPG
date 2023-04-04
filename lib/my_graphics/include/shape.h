@@ -9,9 +9,8 @@
     /*
     ** ============================== SHAPES ===============================
     ** position : position du coin superieur gauche du sprite
-    ** 
+    **
     */
 
     // create sub struct for rectangle circle shape
 #endif
-

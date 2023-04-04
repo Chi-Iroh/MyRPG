@@ -36,4 +36,4 @@
     void draw_sprite(sprite_t sprite, sfRenderWindow * window);
     void free_sprite(sprite_t sprite);
     */
-#ifndef
+#endif
