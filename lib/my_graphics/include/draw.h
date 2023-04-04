@@ -19,18 +19,14 @@
     ** previous : pointer to the previous layer
     **            is NULL if there is no previous
     */
-
-    // add animation
-
     typedef struct draw {
-        sfRenderTexture * texture;
         void * drawable;
         bool show;
         void * next;
         void * previous;
     } draw_t;
 
-    //draw_t * create_draw(sprite_t sprite, void * previous);
+    draw_t * create_draw(void * drawable, void * previous);
     void set_pos_draw(draw_t * draw, sfVector2f position);
     void set_size_draw(draw_t * draw, sfVector2f size);
     void set_angle_draw(draw_t * draw, double a);

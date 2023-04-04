@@ -1,6 +1,6 @@
 ##
 ## EPITECH PROJECT, 2023
-## my_graphics
+## libgraphics
 ## File description:
 ## Makefile
 ##
@@ -24,23 +24,26 @@ SRC		=	vector/set_vector.c			\
 
 OBJ		=	$(SRC:.c=.o)
 
-NAME	=	my_graphics.a
+NAME	=	libgraphics.a
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc -l"csfml-graphics csfml-system" $(NAME) $(OBJ)
-	cp $(NAME) ../
+	@ar rc -l"csfml-graphics csfml-system" $(NAME) $(OBJ)
+	@cp $(NAME) ../
+
+%.o:%.c
+	@gcc -c $< -o $@
 
 clean:
-	rm -f *.gcda
-	rm -f *.gcno
-	rm -f *.out
-	rm -f coding-style-reports.log
-	rm -f $(OBJ)
+	@rm -f *.gcda
+	@rm -f *.gcno
+	@rm -f *.out
+	@rm -f coding-style-reports.log
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f ../$(NAME)
+	@rm -f $(NAME)
+	@rm -f ../$(NAME)
 
 re: fclean all
