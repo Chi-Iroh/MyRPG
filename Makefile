@@ -11,7 +11,7 @@ SRC = 	src/main.c	\
 OBJ =   $(SRC:.c=.o)
 
 CC  =   gcc
-DEBUG   =   -g3 -p -ggdb3 -pg
+DEBUG   =   -g3 -p -ggdb3 -DDEBUG_MODE
 
 # To prevent Marvin from flagging my code due to optimizations
 RELEASE = -O0 -fno-builtin

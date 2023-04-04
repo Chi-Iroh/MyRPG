@@ -18,7 +18,7 @@ bool save_to_file(char *filename, character_t *character)
         return false;
     }
     status = fwrite(character, sizeof(*character), 1, file) == 1;
-    FREE_IF_ALLOCATED(file, fclose);
+    fclose(file);
     return status;
 }
 
@@ -31,5 +31,6 @@ bool read_from_file(char *filename, character_t *character)
         return false;
     }
     status = fread(character, sizeof(*character), 1, file) == 1;
+    fclose(file);
     return status;
 }
