@@ -6,8 +6,8 @@
 */
 
 #include <stdio.h>
-#include "my_macros.h"
-#include "my_rpg.h"
+#include "../include/my_macros.h"
+#include "../include/my_rpg.h"
 
 bool save_to_file(char *filename, character_t *character)
 {
