@@ -34,10 +34,10 @@
 
     typedef enum {
         CGT,
-        EASY = CGT,
         NO_TRADE_UNION,
-        INTERMEDIATE = NO_TRADE_UNION,
         LREM,
+        EASY = CGT,
+        INTERMEDIATE = NO_TRADE_UNION,
         HARD = LREM
     } trade_union_t;
 
@@ -49,7 +49,7 @@
     } weapon_t;
 
     typedef enum {
-        NO_ARMOR
+        NO_ARMOR = 0
     } armor_t;
 
     typedef struct {
@@ -58,14 +58,14 @@
         unsigned char hp;
         unsigned char hp_max;
         unsigned xp;
+        unsigned char attack;
+        unsigned char speed;
+        unsigned char defense;
+        unsigned char charism;
+        unsigned char luck;
+        unsigned char level;
         unsigned char n_allies;
         unsigned char n_floorboards;
-        unsigned char level;
-        unsigned char speed;
-        unsigned char attack;
-        unsigned char defense;
-        unsigned char luck;
-        unsigned char charism;
         unsigned char ability_points;
         float crowd_multiplier;
         float tag_xp_multiplier;

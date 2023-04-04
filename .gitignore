@@ -5,6 +5,8 @@
 # Miscelleanous
 .vscode
 *.pdf
+*.txt
+*.log
 
 # main
 my_rpg
@@ -21,7 +23,6 @@ test*
 *.o
 *.a
 *.obj
-*.log
 *.gch
 *.old
 *~
