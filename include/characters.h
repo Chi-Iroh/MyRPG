@@ -29,6 +29,8 @@
         FROM_MARSEILLE,
         FROM_BRETAGNE,
         FROM_CORSE,
+        FROM_PERPIGNAN,
+        FROM_NORD_PAS_DE_CALAIS,
         FROM_SEINE_ST_DENIS
     } character_origin_t;
 
