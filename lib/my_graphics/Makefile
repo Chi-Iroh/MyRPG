@@ -37,7 +37,15 @@ SRC		=	vector/set_vector.c			\
 			draw/draw_single_draw.c		\
 			draw/draw_draws.c			\
 			draw/free_single_draw.c		\
-			draw/free_draws.c
+			draw/free_draws.c			\
+			shape/init_shape.c			\
+			shape/create_shape.c		\
+			shape/set_pos_shape.c		\
+			shape/set_size_shape.c		\
+			shape/set_angle_shape.c		\
+			shape/set_data_shape.c		\
+			shape/draw_shape.c			\
+			shape/free_shape.c
 
 OBJ		=	$(SRC:.c=.o)
 
