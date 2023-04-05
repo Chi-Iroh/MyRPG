@@ -10,18 +10,18 @@ void free_single_draw(draw_t * draw)
 {
     switch (draw->type) {
         case SHAPE:
-            //free_shape((shape_t)(draw->drawable));
+            free_shape((shape_t *)(draw->drawable));
         break;
         case SPRITE:
-            //free_sprite((sprite_t)(draw->drawable));
+            free_sprite((sprite_t *)(draw->drawable));
         break;
         case ENTITY:
-            //free_entity((entity_t)(draw->drawable));
+            free_entity((entity_t *)(draw->drawable));
         break;
         case TEXT:
-            //free_text((text_t)(draw->drawable));
+            free_text((text_t *)(draw->drawable));
         break;
     }
-    free(data);
+    free(draw->data);
     free(draw);
 }
