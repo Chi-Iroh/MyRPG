@@ -11,6 +11,7 @@
     #include "include/shape.h"
     #include "include/sprite.h"
     #include "include/entity.h"
+    #include "include/data.h"
     #include "include/draw.h"
     #include "include/layer.h"
     #include "include/window.h"

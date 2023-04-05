@@ -20,7 +20,24 @@ SRC		=	vector/set_vector.c			\
 			layer/draw_single_layer.c	\
 			layer/draw_layers.c			\
 			layer/free_single_layer.c	\
-			layer/free_layers.c
+			layer/free_layers.c			\
+			data/init_data.c			\
+			data/create_data.c			\
+			data/set_depth.c			\
+			data/set_pos_data.c			\
+			data/set_size_data.c		\
+			data/set_angle_data.c		\
+			data/set_data.c				\
+			draw/init_draw.c			\
+			draw/create_draw.c			\
+			draw/set_data_draw.c		\
+			draw/switch_draw_show.c		\
+			draw/swap_draw.c			\
+			draw/sort_draws.c			\
+			draw/draw_single_draw.c		\
+			draw/draw_draws.c			\
+			draw/free_single_draw.c		\
+			draw/free_draws.c
 
 OBJ		=	$(SRC:.c=.o)
 

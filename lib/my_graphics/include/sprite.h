@@ -14,6 +14,7 @@
     ** a : angle de rotation en degrees
     ** sprite : sfml struct for sprites
     */
+    typedef struct sprite {} sprite_t;
 
     // add animation + scale position + auto scale
 
@@ -33,7 +34,7 @@
     sprite_t set_data_sprite(sprite_t sprite,
             sfVector2f position, sfVector2f size, double a);
     sprite_t actualize_sprite(sprite_t sprite, sfTexture * texture);
-    void draw_sprite(sprite_t sprite, sfRenderWindow * window);
-    void free_sprite(sprite_t sprite);
     */
+    void draw_sprite(sfRenderTexture * texture, sprite_t * sprite);
+    void free_sprite(sprite_t * sprite);
 #endif

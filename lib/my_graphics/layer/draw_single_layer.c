@@ -10,6 +10,7 @@ void draw_single_layer(sfRenderWindow * window, layer_t * layer)
 {
     sfColor blank = {0.0, 0.0, 0.0, 0.0};
     sfRenderTexture_clear(layer->texture, blank);
+    layer->draw = sort_draws(layer->draw);
     draw_draws(layer->texture, layer->draw);
     sfSprite_setTexture(layer->sprite,
                         sfRenderTexture_getTexture(layer->texture), sfTrue);
