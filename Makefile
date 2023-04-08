@@ -19,6 +19,7 @@ SANITIZE    =   -fsanitize=address,undefined
 
 CFLAGS  +=  -Wall -Wextra -pedantic -fsigned-char       \
 -funsigned-bitfields -Wno-unused-parameter -std=gnu2x -fms-extensions
+LDFLAGS	+=	-L ./lib -l graphics -l csfml-graphics -l csfml-system
 
 NAME    =   my_rpg
 
@@ -45,11 +46,7 @@ $(NAME): | make_libs $(OBJ)
 	@echo -------------
 	@echo CC : $(CC)
 	@echo CFLAGS : $(CFLAGS)
-	@if [ -d "./lib/" ]; then												\
-		gcc $(OBJ) $(LD_PRELOAD) -o $(NAME); 								\
-	else  																	\
-		gcc $(OBJ) $(LD_PRELOAD) -o $(NAME); 								\
-	fi
+	@gcc $(OBJ) $(LDFLAGS) -o $(NAME)
 
 %.o: %.c
 	@echo "$< -> $@"
@@ -64,7 +61,3 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-
-test: fclean $(OBJ)
-	cd ./lib/my_graphics && make re
-	gcc $(OBJ) -L ./lib -l graphics -l csfml-graphics -l csfml-system -o $(NAME)
