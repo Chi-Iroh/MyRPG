@@ -8,6 +8,8 @@
 SRC		=	vector/set_vector.c			\
 			vector/increment_vector.c	\
 			vector/scale_vector.c		\
+			rect/set_rectangle.c		\
+			rect/next_rectangle.c		\
 			window/init_window.c		\
 			window/create_window.c		\
 			window/actualize_window.c	\
@@ -17,6 +19,7 @@ SRC		=	vector/set_vector.c			\
 			layer/create_layer.c		\
 			layer/switch_layer_show.c	\
 			layer/swap_layer.c			\
+			layer/append_draw_layer.c	\
 			layer/draw_single_layer.c	\
 			layer/draw_layers.c			\
 			layer/free_single_layer.c	\
@@ -45,7 +48,16 @@ SRC		=	vector/set_vector.c			\
 			shape/set_angle_shape.c		\
 			shape/set_data_shape.c		\
 			shape/draw_shape.c			\
-			shape/free_shape.c
+			shape/free_shape.c			\
+			sprite/init_sprite.c		\
+			sprite/set_pos_sprite.c		\
+			sprite/set_scale_sprite.c	\
+			sprite/set_angle_sprite.c	\
+			sprite/set_data_sprite.c	\
+			sprite/set_texture_sprite.c	\
+			sprite/set_anim_sprite.c	\
+			sprite/draw_sprite.c		\
+			sprite/free_sprite.c
 
 OBJ		=	$(SRC:.c=.o)
 
