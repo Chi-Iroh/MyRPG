@@ -37,7 +37,11 @@ sanitize: LD_PRELOAD += -lasan -lubsan
 sanitize: | $(NAME)
 resanitize: | fclean sanitize
 
-$(NAME): $(OBJ)
+make_libs:
+	$(MAKE) -C lib/my/
+	$(MAKE) -C lib/my_graphics
+
+$(NAME): | make_libs $(OBJ)
 	@echo -------------
 	@echo CC : $(CC)
 	@echo CFLAGS : $(CFLAGS)
