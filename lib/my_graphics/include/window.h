@@ -22,14 +22,15 @@
     typedef struct window {
         sfVector2f size;
         sfRenderWindow * window;
+        sfTexture * spritesheet;
         sfView * view;
         layer_t * core;
         layer_t * ui;
     } window_t;
 
     window_t * init_window(void);
-    window_t * create_window(const char * title,
-                            const sfVideoMode mode, const char * file);
+    window_t * create_window(const char * title, const sfVideoMode mode,
+                            const char * file, const char * spritesheet);
     void actualize_window(window_t * window);
     void view_resize(window_t * window, sfVector2f size);
     void view_center(window_t * window, sfVector2f center);

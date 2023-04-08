@@ -14,7 +14,7 @@
     ** a : angle de rotation en degrees
     ** sprite : sfml struct for sprites
     */
-    typedef struct entity {} entity_t;
+    typedef struct entity entity_t;
 
     // add animation + scale position + auto scale
 

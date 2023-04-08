@@ -38,12 +38,17 @@ static sfView * setup_view(sfVector2f size)
 // mode : struct that containe the size of the window and the pixel depth
 // file : path to an image that can be used as icon for the window
 //        if NULL no icon is set
-window_t * create_window(const char * title,
-                        const sfVideoMode mode, const char * file)
+window_t * create_window(const char * title, const sfVideoMode mode,
+                        const char * file, const char * spritesheet)
 {
     window_t * window = malloc(sizeof(window_t));
     window->size = set_2vector(mode.width, mode.height);
     window->window = setup_window(title, mode, file);
+    window->spritesheet = NULL;
+    if (spritesheet != NULL) {
+        sfIntRect area = set_rectangle(0, 0, 16384, 16384);
+        window->spritesheet = sfTexture_createFromFile(spritesheet, &area);
+    }
     window->view = setup_view(window->size);
     window->core = create_layer(window->size, NULL);
     window->ui = create_layer(window->size, window->core);

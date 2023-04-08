@@ -9,7 +9,7 @@
 void draw_sprite(sfRenderTexture * texture, sprite_t * sprite)
 {
     sfSprite_setTextureRect(sprite->sprite, sprite->rect);
-    sfRenderTexture_drawSprite(texture, sprite, NULL);
+    sfRenderTexture_drawSprite(texture, sprite->sprite, NULL);
     if (!sprite->animated) {
         return;
     }

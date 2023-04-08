@@ -10,7 +10,7 @@
     ** =============================== TEXT ================================
     **
     */
-    typedef struct text {} text_t;
+    typedef struct text text_t;
 
     // implement text
 

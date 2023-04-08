@@ -60,3 +60,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+
+test: fclean $(OBJ)
+	cd ./lib/my_graphics && make re
+	gcc $(OBJ) -L ./lib -l graphics -l csfml-graphics -l csfml-system -o $(NAME)

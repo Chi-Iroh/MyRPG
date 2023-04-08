@@ -7,6 +7,7 @@
 #ifndef MY_GRAPHICS
     #define MY_GRAPHICS
     #include "include/vector.h"
+    #include "include/rect.h"
     #include "include/text.h"
     #include "include/shape.h"
     #include "include/sprite.h"
