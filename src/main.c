@@ -17,7 +17,7 @@ int main(int argc, char **argv)
     data_t * data1 = create_data(null_pos, wind, 0.f);
     sprite_t * sprite1 = init_sprite();
     set_data_sprite(sprite1, data1);
-    set_texture_sprite(sprite1, window->spritesheet, set_rectangle(0, 0, 1920, 1080));
+    set_texture_sprite(sprite1, window->spritesheet, set_rectangle(0, 0, 16384, 16384));
     draw_t * draw1 = create_draw(sprite1, SPRITE, data1, NULL);
     append_draw_layer(window->core, draw1);
 
@@ -30,7 +30,7 @@ int main(int argc, char **argv)
     sprite_t * sprite3 = init_sprite();
     set_data_sprite(sprite3, data3);
     sfTexture * bonhomme = sfTexture_createFromFile("./images/test_sciences_po_student.png", NULL);
-    set_texture_sprite(sprite1, bonhomme, set_rectangle(0, 0, 48, 72));
+    set_texture_sprite(sprite3, bonhomme, set_rectangle(0, 0, 48, 72));
     draw_t * draw3 = create_draw(sprite3, SPRITE, data3, NULL);
     append_draw_layer(window->core, draw3);
 
@@ -41,7 +41,17 @@ int main(int argc, char **argv)
             if (event.type == sfEvtClosed) {
                 sfRenderWindow_close(window->window);
             } if (event.type == sfEvtKeyPressed) {
-                data3->position.x += 10;
+                if (event.key.code == sfKeyQ) {
+                    data3->position.x -= 10;
+                } if (event.key.code == sfKeyD) {
+                    data3->position.x += 10;
+                } if (event.key.code == sfKeyS) {
+                    data3->position.z += 10;
+                } if (event.key.code == sfKeyZ) {
+                    data3->position.z -= 10;
+                }
+                set_data_sprite(sprite3, data3);
+                view_center(window, set_2vector(data3->position.x, data3->position.z));
             }
         }
     }
