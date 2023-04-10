@@ -37,7 +37,8 @@
     void set_scale_sprite(sprite_t * sprite, sfVector2f scale);
     void set_angle_sprite(sprite_t * sprite, float angle);
     void set_data_sprite(sprite_t * sprite, data_t * data);
-    void set_texture_sprite(sprite_t * sprite, sfTexture * texture, sfIntRect rect);
+    void set_texture_sprite(sprite_t * sprite,
+                            sfTexture * texture, sfIntRect rect);
     void set_animation_sprite(sprite_t * sprite, int nb_frame);
     void draw_sprite(sfRenderTexture * texture, sprite_t * sprite);
     void free_sprite(sprite_t * sprite);

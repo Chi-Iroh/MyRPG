@@ -10,11 +10,8 @@ shape_t * create_shape(shape_type_t type, sfColor color_in,
                             sfColor color_out, int thick)
 {
     shape_t * shape = malloc(sizeof(shape_t));
-    shape->type = type;
-    shape->shape = NULL;
-    shape->color_in = color_in;
-    shape->color_out = color_out;
-    shape->thick = thick;
+    shape->type = type; shape->shape = NULL; shape->color_in = color_in;
+    shape->color_out = color_out; shape->thick = thick;
     if (type == SQUARE) {
         shape->shape = sfRectangleShape_create();
         sfRectangleShape_setFillColor(
@@ -23,8 +20,7 @@ shape_t * create_shape(shape_type_t type, sfColor color_in,
                 (sfRectangleShape *)(shape->shape), color_out);
         sfRectangleShape_setOutlineThickness(
                 (sfRectangleShape *)(shape->shape), thick);
-    }
-    if (type == CIRCLE) {
+    } if (type == CIRCLE) {
         shape->shape = sfCircleShape_create();
         sfCircleShape_setFillColor(
                 (sfCircleShape *)(shape->shape), color_in);
@@ -32,6 +28,5 @@ shape_t * create_shape(shape_type_t type, sfColor color_in,
                 (sfCircleShape *)(shape->shape), color_out);
         sfCircleShape_setOutlineThickness(
                 (sfCircleShape *)(shape->shape), thick);
-    }
-    return shape;
+    } return shape;
 }
