@@ -8,9 +8,9 @@
 
 void draw_single_draw(sfRenderTexture * texture, draw_t * draw)
 {
+    set_data_draw(draw, draw->data);
     switch (draw->type) {
         case SHAPE:
-            set_data_shape((shape_t *)(draw->drawable), draw->data);
             draw_shape(texture, (shape_t *)(draw->drawable));
         break;
         case SPRITE:

@@ -17,7 +17,7 @@ int main(int argc, char **argv)
     data_t * data1 = create_data(null_pos, wind, 0.f);
     sprite_t * sprite1 = init_sprite();
     set_data_sprite(sprite1, data1);
-    set_texture_sprite(sprite1, window->spritesheet, set_rectangle(0, 0, 16384, 16384));
+    set_texture_sprite(sprite1, window->spritesheet, set_rectangle(0, 0, 16384, 3200));
     draw_t * draw1 = create_draw(sprite1, SPRITE, data1, NULL);
     append_draw_layer(window->core, draw1);
 
@@ -42,15 +42,14 @@ int main(int argc, char **argv)
                 sfRenderWindow_close(window->window);
             } if (event.type == sfEvtKeyPressed) {
                 if (event.key.code == sfKeyQ) {
-                    data3->position.x -= 10;
+                    data3->position.x -= 100;
                 } if (event.key.code == sfKeyD) {
-                    data3->position.x += 10;
+                    data3->position.x += 100;
                 } if (event.key.code == sfKeyS) {
-                    data3->position.z += 10;
+                    data3->position.z += 100;
                 } if (event.key.code == sfKeyZ) {
-                    data3->position.z -= 10;
+                    data3->position.z -= 100;
                 }
-                set_data_sprite(sprite3, data3);
                 view_center(window, set_2vector(data3->position.x, data3->position.z));
             }
         }
