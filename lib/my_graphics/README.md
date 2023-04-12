@@ -82,6 +82,7 @@ Vous n'aurez pas à gérer vous même le free de layer. En cas de besoin, voir d
 ## Draw
 Une draw structure est un asset à afficher sur un layer. Cet asset peut être un sprite, un rectangle, un cercle, du texte ou une entité complexe (voir les sections correspondantes pour plus d'informations ; PS: pour rectangle et cercle voir shape).
 ### What is it
+Voici un schéma qui représente la draw structure :
 ```mermaid
   graph TD;
     A[draw] --> B[drawable];
@@ -96,15 +97,170 @@ Une draw structure est un asset à afficher sur un layer. Cet asset peut être u
 - show est un bouléen qui indique si l'asset doit être affiché sur le layer lors du rafraîchissement de l'image.
 - next & previous sont des pointeurs vers les autres assets.
 ### Creation
+Pour créer un draw il faut utiliser la fonction suivante :
+```c
+draw_t * create_draw(void * drawable, draw_type_t type, data_t * data, void * previous);
+```
+- drawable est un pointeur vers une structure préinitialisée.
+- type est une valeur qui représente la structure drawable.
+- data est un pointeur vers une data structure préinitialisée.
+- previous est l'adresse du draw précédent. Donner NULL s'il n'y a pas de précédent.
 ### Displaying
 Vous n'aurez pas à gérer vous même l'affichage de draw. En cas de besoin, voir dans le header *draw.h* la fonction *draw_draws*.
 ### Destruction
 Vous n'aurez pas à gérer vous même le free de draw. En cas de besoin, voir dans le header *draw.h* la fonction *free_draws*.
 ## Data
+La structure data est une structure de donnée manipulable pour intéragir avec une draw structure sans manipuler le draw lui-même.
+### What is it
+Voici un schéma des données stockées dans la structure :
+```mermaid
+  graph TD;
+    A[data] --> B[position];
+    A --> C[size];
+    A --> D[angle];
+    A --> E[depth];
+```
+- position est un vecteur à trois dimensions qui représente la position dans l'espace.
+- size est un vecteur à deux dimensions qui représente la taille du draw.
+- angle est un nombre qui représente la rotation du draw.
+- depth est un score calculé à partir de la position pour déterminer à quelle profondeur se trouve le draw par rapport aux autres.
+### Creation
+Pour créer une data structure il faut utiliser la fonction suivante :
+```c
+data_t * create_data(sfVector3f position, sfVector2f size, float angle);
+```
+- position est un vecteur à trois dimensions.
+- size est un vecteur à deux dimensions.
+- angle est un nombre décimal.
+### Destruction
+Vous n'aurez pas à gérer vous même le free de data. En cas de besoin, voir dans le header *data.h* la fonction *free_data*.
 ## Shape
+Une shape est une structure qui représente une forme rectangulaire ou circulaire.
+### What is it
+Voici les éléments qui compose une shape structure (ne pas oublier qu'une partie de l'information est stocké dans la structure draw parent) :
+```mermaid
+  graph TD;
+    A[shape] --> B[shape];
+    A --> C[type];
+    A --> D[color in];
+    A --> E[color out];
+    A --> F[thick];
+```
+- shape est un pointeur vers la SFML structure correspondante entre sfCircle et sfRectangle.
+- type est une valeur qui représente si la shape est un rectangle ou un cercle (voir énumération *shape_type_t* dans *shape.h*).
+- color_in est la couleur qui remplira l'intérieur de la forme.
+- color_out est la couleur qui remplira le contour de la forme.
+- thick est un nombre qui représente l'épaisseur du contour de la forme.
+### Creation
+Une shape est créée avec la fonction suivante :
+```c
+shape_t * create_shape(shape_type_t type, sfColor color_in, sfColor color_out, int thick);
+```
+- type spécifie si c'est un rectangle ou un cercle.
+- color_in & color_out sont des sfColor qui composeront la shape.
+- thick détermine l'épaisseur du contour de la shape.
+### Displaying
+Vous n'aurez pas à gérer vous même l'affichage de shape. En cas de besoin, voir dans le header *shape.h* la fonction *draw_shape*.
+### Destruction
+Vous n'aurez pas à gérer vous même le free de shape. En cas de besoin, voir dans le header *shape.h* la fonction *free_shape*.
 ## Sprite
+Un sprite est une structure qui permet de manipuler une image. Cette image peut être animée à l'aide d'une spritesheet.
+### What is it
+Voici un schéma qui représente l'architecture d'une structure sprite :
+```mermaid
+  graph TD;
+    A[sprite] --> B[texture];
+    A --> C[sprite];
+    A --> D[rectangle rect];
+    A --> E[animated];
+    A --> F[nb frame];
+    A --> G[current];
+```
+- texture est une SFML structure qui représente l'image qui sera manipulée.
+- sprite est une SFML structure qui permet d'afficher et manipuler la texture.
+- rect est un rectangle qui représente quelle zone de la texture sera prise en compte (notamment pour l'utilisation de spritesheet).
+- animated est un bouléen qui indique si le sprite est animé ou non.
+- nb_frame est un nombre qui indique le nombre d'images qui composent l'animation du sprite.
+- current est un nombre qui indique à quelle étape de l'animation le sprite se trouve.
+### Creation
+Un sprite se crée en plusieurs étapes. En premier il faut l'initialiser vierge avec la fonction suivante :
+```c
+sprite_t * init_sprite(void);
+```
+Ensuite il faut lier le sprite avec une data structure préinitialisée avec la fonction suivante :
+```c
+void set_data_sprite(sprite_t * sprite, data_t * data);
+```
+Ensuite il faut lier le sprite avec une texture préinitialisée avec la fonction suivante :
+```c
+void set_texture_sprite(sprite_t * sprite, sfTexture * texture, sfIntRect rect);
+```
+Si le sprite est animé, on active l'animation avec la fonction suivante :
+```c
+void set_animation_sprite(sprite_t * sprite, int nb_frame);
+```
+**Attention :** pour que l'animation puisse être automatisé, il faut que les différentes frames de l'animation se suivent sur la spritesheet sur la même ligne horizontale sans espace entre les frames. Il faut aussi que chaque frame ai les mêmes dimensions.
+### Displaying
+Vous n'aurez pas à gérer vous même l'affichage de sprite. En cas de besoin, voir dans le header *sprite.h* la fonction *draw_sprite*.
+### Destruction
+Vous n'aurez pas à gérer vous même le free de sprite. En cas de besoin, voir dans le header *sprite.h* la fonction *free_sprite*.
 ## Entity
 Pas encore implémenté.
 ## Text
 Pas encore implémenté.
 ## Vector & Rectangle functions
+Pour initialiser des vecteur vous pouvez utiliser les fonctions suivantes :
+```c
+sfVector2f set_2vector(float x, float y);
+sfVector3f set_3vector(float x, float y, float z);
+```
+Pour plus de fonctions de manipulation de vecteur se référer à *vector.h*.
+Pour initialiser un rectangle vous pouvez utiliser la fonction suivante :
+```c
+sfIntRect set_rectangle(int left, int top, int width, int height);
+```
+# Global Architecture
+Voici un schéma qui résume l'architecture globale de la lib :
+```mermaid
+  graph TD;
+    A[window] --> B[SFML window structure];
+    A --> C[size vecteur];
+    A --> D[spritesheet texture];
+    A --> E[SFML view]
+    A --> F[core layer]
+    A --> G[ui layer]
+    F --> H[layer]
+    G --> H
+    H --> I[render texture];
+    H --> J[sprite];
+    H --> K[size vecteur];
+    H --> L[draw list];
+    H --> M[show];
+    H --> N[next & previous];
+    L --> O[draw]
+    O --> P[drawable];
+    O --> Q[type];
+    O --> R[data structure];
+    O --> S[show];
+    O --> T[next & previous];
+    R --> U[data]
+    U --> V[position];
+    U --> W[size];
+    U --> X[angle];
+    U --> Y[depth];
+    P --> Z[sprite]
+    Z --> AA[texture];
+    Z --> AB[sprite];
+    Z --> AC[rectangle rect];
+    Z --> AD[animated];
+    Z --> AE[nb frame];
+    Z --> AF[current];
+    P --> AG[shape]
+    AG --> AH[shape];
+    AG --> AI[type];
+    AG --> AJ[color in];
+    AG --> AK[color out];
+    AG --> AL[thick];
+    P --> AM[text];
+    P --> AN[entity];
+```
