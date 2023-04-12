@@ -12,4 +12,7 @@ void set_texture_sprite(sprite_t * sprite, sfTexture * texture, sfIntRect rect)
     sfSprite_setTexture(sprite->sprite, texture, sfTrue);
     sprite->rect = rect;
     sfSprite_setTextureRect(sprite->sprite, rect);
+    if (rect.width != 0 && rect.height != 0) {
+        sfSprite_setTextureRect(sprite->sprite, rect);
+    }
 }

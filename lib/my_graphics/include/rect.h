@@ -12,4 +12,6 @@
     */
     sfIntRect set_rectangle(int left, int top, int width, int height);
     sfIntRect next_rectangle(sfIntRect rectangle);
+
+    #define NULL_RECT set_rectangle(0, 0, 0, 0)
 #endif

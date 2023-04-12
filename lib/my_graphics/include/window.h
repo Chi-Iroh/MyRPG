@@ -32,6 +32,7 @@
     window_t * create_window(const char * title, const sfVideoMode mode,
                             const char * file, const char * spritesheet);
     void actualize_window(window_t * window);
+    void append_layer(layer_t * first, layer_t * layer);
     void view_resize(window_t * window, sfVector2f size);
     void view_center(window_t * window, sfVector2f center);
     void view_set_rotation(window_t * window, float angle);

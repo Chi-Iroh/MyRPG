@@ -51,7 +51,9 @@ window_t * create_window(const char * title, const sfVideoMode mode,
     }
     window->view = setup_view(window->size);
     window->core = create_layer(window->size, NULL);
+    window->core->type = CORE;
     window->ui = create_layer(window->size, window->core);
+    window->ui->type = UI;
     window->core->next = window->ui;
     return window;
 }

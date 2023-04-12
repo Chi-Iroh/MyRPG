@@ -13,6 +13,7 @@ SRC		=	vector/set_vector.c			\
 			window/init_window.c		\
 			window/create_window.c		\
 			window/actualize_window.c	\
+			window/append_layer.c		\
 			window/view.c				\
 			window/free_window.c		\
 			layer/init_layer.c			\

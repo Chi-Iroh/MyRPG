@@ -24,15 +24,19 @@
     ** previous : pointer to the lower layer
     **            is NULL if there is no previous
     */
-    typedef struct layer {
+    typedef enum layer_type { RDML, CORE, UI } layer_type_t;
+    typedef struct layer layer_t;
+
+    struct layer {
+        layer_type_t type;
         sfVector2f size;
         sfRenderTexture * texture;
         sfSprite * sprite;
         draw_t * draw;
         bool show;
-        void * next;
-        void * previous;
-    } layer_t;
+        layer_t * next;
+        layer_t * previous;
+    };
 
     layer_t * init_layer(void);
     layer_t * create_layer(sfVector2f size, void * previous);

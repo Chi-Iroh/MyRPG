@@ -17,6 +17,7 @@ layer_t * create_layer(sfVector2f size, void * previous)
     sfColor blank = {0.0, 0.0, 0.0, 0.0};
     sfImage * image = sfImage_createFromColor(size.x, size.y, blank);
     sfTexture * texture = sfTexture_createFromImage(image, NULL);
+    layer->type = RDML;
     layer->size = size;
     layer->sprite = sfSprite_create();
     sfSprite_setTexture(layer->sprite, texture, sfTrue);
