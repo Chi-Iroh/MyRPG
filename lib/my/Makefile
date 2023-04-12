@@ -112,15 +112,15 @@ NAME	=	libmy.a
 
 all: CFLAGS += $(RELEASE)
 all: $(NAME)
-re: | fclean all
+re: fclean all
 
 debug: CFLAGS += $(DEBUG)
 debug: $(NAME)
-redebug: | fclean debug
+redebug: fclean debug
 
 sanitize: CFLAGS += $(DEBUG) $(SANITIZE)
 sanitize: $(NAME)
-resanitize: | fclean sanitize
+resanitize: fclean sanitize
 
 $(NAME): $(OBJ)
 	@ar rcs $(NAME) $(OBJ)
