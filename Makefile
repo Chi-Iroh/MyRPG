@@ -24,25 +24,25 @@ LDFLAGS	+=	-L ./lib -l graphics -l csfml-graphics -l csfml-system
 NAME    =   my_rpg
 
 all: CFLAGS += $(RELEASE)
-all: | $(NAME)
-re: | fclean all
+all: $(NAME)
+re: fclean all
 
 debug: CFLAGS += $(DEBUG)
 debug: LIB_COMPILE += debug
-debug: | $(NAME)
-redebug: | fclean debug
+debug: $(NAME)
+redebug: fclean debug
 
 sanitize: CFLAGS += $(DEBUG) $(SANITIZE)
 sanitize: LIB_COMPILE += sanitize
 sanitize: LD_PRELOAD += -lasan -lubsan
-sanitize: | $(NAME)
-resanitize: | fclean sanitize
+sanitize: $(NAME)
+resanitize: fclean sanitize
 
 make_libs:
 	$(MAKE) -C lib/my/
 	$(MAKE) -C lib/my_graphics
 
-$(NAME): | make_libs $(OBJ)
+$(NAME): make_libs $(OBJ)
 	@echo -------------
 	@echo CC : $(CC)
 	@echo CFLAGS : $(CFLAGS)
