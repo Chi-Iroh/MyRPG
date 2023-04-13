@@ -71,7 +71,7 @@ $(NAME): $(OBJ)
 	@cp $(NAME) ../
 
 %.o:%.c
-	@gcc -c $< -o $@
+	@gcc -c -Wall -Wextra $< -o $@
 
 clean:
 	@rm -f *.gcda

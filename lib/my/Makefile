@@ -141,4 +141,4 @@ clean:
 
 fclean: clean
 	@echo "[LIB] Removing binary."
-	@rm -f $(NAME)
+	@rm -f ../$(NAME)

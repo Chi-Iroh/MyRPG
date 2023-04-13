@@ -52,12 +52,20 @@ $(NAME): make_libs $(OBJ)
 	@echo "$< -> $@"
 	@$(CC) -c $(CFLAGS) -I ./include/ $< -o $@
 
-clean:
+clean_libs:
+	$(MAKE) -C ./lib/my/ clean
+	$(MAKE) -C ./lib/my_graphics clean
+
+clean: clean_libs
 	@rm -f *.gcno
 	@rm -f *.gcda
 	@rm -f vgcore.*
 	@rm -f *.log
 	@rm -f $(OBJ)
 
-fclean: clean
+fclean_libs:
+	$(MAKE) -C ./lib/my/ fclean
+	$(MAKE) -C ./lib/my_graphics fclean
+
+fclean: clean fclean_libs
 	@rm -f $(NAME)
