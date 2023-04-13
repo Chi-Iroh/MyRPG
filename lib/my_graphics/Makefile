@@ -58,7 +58,18 @@ SRC		=	vector/set_vector.c			\
 			sprite/set_texture_sprite.c	\
 			sprite/set_anim_sprite.c	\
 			sprite/draw_sprite.c		\
-			sprite/free_sprite.c
+			sprite/free_sprite.c		\
+			text/init_text.c			\
+			text/create_text.c			\
+			text/set_pos_text.c			\
+			text/set_size_text.c		\
+			text/set_angle_text.c		\
+			text/set_data_text.c		\
+			text/set_color_text.c		\
+			text/set_font_text.c		\
+			text/set_string_text.c		\
+			text/draw_text.c			\
+			text/free_text.c
 
 OBJ		=	$(SRC:.c=.o)
 
