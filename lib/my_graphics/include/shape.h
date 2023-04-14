@@ -40,6 +40,12 @@
     void set_size_shape(shape_t * shape, sfVector2f size);
     void set_angle_shape(shape_t * shape, float angle);
     void set_data_shape(shape_t * shape, data_t * data);
+    void set_shape_shape(shape_t * shape, shape_type_t type);
+    void set_color_in_shape(shape_t * shape, sfColor color);
+    void set_color_out_shape(shape_t * shape, sfColor color);
+    void set_thick_shape(shape_t * shape, int thick);
+    void set_attributes_shape(shape_t * shape, sfColor color_in,
+                            sfColor color_out, int thick);
     void draw_shape(sfRenderTexture * texture, shape_t * shape);
     void free_shape(shape_t * shape);
 #endif
