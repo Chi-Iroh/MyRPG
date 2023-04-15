@@ -48,6 +48,7 @@ SRC		=	vector/set_vector.c			\
 			shape/set_size_shape.c		\
 			shape/set_angle_shape.c		\
 			shape/set_data_shape.c		\
+			shape/set_attributes_shape.c	\
 			shape/draw_shape.c			\
 			shape/free_shape.c			\
 			sprite/init_sprite.c		\
