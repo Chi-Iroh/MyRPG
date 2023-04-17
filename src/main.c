@@ -23,7 +23,7 @@ int main(int argc, char **argv)
     append_draw_layer(window->core, draw1);
 
     data_t * data2 = create_data(null_pos, set_2vector(920, 80), 0.f);
-    shape_t * shape2 = create_shape(SQUARE, sfBlue, sfGreen, 4);
+    shape_t * shape2 = create_shape(RECT, sfBlue, sfGreen, 4);
     draw_t * draw2 = create_draw(shape2, SHAPE, data2, NULL);
     append_draw_layer(window->ui, draw2);
 
