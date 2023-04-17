@@ -14,9 +14,7 @@ void append_layer(layer_t * first, layer_t * layer)
     }
     layer_t * next = first->next;
     first->next = layer;
-    if (layer->previous != first) {
-        layer->previous = first;
-    }
+    layer->previous = first;
     if (next != NULL) {
         layer->next = next;
         next->previous = layer;

@@ -17,4 +17,5 @@ void append_draw_layer(layer_t * layer, draw_t * draw)
         current = current->next;
     }
     current->next = draw;
+    draw->previous = current;
 }
