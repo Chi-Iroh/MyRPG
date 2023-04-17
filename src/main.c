@@ -29,7 +29,7 @@ int main(int argc, char **argv)
     data_t * data3 = create_data(null_pos, wind, 0.f);
     sprite_t * sprite3 = init_sprite();
     set_data_sprite(sprite3, data3);
-    sfTexture * bonhomme = sfTexture_createFromFile("./images/test_sciences_po_student.png", NULL);
+    sfTexture * bonhomme = sfTexture_createFromFile("./images/étudiant_sciences_po.png", NULL);
     set_texture_sprite(sprite3, bonhomme, set_rectangle(0, 0, 48, 72));
     draw_t * draw3 = create_draw(sprite3, SPRITE, data3, NULL);
     append_draw_layer(window->core, draw3);
