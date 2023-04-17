@@ -55,6 +55,7 @@ $(NAME): make_libs $(OBJ)
 clean_libs:
 	$(MAKE) -C ./lib/my/ clean
 	$(MAKE) -C ./lib/my_graphics clean
+	$(MAKE) -C ./lib/button clean
 
 clean: clean_libs
 	@rm -f *.gcno
@@ -66,6 +67,7 @@ clean: clean_libs
 fclean_libs:
 	$(MAKE) -C ./lib/my/ fclean
 	$(MAKE) -C ./lib/my_graphics fclean
+	$(MAKE) -C ./lib/button fclean
 
 fclean: clean fclean_libs
 	@rm -f $(NAME)

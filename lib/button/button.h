@@ -35,7 +35,15 @@ typedef union {
     sfUint32 *utf8;
 } button_title_t;
 
+typedef enum {
+    BUTTON_INVALID,
+    BUTTON_PRESSED,
+    BUTTON_HOVERED,
+    BUTTON_RELEASED
+} button_state_t;
+
 typedef struct {
+    button_state_t state;
     button_title_t title;
     bool use_utf8_title;
     button_fill_t fill;
@@ -50,7 +58,6 @@ typedef struct {
     unsigned text_size;
 } button_t;
 
-
 // button_init.c
 bool init_button_base(button_t *button);
 void button_fill_color(button_t *button, sfColor color);
@@ -64,6 +71,8 @@ void convert_rectangle_shape_to_float_rect
 (sfRectangleShape *shape, sfFloatRect *rect);
 bool is_mouse_in_rect(sfRenderWindow *window, sfFloatRect *rect);
 void resize_and_center_text(sfFloatRect *rect, sfText *text);
+void update_button_state
+(button_t *button, sfRenderWindow *window, sfEvent event);
 
 // button_title.c
 void button_set_utf8_title

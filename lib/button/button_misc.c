@@ -9,6 +9,7 @@
 #include <SFML/Graphics.h>
 #include <my.h>
 #include <my_macros.h>
+#include "button.h"
 
 void convert_float_rect_to_rectangle_shape
 (sfFloatRect *rect, sfRectangleShape *shape)
@@ -61,4 +62,19 @@ void resize_and_center_text(sfFloatRect *rect, sfText *text)
         .y = rect->top + (rect->height - text_area.height) / 2
     };
     sfText_setPosition(text, pos);
+}
+
+void update_button_state
+(button_t *button, sfRenderWindow *window, sfEvent event)
+{
+    const bool is_in_rect = is_mouse_in_rect(window, &button->area);
+
+    if (event.type == sfEvtMouseButtonPressed && is_in_rect) {
+        button->state = button->state == BUTTON_PRESSED ?
+            BUTTON_RELEASED : BUTTON_PRESSED;
+        return;
+    }
+    if (is_in_rect) {
+        button->state = BUTTON_HOVERED;
+    }
 }

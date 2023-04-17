@@ -8,9 +8,10 @@
 #include <my_macros.h>
 #include "button.h"
 
-bool init_button_base(button_t *button)
+static void init_button_struct(button_t *button)
 {
     (*button) = (button_t) {
+        .state = BUTTON_RELEASED,
         .title = { .ansi = NULL },
         .title_pos = BUTTON_TITLE_MIDDLE,
         .fill_mode = BUTTON_FILL_UNINITIALIZED,
@@ -23,6 +24,11 @@ bool init_button_base(button_t *button)
         .text_size = DEFAULT_CHAR_SIZE,
         .use_utf8_title = false
     };
+}
+
+bool init_button_base(button_t *button)
+{
+    init_button_struct(button);
     if (!button->text || !button->shape) {
         FREE_IF_ALLOCATED(button->text, sfText_destroy);
         FREE_IF_ALLOCATED(button->shape, sfRectangleShape_destroy);
