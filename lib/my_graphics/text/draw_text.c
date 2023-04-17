@@ -9,6 +9,9 @@
 void draw_text(sfRenderTexture * texture, text_t * text)
 {
     set_color_text(text, text->color);
+    if (text->font == NULL) {
+        text->font = sfFont_createFromFile("./fonts/Arial.ttf");
+    }
     set_font_text(text, text->font);
     sfRenderTexture_drawText(texture, text->text, NULL);
 }
