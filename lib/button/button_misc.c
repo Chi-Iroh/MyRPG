@@ -70,11 +70,13 @@ void update_button_state
     const bool is_in_rect = is_mouse_in_rect(window, &button->area);
 
     if (event.type == sfEvtMouseButtonPressed && is_in_rect) {
-        button->state = button->state == BUTTON_PRESSED ?
+        button->state = (button->state & BUTTON_PRESSED) ?
             BUTTON_RELEASED : BUTTON_PRESSED;
         return;
     }
     if (is_in_rect) {
-        button->state = BUTTON_HOVERED;
+        button->state |= BUTTON_HOVERED;
+    } else {
+        button->state ^= BUTTON_HOVERED;
     }
 }

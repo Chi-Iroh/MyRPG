@@ -6,11 +6,12 @@
 */
 #include "../include/my_rpg.h"
 #include "../lib/my_graphics/my_graphics.h"
+#include "../lib/button/button.h"
 
 int main(int argc, char **argv)
 {
     sfVideoMode mode = {1920, 1080, 32};
-    window_t * window = create_window("49:3", mode, NULL, "./images/test_avenue1.jpeg");
+    window_t * window = create_window("49:3", mode, NULL, "./images/splash.png");
     sfVector3f null_pos = set_3vector(0, 0, 0);
     sfVector2f wind = set_2vector(1920, 1080);
 
@@ -34,9 +35,21 @@ int main(int argc, char **argv)
     draw_t * draw3 = create_draw(sprite3, SPRITE, data3, NULL);
     append_draw_layer(window->core, draw3);
 
+    button_t button;
+    sfFont *font = sfFont_createFromFile("./fonts/Arial.ttf");
+
+    init_button_base(&button);
+    button_fill_color(&button, sfRed);
+    button_set_ansi_title(&button, "hello world", false);
+    button.font = font;
+    button.text_color = sfWhite;
     sfEvent event;
     while (sfRenderWindow_isOpen(window->window)) {
-        actualize_window(window);
+        sfRenderWindow_clear(window->window, sfBlack);
+        sfRenderTexture_setView(window->core->texture, window->view);
+        draw_layers(window->window, window->core);
+        draw_button(window->window, &button);
+        sfRenderWindow_display(window->window);
         while (sfRenderWindow_pollEvent(window->window, &event)) {
             if (event.type == sfEvtClosed) {
                 sfRenderWindow_close(window->window);
@@ -52,6 +65,17 @@ int main(int argc, char **argv)
                 }
                 view_center(window, set_2vector(data3->position.x, data3->position.z));
             }
+            update_button_state(&button, window->window, event);
+        }
+        puts("----------");
+        if ((button.state & BUTTON_RELEASED)) {
+            puts("released");
+        }
+        if ((button.state & BUTTON_PRESSED)) {
+            puts("pressed");
+        }
+        if ((button.state & BUTTON_HOVERED)) {
+            puts("hovered");
         }
     }
 
