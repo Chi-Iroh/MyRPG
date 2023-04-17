@@ -8,7 +8,7 @@
 
 void draw_shape(sfRenderTexture * texture, shape_t * shape)
 {
-    if (shape->type == SQUARE) {
+    if (shape->type == RECT) {
         sfRenderTexture_drawRectangleShape(texture,
                                     (sfRectangleShape *)(shape->shape), NULL);
     }

@@ -22,7 +22,7 @@
     typedef enum shape_type {
         NO_SHAPE,
         CIRCLE,
-        SQUARE
+        RECT
     } shape_type_t;
 
     typedef struct shape {

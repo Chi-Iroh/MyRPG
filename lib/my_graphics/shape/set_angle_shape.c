@@ -8,7 +8,7 @@
 
 void set_angle_shape(shape_t * shape, float angle)
 {
-    if (shape->type == SQUARE) {
+    if (shape->type == RECT) {
         sfRectangleShape_setRotation((sfRectangleShape *)(shape->shape),
                                                                         angle);
     }

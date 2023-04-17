@@ -16,9 +16,6 @@ void set_data_draw(draw_t * draw, data_t * data)
         case SPRITE:
             set_data_sprite((sprite_t *)(draw->drawable), draw->data);
         break;
-        case ENTITY:
-            //set_data_entity((entity_t *)(draw->drawable), draw->data);
-        break;
         case TEXT:
             set_data_text((text_t *)(draw->drawable), draw->data);
         break;

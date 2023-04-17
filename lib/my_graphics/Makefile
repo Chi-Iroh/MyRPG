@@ -35,6 +35,7 @@ SRC		=	vector/set_vector.c			\
 			draw/init_draw.c			\
 			draw/create_draw.c			\
 			draw/set_data_draw.c		\
+			draw/set_attributes_draw.c	\
 			draw/switch_draw_show.c		\
 			draw/swap_draw.c			\
 			draw/sort_draws.c			\
@@ -66,11 +67,17 @@ SRC		=	vector/set_vector.c			\
 			text/set_size_text.c		\
 			text/set_angle_text.c		\
 			text/set_data_text.c		\
-			text/set_color_text.c		\
+			text/set_attributes_text.c	\
 			text/set_font_text.c		\
 			text/set_string_text.c		\
 			text/draw_text.c			\
 			text/free_text.c
+##			window/splash.c
+##			background/my.c				\
+			background/tmx.c			\
+			background/parser_csv.c		\
+			background/parser_tmx.c		\
+			background/create_background.c
 
 OBJ		=	$(SRC:.c=.o)
 
@@ -83,7 +90,7 @@ $(NAME): $(OBJ)
 	@cp $(NAME) ../
 
 %.o:%.c
-	@gcc -c -Wall -Wextra $< -o $@
+	@gcc -c -g3 -Wall -Wextra $< -o $@
 
 clean:
 	@rm -f *.gcda

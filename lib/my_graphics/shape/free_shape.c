@@ -8,7 +8,7 @@
 
 void free_shape(shape_t * shape)
 {
-    if (shape->type == SQUARE) {
+    if (shape->type == RECT) {
         sfRectangleShape_destroy((sfRectangleShape *)(shape->shape));
     }
     if (shape->type == CIRCLE) {

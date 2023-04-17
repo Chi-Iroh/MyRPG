@@ -12,6 +12,8 @@ text_t * init_text(void)
     text->text = sfText_create();
     text->string = NULL;
     text->font = NULL;
-    text->color = (sfColor){0.0, 0.0, 0.0, 0.0};
+    text->color_in = (sfColor){0.0, 0.0, 0.0, 0.0};
+    text->color_out = (sfColor){0.0, 0.0, 0.0, 0.0};
+    text->thick = 0;
     return text;
 }

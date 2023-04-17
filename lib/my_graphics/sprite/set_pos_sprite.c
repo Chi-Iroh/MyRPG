@@ -8,6 +8,6 @@
 
 void set_pos_sprite(sprite_t * sprite, sfVector3f position)
 {
-    sfVector2f pos = set_2vector(position.x, position.z);
+    sfVector2f pos = set_2vector(position.x, position.y);
     sfSprite_setPosition(sprite->sprite, pos);
 }

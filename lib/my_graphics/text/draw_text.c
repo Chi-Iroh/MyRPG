@@ -8,7 +8,8 @@
 
 void draw_text(sfRenderTexture * texture, text_t * text)
 {
-    set_color_text(text, text->color);
+    set_attributes_text(text, text->color_in,
+                    text->color_out, text->thick);
     if (text->font == NULL) {
         text->font = sfFont_createFromFile("./fonts/Arial.ttf");
     }

@@ -12,7 +12,9 @@ text_t * create_text(const char * string, sfFont * font, sfColor color)
     text->text = sfText_create();
     text->string = (sfUint32 *)string;
     text->font = font;
-    text->color = color;
+    text->color_in = color;
+    text->color_out = color;
+    text->thick = 0;
     sfText_setUnicodeString(text->text, text->string);
     return text;
 }

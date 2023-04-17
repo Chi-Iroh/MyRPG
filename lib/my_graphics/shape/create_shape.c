@@ -12,7 +12,7 @@ shape_t * create_shape(shape_type_t type, sfColor color_in,
     shape_t * shape = malloc(sizeof(shape_t));
     shape->type = type; shape->shape = NULL; shape->color_in = color_in;
     shape->color_out = color_out; shape->thick = thick;
-    if (type == SQUARE) {
+    if (type == RECT) {
         shape->shape = sfRectangleShape_create();
         sfRectangleShape_setFillColor(
                 (sfRectangleShape *)(shape->shape),color_in);

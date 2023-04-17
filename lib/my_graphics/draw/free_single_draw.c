@@ -15,9 +15,6 @@ void free_single_draw(draw_t * draw)
         case SPRITE:
             free_sprite((sprite_t *)(draw->drawable));
         break;
-        case ENTITY:
-            //free_entity((entity_t *)(draw->drawable));
-        break;
         case TEXT:
             free_text((text_t *)(draw->drawable));
         break;

@@ -18,7 +18,9 @@
         sfText * text;
         sfUint32 * string;
         sfFont * font;
-        sfColor color;
+        sfColor color_in;
+        sfColor color_out;
+        int thick;
     } text_t;
 
     text_t * init_text(void);
@@ -27,7 +29,11 @@
     void set_size_text(text_t * text, sfVector2f size);
     void set_angle_text(text_t * text, float angle);
     void set_data_text(text_t * text, data_t * data);
-    void set_color_text(text_t * text, sfColor color);
+    void set_color_in_text(text_t * text, sfColor color);
+    void set_color_out_text(text_t * text, sfColor color);
+    void set_thick_text(text_t * text, int thick);
+    void set_attributes_text(text_t * text, sfColor color_in,
+                                sfColor color_out, int thick);
     void set_font_text(text_t * text, sfFont * font);
     void set_string_text(text_t * text, const char * string);
     void draw_text(sfRenderTexture * texture, text_t * text);

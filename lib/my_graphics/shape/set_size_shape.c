@@ -8,7 +8,7 @@
 
 void set_size_shape(shape_t * shape, sfVector2f size)
 {
-    if (shape->type == SQUARE) {
+    if (shape->type == RECT) {
         sfRectangleShape_setSize((sfRectangleShape *)(shape->shape), size);
     }
     if (shape->type == CIRCLE) {
