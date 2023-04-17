@@ -8,7 +8,7 @@
 
 void draw_text(sfRenderTexture * texture, text_t * text)
 {
-    set_color_text(text->text, text->color);
-    set_font_text(text->text, text->font);
+    set_color_text(text, text->color);
+    set_font_text(text, text->font);
     sfRenderTexture_drawText(texture, text->text, NULL);
 }

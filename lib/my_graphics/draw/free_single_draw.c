@@ -16,12 +16,14 @@ void free_single_draw(draw_t * draw)
             free_sprite((sprite_t *)(draw->drawable));
         break;
         case ENTITY:
-            free_entity((entity_t *)(draw->drawable));
+            //free_entity((entity_t *)(draw->drawable));
         break;
         case TEXT:
             free_text((text_t *)(draw->drawable));
         break;
+        default: break;
+    } if (draw->data != NULL) {
+        free(draw->data);
     }
-    free(draw->data);
     free(draw);
 }

@@ -8,6 +8,7 @@
 *.txt
 *.log
 vgcore.*
+*test*
 
 # main
 my_rpg

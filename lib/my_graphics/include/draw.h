@@ -34,18 +34,21 @@
         TEXT
     } draw_type_t;
 
-    typedef struct draw {
+    typedef struct draw draw_t;
+
+    struct draw {
         void * drawable;
         draw_type_t type;
+        int id;
         bool show;
         data_t * data;
-        void * next;
-        void * previous;
-    } draw_t;
+        draw_t * next;
+        draw_t * previous;
+    };
 
     draw_t * init_draw(void);
     draw_t * create_draw(void * drawable, draw_type_t type,
-                    data_t * data, void * previous);
+                    data_t * data, draw_t * previous);
     void set_data_draw(draw_t * draw, data_t * data);
     void switch_draw_show(draw_t * draw);
     void swap_draw_next(draw_t * draw);

@@ -8,6 +8,6 @@
 
 void set_pos_text(text_t * text, sfVector3f position)
 {
-    sfVector2f pos = set_2vector(position.x, position.z);
+    sfVector2f pos = set_2vector(position.x, position.y);
     sfText_setPosition(text->text, pos);
 }

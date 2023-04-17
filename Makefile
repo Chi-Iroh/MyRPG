@@ -39,7 +39,7 @@ sanitize: $(NAME)
 resanitize: fclean sanitize
 
 make_libs:
-	$(MAKE) -C lib/my/
+	$(MAKE) -C lib/my/ $(LIB_COMPILE)
 	$(MAKE) -C lib/my_graphics
 
 $(NAME): make_libs $(OBJ)

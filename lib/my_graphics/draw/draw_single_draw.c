@@ -20,7 +20,8 @@ void draw_single_draw(sfRenderTexture * texture, draw_t * draw)
             //draw_entity(texture, (entity_t *)(draw->drawable));
         break;
         case TEXT:
-            //draw_text(texture, (text_t *)(draw->drawable));
+            draw_text(texture, (text_t *)(draw->drawable));
         break;
+        default: break;
     }
 }

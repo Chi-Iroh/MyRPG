@@ -24,7 +24,15 @@
     ** previous : pointer to the lower layer
     **            is NULL if there is no previous
     */
-    typedef enum layer_type { RDML, CORE, UI } layer_type_t;
+    typedef enum layer_type {
+        RDML,
+        BACKGROUND,
+        CORE,
+        FX,
+        UI,
+        SPLASH
+    } layer_type_t;
+
     typedef struct layer layer_t;
 
     struct layer {

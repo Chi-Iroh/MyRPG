@@ -6,6 +6,10 @@
 */
 #ifndef MY_GRAPHICS_TEXT
     #define MY_GRAPHICS_TEXT
+    #include <SFML/System.h>
+    #include <SFML/Graphics.h>
+    #include <stdlib.h>
+    #include "data.h"
     /*
     ** =============================== TEXT ================================
     **
