@@ -50,10 +50,16 @@
     void switch_draw_show(draw_t * draw);
     void swap_draw_next(draw_t * draw);
     void swap_draw_previous(draw_t * draw);
+
+    // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     //void set_pos_sprite(sprite_t * sprite, sfVector3f position);
+    // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     //void set_size_shape(shape_t * shape, sfVector2f size);
+    // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     //void set_scale_sprite(sprite_t * sprite, sfVector2f scale);
+    // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     //void set_angle_sprite(sprite_t * sprite, float angle);
+    // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     void set_data_draw(draw_t * draw, data_t * data);
     // SHAPE (CIRCLE & RECT), TEXT
     void set_color_in_draw(draw_t * draw, sfColor color);
@@ -64,17 +70,29 @@
     // SHAPE (CIRCLE & RECT), TEXT
     void set_attributes_draw(draw_t * draw, sfColor color_in,
                         sfColor color_out, int thick);
+    // TEXT
     //void set_string_text(text_t * text, const char * string);
+    // SPRITE
     //void set_animation_sprite(sprite_t * sprite, int nb_frame);
-    //*void sfText_setOrigin(sfText* text, sfVector2f origin);
+    // SPRITE, SHAPE (CIRCLE & RECT), TEXT
+    void set_origin_draw(draw_t * draw, sfVector2f origin);
+    // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     //sfVector2f sfText_getPosition(const sfText* text);
+    // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     //float sfText_getRotation(const sfText* text);
+    // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     //sfVector2f sfText_getScale(const sfText* text);
+    // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     //sfVector2f sfText_getOrigin(const sfText* text);
+    // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     //void sfText_move(sfText* text, sfVector2f offset);
+    // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     //void sfText_rotate(sfText* text, float angle);
+    // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     //sfFloatRect sfText_getLocalBounds(const sfText* text);
-    //*sfFloatRect sfText_getGlobalBounds(const sfText* text);
+    // SPRITE, SHAPE (CIRCLE & RECT), TEXT
+    sfFloatRect get_global_bounds_draw(draw_t * draw);
+
     draw_t * sort_draws(draw_t * draw);
     void draw_single_draw(sfRenderTexture * texture, draw_t * draw);
     void draw_draws(sfRenderTexture * texture, draw_t * draw);

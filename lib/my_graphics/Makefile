@@ -36,6 +36,8 @@ SRC		=	vector/set_vector.c			\
 			draw/create_draw.c			\
 			draw/set_data_draw.c		\
 			draw/set_attributes_draw.c	\
+			draw/set_origin_draw.c		\
+			draw/get_global_bounds_draw.c	\
 			draw/switch_draw_show.c		\
 			draw/swap_draw.c			\
 			draw/sort_draws.c			\
