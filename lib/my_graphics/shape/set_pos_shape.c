@@ -8,7 +8,7 @@
 
 void set_pos_shape(shape_t * shape, sfVector3f position)
 {
-    sfVector2f pos = set_2vector(position.x, position.z);
+    sfVector2f pos = set_2vector(position.x, position.y);
     if (shape->type == SQUARE) {
         sfRectangleShape_setPosition((sfRectangleShape *)(shape->shape), pos);
     }

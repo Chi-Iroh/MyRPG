@@ -11,10 +11,10 @@ void set_color_in_shape(shape_t * shape, sfColor color)
     shape->color_in = color;
     if (shape->type == SQUARE) {
         sfRectangleShape_setFillColor(
-                (sfRectangleShape *)(shape->shape),color_in);
+                (sfRectangleShape *)(shape->shape), color);
     } if (shape->type == CIRCLE) {
         sfCircleShape_setFillColor(
-                (sfCircleShape *)(shape->shape), color_in);
+                (sfCircleShape *)(shape->shape), color);
     }
 }
 
@@ -23,10 +23,10 @@ void set_color_out_shape(shape_t * shape, sfColor color)
     shape->color_out = color;
     if (shape->type == SQUARE) {
         sfRectangleShape_setOutlineColor(
-                (sfRectangleShape *)(shape->shape), color_out);
+                (sfRectangleShape *)(shape->shape), color);
     } if (shape->type == CIRCLE) {
         sfCircleShape_setOutlineColor(
-                (sfCircleShape *)(shape->shape), color_out);
+                (sfCircleShape *)(shape->shape), color);
     }
 }
 
