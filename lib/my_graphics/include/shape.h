@@ -46,6 +46,18 @@
     void set_thick_shape(shape_t * shape, int thick);
     void set_attributes_shape(shape_t * shape, sfColor color_in,
                             sfColor color_out, int thick);
+
+    void set_origin_shape(shape_t * shape, sfVector2f origin);
+    sfVector2f get_position_shape(shape_t * shape);
+    float get_rotation_shape(shape_t * shape);
+    sfVector2f get_scale_shape(shape_t * shape);
+    sfVector2f get_origin_shape(shape_t * shape);
+    void move_shape(shape_t * shape, sfVector2f offset);
+    void scale_shape(shape_t * shape, sfVector2f scale);
+    void rotate_shape(shape_t * shape, float angle);
+    void modify_shape(shape_t * shape, sfVector2f offset,
+                    sfVector2f scale, float angle);
+
     void draw_shape(sfRenderTexture * texture, shape_t * shape);
     void free_shape(shape_t * shape);
 #endif

@@ -6,6 +6,17 @@
 */
 #include "../include/sprite.h"
 
+void set_pos_sprite(sprite_t * sprite, sfVector3f position)
+{
+    sfVector2f pos = set_2vector(position.x, position.y);
+    sfSprite_setPosition(sprite->sprite, pos);
+}
+
+void set_angle_sprite(sprite_t * sprite, float angle)
+{
+    sfSprite_setRotation(sprite->sprite, angle);
+}
+
 void set_data_sprite(sprite_t * sprite, data_t * data)
 {
     set_pos_sprite(sprite, data->position);

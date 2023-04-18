@@ -36,7 +36,11 @@ SRC		=	vector/set_vector.c			\
 			draw/create_draw.c			\
 			draw/set_data_draw.c		\
 			draw/set_attributes_draw.c	\
+			draw/set_string_draw.c		\
+			draw/set_animation_draw.c	\
 			draw/set_origin_draw.c		\
+			draw/get_data_draw.c		\
+			draw/modify_draw.c			\
 			draw/get_global_bounds_draw.c	\
 			draw/switch_draw_show.c		\
 			draw/swap_draw.c			\
@@ -47,29 +51,27 @@ SRC		=	vector/set_vector.c			\
 			draw/free_draws.c			\
 			shape/init_shape.c			\
 			shape/create_shape.c		\
-			shape/set_pos_shape.c		\
-			shape/set_size_shape.c		\
-			shape/set_angle_shape.c		\
 			shape/set_data_shape.c		\
 			shape/set_attributes_shape.c	\
+			shape/get_data_shape.c		\
+			shape/modify_shape.c		\
 			shape/draw_shape.c			\
 			shape/free_shape.c			\
 			sprite/init_sprite.c		\
-			sprite/set_pos_sprite.c		\
-			sprite/set_scale_sprite.c	\
-			sprite/set_angle_sprite.c	\
 			sprite/set_data_sprite.c	\
+			sprite/set_animation_sprite.c	\
+			sprite/get_data_sprite.c		\
+			sprite/modify_sprite.c			\
 			sprite/set_texture_sprite.c	\
-			sprite/set_anim_sprite.c	\
 			sprite/draw_sprite.c		\
 			sprite/free_sprite.c		\
 			text/init_text.c			\
 			text/create_text.c			\
-			text/set_pos_text.c			\
-			text/set_size_text.c		\
-			text/set_angle_text.c		\
 			text/set_data_text.c		\
 			text/set_attributes_text.c	\
+			text/set_string_text.c		\
+			text/get_data_text.c		\
+			text/modify_text.c			\
 			text/set_font_text.c		\
 			text/set_string_text.c		\
 			text/draw_text.c			\

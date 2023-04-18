@@ -40,6 +40,18 @@
     void set_texture_sprite(sprite_t * sprite,
                             sfTexture * texture, sfIntRect rect);
     void set_animation_sprite(sprite_t * sprite, int nb_frame);
+
+    void set_origin_sprite(sprite_t * sprite, sfVector2f origin);
+    sfVector2f get_position_sprite(sprite_t * sprite);
+    float get_rotation_sprite(sprite_t * sprite);
+    sfVector2f get_scale_sprite(sprite_t * sprite);
+    sfVector2f get_origin_sprite(sprite_t * sprite);
+    void move_sprite(sprite_t * sprite, sfVector2f offset);
+    void scale_sprite(sprite_t * sprite, sfVector2f scale);
+    void rotate_sprite(sprite_t * sprite, float angle);
+    void modify_sprite(sprite_t * sprite, sfVector2f offset,
+                    sfVector2f scale, float angle);
+
     void draw_sprite(sfRenderTexture * texture, sprite_t * sprite);
     void free_sprite(sprite_t * sprite);
 #endif
