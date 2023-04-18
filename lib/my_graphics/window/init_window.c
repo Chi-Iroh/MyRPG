@@ -12,7 +12,9 @@ window_t * init_window(void)
     window->size = set_2vector(0.f, 0.f);
     window->window = NULL;
     window->view = NULL;
+    window->background = NULL;
     window->core = NULL;
+    window->fx = NULL;
     window->ui = NULL;
     return window;
 }

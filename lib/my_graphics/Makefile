@@ -12,6 +12,7 @@ SRC		=	vector/set_vector.c			\
 			rect/next_rectangle.c		\
 			window/init_window.c		\
 			window/create_window.c		\
+			window/splash.c				\
 			window/actualize_window.c	\
 			window/append_layer.c		\
 			window/view.c				\
@@ -75,9 +76,8 @@ SRC		=	vector/set_vector.c			\
 			text/set_font_text.c		\
 			text/set_string_text.c		\
 			text/draw_text.c			\
-			text/free_text.c
-##			window/splash.c
-##			background/my.c				\
+			text/free_text.c			\
+			background/my.c				\
 			background/tmx.c			\
 			background/parser_csv.c		\
 			background/parser_tmx.c		\

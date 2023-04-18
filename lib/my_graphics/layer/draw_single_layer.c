@@ -8,6 +8,9 @@
 
 void draw_single_layer(sfRenderWindow * window, layer_t * layer)
 {
+    if (!layer->show) {
+        return;
+    }
     sfColor blank = {0.0, 0.0, 0.0, 0.0};
     sfRenderTexture_clear(layer->texture, blank);
     layer->draw = sort_draws(layer->draw);

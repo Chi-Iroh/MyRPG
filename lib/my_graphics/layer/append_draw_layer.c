@@ -9,13 +9,9 @@
 void append_draw_layer(layer_t * layer, draw_t * draw)
 {
     draw_t * current = layer->draw;
-    if (current == NULL) {
-        layer->draw = draw;
-        return;
+    layer->draw = draw;
+    if (current != NULL) {
+        current->previous = draw;
+        draw->next = current;
     }
-    while (current->next != NULL) {
-        current = current->next;
-    }
-    current->next = draw;
-    draw->previous = current;
 }

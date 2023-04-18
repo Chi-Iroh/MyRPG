@@ -5,6 +5,7 @@
 ** function that create a window struct from parameters
 */
 #include "../include/window.h"
+#include <stdlib.h>
 
 // function that set up the sfRenderWindow struct
 // if file is NULL, no icon is set
@@ -48,12 +49,17 @@ window_t * create_window(const char * title, const sfVideoMode mode,
     if (spritesheet != NULL) {
         sfIntRect area = set_rectangle(0, 0, 16384, 16384);
         window->spritesheet = sfTexture_createFromFile(spritesheet, &area);
-    }
-    window->view = setup_view(window->size);
-    window->core = create_layer(window->size, NULL);
-    window->core->type = CORE;
-    window->ui = create_layer(window->size, window->core);
+    } window->view = setup_view(window->size);
+    init_splash_screen(window);
+    create_background(window);
+    window->core->next = create_layer(window->size, window->core);
+    window->fx = window->core->next;
+    window->fx->type = FX;
+    window->fx->next = create_layer(window->size, window->fx);
+    window->ui = window->fx->next;
     window->ui->type = UI;
-    window->core->next = window->ui;
+    window->ui->next = window->splash;
+    window->splash->previous = window->ui;
+    window->splash->type = SPLASH;
     return window;
 }

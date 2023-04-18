@@ -11,6 +11,7 @@
     #include <stdlib.h>
     #include "vector.h"
     #include "layer.h"
+    #include "background.h"
     /*
     ** ============================== WINDOW ===============================
     ** size : vector that give width and height
@@ -24,8 +25,11 @@
         sfRenderWindow * window;
         sfTexture * spritesheet;
         sfView * view;
+        layer_t * background;
         layer_t * core;
+        layer_t * fx;
         layer_t * ui;
+        layer_t * splash;
     } window_t;
 
     window_t * init_window(void);
@@ -39,4 +43,10 @@
     void view_rotate(window_t * window, float angle);
     void view_zoom(window_t * window, float factor);
     void free_window(window_t * window);
+
+    /*
+    ** ============================== SPLASH ===============================
+    */
+    void init_splash_screen(window_t* wd);
+    void splash_screen(window_t * wd, int x, int x_max);
 #endif

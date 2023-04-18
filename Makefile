@@ -19,7 +19,8 @@ SANITIZE    =   -fsanitize=address,undefined
 
 CFLAGS  +=  -Wall -Wextra -pedantic -fsigned-char       \
 -funsigned-bitfields -Wno-unused-parameter -std=gnu2x -fms-extensions
-LDFLAGS	+=	-L ./lib -l graphics -l csfml-graphics -l csfml-system -l button -l my
+LDFLAGS	+=	-L ./lib -l graphics -l csfml-graphics \
+-l csfml-system -l button -l my
 
 NAME    =   my_rpg
 

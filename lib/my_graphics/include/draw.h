@@ -47,8 +47,7 @@
 
     // ### ### Creation ### ###
     draw_t * init_draw(void);
-    draw_t * create_draw(void * drawable, draw_type_t type,
-                    data_t * data, draw_t * previous);
+    draw_t * create_draw(void * drawable, draw_type_t type, data_t * data);
 
     // ### ### Struct manipulation ### ###
     void switch_draw_show(draw_t * draw);

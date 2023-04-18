@@ -10,7 +10,9 @@
 void actualize_window(window_t * window)
 {
     sfRenderWindow_clear(window->window, sfBlack);
+    sfRenderTexture_setView(window->background->texture, window->view);
     sfRenderTexture_setView(window->core->texture, window->view);
-    draw_layers(window->window, window->core);
+    sfRenderTexture_setView(window->fx->texture, window->view);
+    draw_layers(window->window, window->background);
     sfRenderWindow_display(window->window);
 }

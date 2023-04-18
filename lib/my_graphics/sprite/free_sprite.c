@@ -9,5 +9,8 @@
 void free_sprite(sprite_t * sprite)
 {
     sfSprite_destroy(sprite->sprite);
+    if (sprite->texture != NULL) {
+        sfTexture_destroy(sprite->texture);
+    }
     free(sprite);
 }
