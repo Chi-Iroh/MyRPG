@@ -7,6 +7,8 @@
 #include "../include/window.h"
 
 // reset screen -> apply view to core -> display core & ui -> actualize window
+// if you want to apply those instructions separatly see the draw functions in
+// layer/ and in draw/ (or in their header in include/)
 void actualize_window(window_t * window)
 {
     sfRenderWindow_clear(window->window, sfBlack);

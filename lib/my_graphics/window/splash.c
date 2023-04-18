@@ -1,11 +1,12 @@
 /*
 ** EPITECH PROJECT, 2022
-** B-MUL-200-LYN-2-1-myrpg-nils.perriolat
+** library MY_GRAPHICS
 ** File description:
-** splash_screen.c
+** functions that handle splash screen
 */
 #include "../include/window.h"
 
+// function that initialize the splash screen when the window is created
 void init_splash_screen(window_t* wd)
 {
     wd->splash = create_layer(wd->size, NULL); sfVector3f null_pos =
@@ -30,6 +31,7 @@ void init_splash_screen(window_t* wd)
     wd->splash->draw->next->next = draw3; draw3->previous = draw2;
 }
 
+// function that animate and display a layer splash during window creation
 void splash_screen(window_t * wd, int x, int x_max)
 {
     wd->splash->draw->data->position.x -= 0.40;

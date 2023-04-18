@@ -10,40 +10,47 @@ Dans la lib window_t correspond à une structure qui contient entre autre la fen
   graph TD;
     A[window] --> B[SFML window structure];
     A --> C[size vecteur];
-    A --> D[spritesheet texture];
-    A --> E[SFML view]
-    A --> F[core layer]
-    A --> G[ui layer]
+    A --> D[SFML view];
+    A --> E[background layer];
+    A --> F[core layer];
+    A --> G[fx layer];
+    A --> H[ui layer];
+    A --> I[splash layer];
 ```
-- size est un vecteur à deux dimension qui conserve les dimensions initiales de la window.
-- window est un pointeur vers la structure sfRenderWindow correspondant à la structure window.
-- view est globalement une caméra interactive qui permet de modifier le point de vue de la window.
-- spritesheet est une texture de spritesheet réutilisable pour l'animation des sprites.
-- core est une structure layer (voir section correspondante) destinée à contenir tous les assets du jeu en lui-même.
-- ui est une structure layer (voir section correspondante) destinée à contenir les assets de l'interface utilisateur. Ce layer n'est pas affecté par la view.
+- **size** est un vecteur à deux dimension qui conserve les dimensions initiales de la window.
+- **window** est un pointeur vers la structure sfRenderWindow correspondant à la structure window.
+- **view** est globalement une caméra interactive qui permet de modifier le point de vue de la window.
+- **background** est une structure layer (voir section correspondante) destinée à contenir tous les assets de fond du jeu sans interactivités.
+- **core** est une structure layer (voir section correspondante) destinée à contenir tous les assets manipulables du jeu en lui-même.
+- **fx** est une structure layer (voir section correspondante) destinée à contenir tous les effets spéciaux.
+- **ui** est une structure layer (voir section correspondante) destinée à contenir les assets de l'interface utilisateur. Ce layer n'est pas affecté par la view.
+- **splash** est une structure layer (voir section correspondante) destinée à contenir le splash screen.
 
 ### Creation
 Pour créer notre fenêtre il suffit de créer une window_t structure en utilisant la fonction suivante :
 ```c
-window_t * create_window(const char * title, const sfVideoMode mode, const char * file, const char * spritesheet);
+window_t * create_window(const char * title, const sfVideoMode mode, const char * file);
 ```
-- title correspond au titre de la fenêtre.
-- mode est une structure de la SFML qui contient la largeur, la hauteur et le framerate de la fenêtre.
-- file est un path vers une image qui peut servir d'icone. Si vous ne voulez pas en fournir, remplacez par NULL.
-- spritesheet est un path vers une simage qui peut servir de spritesheet pour tous sprites manipulés par la suite. Si vous ne voulez pas en fournir, remplacez par NULL.
+- **title** correspond au titre de la fenêtre.
+- **mode** est une structure de la SFML qui contient la largeur, la hauteur et le framerate de la fenêtre.
+- **file** est un path vers une image qui peut servir d'icone. Si vous ne voulez pas en fournir, remplacez par NULL.
+
 ### Displaying
 Pour l'affichage il suffit d'appeler la fonction suivante lors du rafraîchissement de l'image :
 ```c
 void actualize_window(window_t * window);
 ```
 Il suffit de lui donner la window en paramètre et tout sera calculé et affiché par la fonction.
-Bien que cela est possible, il est fortement déconseillé d'appeler les autres fonctions d'affichage de la lib ou de la SFML.
+Si toutefois vous souhaitez manipuler vous même les étapes d'affichages vous pouvez utiliser les fonctions d'affichages des sous-structures de la lib.
+En revanche l'usage des deux méthodes est incompatible, attention.
+
 ### Destruction
 Toujours penser à free. En l'occurence il suffit d'appeler la fonction suivante pour free la fenêtre et tout ce qui aura été créé par la lib par la suite (si et seulement si tout est correctement créé) :
 ```c
 void free_window(window_t * window);
 ```
 Bien que cela est possible, il est fortement déconseillé d'appeler les autres fonctions de free de la lib ou de la SFML.
+
 ### Manipulate the view
 Pour manipuler la caméra on peut utiliser les fonctions suivantes.
 ```c
@@ -54,8 +61,9 @@ void view_rotate(window_t * window, float angle);
 void view_zoom(window_t * window, float factor);
 ```
 La caméra se manipule globalement comme un sprite donc je ne vais pas tout réexpliquer sauf pour view_center. La view, contrairement à un sprite, se manipule grâce à son centre. Il faudra donc penser à donner le centre du sprite et non la position en haut à gauche du sprite.
+
 ## Layer
-Une fois la window créé, les différents assets à afficher sont répartis sur des layers différents. Par défaut il y en à deux dans la window, core et ui, cependant on peut en ajouter plus en les chaînants.
+Une fois la window créée, les différents assets à afficher sont répartis sur des layers différents. Par défaut il y en à 5 dans la window cependant on peut en ajouter plus en les chaînants.
 ### What is it
 Un layer agit comme une sorte de fenêtre dans la fenêtre. Donc on peut y appliquer à peu près tout ce que l'on peut faire à la fenêtre d'un point de vue graphique. Cela permet de aisémenet l'affichage de sprites à des profondeurs différentes et les modifications de masse sur plusieurs sprites.
 ```mermaid

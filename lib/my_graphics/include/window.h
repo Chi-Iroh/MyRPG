@@ -17,13 +17,19 @@
     ** size : vector that give width and height
     ** window : sfml dynamic window
     ** view : sfml camera to crop core layer if needed
+    ** background : layer that display the background of the app
+    **              that layer is created with the window
     ** core : layer that display the core of the app
+    **        all pre-defined elements with hitbox are created in this layer
+    **        when the window is created
+    **        you should add your usable elements in this layer
+    ** fx : layer created to manipulate only your fx
     ** ui : layer that display the user interface
+    ** splash : layer that contain the splash screen
     */
     typedef struct window {
         sfVector2f size;
         sfRenderWindow * window;
-        sfTexture * spritesheet;
         sfView * view;
         layer_t * background;
         layer_t * core;
