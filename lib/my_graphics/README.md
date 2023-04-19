@@ -175,6 +175,7 @@ void set_origin_draw(draw_t * draw, sfVector2f origin);
 Vous n'aurez pas à gérer vous même l'affichage de draw. En cas de besoin, voir dans le header *draw.h* la fonction *draw_draws*.
 ### Destruction
 Vous n'aurez pas à gérer vous même le free de draw. En cas de besoin, voir dans le header *draw.h* la fonction *free_draws*.
+
 ## Data
 La structure data est une structure de donnée manipulable pour intéragir avec une draw structure sans manipuler le draw lui-même.
 ### What is it
@@ -200,6 +201,7 @@ data_t * create_data(sfVector3f position, sfVector2f size, float angle);
 - angle est un nombre décimal.
 ### Destruction
 Vous n'aurez pas à gérer vous même le free de data. En cas de besoin, voir dans le header *data.h* la fonction *free_data*.
+
 ## Shape
 Une shape est une structure qui représente une forme rectangulaire ou circulaire.
 ### What is it
@@ -212,23 +214,24 @@ Voici les éléments qui compose une shape structure (ne pas oublier qu'une part
     A --> E[color out];
     A --> F[thick];
 ```
-- shape est un pointeur vers la SFML structure correspondante entre sfCircle et sfRectangle.
-- type est une valeur qui représente si la shape est un rectangle ou un cercle (voir énumération *shape_type_t* dans *shape.h*).
-- color_in est la couleur qui remplira l'intérieur de la forme.
-- color_out est la couleur qui remplira le contour de la forme.
-- thick est un nombre qui représente l'épaisseur du contour de la forme.
+- **shape** est un pointeur vers la SFML structure correspondante entre sfCircle et sfRectangle.
+- **type** est une valeur qui représente si la shape est un rectangle ou un cercle (voir énumération *shape_type_t* dans *shape.h*).
+- **color_in** est la couleur qui remplira l'intérieur de la forme.
+- **color_out** est la couleur qui remplira le contour de la forme.
+- **thick** est un nombre qui représente l'épaisseur du contour de la forme.
 ### Creation
 Une shape est créée avec la fonction suivante :
 ```c
 shape_t * create_shape(shape_type_t type, sfColor color_in, sfColor color_out, int thick);
 ```
-- type spécifie si c'est un rectangle ou un cercle.
-- color_in & color_out sont des sfColor qui composeront la shape.
-- thick détermine l'épaisseur du contour de la shape.
+- **type** spécifie si c'est un rectangle ou un cercle.
+- **color_in** & **color_out** sont des sfColor qui composeront la shape.
+- **thick** détermine l'épaisseur du contour de la shape.
 ### Displaying
 Vous n'aurez pas à gérer vous même l'affichage de shape. En cas de besoin, voir dans le header *shape.h* la fonction *draw_shape*.
 ### Destruction
 Vous n'aurez pas à gérer vous même le free de shape. En cas de besoin, voir dans le header *shape.h* la fonction *free_shape*.
+
 ## Sprite
 Un sprite est une structure qui permet de manipuler une image. Cette image peut être animée à l'aide d'une spritesheet.
 ### What is it

@@ -2,10 +2,11 @@
 ** EPITECH PROJECT, 2023
 ** library MY_GRAPHICS
 ** File description:
-** function that draw a list of draws to layer
+** function that change the color config of a shape
 */
 #include "../include/shape.h"
 
+// change the inner color of a shape
 void set_color_in_shape(shape_t * shape, sfColor color)
 {
     shape->color_in = color;
@@ -18,6 +19,7 @@ void set_color_in_shape(shape_t * shape, sfColor color)
     }
 }
 
+// change the color of the outline of a shape
 void set_color_out_shape(shape_t * shape, sfColor color)
 {
     shape->color_out = color;
@@ -30,6 +32,7 @@ void set_color_out_shape(shape_t * shape, sfColor color)
     }
 }
 
+// change the thickness of the outline of a shape
 void set_thick_shape(shape_t * shape, int thick)
 {
     shape->thick = thick;
@@ -42,6 +45,7 @@ void set_thick_shape(shape_t * shape, int thick)
     }
 }
 
+// change inner color, outline color and outline thickness of a shape
 void set_attributes_shape(shape_t * shape, sfColor color_in,
                         sfColor color_out, int thick)
 {

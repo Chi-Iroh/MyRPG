@@ -6,6 +6,10 @@
 */
 #include "../include/shape.h"
 
+// type : indicate if the shape is a circle or a rectangle
+// color_in : inner color of the shape
+// color_out : outline color of the shape
+// thick : outline thickness of the shape
 shape_t * create_shape(shape_type_t type, sfColor color_in,
                             sfColor color_out, int thick)
 {

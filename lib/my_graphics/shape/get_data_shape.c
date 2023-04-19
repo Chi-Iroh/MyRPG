@@ -2,10 +2,11 @@
 ** EPITECH PROJECT, 2023
 ** library MY_GRAPHICS
 ** File description:
-** function that create a shape struct from parameters
+** function that get informations from the actual state of the shape
 */
 #include "../include/shape.h"
 
+// get the position of the shape
 sfVector2f get_position_shape(shape_t * shape)
 {
     sfVector2f vect = set_2vector(0.f, 0.f);
@@ -22,6 +23,7 @@ sfVector2f get_position_shape(shape_t * shape)
     return vect;
 }
 
+// get the rotation of the shape
 float get_rotation_shape(shape_t * shape)
 {
     float angle = 0.f;
@@ -38,6 +40,7 @@ float get_rotation_shape(shape_t * shape)
     return angle;
 }
 
+// get the scale of the shape from its initial size
 sfVector2f get_scale_shape(shape_t * shape)
 {
     sfVector2f vect = set_2vector(0.f, 0.f);
@@ -54,6 +57,7 @@ sfVector2f get_scale_shape(shape_t * shape)
     return vect;
 }
 
+// get origin of the shape
 sfVector2f get_origin_shape(shape_t * shape)
 {
     sfVector2f vect = set_2vector(0.f, 0.f);
