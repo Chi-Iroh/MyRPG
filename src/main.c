@@ -12,6 +12,8 @@ int main(int argc, char **argv)
 {
     sfVideoMode mode = {1920, 1080, 32};
     window_t * window = create_window("49:3", mode, NULL);
+    free_window(window);
+    return 0;
     game_src_t* g_src = init_game_sources(window);
     if (window == NULL || g_src == NULL) {
         write(2, "terminating process\n", 20); return 84;

@@ -23,6 +23,7 @@ void free_tmx(tmx_t * tmx)
     tmx_t * next = tmx;
     while (next != NULL) {
         next = next->next;
+        free(tmx->path);
         free(tmx);
         tmx = next;
     }

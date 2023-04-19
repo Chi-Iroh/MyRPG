@@ -90,7 +90,9 @@ DEBUG	=	-g3 -p -ggdb3
 # Prevents GCC optimizations
 RELEASE =  -O0 -fno-builtin
 SANITIZE	=	-fsanitize=address,undefined \
--fsanitize-recover=address,undefined
+-fno-sanitize-recover=address,undefined
+AR_LDFLAGS 	= csfml-graphics csfml-window csfml-system
+AR_PRELOAD 	=
 
 CFLAGS	+=	-Wall -Wextra -pedantic -fsigned-char		\
 -funsigned-bitfields -Wno-unused-parameter -std=gnu2x -pedantic
@@ -106,12 +108,14 @@ debug: $(NAME)
 redebug: fclean debug
 
 sanitize: CFLAGS += $(DEBUG) $(SANITIZE)
+sanitize: AR_PRELOAD += asan ubsan
 sanitize: $(NAME)
 resanitize: fclean sanitize
 
 $(NAME): $(OBJ)
 	@echo Building lib graphics...
-	@ar rc -l"csfml-graphics csfml-system" $(NAME) $(OBJ)
+	@echo Dependencies: $(AR_PRELOAD) $(AR_LDFLAGS)
+	@ar rc -l"$(AR_PRELOAD) $(AR_LDFLAGS)" $(NAME) $(OBJ)
 
 %.o: %.c
 	@$(CC) -c $(CFLAGS) $< -I ../../include/ -o $@
