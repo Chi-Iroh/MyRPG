@@ -36,7 +36,6 @@ NAME    =   my_rpg
 
 .PHONY: all re debug redebug sanitize resanitize make_libs \
 lean_libs clean fclean
-
 all: CFLAGS += $(RELEASE)
 all: $(NAME)
 re: fclean all
