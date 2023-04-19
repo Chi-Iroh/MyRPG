@@ -83,28 +83,49 @@ SRC		=	vector/set_vector.c			\
 			background/parser_tmx.c		\
 			background/create_background.c
 
-OBJ		=	$(SRC:.c=.o)
+OBJ	=	$(SRC:.c=.o)
 
-NAME	=	libgraphics.a
+CC 	=	gcc
+DEBUG	=	-g3 -p -ggdb3
+# Prevents GCC optimizations
+RELEASE =  -O0 -fno-builtin
+SANITIZE	=	-fsanitize=address,undefined
 
+CFLAGS	+=	-Wall -Wextra -pedantic -fsigned-char		\
+-funsigned-bitfields -Wno-unused-parameter -std=gnu2x -pedantic
+
+NAME	=	../libgraphics.a
+
+all: CFLAGS += $(RELEASE)
 all: $(NAME)
+re: fclean all
+
+debug: CFLAGS += $(DEBUG)
+debug: $(NAME)
+redebug: fclean debug
+
+sanitize: CFLAGS += $(DEBUG) $(SANITIZE)
+sanitize: $(NAME)
+resanitize: fclean sanitize
 
 $(NAME): $(OBJ)
+	@echo Building lib graphics...
 	@ar rc -l"csfml-graphics csfml-system" $(NAME) $(OBJ)
-	@cp $(NAME) ../
 
-%.o:%.c
-	@gcc -c -g3 -Wall -Wextra $< -o $@
+%.o: %.c
+	@$(CC) -c $(CFLAGS) $< -I ../../include/ -o $@
 
 clean:
+	@echo "[LIB] Removing temporary and object files."
 	@rm -f *.gcda
 	@rm -f *.gcno
-	@rm -f *.out
-	@rm -f coding-style-reports.log
+	@rm -f vgcore.*
+	@rm -f *.log
 	@rm -f $(OBJ)
-
-fclean: clean
 	@rm -f $(NAME)
 	@rm -f ../$(NAME)
+	@rm -f ../../include/button.h
 
-re: fclean all
+fclean: clean
+	@echo "[LIB] Removing binary."
+	@rm -f ../$(NAME)

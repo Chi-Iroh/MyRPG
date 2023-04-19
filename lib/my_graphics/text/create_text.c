@@ -15,6 +15,7 @@ text_t * create_text(const char * string, sfFont * font, sfColor color)
     text->color_in = color;
     text->color_out = color;
     text->thick = 0;
-    sfText_setUnicodeString(text->text, text->string);
+    sfText_setString(text->text, text->string);
+    sfText_setCharacterSize(text->text, 100);
     return text;
-}
+}//sfText_setUnicodeString(text->text, text->string);
