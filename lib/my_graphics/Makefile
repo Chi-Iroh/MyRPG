@@ -23,6 +23,8 @@ SRC		=	vector/set_vector.c			\
 			layer/swap_layer.c			\
 			layer/append_draw_layer.c	\
 			layer/draw_single_layer.c	\
+			layer/draw_from_to_layer.c	\
+			layer/draw_section_layer.c	\
 			layer/draw_layers.c			\
 			layer/free_single_layer.c	\
 			layer/free_layers.c			\

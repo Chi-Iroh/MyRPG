@@ -54,6 +54,9 @@
     void swap_layer_down(layer_t * layer);
     void append_draw_layer(layer_t * layer, draw_t * draw);
     void draw_single_layer(sfRenderWindow * window, layer_t * layer);
+    void draw_from_to_layer(sfRenderWindow * window,
+                                layer_t * from, layer_t * to);
+    void draw_section_layer(sfRenderWindow * window, layer_t * layer);
     void draw_layers(sfRenderWindow * window, layer_t * layer);
     void free_single_layer(layer_t * layer);
     void free_layers(layer_t * layer);
