@@ -89,18 +89,6 @@ Un layer agit comme une sorte de fenêtre dans la fenêtre. Donc on peut y appli
 - **next** & **previous** sont des pointeurs vers les autres layers si existants.
 ### Creation
 Vous n'aurez pas à gérer vous même la création de layer. En cas de besoin, voir dans le header *layer.h* la fonction *create_layer*.
-### Manipulation
-Vous pouvez effectuer toutes les manipulations nécessaires sur votre asset depuis la draw structure sauf la création du drawable.
-Il y a 8 d'interactions avec une draw structure :
-- **set_data** : établir la position, la taille et la rotation
-- **set_attributes** : *(uniquement pour un draw de type shape ou text)* pour changer la couleur intérieure, extérieure et la largeur du contour.
-- **modify** : applique une modification relative à l'état actuel du draw. Les modifications possibles sont déplacer, redimensionner et tourner.
-- **get_data** : fonctions pour récupérer des informations sur l'état actuel du draw.
-- **get_bounds** : fonction pour récupérer les limites que forme le draw.
-- **set_string** : *(uniquement pour un draw de type text)* change la chaîne de caractère affichée avec le draw.
-- **set_animation** : *(uniquement pour un draw de type sprite)* active l'animation du draw.
-- **set_origin** : change le point de référence du draw.
-
 ### Displaying
 Vous n'aurez pas à gérer vous même l'affichage de layer. En cas de besoin, voir dans le header *layer.h* la fonction *draw_layers*.
 ### Destruction
@@ -133,6 +121,56 @@ draw_t * create_draw(void * drawable, draw_type_t type, data_t * data);
 - **drawable** est un pointeur vers une structure préinitialisée d'un asset.
 - **type** est une valeur qui représente la structure drawable.
 - **data** est un pointeur vers une data structure préinitialisée.
+
+### Manipulation
+Vous pouvez effectuer toutes les manipulations nécessaires sur votre asset depuis la draw structure sauf la création du drawable.
+Il y a 8 d'interactions avec une draw structure :
+- **set_data** : établir la position, la taille et la rotation
+```c
+void set_pos_draw(draw_t * draw, sfVector3f position);
+void set_size_draw(draw_t * draw, sfVector2f size);
+void set_angle_draw(draw_t * draw, float angle);
+void set_data_draw(draw_t * draw, data_t * data);
+```
+- **set_attributes** : *(uniquement pour un draw de type shape ou text)* pour changer la couleur intérieure, extérieure et la largeur du contour.
+```c
+void set_color_in_draw(draw_t * draw, sfColor color);
+void set_color_out_draw(draw_t * draw, sfColor color);
+void set_thick_draw(draw_t * draw, int thick);
+void set_attributes_draw(draw_t * draw, sfColor color_in, sfColor color_out, int thick);
+```
+- **modify** : applique une modification relative à l'état actuel du draw. Les modifications possibles sont déplacer, redimensionner et tourner.
+```c
+void move_draw(draw_t * draw, sfVector2f offset);
+void scale_draw(draw_t * draw, sfVector2f scale);
+void rotate_draw(draw_t * draw, float angle);
+void modify_draw(draw_t * draw, sfVector2f offset, sfVector2f scale, float angle);
+```
+- **get_data** : fonctions pour récupérer des informations sur l'état actuel du draw.
+```c
+sfVector2f get_position_draw(draw_t * draw);
+float get_rotation_draw(draw_t * draw);
+sfVector2f get_scale_draw(draw_t * draw);
+sfVector2f get_origin_draw(draw_t * draw);
+```
+- **get_bounds** : fonction pour récupérer les limites que forme le draw.
+```c
+sfFloatRect get_local_bounds_draw(draw_t * draw);
+sfFloatRect get_global_bounds_draw(draw_t * draw);
+```
+- **set_string** : *(uniquement pour un draw de type text)* change la chaîne de caractère affichée avec le draw.
+```c
+void set_string_draw(draw_t * draw, const char * string);
+```
+- **set_animation** : *(uniquement pour un draw de type sprite)* active l'animation du draw.
+```c
+void set_animation_draw(draw_t * draw, int nb_frame);
+```
+- **set_origin** : change le point de référence du draw.
+```c
+void set_origin_draw(draw_t * draw, sfVector2f origin);
+```
+
 ### Displaying
 Vous n'aurez pas à gérer vous même l'affichage de draw. En cas de besoin, voir dans le header *draw.h* la fonction *draw_draws*.
 ### Destruction
