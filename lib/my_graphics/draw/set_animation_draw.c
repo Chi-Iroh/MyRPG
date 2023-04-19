@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2023
 ** library MY_GRAPHICS
 ** File description:
-** function that change the data struct
+** function that enable animation for draw type sprite
 */
 #include "../include/draw.h"
 

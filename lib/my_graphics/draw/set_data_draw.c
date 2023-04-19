@@ -2,10 +2,11 @@
 ** EPITECH PROJECT, 2023
 ** library MY_GRAPHICS
 ** File description:
-** function that change the data struct
+** function that change the data struct linked to a draw
 */
 #include "../include/draw.h"
 
+// set the position of a draw
 void set_pos_draw(draw_t * draw, sfVector3f position)
 {
     draw->data->position = position;
@@ -23,6 +24,7 @@ void set_pos_draw(draw_t * draw, sfVector3f position)
     }
 }
 
+// set the size of a draw
 void set_size_draw(draw_t * draw, sfVector2f size)
 {
     draw->data->size = size;
@@ -37,6 +39,7 @@ void set_size_draw(draw_t * draw, sfVector2f size)
     }
 }
 
+// set the rotation of a draw
 void set_angle_draw(draw_t * draw, float angle)
 {
     draw->data->angle = angle;
@@ -54,6 +57,7 @@ void set_angle_draw(draw_t * draw, float angle)
     }
 }
 
+// set the position, the size and the rotation of a draw
 void set_data_draw(draw_t * draw, data_t * data)
 {
     draw->data = data;

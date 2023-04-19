@@ -2,10 +2,11 @@
 ** EPITECH PROJECT, 2023
 ** library MY_GRAPHICS
 ** File description:
-** function that change the data struct
+** function that get information from a draw
 */
 #include "../include/draw.h"
 
+// get the actual position of the draw
 sfVector2f get_position_draw(draw_t * draw)
 {
     sfVector2f vect = set_2vector(0.f, 0.f);
@@ -24,6 +25,7 @@ sfVector2f get_position_draw(draw_t * draw)
     return vect;
 }
 
+// get the actual rotation of the draw
 float get_rotation_draw(draw_t * draw)
 {
     float angle = 0.f;
@@ -42,6 +44,7 @@ float get_rotation_draw(draw_t * draw)
     return angle;
 }
 
+// get the actual scale of the draw compared to its initiale size
 sfVector2f get_scale_draw(draw_t * draw)
 {
     sfVector2f vect = set_2vector(0.f, 0.f);
@@ -60,6 +63,7 @@ sfVector2f get_scale_draw(draw_t * draw)
     return vect;
 }
 
+// get the coordinates of the origin of the draw
 sfVector2f get_origin_draw(draw_t * draw)
 {
     sfVector2f vect = set_2vector(0.f, 0.f);

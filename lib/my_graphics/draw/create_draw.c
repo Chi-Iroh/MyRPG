@@ -6,6 +6,9 @@
 */
 #include "../include/draw.h"
 
+// drawable : pointer to a drawable sub structure (shape_t, sprite_t or text_t)
+// type : the type corresponding to the type of drawable
+// data : the data structure that will be linked to this draw
 draw_t * create_draw(void * drawable, draw_type_t type, data_t * data)
 {
     draw_t * draw = malloc(sizeof(draw_t));

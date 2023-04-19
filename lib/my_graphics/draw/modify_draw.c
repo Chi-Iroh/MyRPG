@@ -2,10 +2,11 @@
 ** EPITECH PROJECT, 2023
 ** library MY_GRAPHICS
 ** File description:
-** function that change the data struct
+** function that apply relative modification to the draw
 */
 #include "../include/draw.h"
 
+// move the draw of the given offset
 void move_draw(draw_t * draw, sfVector2f offset)
 {
     switch (draw->type) {
@@ -22,6 +23,7 @@ void move_draw(draw_t * draw, sfVector2f offset)
     }
 }
 
+// scale the size of the draw
 void scale_draw(draw_t * draw, sfVector2f scale)
 {
     switch (draw->type) {
@@ -38,6 +40,7 @@ void scale_draw(draw_t * draw, sfVector2f scale)
     }
 }
 
+// rotate the draw of the given angle
 void rotate_draw(draw_t * draw, float angle)
 {
     switch (draw->type) {
@@ -54,6 +57,7 @@ void rotate_draw(draw_t * draw, float angle)
     }
 }
 
+// move, scale and rotate the draw with the parameters
 void modify_draw(draw_t * draw, sfVector2f offset,
                     sfVector2f scale, float angle)
 {

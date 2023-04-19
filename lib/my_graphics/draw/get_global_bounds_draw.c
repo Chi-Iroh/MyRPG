@@ -2,10 +2,11 @@
 ** EPITECH PROJECT, 2023
 ** library MY_GRAPHICS
 ** File description:
-** function that change the data struct
+** function that get the bounds of a draw
 */
 #include "../include/draw.h"
 
+// get the bounds in the geometrical inner frame of the draw
 sfFloatRect get_local_bounds_draw(draw_t * draw)
 {
     sfFloatRect rect; rect.top = 0.f; rect.left = 0.f;
@@ -29,6 +30,7 @@ sfFloatRect get_local_bounds_draw(draw_t * draw)
     } return rect;
 }
 
+// get the bounds in the classic geometrical frame
 sfFloatRect get_global_bounds_draw(draw_t * draw)
 {
     sfFloatRect rect; rect.top = 0.f; rect.left = 0.f;

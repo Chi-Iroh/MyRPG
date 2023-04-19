@@ -16,6 +16,10 @@ Dans la lib window_t correspond à une structure qui contient entre autre la fen
     A --> G[fx layer];
     A --> H[ui layer];
     A --> I[splash layer];
+    E --next--> F;
+    F --next--> G;
+    G --next--> H;
+    H --next--> I;
 ```
 - **size** est un vecteur à deux dimension qui conserve les dimensions initiales de la window.
 - **window** est un pointeur vers la structure sfRenderWindow correspondant à la structure window.
@@ -85,13 +89,25 @@ Un layer agit comme une sorte de fenêtre dans la fenêtre. Donc on peut y appli
 - **next** & **previous** sont des pointeurs vers les autres layers si existants.
 ### Creation
 Vous n'aurez pas à gérer vous même la création de layer. En cas de besoin, voir dans le header *layer.h* la fonction *create_layer*.
+### Manipulation
+Vous pouvez effectuer toutes les manipulations nécessaires sur votre asset depuis la draw structure sauf la création du drawable.
+Il y a 8 d'interactions avec une draw structure :
+- **set_data** : établir la position, la taille et la rotation
+- **set_attributes** : *(uniquement pour un draw de type shape ou text)* pour changer la couleur intérieure, extérieure et la largeur du contour.
+- **modify** : applique une modification relative à l'état actuel du draw. Les modifications possibles sont déplacer, redimensionner et tourner.
+- **get_data** : fonctions pour récupérer des informations sur l'état actuel du draw.
+- **get_bounds** : fonction pour récupérer les limites que forme le draw.
+- **set_string** : *(uniquement pour un draw de type text)* change la chaîne de caractère affichée avec le draw.
+- **set_animation** : *(uniquement pour un draw de type sprite)* active l'animation du draw.
+- **set_origin** : change le point de référence du draw.
+
 ### Displaying
 Vous n'aurez pas à gérer vous même l'affichage de layer. En cas de besoin, voir dans le header *layer.h* la fonction *draw_layers*.
 ### Destruction
 Vous n'aurez pas à gérer vous même le free de layer. En cas de besoin, voir dans le header *layer.h* la fonction *free_layers*.
 
 ## Draw
-Une draw structure est un asset à afficher sur un layer. Cet asset peut être un sprite, un rectangle, un cercle, du texte ou une entité complexe (voir les sections correspondantes pour plus d'informations ; PS: pour rectangle et cercle voir shape).
+Une draw structure est un asset à afficher sur un layer. Cet asset peut être un sprite, un rectangle, un cercle ou du texte (voir les sections correspondantes pour plus d'informations ; PS: pour rectangle et cercle voir shape).
 ### What is it
 Voici un schéma qui représente la draw structure :
 ```mermaid
@@ -99,23 +115,24 @@ Voici un schéma qui représente la draw structure :
     A[draw] --> B[drawable];
     A --> C[type];
     A --> D[data structure];
-    A --> E[show];
-    A --> F[next & previous];
+    A --> E[id];
+    A --> F[show];
+    A --> G[next & previous];
 ```
-- drawable est un pointeur vers une structure affichable dans un layer
-- type est une valeur représentant la structure drawable. Voir l'énumération *draw_type_t* dans *draw.h*.
-- data est un pointeur vers une data structure.
-- show est un bouléen qui indique si l'asset doit être affiché sur le layer lors du rafraîchissement de l'image.
-- next & previous sont des pointeurs vers les autres assets.
+- **drawable** est un pointeur vers une structure affichable dans un layer
+- **type** est une valeur représentant la structure drawable. Voir l'énumération *draw_type_t* dans *draw.h*.
+- **data** est un pointeur vers une data structure.
+- **id** est un entier qui identifie le draw vis à vis des sprites du background. Si le draw n'est pas lié au background l'id est -1.
+- **show** est un bouléen qui indique si l'asset doit être affiché sur le layer lors du rafraîchissement de l'image.
+- **next** & **previous** sont des pointeurs vers les autres assets.
 ### Creation
 Pour créer un draw il faut utiliser la fonction suivante :
 ```c
-draw_t * create_draw(void * drawable, draw_type_t type, data_t * data, void * previous);
+draw_t * create_draw(void * drawable, draw_type_t type, data_t * data);
 ```
-- drawable est un pointeur vers une structure préinitialisée.
-- type est une valeur qui représente la structure drawable.
-- data est un pointeur vers une data structure préinitialisée.
-- previous est l'adresse du draw précédent. Donner NULL s'il n'y a pas de précédent.
+- **drawable** est un pointeur vers une structure préinitialisée d'un asset.
+- **type** est une valeur qui représente la structure drawable.
+- **data** est un pointeur vers une data structure préinitialisée.
 ### Displaying
 Vous n'aurez pas à gérer vous même l'affichage de draw. En cas de besoin, voir dans le header *draw.h* la fonction *draw_draws*.
 ### Destruction
@@ -237,24 +254,25 @@ Voici un schéma qui résume l'architecture globale de la lib :
     A[window] --> B[SFML window structure];
     A --> C[size vecteur];
     A --> D[spritesheet texture];
-    A --> E[SFML view]
-    A --> F[core layer]
-    A --> G[ui layer]
-    F --> H[layer]
-    G --> H
+    A --> E[SFML view];
+    A --> F[core layer];
+    A --> G[ui layer];
+    F --next--> G;
+    F --> H[layer];
+    G --> H;
     H --> I[render texture];
     H --> J[sprite];
     H --> K[size vecteur];
     H --> L[draw list];
     H --> M[show];
     H --> N[next & previous];
-    L --> O[draw]
+    L --> O[draw];
     O --> P[drawable];
     O --> Q[type];
     O --> R[data structure];
     O --> S[show];
     O --> T[next & previous];
-    R --> U[data]
+    R --> U[data];
     U --> V[position];
     U --> W[size];
     U --> X[angle];
@@ -266,7 +284,7 @@ Voici un schéma qui résume l'architecture globale de la lib :
     Z --> AD[animated];
     Z --> AE[nb frame];
     Z --> AF[current];
-    P --> AG[shape]
+    P --> AG[shape];
     AG --> AH[shape];
     AG --> AI[type];
     AG --> AJ[color in];

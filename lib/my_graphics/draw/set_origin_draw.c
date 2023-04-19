@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2023
 ** library MY_GRAPHICS
 ** File description:
-** function that change the data struct
+** function set the origin of a draw
 */
 #include "../include/draw.h"
 
