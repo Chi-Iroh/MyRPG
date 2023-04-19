@@ -15,13 +15,13 @@
     #include "data.h"
     /*
     ** ============================== SPRITES ==============================
-    ** scale :
-    ** sprite :
-    ** texture :
-    ** rect :
-    ** animated :
-    ** nb_frame :
-    ** current :
+    ** sprite : SFML struct corresponding to a sprite
+    ** texture : texture linked to the sprite
+    ** rect : area of the texture applied to the sprite
+    ** animated : boolean that indicate id the sprite is animated
+    ** nb_frame : for animated sprite indicate the number of frames
+    **            in the animation
+    ** current : for animated sprite indicate the current frame
     */
     typedef struct sprite {
         sfSprite * sprite;
@@ -40,7 +40,6 @@
     void set_texture_sprite(sprite_t * sprite,
                             sfTexture * texture, sfIntRect rect);
     void set_animation_sprite(sprite_t * sprite, int nb_frame);
-
     void set_origin_sprite(sprite_t * sprite, sfVector2f origin);
     sfVector2f get_position_sprite(sprite_t * sprite);
     float get_rotation_sprite(sprite_t * sprite);
@@ -51,7 +50,6 @@
     void rotate_sprite(sprite_t * sprite, float angle);
     void modify_sprite(sprite_t * sprite, sfVector2f offset,
                     sfVector2f scale, float angle);
-
     void draw_sprite(sfRenderTexture * texture, sprite_t * sprite);
     void free_sprite(sprite_t * sprite);
 #endif

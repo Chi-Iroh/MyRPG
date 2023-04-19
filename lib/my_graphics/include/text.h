@@ -12,7 +12,13 @@
     #include "data.h"
     /*
     ** =============================== TEXT ================================
-    **
+    ** text : pointer to the SFML structure for text.
+    ** string : message to display
+    ** font : pointer to the SFML structure for font
+    **        if NULL, the default font is Arial
+    ** color_in : inner color of each character
+    ** color_out : outline color of each character
+    ** thick : outline thickness of each character
     */
     typedef struct text {
         sfText * text;

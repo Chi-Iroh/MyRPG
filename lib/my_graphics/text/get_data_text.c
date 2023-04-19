@@ -2,10 +2,11 @@
 ** EPITECH PROJECT, 2023
 ** library MY_GRAPHICS
 ** File description:
-** function that create a text struct from parameters
+** function that get information from actual state of the text
 */
 #include "../include/text.h"
 
+// get the position of the text
 sfVector2f get_position_text(text_t * text)
 {
     sfVector2f vect = set_2vector(0.f, 0.f);
@@ -13,6 +14,7 @@ sfVector2f get_position_text(text_t * text)
     return vect;
 }
 
+// get the rotation of the text
 float get_rotation_sprite(text_t * text)
 {
     float angle = 0.f;
@@ -20,6 +22,7 @@ float get_rotation_sprite(text_t * text)
     return angle;
 }
 
+// get the scale of the text from its initial size
 sfVector2f get_scale_sprite(text_t * text)
 {
     sfVector2f vect = set_2vector(0.f, 0.f);
@@ -27,6 +30,7 @@ sfVector2f get_scale_sprite(text_t * text)
     return vect;
 }
 
+// get the origin of the text
 sfVector2f get_origin_sprite(text_t * text)
 {
     sfVector2f vect = set_2vector(0.f, 0.f);

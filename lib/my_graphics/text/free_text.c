@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2023
 ** library MY_GRAPHICS
 ** File description:
-** function that initialize a text struct
+** function that free a text struct
 */
 #include "../include/text.h"
 

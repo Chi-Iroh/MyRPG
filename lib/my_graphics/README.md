@@ -245,20 +245,16 @@ Voici un schéma qui représente l'architecture d'une structure sprite :
     A --> F[nb frame];
     A --> G[current];
 ```
-- texture est une SFML structure qui représente l'image qui sera manipulée.
-- sprite est une SFML structure qui permet d'afficher et manipuler la texture.
-- rect est un rectangle qui représente quelle zone de la texture sera prise en compte (notamment pour l'utilisation de spritesheet).
-- animated est un bouléen qui indique si le sprite est animé ou non.
-- nb_frame est un nombre qui indique le nombre d'images qui composent l'animation du sprite.
-- current est un nombre qui indique à quelle étape de l'animation le sprite se trouve.
+- **texture** est une SFML structure qui représente l'image qui sera manipulée.
+- **sprite** est une SFML structure qui permet d'afficher et manipuler la texture.
+- **rect** est un rectangle qui représente quelle zone de la texture sera prise en compte (notamment pour l'utilisation de spritesheet).
+- **animated** est un bouléen qui indique si le sprite est animé ou non.
+- **nb_frame** est un nombre qui indique le nombre d'images qui composent l'animation du sprite.
+- **current** est un nombre qui indique à quelle étape de l'animation le sprite se trouve.
 ### Creation
 Un sprite se crée en plusieurs étapes. En premier il faut l'initialiser vierge avec la fonction suivante :
 ```c
 sprite_t * init_sprite(void);
-```
-Ensuite il faut lier le sprite avec une data structure préinitialisée avec la fonction suivante :
-```c
-void set_data_sprite(sprite_t * sprite, data_t * data);
 ```
 Ensuite il faut lier le sprite avec une texture préinitialisée avec la fonction suivante :
 ```c
@@ -273,10 +269,39 @@ void set_animation_sprite(sprite_t * sprite, int nb_frame);
 Vous n'aurez pas à gérer vous même l'affichage de sprite. En cas de besoin, voir dans le header *sprite.h* la fonction *draw_sprite*.
 ### Destruction
 Vous n'aurez pas à gérer vous même le free de sprite. En cas de besoin, voir dans le header *sprite.h* la fonction *free_sprite*.
-## Entity
-Pas encore implémenté.
+
 ## Text
-Pas encore implémenté.
+Un text est une structure qui permet d'afficher une chaîne de caractères.
+### What is it
+Voici les éléments qui compose une text structure (ne pas oublier qu'une partie de l'information est stocké dans la structure draw parent) :
+```mermaid
+  graph TD;
+    A[text] --> B[text];
+    A --> C[string];
+    A --> D[font];
+    A --> E[color in];
+    A --> F[color out];
+    A --> G[thick]
+```
+- **text** est un pointeur vers la SFML structure qui permet de manipuler du texte.
+- **string** est la chaîne de caractère lié à la structure.
+- **font** est un pointeur vers la SFML structure qui correspond à une police de caractère. La police par défaut est Arial.
+- **color_in** est la couleur qui remplira l'intérieur du texte.
+- **color_out** est la couleur qui remplira le contour du texte.
+- **thick** est un nombre qui représente l'épaisseur du contour du texte.
+### Creation
+Un text est créé avec la fonction suivante :
+```c
+text_t * create_text(const char * string, sfFont * font, sfColor color);
+```
+- **string** est une chaîne de caractères.
+- **font** est une police de caractère en sfFont. Si on ne veut pas spécifier de police on peut donner NULL et la police sera Arial par défaut.
+- **color** détermine une couleur unie pour le texte.
+### Displaying
+Vous n'aurez pas à gérer vous même l'affichage de shape. En cas de besoin, voir dans le header *text.h* la fonction *draw_text*.
+### Destruction
+Vous n'aurez pas à gérer vous même le free de shape. En cas de besoin, voir dans le header *text.h* la fonction *free_text*.
+
 ## Vector & Rectangle functions
 Pour initialiser des vecteur vous pouvez utiliser les fonctions suivantes :
 ```c
@@ -294,43 +319,57 @@ Voici un schéma qui résume l'architecture globale de la lib :
   graph TD;
     A[window] --> B[SFML window structure];
     A --> C[size vecteur];
-    A --> D[spritesheet texture];
-    A --> E[SFML view];
+    A --> D[SFML view];
+    A --> E[background layer];
     A --> F[core layer];
-    A --> G[ui layer];
+    A --> G[fx layer];
+    A --> H[ui layer];
+    A --> I[splash layer];
+    E --next--> F;
     F --next--> G;
-    F --> H[layer];
-    G --> H;
-    H --> I[render texture];
-    H --> J[sprite];
-    H --> K[size vecteur];
-    H --> L[draw list];
-    H --> M[show];
-    H --> N[next & previous];
-    L --> O[draw];
-    O --> P[drawable];
-    O --> Q[type];
-    O --> R[data structure];
-    O --> S[show];
-    O --> T[next & previous];
-    R --> U[data];
-    U --> V[position];
-    U --> W[size];
-    U --> X[angle];
-    U --> Y[depth];
-    P --> Z[sprite]
-    Z --> AA[texture];
-    Z --> AB[sprite];
-    Z --> AC[rectangle rect];
-    Z --> AD[animated];
-    Z --> AE[nb frame];
-    Z --> AF[current];
-    P --> AG[shape];
-    AG --> AH[shape];
-    AG --> AI[type];
-    AG --> AJ[color in];
-    AG --> AK[color out];
-    AG --> AL[thick];
-    P --> AM[text];
-    P --> AN[entity];
+    G --next--> H;
+    H --next--> I;
+    E --> J[layer];
+    F --> J;
+    G --> J;
+    H --> J;
+    I --> J;
+    J --> K[type];
+    J --> L[render texture];
+    J --> M[sprite];
+    J --> N[size vecteur];
+    J --> O[draw list];
+    J --> P[show];
+    J --> Q[next & previous];
+    O --> R[draw];
+    R --> S[drawable];
+    R --> T[type];
+    R --> U[data structure];
+    R --> V[id];
+    R --> W[show];
+    R --> X[next & previous];
+    U --> Y[data];
+    Y --> Z[position];
+    Y --> AA[size];
+    Y --> AB[angle];
+    Y --> AC[depth];
+    S --> AD[sprite]
+    AD --> AE[texture];
+    AD --> AF[sprite];
+    AD --> AG[rectangle rect];
+    AD --> AH[animated];
+    AD --> AI[nb frame];
+    AD --> AJ[current];
+    S --> AK[shape];
+    AK --> AL[shape];
+    AK --> AM[type];
+    AK --> AN[color in];
+    AK --> AO[color out];
+    AK --> AP[thick];
+    S --> AQ[text];
+    AQ --> AR[string];
+    AQ --> AS[font];
+    AQ --> AT[color in];
+    AQ --> AU[color out];
+    AQ --> AV[thick]
 ```
