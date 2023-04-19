@@ -33,7 +33,8 @@ void analyse_events(window_t* wd, sfEvent event, game_src_t *g_src)
                 g_src->all_btn);
         case sfEvtMouseMoved: return mouse_moved(event.mouseMove, g_src);
         case sfEvtMouseWheelScrolled:
-            return change_slot_selected(g_src, event.mouseWheelScroll);
+            return change_slot_selected(g_src->game->character,
+                event.mouseWheelScroll, g_src);
         default: return;
     }
 }

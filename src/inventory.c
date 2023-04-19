@@ -8,16 +8,18 @@
 #include "../include/my_rpg.h"
 #include "../lib/my_graphics/my_graphics.h"
 
-void change_slot_selected(game_src_t* g_src, sfMouseWheelScrollEvent evt)
+void change_slot_selected(character_t* charac, sfMouseWheelScrollEvent evt,
+    game_src_t* g_src)
 {
-    g_src->first->is_selected = 0;
-    set_color_out_draw(g_src->first->slot, sfBlack);
-    set_thick_draw(g_src->first->slot, 3);
-    //sfRectangleShape_setOutlineColor(g_src->first->slot->shape, sfBlack);
-    g_src->first = evt.delta == 1 ? g_src->first->prev : g_src->first->next;
-    g_src->first->is_selected = 1;
-    set_color_out_draw(g_src->first->slot, sfRed);
-    set_thick_draw(g_src->first->slot, 10);
+    if (g_src->menu->show)
+        return;
+    charac->inv->is_selected = 0;
+    set_color_out_draw(charac->inv->slot, sfBlack);
+    set_thick_draw(charac->inv->slot, 3);
+    charac->inv = evt.delta == 1 ? charac->inv->prev : charac->inv->next;
+    charac->inv->is_selected = 1;
+    set_color_out_draw(charac->inv->slot, sfRed);
+    set_thick_draw(charac->inv->slot, 10);
 }
 
 inv_slot_t* init_inventory(window_t *wd, int nb_slots)

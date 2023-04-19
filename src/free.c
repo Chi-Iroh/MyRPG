@@ -11,6 +11,8 @@
 void free_button(list_button_t* l_btn)
 {
     if (l_btn) {
+        if (l_btn->btn->s_btn)
+            free(l_btn->btn->s_btn);
         free(l_btn->btn);
         free(l_btn);
     }
@@ -23,6 +25,9 @@ void free_g_src(game_src_t* g_src)
         tmp = g_src->all_btn, g_src->all_btn = g_src->all_btn->next)
             free_button(tmp);
     free_button(tmp);
+    free(g_src->menu->settings->btn);
+    free(g_src->menu->settings->s_btn);
+    free(g_src->menu->settings->title);
     free(g_src->menu->settings);
     free(g_src->menu);
     free(g_src);

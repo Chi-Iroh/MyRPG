@@ -54,6 +54,14 @@
         NO_ARMOR = 0
     } armor_t;
 
+    typedef struct inv_slot {
+        draw_t* object;
+        draw_t* slot;
+        sfBool is_selected;
+        struct inv_slot* prev;
+        struct inv_slot* next;
+    } inv_slot_t;
+
     typedef struct {
         drawable_t;
         character_type_t type;
@@ -79,6 +87,7 @@
         weapon_t weapon;
         trade_union_t trade_union;
         character_origin_t origin;
+        inv_slot_t* inv;
     } character_t;
 
 #endif
