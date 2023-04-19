@@ -89,7 +89,8 @@ CC 	=	gcc
 DEBUG	=	-g3 -p -ggdb3
 # Prevents GCC optimizations
 RELEASE =  -O0 -fno-builtin
-SANITIZE	=	-fsanitize=address,undefined
+SANITIZE	=	-fsanitize=address,undefined \
+-fno-sanitize-recover=address,undefined
 
 CFLAGS	+=	-Wall -Wextra -pedantic -fsigned-char		\
 -funsigned-bitfields -Wno-unused-parameter -std=gnu2x -pedantic

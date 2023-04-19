@@ -23,7 +23,8 @@ DEBUG   =   -g3 -p -ggdb3 -DDEBUG_MODE
 
 # To prevent Marvin from flagging my code due to optimizations
 RELEASE = -O0 -fno-builtin
-SANITIZE    =   -fsanitize=address,undefined
+SANITIZE	=	-fsanitize=address,undefined \
+-fno-sanitize-recover=address,undefined
 
 CFLAGS  +=  -Wall -Wextra -pedantic -fsigned-char       \
 -funsigned-bitfields -Wno-unused-parameter -std=gnu2x -fms-extensions
