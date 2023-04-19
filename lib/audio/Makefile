@@ -6,11 +6,10 @@
 ##
 
 SRC	= \
-button_draw.c \
-button_free.c \
-button_init.c \
-button_misc.c \
-button_title.c
+audio_init.c \
+audio_free.c \
+audio_volume.c \
+audio_play.c
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -24,7 +23,7 @@ SANITIZE	=	-fsanitize=address,undefined \
 CFLAGS	+=	-Wall -Wextra -pedantic -fsigned-char		\
 -funsigned-bitfields -Wno-unused-parameter -std=gnu2x -pedantic
 
-NAME	=	../libbutton.a
+NAME	=	../libaudio.a
 
 all: CFLAGS += $(RELEASE)
 all: $(NAME)
@@ -38,9 +37,9 @@ sanitize: CFLAGS += $(DEBUG) $(SANITIZE)
 sanitize: $(NAME)
 resanitize: fclean sanitize
 
-link_header: button.h
-	@echo [LIB BUTTON] Linking header button.h
-	@ln -f button.h ../../include/button.h
+link_header: audio.h
+	@echo [LIB AUDIO] Linking header audio.h
+	@ln -f audio.h ../../include/audio.h
 
 $(NAME): link_header $(OBJ)
 	@echo Building lib button...
@@ -50,7 +49,7 @@ $(NAME): link_header $(OBJ)
 	@$(CC) -c $(CFLAGS) $< -I ../../include/ -o $@
 
 clean:
-	@echo "[LIB BUTTON] Removing temporary and object files."
+	@echo "[LIB AUDIO] Removing temporary and object files."
 	@rm -f *.gcda
 	@rm -f *.gcno
 	@rm -f vgcore.*
@@ -61,5 +60,5 @@ clean:
 	@rm -f ../../include/button.h
 
 fclean: clean
-	@echo "[LIB BUTTON] Removing binary."
+	@echo "[LIB AUDIO] Removing binary."
 	@rm -f ../$(NAME)

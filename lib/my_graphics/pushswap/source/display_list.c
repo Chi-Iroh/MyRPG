@@ -5,19 +5,20 @@
 ** display_list.c
 */
 
+#include <my.h>
 #include "../include/pushswap.h"
 
 void display_list(linked_list_t *list)
 {
     linked_list_t *begin = list;
-    printf("\n");
+    my_printf("\n");
     if (list == NULL)
         return;
-    printf("%d ", list->nbr);
+    my_printf("%d ", list->nbr);
     list = list->next;
     while (list != begin) {
-        printf("%d ", list->nbr);
+        my_printf("%d ", list->nbr);
         list = list->next;
     }
-    printf("\n");
+    my_printf("\n");
 }

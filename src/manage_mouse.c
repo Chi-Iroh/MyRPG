@@ -8,15 +8,24 @@
 #include "../include/my_rpg.h"
 #include "../lib/my_graphics/my_graphics.h"
 
+static void handle_mouse_release
+(list_button_t* all_btn, sfMouseButtonEvent *event)
+{
+    if (all_btn->btn->is_released(all_btn->btn, event)) {
+        set_color_in_draw(all_btn->btn->rect, sfWhite);
+    }
+}
+
 void mouse_button_released(sfRenderWindow* wd, sfMouseButtonEvent evt,
     list_button_t* all_btn)
 {
-    for (; all_btn; all_btn = all_btn->next) {
+    while (all_btn != NULL) {
         if (all_btn->btn->layer_on->show && all_btn->btn->rect->show)
-            all_btn->btn->is_released(all_btn->btn, &evt) ?
-            set_color_in_draw(all_btn->btn->rect, sfWhite) : 0;
-        else
+            handle_mouse_release(all_btn, &evt);
+        else {
             all_btn->btn->state = NONE;
+        }
+        all_btn = all_btn->next;
     }
 }
 
@@ -28,12 +37,14 @@ void mouse_button_pressed(window_t* wd, sfMouseButtonEvent evt,
 
 void button_hovered(list_button_t* all_btn, sfMouseMoveEvent evt)
 {
-    for (; all_btn; all_btn = all_btn->next) {
+    while (all_btn != NULL) {
         if (all_btn->btn->layer_on->show && all_btn->btn->rect->show &&
-            all_btn->btn->is_hover(all_btn->btn, &evt))
-            set_color_out_draw(all_btn->btn->rect, sfRed);
-        else
+            all_btn->btn->is_hover(all_btn->btn, &evt)) {
+                set_color_out_draw(all_btn->btn->rect, sfRed);
+        } else {
             set_color_out_draw(all_btn->btn->rect, sfBlack);
+        }
+        all_btn = all_btn->next;
     }
 }
 

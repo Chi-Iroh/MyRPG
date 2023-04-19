@@ -12,10 +12,10 @@
     #include <stdio.h>
     #include <stdlib.h>
 
-    #include "../lib/my_graphics/my_graphics.h"
+    #include <my_graphics.h>
+    #include <audio.h>
 
     #include <SFML/Audio.h>
-
 
     #include "characters.h"
     #include "button_simple.h"
@@ -68,10 +68,6 @@
     void core(window_t* wd, game_src_t* g_src);
     void menu(window_t* wd, game_src_t* g_src);
 
-
-
-
-
     menu_t* init_menu(window_t* wd, list_button_t** all_btn);
 
     inv_slot_t* init_inventory(window_t *wd, int nb_slots);
@@ -85,7 +81,6 @@
         sfMouseButtonEvent evt);
     void sliding_button_moved(list_button_t* all_btn, sfMouseMoveEvent evt);
 
-
     void analyse_events(window_t* wd, sfEvent event,
         game_src_t *g_src);
     void mouse_moved(sfMouseMoveEvent evt, game_src_t* g_src);
@@ -94,7 +89,7 @@
     void mouse_button_released(sfRenderWindow* wd, sfMouseButtonEvent evt,
         list_button_t* all_btn);
 
-
     void free_g_src(game_src_t* g_src);
+    void free_main(window_t *window, game_src_t *g_src, audio_t *audio);
 
 #endif

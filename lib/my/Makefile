@@ -123,7 +123,11 @@ sanitize: CFLAGS += $(DEBUG) $(SANITIZE)
 sanitize: $(NAME)
 resanitize: fclean sanitize
 
-$(NAME): $(OBJ)
+link_header: my.h
+	@echo [LIB MY] Linking header my.h
+	@ln -f my.h ../../include/my.h
+
+$(NAME): link_header $(OBJ)
 	@ar rcs $(NAME) $(OBJ)
 	@mv $(NAME) ..
 
@@ -131,7 +135,7 @@ $(NAME): $(OBJ)
 	@$(CC) -c $(CFLAGS) $< -I ../../include/ -o $@
 
 clean:
-	@echo "[LIB] Removing temporary and object files."
+	@echo "[LIB MY] Removing temporary and object files."
 	@rm -f *.gcda
 	@rm -f *.gcno
 	@rm -f vgcore.*
@@ -141,5 +145,5 @@ clean:
 	@rm -f ../$(NAME)
 
 fclean: clean
-	@echo "[LIB] Removing binary."
+	@echo "[LIB MY] Removing binary."
 	@rm -f ../$(NAME)

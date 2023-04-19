@@ -11,6 +11,7 @@ vgcore.*
 *test*
 *.zip
 StreetsOfRogueAssets
+*gdb*
 
 # main
 my_rpg

@@ -114,7 +114,11 @@ sanitize: AR_PRELOAD += asan ubsan
 sanitize: $(NAME)
 resanitize: fclean sanitize
 
-$(NAME): $(OBJ)
+link_header: my_graphics.h
+	@echo [LIB MY_GRAPHICS] Linking header my_graphics.h
+	@ln -f my_graphics.h ../../include/my_graphics.h
+
+$(NAME): link_header $(OBJ)
 	@echo Building lib graphics...
 	@echo Dependencies: $(AR_PRELOAD) $(AR_LDFLAGS)
 	@ar rc -l"$(AR_PRELOAD) $(AR_LDFLAGS)" $(NAME) $(OBJ)
@@ -123,7 +127,7 @@ $(NAME): $(OBJ)
 	@$(CC) -c $(CFLAGS) $< -I ../../include/ -o $@
 
 clean:
-	@echo "[LIB] Removing temporary and object files."
+	@echo "[LIB MY_GRAPHICS] Removing temporary and object files."
 	@rm -f *.gcda
 	@rm -f *.gcno
 	@rm -f vgcore.*
@@ -134,5 +138,5 @@ clean:
 	@rm -f ../../include/button.h
 
 fclean: clean
-	@echo "[LIB] Removing binary."
+	@echo "[LIB MY_GRAPHICS] Removing binary."
 	@rm -f ../$(NAME)

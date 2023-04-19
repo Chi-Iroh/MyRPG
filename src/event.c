@@ -12,8 +12,10 @@ void key_pressed(sfRenderWindow* wd, sfKeyEvent evt, game_src_t* g_src)
 {
     switch (evt.code) {
     case sfKeyEscape:
-        if (g_src->menu->show == true)
-            return sfRenderWindow_close(wd);
+        if (g_src->menu->show) {
+            sfRenderWindow_close(wd);
+            break;
+        }
         g_src->menu->show = true;
         break;
     default:
@@ -24,17 +26,20 @@ void key_pressed(sfRenderWindow* wd, sfKeyEvent evt, game_src_t* g_src)
 void analyse_events(window_t* wd, sfEvent event, game_src_t *g_src)
 {
     switch (event.type) {
-        case sfEvtClosed: return sfRenderWindow_close(wd->window);
-        case sfEvtKeyPressed: return key_pressed(wd->window, event.key, g_src);
+        case sfEvtClosed:
+            sfRenderWindow_close(wd->window); break;
+        case sfEvtKeyPressed:
+            key_pressed(wd->window, event.key, g_src); break;
         case sfEvtMouseButtonPressed:
-            return mouse_button_pressed(wd, event.mouseButton, g_src);
+            mouse_button_pressed(wd, event.mouseButton, g_src); break;
         case sfEvtMouseButtonReleased:
-            return mouse_button_released(wd->window, event.mouseButton,
-                g_src->all_btn);
-        case sfEvtMouseMoved: return mouse_moved(event.mouseMove, g_src);
+            mouse_button_released(wd->window, event.mouseButton,
+                g_src->all_btn); break;
+        case sfEvtMouseMoved:
+            mouse_moved(event.mouseMove, g_src); break;
         case sfEvtMouseWheelScrolled:
-            return change_slot_selected(g_src->game->character,
-                event.mouseWheelScroll, g_src);
-        default: return;
+            change_slot_selected(g_src->game->character,
+                event.mouseWheelScroll, g_src); break;
+        default: break;
     }
 }

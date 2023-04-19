@@ -5,8 +5,10 @@
 ** free.c
 */
 
-#include "../include/my_rpg.h"
-#include "../lib/my_graphics/my_graphics.h"
+#include <my_rpg.h>
+#include <my_graphics.h>
+#include <audio.h>
+#include <my_macros.h>
 
 void free_button(list_button_t* l_btn)
 {
@@ -31,4 +33,11 @@ void free_g_src(game_src_t* g_src)
     free(g_src->menu->settings);
     free(g_src->menu);
     free(g_src);
+}
+
+void free_main(window_t *window, game_src_t *g_src, audio_t *audio)
+{
+    FREE_IF_ALLOCATED(window, free_window);
+    FREE_IF_ALLOCATED(g_src, free_g_src);
+    FREE_IF_ALLOCATED(audio, free_audio);
 }

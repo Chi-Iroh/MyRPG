@@ -31,7 +31,7 @@ SANITIZE	=	-fsanitize=address,undefined \
 CFLAGS  +=  -Wall -Wextra -pedantic -fsigned-char       \
 -funsigned-bitfields -Wno-unused-parameter -std=gnu2x -fms-extensions
 LDFLAGS	+=	-L ./lib -l graphics -l csfml-graphics \
--l csfml-window -l csfml-system -l button -l my
+-l csfml-window -l csfml-system -l csfml-audio -l button -l my -l audio
 LD_PRELOAD	=
 
 NAME    =   my_rpg
@@ -54,9 +54,10 @@ sanitize: $(NAME)
 resanitize: fclean sanitize
 
 make_libs:
-	$(MAKE) -C lib/my/ $(LIB_COMPILE)
-	$(MAKE) -C lib/my_graphics $(LIB_COMPILE)
-	$(MAKE) -C lib/button $(LIB_COMPILE)
+	@$(MAKE) -s -j -C lib/my/ $(LIB_COMPILE)
+	@$(MAKE) -s -j -C lib/my_graphics $(LIB_COMPILE)
+	@$(MAKE) -s -j -C lib/button $(LIB_COMPILE)
+	@$(MAKE) -s -j -C lib/audio $(LIB_COMPILE)
 
 $(NAME): make_libs $(OBJ)
 	@echo -------------
@@ -70,9 +71,10 @@ $(NAME): make_libs $(OBJ)
 	@$(CC) -c $(CFLAGS) -I ./include/ $< -o $@
 
 clean_libs:
-	$(MAKE) -C ./lib/my/ clean
-	$(MAKE) -C ./lib/my_graphics clean
-	$(MAKE) -C ./lib/button clean
+	@$(MAKE) -s -j -C ./lib/my/ clean
+	@$(MAKE) -s -j -C ./lib/my_graphics clean
+	@$(MAKE) -s -j -C ./lib/button clean
+	@$(MAKE) -s -j -C ./lib/audio clean
 
 clean: clean_libs
 	@rm -f *.gcno
@@ -82,9 +84,10 @@ clean: clean_libs
 	@rm -f $(OBJ)
 
 fclean_libs:
-	$(MAKE) -C ./lib/my/ fclean
-	$(MAKE) -C ./lib/my_graphics fclean
-	$(MAKE) -C ./lib/button fclean
+	@$(MAKE) -s -j -C ./lib/my/ fclean
+	@$(MAKE) -s -j -C ./lib/my_graphics fclean
+	@$(MAKE) -s -j -C ./lib/button fclean
+	@$(MAKE) -s -j -C ./lib/audio fclean
 
 fclean: clean fclean_libs
 	@rm -f $(NAME)

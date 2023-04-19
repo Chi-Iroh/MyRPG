@@ -4,8 +4,9 @@
 ** File description:
 ** main for my_rgpg
 */
-#include "../include/my_rpg.h"
-#include "../lib/my_graphics/my_graphics.h"
+#include <my_rpg.h>
+#include <my_graphics.h>
+#include <audio.h>
 #include <stdlib.h>
 
 int main(int argc, char **argv)
@@ -13,13 +14,23 @@ int main(int argc, char **argv)
     sfVideoMode mode = {1920, 1080, 32};
     window_t * window = create_window("49:3", mode, NULL);
     game_src_t* g_src = init_game_sources(window);
-    if (window == NULL || g_src == NULL) {
-        write(2, "terminating process\n", 20); return 84;
+    audio_t audio;
+
+    if (window == NULL || g_src == NULL ||
+        !init_audio(&audio, DEFAULT_VOLUME)) {
+        write(2, "terminating process\n", 20);
+        free_main(window, g_src, &audio);
+        return 84;
     }
+
+    resume_all_audio(&audio);
+    usleep(5'000'000); // waits 5 seconds
+    stop_all_audio(&audio);
+    usleep(5'000'000); // waits another 5 seconds
+    resume_all_audio(&audio);
     window->splash->draw->next->next->show = false;
     window->splash->draw->next->show = false;
     core(window, g_src);
-    free_window(window);
-    free_g_src(g_src);
+    free_main(window, g_src, &audio);
     return 0;
 }
