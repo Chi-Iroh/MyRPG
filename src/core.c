@@ -54,7 +54,7 @@ void game(window_t* wd, game_src_t* g_src)
     for (sfEvent evt;
         sfRenderWindow_isOpen(wd->window) && !g_src->menu->show;) {
         while (sfRenderWindow_pollEvent(wd->window, &evt))
-            analyse_events(wd->window, evt, g_src);
+            analyse_events(wd, evt, g_src);
         actualize_window(wd);
     }
 }

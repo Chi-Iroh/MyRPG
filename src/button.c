@@ -30,6 +30,7 @@ button_s_t* set_button(list_button_t** a_btn, char* name,
     button->rect = create_draw(rect, SHAPE, data);
     button->name = create_draw(text, TEXT, data_txt);
     button->layer_on = NULL;
+    button->s_btn = NULL;
     *a_btn = append_btn_list(*a_btn, button);
     return button;
 }
@@ -48,10 +49,12 @@ sfBool is_button_clicked(button_s_t* b, sfMouseButtonEvent* e)
 sfBool is_button_released(button_s_t* b, sfMouseButtonEvent* e)
 {
     sfFloatRect bound = get_global_bounds_draw(b->rect);
-    if (sfFloatRect_contains(&bound, e->x, e->y)) {
+    if (IS_PRESSED(b) &&
+        (sfFloatRect_contains(&bound, e->x, e->y) || b->s_btn)) {
         b->state = RELEASED;
         return sfTrue;
     }
+    set_color_in_draw(b->rect, sfWhite);
     b->state = NONE;
     return sfFalse;
 }
@@ -63,8 +66,11 @@ sfBool is_button_hover(button_s_t* b, sfMouseMoveEvent* e)
         b->state = b->state == PRESSED ? PRESSED : HOVER;
         return sfTrue;
     }
-    if (IS_PRESSED(b))
+    if (IS_PRESSED(b)) {
+        if (b->s_btn)
+            return sfTrue;
         set_color_in_draw(b->rect, sfWhite);
+    }
     b->state = NONE;
     return sfFalse;
 }

@@ -69,11 +69,15 @@
     bool save_to_file(char *filename, character_t *character);
     bool read_from_file(char *filename, character_t *character);
 
+    void button_pressed(window_t* wd, list_button_t* all_btn,
+        sfMouseButtonEvent evt);
+    void sliding_button_moved(list_button_t* all_btn, sfMouseMoveEvent evt);
 
-    void analyse_events(sfRenderWindow *window, sfEvent event,
+
+    void analyse_events(window_t* wd, sfEvent event,
         game_src_t *g_src);
     void mouse_moved(sfMouseMoveEvent evt, game_src_t* g_src);
-    void mouse_button_pressed(sfRenderWindow* wd, sfMouseButtonEvent evt,
+    void mouse_button_pressed(window_t* wd, sfMouseButtonEvent evt,
         game_src_t* g_src);
     void mouse_button_released(sfRenderWindow* wd, sfMouseButtonEvent evt,
         list_button_t* all_btn);
