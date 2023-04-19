@@ -9,5 +9,7 @@
 void free_text(text_t * text)
 {
     sfText_destroy(text->text);
+    sfFont_destroy(text->font);
+    free(text->string);
     free(text);
 }

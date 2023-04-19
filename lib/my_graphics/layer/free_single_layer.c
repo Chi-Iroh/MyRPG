@@ -10,5 +10,6 @@ void free_single_layer(layer_t * layer)
 {
     sfRenderTexture_destroy(layer->texture);
     sfSprite_destroy(layer->sprite);
+    free_draws(layer->draw);
     free(layer);
 }

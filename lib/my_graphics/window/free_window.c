@@ -12,7 +12,6 @@ void free_window(window_t * window)
 {
     sfRenderWindow_destroy(window->window);
     sfView_destroy(window->view);
-    free_single_layer(window->core);
-    free_single_layer(window->ui);
+    free_layers(window->background);
     free(window);
 }
