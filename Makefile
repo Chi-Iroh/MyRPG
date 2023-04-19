@@ -24,7 +24,7 @@ DEBUG   =   -g3 -p -ggdb3 -DDEBUG_MODE
 # To prevent Marvin from flagging my code due to optimizations
 RELEASE = -O0 -fno-builtin
 SANITIZE	=	-fsanitize=address,undefined \
--fno-sanitize-recover=address,undefined
+-fsanitize-recover=address,undefined
 
 CFLAGS  +=  -Wall -Wextra -pedantic -fsigned-char       \
 -funsigned-bitfields -Wno-unused-parameter -std=gnu2x -fms-extensions
@@ -33,6 +33,9 @@ LDFLAGS	+=	-L ./lib -l graphics -l csfml-graphics \
 LD_PRELOAD	=
 
 NAME    =   my_rpg
+
+.PHONY: all re debug redebug sanitize resanitize make_libs \
+lean_libs clean fclean
 
 all: CFLAGS += $(RELEASE)
 all: $(NAME)
