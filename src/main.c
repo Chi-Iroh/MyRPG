@@ -11,7 +11,7 @@
 int main(int argc, char **argv)
 {
     sfVideoMode mode = {1920, 1080, 32}; float factor = 1.f; sfEvent event;
-    window_t * window = create_window("49:3", mode, NULL, NULL);
+    window_t * window = create_window("49:3", mode, NULL);
     if (window == NULL) {
         write(2, "terminating process\n", 20); return 84;
     } sfVector3f null_pos = set_3vector(0, 0, 0);

@@ -14,6 +14,7 @@
     #include "draw.h"
     /*
     ** =============================== LAYER ===============================
+    ** type : indicate to which section of the window the layer belong
     ** size : vector that give width and height
     ** texture : sfml struct for dynamic texture
     ** sprite : used to draw the texture on the window

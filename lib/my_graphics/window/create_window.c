@@ -45,7 +45,6 @@ window_t * create_window(const char * title, const sfVideoMode mode,
     window_t * window = malloc(sizeof(window_t));
     window->size = set_2vector(mode.width, mode.height);
     window->window = setup_window(title, mode, file);
-    window->spritesheet = NULL;
     window->view = setup_view(window->size);
     init_splash_screen(window);
     create_background(window);

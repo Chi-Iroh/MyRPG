@@ -68,25 +68,28 @@ Une fois la window créée, les différents assets à afficher sont répartis su
 Un layer agit comme une sorte de fenêtre dans la fenêtre. Donc on peut y appliquer à peu près tout ce que l'on peut faire à la fenêtre d'un point de vue graphique. Cela permet de aisémenet l'affichage de sprites à des profondeurs différentes et les modifications de masse sur plusieurs sprites.
 ```mermaid
   graph TD;
-    A[layer] --> B[render texture];
-    A --> C[sprite];
-    A --> D[size vecteur];
-    A --> E[draw list];
-    A --> F[show];
-    A --> G[next & previous];
+    A[layer] --> B[type];
+    A --> C[render texture];
+    A --> D[sprite];
+    A --> E[size vecteur];
+    A --> F[draw list];
+    A --> G[show];
+    A --> H[next & previous];
 ```
-- texture est une sfRenderTexture. C'est une texture de la SFML qui agit comme une sfRenderWindow.
-- sprite permet juste d'afficher la texture du layer sur la fenêtre au moment de l'affichage.
-- size est un vecteur qui correspond aux dimensions de la texture.
-- draw est une liste de draw structure (voir section correspondante) qui sont tous les assets qui peuvent être affiché dans ce layer.
-- show est un bouléen qui indique si le layer doit être affiché sur la window lors du rafraîchissement de l'image.
-- next & previous sont des pointeurs vers les autres layers si existants.
+- **type** indique à quelle section parmi background, core, fx, ui et splash le layer appartient.
+- **texture** est une sfRenderTexture. C'est une texture de la SFML qui agit comme une sfRenderWindow.
+- **sprite** permet juste d'afficher la texture du layer sur la fenêtre au moment de l'affichage.
+- **size** est un vecteur qui correspond aux dimensions de la texture.
+- **draw** est une liste de draw structure (voir section correspondante) qui sont tous les assets qui peuvent être affiché dans ce layer.
+- **show** est un bouléen qui indique si le layer doit être affiché sur la window lors du rafraîchissement de l'image.
+- **next** & **previous** sont des pointeurs vers les autres layers si existants.
 ### Creation
 Vous n'aurez pas à gérer vous même la création de layer. En cas de besoin, voir dans le header *layer.h* la fonction *create_layer*.
 ### Displaying
 Vous n'aurez pas à gérer vous même l'affichage de layer. En cas de besoin, voir dans le header *layer.h* la fonction *draw_layers*.
 ### Destruction
 Vous n'aurez pas à gérer vous même le free de layer. En cas de besoin, voir dans le header *layer.h* la fonction *free_layers*.
+
 ## Draw
 Une draw structure est un asset à afficher sur un layer. Cet asset peut être un sprite, un rectangle, un cercle, du texte ou une entité complexe (voir les sections correspondantes pour plus d'informations ; PS: pour rectangle et cercle voir shape).
 ### What is it
