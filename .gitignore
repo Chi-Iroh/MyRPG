@@ -9,6 +9,8 @@
 *.log
 vgcore.*
 *test*
+*.zip
+StreetsOfRogueAssets
 
 # main
 my_rpg
