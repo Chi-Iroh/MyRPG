@@ -33,3 +33,7 @@ test*
 
 # .gitignore
 !.gitignore
+
+# trash
+.trash
+/log
