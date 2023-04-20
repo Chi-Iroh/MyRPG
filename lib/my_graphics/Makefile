@@ -122,15 +122,11 @@ sanitize: $(NAME)
 resanitize: fclean sanitize
 .PHONY: sanitize resanitize
 
-link_subheaders_directory: $(HEADERS)
-	@echo [LIB MY_GRAPHICS] Linking subheaders directory
-	@ln -sf "$(shell pwd)/include/" ../../include/my_graphics
-
-link_headers: my_graphics.h link_subheaders_directory
+link_headers: my_graphics.h
 	@echo [LIB MY_GRAPHICS] Linking header my_graphics.h
 	@ln -f my_graphics.h ../../include/my_graphics.h
 
-.PHONY: link_subheaders_directory link_headers
+.PHONY: link_headers
 
 $(NAME): link_headers $(OBJ)
 	@echo Building lib graphics...

@@ -16,15 +16,14 @@ const float DEFAULT_SFX_VOLUME = 100.f;
 /*
     audio is always valid (not NULL)
 */
-static void init_pointers_and_volume
-(audio_t *audio, float bgm_volume, float sfx_volume)
+void init_base(audio_t *audio, float bgm_volume, float sfx_volume)
 {
     const float bgm_volumes[2] = { DEFAULT_BGM_VOLUME, bgm_volume };
     const float sfx_volumes[2] = { DEFAULT_SFX_VOLUME, sfx_volume };
 
     *audio = (audio_t) {
         .battle_bgm = NULL,
-        .bgm = NULL,
+        .main_bgm = NULL,
         .boss_bgm = NULL,
         .menu_bgm = NULL,
         .quest_sfx = { .buffer = NULL, .sound = NULL },
@@ -41,9 +40,22 @@ static void init_pointers_and_volume
 /*
     Any value of volume not in [0;100] won't change the volume.
 */
-static bool init_sfx(sound_t *sound, const char *path, float volume)
+bool init_bgm(sfMusic **bgm, const char *path, float bgm_volume)
+{
+    RETURN_VALUE_IF(!bgm || !path, false);
+    FREE_IF_ALLOCATED(*bgm, sfMusic_destroy);
+    *bgm = sfMusic_createFromFile(path);
+    RETURN_VALUE_IF(!(*bgm), false);
+    return true;
+}
+
+/*
+    Any value of volume not in [0;100] won't change the volume.
+*/
+bool init_sfx(sound_t *sound, const char *path, float volume)
 {
     RETURN_VALUE_IF(!sound || !path, false);
+    free_sfx(sound);
     sound->buffer = sfSoundBuffer_createFromFile(path);
     sound->sound = sfSound_create();
     if (!sound->buffer || !sound->sound) {
@@ -51,17 +63,6 @@ static bool init_sfx(sound_t *sound, const char *path, float volume)
         return false;
     }
     sfSound_setBuffer(sound->sound, sound->buffer);
-    return true;
-}
-
-/*
-    Any value of volume not in [0;100] won't change the volume.
-*/
-static bool init_bgm(sfMusic **bgm, const char *path, float bgm_volume)
-{
-    RETURN_VALUE_IF(!bgm || !path, false);
-    *bgm = sfMusic_createFromFile(path);
-    RETURN_VALUE_IF(!(*bgm), false);
     return true;
 }
 
@@ -76,7 +77,7 @@ bool init_audio(audio_t *audio, float bgm_volume, float sfx_volume)
     bool status = audio != NULL;
 
     RETURN_VALUE_IF(!status, false);
-    init_pointers_and_volume(audio, bgm_volume, sfx_volume);
+    init_base(audio, bgm_volume, sfx_volume);
     status &= init_bgm(&audio->menu_bgm, MENU_BGM_PATH, bgm_volume);
     status &= init_sfx(&audio->quest_sfx, QUEST_SFX_PATH, sfx_volume);
     if (!status) {

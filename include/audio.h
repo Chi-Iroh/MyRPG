@@ -28,11 +28,22 @@ typedef struct {
     sfSoundBuffer *buffer;
 } sound_t;
 
+/*
+    Structure for BGM and SFX.
+    Beware, members order matters !
+        -> At the top come the BGM
+        -> Then the SFX
+        -> And the current pointers (BGM firstly, followed by SFX)
+        -> States at next (BGM then SFX)
+        -> And volumes come at the end (BGM then SFX)
+    Breaking these rules may break some functionnalities and may cause crash.
+*/
 typedef struct {
-    sfMusic *bgm;
+    sfMusic *main_bgm;
     sfMusic *boss_bgm;
     sfMusic *battle_bgm;
     sfMusic *menu_bgm;
+    sfMusic *end_bgm;
     sound_t quest_sfx;
     sound_t explosion_sfx;
     sfMusic *current_bgm;
@@ -43,6 +54,24 @@ typedef struct {
     float bgm_volume;
 } audio_t;
 
+/*
+    MAX_BGM is the number of BGM
+*/
+typedef enum {
+    MAIN_BGM,
+    BOSS_BGM,
+    BATTLE_BGM,
+    MENU_BGM,
+    END_BGM,
+    MAX_BGM
+} bgm_t;
+
+typedef enum {
+    QUEST_SFX,
+    EXPLOSION_SFX,
+    MAX_SFX
+} sfx_t;
+
 typedef enum {
     AUDIO_CHANGED_NOTHING = 0,
     AUDIO_CHANGED_BGM_ONLY = 1 << 0,
@@ -50,9 +79,14 @@ typedef enum {
     AUDIO_CHANGED_BGM_AND_SFX = AUDIO_CHANGED_BGM_ONLY | AUDIO_CHANGED_SFX_ONLY
 } audio_play_t;
 
+void init_base(audio_t *audio, float bgm_volume, float sfx_volume);
+bool init_bgm(sfMusic **bgm, const char *path, float bgm_volume);
+bool init_sfx(sound_t *sound, const char *path, float volume);
 bool init_audio(audio_t *audio, float bgm_volume, float sfx_volume);
 void free_audio(audio_t *audio);
 void free_sfx(sound_t *sound);
+
+bool set_bgm_active(audio_t *audio, bgm_t *bgm);
 
 bool is_volume_ok(float volume);
 void update_volume(audio_t *audio);

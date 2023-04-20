@@ -41,7 +41,7 @@ static void change_bgm_volume(sfMusic *bgm, float volume)
 void update_volume(audio_t *audio)
 {
     change_bgm_volume(audio->battle_bgm, audio->bgm_volume);
-    change_bgm_volume(audio->bgm, audio->bgm_volume);
+    change_bgm_volume(audio->main_bgm, audio->bgm_volume);
     change_bgm_volume(audio->boss_bgm, audio->bgm_volume);
     change_bgm_volume(audio->menu_bgm, audio->bgm_volume);
     change_sfx_volume(audio->quest_sfx.sound, audio->sfx_volume);

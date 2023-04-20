@@ -7,6 +7,13 @@
 
 #pragma once
 
+#ifdef SFX_CHANGE
+    #undef SFX_CHANGE
+#endif
+#define SFX_CHANGE(audio, action) {   \
+    \
+}
+
 #ifdef AUDIO_CHANGE
     #undef AUDIO_CHANGE
 #endif
