@@ -7,7 +7,7 @@
 
 #include "audio.h"
 
-bool set_active_bgm(audio_t *audio, bgm_t bgm)
+bool set_active_bgm(audio_t *audio, bgm_t bgm, bool start)
 {
     if (bgm < 0 || bgm >= MAX_BGM) {
         return false;
@@ -17,6 +17,8 @@ bool set_active_bgm(audio_t *audio, bgm_t bgm)
     }
     audio->current_bgm = *(bgm + (sfMusic**)(audio));
     update_volume(audio);
-    sfMusic_play(audio->current_bgm);
+    if (start) {
+        sfMusic_play(audio->current_bgm);
+    }
     return true;
 }

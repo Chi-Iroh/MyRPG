@@ -58,7 +58,6 @@ clean:
 	@rm -f $(OBJ)
 	@rm -f $(NAME)
 	@rm -f ../$(NAME)
-	@rm -f ../../include/button.h
 
 fclean: clean
 	@echo "[LIB BUTTON] Removing binary."

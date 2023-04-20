@@ -108,7 +108,7 @@ bool init_audio(audio_t *audio, float bgm_volume, float sfx_volume);
 void free_audio(audio_t *audio);
 void free_sfx(sound_t *sound);
 
-bool set_active_bgm(audio_t *audio, bgm_t bgm);
+bool set_active_bgm(audio_t *audio, bgm_t bgm, bool start);
 audio_play_t audio_control(audio_t *audio, audio_control_t action);
 
 bool is_volume_ok(float volume);

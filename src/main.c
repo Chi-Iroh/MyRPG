@@ -25,9 +25,10 @@ int main(int argc, char **argv)
 
     audio_control(&audio, AUDIO_PLAY);
     usleep(5'000'000); // waits 5 seconds
-    audio_control(&audio, AUDIO_STOP);
+    audio.bgm_volume = 25.f;
+    update_volume(&audio);
     usleep(5'000'000); // waits another 5 seconds
-    if (!set_active_bgm(&audio, BOSS_BGM)) {
+    if (!set_active_bgm(&audio, BOSS_BGM, false)) {
         write(STDERR_FILENO, "Failed to change BGM to boss !\n", 31);
     }
     window->splash->draw->next->next->show = false;

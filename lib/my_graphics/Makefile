@@ -147,7 +147,6 @@ clean:
 	@rm -f $(OBJ)
 	@rm -f $(NAME)
 	@rm -f ../$(NAME)
-	@rm -f ../../include/button.h
 
 fclean: clean
 	@echo "[LIB MY_GRAPHICS] Removing binary."
