@@ -91,7 +91,7 @@
     void update(crowd_t *crowd);
 
     void update_mob(mob_t *mob, draw_t *player, sfVector2f move);
-    void update_cop(cop_t *cop, draw_t *player, sfVector2f spritePosition);
+    void update_cop(cop_t *cop, draw_t *player, sfVector3f spritePosition);
 
     /**/
     void manage_event(sfRenderWindow* window, sfEvent event, player_t *player);

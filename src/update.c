@@ -41,7 +41,7 @@ sfVector2f move_player(draw_t *draw)
     if (sfKeyboard_isKeyPressed(sfKeyS))
         move.y += MAX_SPEED;
     move.y != 0 && move.x != 0 ? move.x /= 1.33, move.y /= 1.33 : 0;
-    set_pos_draw(draw,  get_position_draw(draw) - (sfVector3f){move.x, move.y, 0});
+    //set_pos_draw(draw,  get_position_draw(draw) - (sfVector3f){move.x, move.y, 0});
     move_draw(draw, (sfVector2f){move.x, move.y});
     return (sfVector2f){move.x, move.y};
 }
@@ -49,7 +49,7 @@ sfVector2f move_player(draw_t *draw)
 void update(crowd_t *crowd)
 {
     sfVector2f move = move_player(crowd->player->draw);
-    sfVector2f spritePosition = get_position_draw(crowd->player->draw);
+    sfVector3f spritePosition = get_position_draw(crowd->player->draw);
     for (int i = 0; i < CROWD_SIZE; i++) {
         update_cop(crowd->cop[i], crowd->player->draw, spritePosition);
         update_mob(crowd->mob[i], crowd->player->draw, move);

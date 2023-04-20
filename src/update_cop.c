@@ -33,7 +33,7 @@ void update_circle_mob
     set_pos_draw(cop->draw, newPosition);
 }
 
-void update_cop(cop_t *cop, draw_t *player, sfVector2f spritePosition)
+void update_cop(cop_t *cop, draw_t *player, sfVector3f spritePosition)
 {
     sfVector3f cop_pos = get_position_draw(cop->draw);
     sfVector2f direction;

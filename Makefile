@@ -17,10 +17,7 @@ SRC = 	src/main.c	\
 		src/button_interactions.c	\
 		src/inventory.c	\
 		src/save.c	\
-		src/free.c
-		src/event.c	\
-		src/manage_mouse.c	\
-		src/free.c		\
+		src/free.c	\
 		src/crowd.c 	\
 		src/progress_bar.c 	\
 		src/rand.c	\
