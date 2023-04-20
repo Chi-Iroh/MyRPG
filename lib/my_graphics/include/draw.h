@@ -85,7 +85,9 @@
     // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     void set_origin_draw(draw_t * draw, sfVector2f origin);
     // SPRITE, SHAPE (CIRCLE & RECT), TEXT
-    sfVector2f get_position_draw(draw_t * draw);
+    sfVector3f get_position_draw(draw_t * draw);
+    // SPRITE, SHAPE (CIRCLE & RECT), TEXT
+    sfVector2f get_size_draw(draw_t * draw);
     // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     float get_rotation_draw(draw_t * draw);
     // SPRITE, SHAPE (CIRCLE & RECT), TEXT
