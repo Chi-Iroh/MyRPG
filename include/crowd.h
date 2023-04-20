@@ -14,7 +14,7 @@
     #define MAX_SPRITES 25
     #define WD_WIDTH 1920
     #define WD_HEIGHT 1080
-    #define MAX_SPEED 0.5f
+    #define MAX_SPEED 0.05f
 
     typedef struct {
         long double min;
@@ -70,7 +70,7 @@
         player_t *player;
     } crowd_t;
 
-     /*progress_bar.c*/
+    /*progress_bar.c*/
 
     void draw_progress_bar(sfRenderWindow *window, progress_bar_t *bar);
     void compute_fill_area(progress_bar_t *bar);
@@ -89,7 +89,7 @@
     /*update.c*/
 
     void update(crowd_t *crowd);
-
+    float rand_move(void);
     void update_mob(mob_t *mob, draw_t *player, sfVector2f move);
     void update_cop(cop_t *cop, draw_t *player, sfVector3f spritePosition);
 
@@ -98,7 +98,6 @@
     void free_crowd(crowd_t *crowd);
     sfBool check_collision(draw_t *player, draw_t *crowd);
     void display_crowd(sfRenderWindow *window, crowd_t *crowd);
-    void crowd(window_t* wd, crowd_t crowd);
-    
+    void crowd(window_t* wd, crowd_t crowd);    
 
 #endif /* CROWD_T */

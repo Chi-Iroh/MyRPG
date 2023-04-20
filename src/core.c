@@ -25,7 +25,8 @@ void game(window_t* wd, game_src_t* g_src)
             actualize_window(wd);
             sfClock_restart(clock);
         }
-        //view_center(wd, get_position_draw(g_src->game->crowd.player->draw));
+        sfVector3f pos = get_position_draw(g_src->game->crowd.player->draw);
+        view_center(wd, set_2vector(pos.x, pos.y));
     }
     sfClock_destroy(clock);
 }
