@@ -10,6 +10,8 @@ long double set_depth(sfVector3f position)
 {
     long double depth = 0.L;
     depth += position.z;
-    depth += 1.L / position.y;
+    if (position.y != 0.f) {
+        depth += 1.L / position.y;
+    }
     return depth;
 }
