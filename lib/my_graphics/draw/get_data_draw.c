@@ -7,41 +7,21 @@
 #include "../include/draw.h"
 
 // get the actual position of the draw
-sfVector2f get_position_draw(draw_t * draw)
+sfVector3f get_position_draw(draw_t * draw)
 {
-    sfVector2f vect = set_2vector(0.f, 0.f);
-    switch (draw->type) {
-        case SHAPE:
-            vect = get_position_shape((shape_t *)(draw->drawable));
-        break;
-        case SPRITE:
-            vect = get_position_sprite((sprite_t *)(draw->drawable));
-        break;
-        case TEXT:
-            vect = get_position_text((text_t *)(draw->drawable));
-        break;
-        default: break;
-    }
-    return vect;
+    return draw->data->position;
+}
+
+// get the actual size of the draw
+sfVector2f get_size_draw(draw_t * draw)
+{
+    return draw->data->size;
 }
 
 // get the actual rotation of the draw
 float get_rotation_draw(draw_t * draw)
 {
-    float angle = 0.f;
-    switch (draw->type) {
-        case SHAPE:
-            angle = get_rotation_shape((shape_t *)(draw->drawable));
-        break;
-        case SPRITE:
-            angle = get_rotation_sprite((sprite_t *)(draw->drawable));
-        break;
-        case TEXT:
-            angle = get_rotation_text((text_t *)(draw->drawable));
-        break;
-        default: break;
-    }
-    return angle;
+    return draw->data->angle;
 }
 
 // get the actual scale of the draw compared to its initiale size
