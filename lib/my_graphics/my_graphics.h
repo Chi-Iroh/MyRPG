@@ -14,6 +14,5 @@
     #include <my_graphics/data.h>
     #include <my_graphics/draw.h>
     #include <my_graphics/layer.h>
-    #include <my_graphics/background.h>
     #include <my_graphics/window.h>
 #endif
