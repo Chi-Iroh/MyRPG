@@ -9,6 +9,8 @@
 
 #include <stdbool.h>
 #include <SFML/Audio.h>
+#include "../lib/audio/audio_play.h"
+#include "../lib/audio/audio_play.h"
 
 #ifdef DEFAULT_VOLUME
     #undef DEFAULT_VOLUME
@@ -16,11 +18,19 @@
 // To be used with init_audio as init_audio(audio_ptr, DEFAULT_VOLUME)
 #define DEFAULT_VOLUME DONT_CHANGE_VOLUME, DONT_CHANGE_VOLUME
 
+/*
+    Don't change the order ! Must be the same as audio_control_t with
+        AUDIO_NOT_YET_STARTED at the end !
+*/
+/*
+    Don't change the order ! Must be the same as audio_control_t with
+        AUDIO_NOT_YET_STARTED at the end !
+*/
 typedef enum {
-    AUDIO_NOT_YET_STARTED,
     AUDIO_PLAYING,
     AUDIO_PAUSED,
-    AUDIO_STOPPED
+    AUDIO_STOPPED,
+    AUDIO_NOT_YET_STARTED
 } audio_state_t;
 
 typedef struct {
@@ -66,6 +76,9 @@ typedef enum {
     MAX_BGM
 } bgm_t;
 
+/*
+    MAX_SFX is the number of SFX
+*/
 typedef enum {
     QUEST_SFX,
     EXPLOSION_SFX,
@@ -79,6 +92,15 @@ typedef enum {
     AUDIO_CHANGED_BGM_AND_SFX = AUDIO_CHANGED_BGM_ONLY | AUDIO_CHANGED_SFX_ONLY
 } audio_play_t;
 
+/*
+    Don't change the order ! Must be the same as audio_state_t !
+*/
+typedef enum {
+    AUDIO_PLAY,
+    AUDIO_PAUSE,
+    AUDIO_STOP
+} audio_control_t;
+
 void init_base(audio_t *audio, float bgm_volume, float sfx_volume);
 bool init_bgm(sfMusic **bgm, const char *path, float bgm_volume);
 bool init_sfx(sound_t *sound, const char *path, float volume);
@@ -86,16 +108,15 @@ bool init_audio(audio_t *audio, float bgm_volume, float sfx_volume);
 void free_audio(audio_t *audio);
 void free_sfx(sound_t *sound);
 
-bool set_bgm_active(audio_t *audio, bgm_t *bgm);
+bool set_active_bgm(audio_t *audio, bgm_t bgm);
+audio_play_t audio_control(audio_t *audio, audio_control_t action);
 
 bool is_volume_ok(float volume);
 void update_volume(audio_t *audio);
 
-audio_play_t pause_all_audio(audio_t *audio);
-audio_play_t resume_all_audio(audio_t *audio);
-audio_play_t stop_all_audio(audio_t *audio);
-
 extern const char *const MENU_BGM_PATH;
+extern const char *const BOSS_BGM_PATH;
+extern const char *const BOSS_BGM_PATH;
 
 extern const char *const QUEST_SFX_PATH;
 

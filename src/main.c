@@ -23,11 +23,13 @@ int main(int argc, char **argv)
         return 84;
     }
 
-    resume_all_audio(&audio);
+    audio_control(&audio, AUDIO_PLAY);
     usleep(5'000'000); // waits 5 seconds
-    stop_all_audio(&audio);
+    audio_control(&audio, AUDIO_STOP);
     usleep(5'000'000); // waits another 5 seconds
-    resume_all_audio(&audio);
+    if (!set_active_bgm(&audio, BOSS_BGM)) {
+        write(STDERR_FILENO, "Failed to change BGM to boss !\n", 31);
+    }
     window->splash->draw->next->next->show = false;
     window->splash->draw->next->show = false;
     core(window, g_src);

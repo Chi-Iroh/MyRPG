@@ -79,6 +79,7 @@ bool init_audio(audio_t *audio, float bgm_volume, float sfx_volume)
     RETURN_VALUE_IF(!status, false);
     init_base(audio, bgm_volume, sfx_volume);
     status &= init_bgm(&audio->menu_bgm, MENU_BGM_PATH, bgm_volume);
+    status &= init_bgm(&audio->boss_bgm, BOSS_BGM_PATH, bgm_volume);
     status &= init_sfx(&audio->quest_sfx, QUEST_SFX_PATH, sfx_volume);
     if (!status) {
         free_audio(audio);
