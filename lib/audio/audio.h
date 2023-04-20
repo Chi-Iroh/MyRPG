@@ -112,8 +112,8 @@ void free_sfx(sound_t *sound);
 bool set_active_bgm(audio_t *audio, bgm_t bgm, bool start);
 bool set_active_sfx(audio_t *audio, sfx_t sfx, bool start);
 
-bool audio_contol_bgm(audio_t *audio, audio_control_t action);
-bool audio_contol_sfx(audio_t *audio, audio_control_t action);
+bool audio_control_bgm(audio_t *audio, audio_control_t action);
+bool audio_control_sfx(audio_t *audio, audio_control_t action);
 audio_play_t audio_control(audio_t *audio, audio_control_t action);
 
 bool is_volume_ok(float volume);

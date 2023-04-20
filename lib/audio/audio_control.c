@@ -20,7 +20,7 @@ void (*sfx_functions[3])(sfSound*) = {
     [AUDIO_PAUSE] = sfSound_pause
 };
 
-bool audio_contol_bgm(audio_t *audio, audio_control_t action)
+bool audio_control_bgm(audio_t *audio, audio_control_t action)
 {
     if (action < 0 || action >= AUDIO_CONTROL_MAX || !audio) {
         return false;
@@ -33,7 +33,7 @@ bool audio_contol_bgm(audio_t *audio, audio_control_t action)
     return false;
 }
 
-bool audio_contol_sfx(audio_t *audio, audio_control_t action)
+bool audio_control_sfx(audio_t *audio, audio_control_t action)
 {
     if (action < 0 || action >= AUDIO_CONTROL_MAX || !audio) {
         return false;
