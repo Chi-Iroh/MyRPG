@@ -5,8 +5,10 @@
 ** core.c
 */
 
-#include "../include/my_rpg.h"
-#include "../lib/my_graphics/my_graphics.h"
+#include <my_rpg.h>
+#include <my_graphics.h>
+#include <audio.h>
+#include <my_macros.h>
 
 /*void game(window_t* window, game_src_t* g_src)
 {
@@ -50,11 +52,12 @@ while (sfRenderWindow_isOpen(window->window) && g_src->menu->show) {
 
 void game(window_t* wd, game_src_t* g_src)
 {
-    wd->splash->show = false;
     for (sfEvent evt;
         sfRenderWindow_isOpen(wd->window) && !g_src->menu->show;) {
         while (sfRenderWindow_pollEvent(wd->window, &evt))
             analyse_events(wd, evt, g_src);
+        if (g_src->game->pause_menu->show)
+            pause_menu(wd, g_src);
         actualize_window(wd);
     }
 }

@@ -5,8 +5,10 @@
 ** menu.c
 */
 
-#include "../include/my_rpg.h"
-#include "../lib/my_graphics/my_graphics.h"
+#include <my_rpg.h>
+#include <my_graphics.h>
+#include <audio.h>
+#include <my_macros.h>
 
 draw_t** init_setting_titles(layer_t* layer)
 {
@@ -32,7 +34,7 @@ menu_cat_t* init_settings(list_button_t** all_btn, layer_t* spl)
     menu_cat_t* set = malloc(sizeof(menu_cat_t));
     sfVector2f size[3] = {set_2vector(300, 75), set_2vector(200, 75),
         set_2vector(200, 75)};
-    float val[2] = {0, 100};
+    float val[3] = {0, 100, 75};
     char* name[3] = {"  MANIF PLANIFIEE", "1920x1080", "960x540"};
     sfVector3f pos[3] = {{.x = 100, .y = 900, .z = 0},
         {.x = 1500, .y = 400, .z = 0}, {.x = 1500, .y = 500, 0}};
@@ -71,6 +73,21 @@ menu_t* init_menu(window_t* wd, list_button_t** all_btn)
     return m;
 }
 
+void settings_core(window_t* wd, game_src_t* g_src)
+{
+    if (IS_PRESSED(g_src->menu->settings->s_btn[0]->btn)) {
+        g_src->audio->bgm_volume = g_src->menu->settings->s_btn[0]->value
+            (g_src->menu->settings->s_btn[0]);
+        update_volume(g_src->audio);
+    }
+    if (IS_RELEASED(g_src->menu->settings->s_btn[1]->btn)) {
+        g_src->audio->sfx_volume = g_src->menu->settings->s_btn[1]->value
+            (g_src->menu->settings->s_btn[0]);
+        update_volume(g_src->audio);
+        g_src->menu->settings->s_btn[1]->btn->state = NONE;
+    }
+}
+
 void menu_core(window_t* wd, game_src_t* g_src)
 {
     if (IS_RELEASED(g_src->menu->b_start)) {
@@ -86,18 +103,14 @@ void menu_core(window_t* wd, game_src_t* g_src)
     }
     if (IS_RELEASED(g_src->menu->b_quit))
         sfRenderWindow_close(wd->window);
-    if (IS_PRESSED(g_src->menu->settings->s_btn[0]->btn))
-        g_src->menu->settings->s_btn[0]->value(g_src->menu->settings->s_btn[0]);
-    if (IS_RELEASED(g_src->menu->settings->s_btn[1]->btn)) {
-        g_src->menu->settings->s_btn[1]->value(g_src->menu->settings->s_btn[0]);
-        g_src->menu->settings->s_btn[1]->btn->state = NONE;
-    }
+    settings_core(wd, g_src);
     return;
 }
 
 void menu(window_t* wd, game_src_t* g_src)
 {
     g_src->menu->menu_l->show = true;
+    audio_control(g_src->audio, AUDIO_PLAY);
     for (sfEvent menu_evt; sfRenderWindow_isOpen(wd->window) &&
         g_src->menu->show;) {
         wd->splash->draw->data->position.x -= 0.40;
@@ -113,4 +126,5 @@ void menu(window_t* wd, game_src_t* g_src)
         sfRenderWindow_display(wd->window);
     }
     g_src->menu->menu_l->show = false;
+    wd->splash->show = false;
 }

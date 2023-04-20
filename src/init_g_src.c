@@ -5,8 +5,10 @@
 ** init_g_src.c
 */
 
-#include "../include/my_rpg.h"
-#include "../lib/my_graphics/my_graphics.h"
+#include <my_rpg.h>
+#include <my_graphics.h>
+#include <audio.h>
+#include <my_macros.h>
 
 character_t* init_char_test(window_t* wd)
 {
@@ -15,11 +17,11 @@ character_t* init_char_test(window_t* wd)
     return charac;
 }
 
-game_t* init_game(window_t* wd)
+game_t* init_game(window_t* wd, list_button_t** btns)
 {
     game_t* game = malloc(sizeof(game_t));
     game->character = init_char_test(wd);
-    game->pause_menu = NULL;//init_pause_menu();
+    game->pause_menu = init_pause_menu(wd, btns);
     return game;
 }
 
@@ -28,7 +30,8 @@ game_src_t* init_game_sources(window_t* wd)
     game_src_t* g_src = malloc(sizeof(game_src_t));
     list_button_t* btns = NULL;
     g_src->menu = init_menu(wd, &btns);
-    g_src->game = init_game(wd);
+    g_src->game = init_game(wd, &btns);
     g_src->all_btn = btns;
+    init_audio(g_src->audio, DEFAULT_BGM_VOLUME, DEFAULT_SFX_VOLUME);
     return g_src;
 }

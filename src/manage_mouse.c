@@ -5,8 +5,10 @@
 ** manage_mouse.c
 */
 
-#include "../include/my_rpg.h"
-#include "../lib/my_graphics/my_graphics.h"
+#include <my_rpg.h>
+#include <my_graphics.h>
+#include <audio.h>
+#include <my_macros.h>
 
 static void handle_mouse_release
 (list_button_t* all_btn, sfMouseButtonEvent *event)

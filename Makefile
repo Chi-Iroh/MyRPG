@@ -7,15 +7,16 @@
 
 SRC = 	src/main.c	\
 		src/init_g_src.c	\
-		src/core.c 	\
-		src/save.c	\
-		src/inventory.c	\
 		src/menu.c	\
+		src/core.c 	\
+		src/pause_menu.c	\
+		src/event.c	\
+		src/manage_mouse.c	\
 		src/button.c	\
 		src/sliding_button.c	\
 		src/button_interactions.c	\
-		src/event.c	\
-		src/manage_mouse.c	\
+		src/inventory.c	\
+		src/save.c	\
 		src/free.c
 
 OBJ =   $(SRC:.c=.o)

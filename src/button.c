@@ -5,7 +5,10 @@
 ** button.c
 */
 
-#include "../include/my_rpg.h"
+#include <my_rpg.h>
+#include <my_graphics.h>
+#include <audio.h>
+#include <my_macros.h>
 
 list_button_t* append_btn_list(list_button_t* list, button_s_t* btn)
 {

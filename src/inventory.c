@@ -5,13 +5,15 @@
 ** inventory.c
 */
 
-#include "../include/my_rpg.h"
-#include "../lib/my_graphics/my_graphics.h"
+#include <my_rpg.h>
+#include <my_graphics.h>
+#include <audio.h>
+#include <my_macros.h>
 
 void change_slot_selected(character_t* charac, sfMouseWheelScrollEvent evt,
     game_src_t* g_src)
 {
-    if (g_src->menu->show)
+    if (g_src->menu->show || g_src->game->pause_menu->show)
         return;
     charac->inv->is_selected = 0;
     set_color_out_draw(charac->inv->slot, sfBlack);

@@ -60,15 +60,19 @@
         menu_t* menu;
         game_t* game;
         list_button_t* all_btn;
+        audio_t* audio;
     } game_src_t;
 
 
     game_src_t* init_game_sources(window_t* wd);
 
-    void core(window_t* wd, game_src_t* g_src);
     void menu(window_t* wd, game_src_t* g_src);
+    void core(window_t* wd, game_src_t* g_src);
+    void pause_menu(window_t* wd, game_src_t* g_src);
+
 
     menu_t* init_menu(window_t* wd, list_button_t** all_btn);
+    pause_t* init_pause_menu(window_t* wd, list_button_t** btns);
 
     inv_slot_t* init_inventory(window_t *wd, int nb_slots);
     void change_slot_selected(character_t* charac, sfMouseWheelScrollEvent evt,
@@ -90,6 +94,6 @@
         list_button_t* all_btn);
 
     void free_g_src(game_src_t* g_src);
-    void free_main(window_t *window, game_src_t *g_src, audio_t *audio);
+    void free_main(window_t *window, game_src_t *g_src);
 
 #endif

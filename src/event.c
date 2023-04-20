@@ -5,8 +5,15 @@
 ** event.c
 */
 
-#include "../include/my_rpg.h"
-#include "../lib/my_graphics/my_graphics.h"
+#include <my_rpg.h>
+#include <my_graphics.h>
+#include <audio.h>
+#include <my_macros.h>
+
+sfBool switch_bool(sfBool bool_value)
+{
+    return bool_value == true ? false : true;
+}
 
 void key_pressed(sfRenderWindow* wd, sfKeyEvent evt, game_src_t* g_src)
 {
@@ -16,7 +23,8 @@ void key_pressed(sfRenderWindow* wd, sfKeyEvent evt, game_src_t* g_src)
             sfRenderWindow_close(wd);
             break;
         }
-        g_src->menu->show = true;
+        g_src->game->pause_menu->show =
+            switch_bool(g_src->game->pause_menu->show);
         break;
     default:
         break;
