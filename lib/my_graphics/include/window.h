@@ -29,6 +29,7 @@
     */
     typedef struct window {
         sfVector2f size;
+        sfVector2f map_size;
         sfRenderWindow * window;
         sfView * view;
         layer_t * background;
