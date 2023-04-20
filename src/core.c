@@ -38,11 +38,11 @@ void core(window_t* wd, game_src_t* g_src)
     while (sfRenderWindow_isOpen(wd->window)) {
         if (g_src->menu->show) {
             wd->splash->show = true;
-            set_active_bgm(&g_src->audio, MENU_BGM, 1);
+            audio_set_active_bgm(&g_src->audio, BGM_MENU, 1);
             menu(wd, g_src);
             continue;
         }
-        set_active_bgm(&g_src->audio, BOSS_BGM, 1);
+        audio_set_active_bgm(&g_src->audio, BGM_BOSS, 1);
         game(wd, g_src);
     }
 }

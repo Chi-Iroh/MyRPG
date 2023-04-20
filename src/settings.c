@@ -55,12 +55,12 @@ void settings_core(window_t* wd, game_src_t* g_src, menu_cat_t* settings)
 {
     if (IS_PRESSED(settings->s_btn[0]->btn)) {
         g_src->audio.bgm_volume = settings->s_btn[0]->value(settings->s_btn[0]);
-        update_volume(&g_src->audio);
+        audio_update_volume(&g_src->audio);
     }
     if (IS_RELEASED(settings->s_btn[1]->btn)) {
         g_src->audio.sfx_volume = settings->s_btn[1]->value(settings->s_btn[1]);
-        update_volume(&g_src->audio);
-        audio_control_sfx(&g_src->audio, AUDIO_PLAY);
+        audio_update_volume(&g_src->audio);
+        audio_play_sfx(&g_src->audio, SFX_EXPLOSION);
         settings->s_btn[1]->btn->state = NONE;
     }
 }

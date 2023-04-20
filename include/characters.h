@@ -16,13 +16,14 @@
     extern const float WORKER_FENCE_BUILD_SPEED_MULTIPLIER;
 
     typedef enum {
-        POLITICS_STUDENT,
-        ART_STUDENT,
-        WORKER,
-        PREFECT_SON,
-        RAILWAY_WORKER,
-        TROUBLEMAKER,
-        DOCTOR
+        CHARACTER_POLITICS_STUDENT,
+        CHARACTER_ART_STUDENT,
+        CHARACTER_WORKER,
+        CHARACTER_PREFECT_SON,
+        CHARACTER_RAILWAY_WORKER,
+        CHARACTER_TROUBLEMAKER,
+        CHARACTER_DOCTOR,
+        CHARACTER_ERROR
     } character_type_t;
 
     typedef enum {

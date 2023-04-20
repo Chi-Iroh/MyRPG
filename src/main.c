@@ -20,8 +20,6 @@ int main(int argc, char **argv)
         free_main(window, g_src);
         return 84;
     }
-    window->splash->draw->next->next->show = false;
-    window->splash->draw->next->show = false;
     core(window, g_src);
     free_main(window, g_src);
     return 0;

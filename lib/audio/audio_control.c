@@ -37,33 +37,18 @@ bool audio_control_bgm(audio_t *audio, audio_control_t action)
 }
 
 /*
-    Controls (pause/play/stop) the current SFX.
+    Updates volume and plays a SFX.
+    Does nothing if sfx is < 0 or >= SFX_MAX, but returns false, otherwise true
 */
-bool audio_control_sfx(audio_t *audio, audio_control_t action)
+bool audio_play_sfx(audio_t *audio, sfx_t sfx)
 {
-    if (action < 0 || action >= AUDIO_CONTROL_MAX || !audio) {
+    sound_t *sfx_ptr = NULL;
+
+    if (sfx < 0 || sfx >= SFX_MAX || !audio) {
         return false;
     }
-    if (audio->current_sfx) {
-        sfx_functions[action](audio->current_sfx->sound);
-        audio->sfx_state = (audio_state_t)action;
-        return true;
-    }
-    return false;
-}
-
-/*
-    Controls (pause/play/stop) both the current BGM anf SFX.
-*/
-audio_play_t audio_control_all(audio_t *audio, audio_control_t action)
-{
-    audio_play_t changes = AUDIO_CHANGED_NOTHING;
-
-    if (audio_control_bgm(audio, action)) {
-        changes |= AUDIO_CHANGED_BGM_ONLY;
-    }
-    if (audio_control_sfx(audio, action)) {
-        changes |= AUDIO_CHANGED_SFX_ONLY;
-    }
-    return changes;
+    sfx_ptr = (sound_t*)((sfMusic**)audio + BGM_MAX) + sfx;
+    audio_update_volume(audio);
+    sfx_functions[AUDIO_PLAY](sfx_ptr->sound);
+    return true;
 }

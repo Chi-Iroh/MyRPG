@@ -66,7 +66,7 @@ void pause_menu(window_t* wd, game_src_t* g_src)
 {
     g_src->game->pause_menu->pause_l->show = true;
     wd->splash->show = true;
-    set_active_bgm(&g_src->audio, MENU_BGM, 1);
+    audio_set_active_bgm(&g_src->audio, BGM_MENU, 1);
     sfMusic_setPitch(g_src->audio.menu_bgm, 1.5);
     for (sfEvent pause_evt; sfRenderWindow_isOpen(wd->window) &&
         g_src->game->pause_menu->show;) {
@@ -80,5 +80,5 @@ void pause_menu(window_t* wd, game_src_t* g_src)
     g_src->game->pause_menu->pause_l->show = false;
     wd->splash->show = false;
     sfMusic_setPitch(g_src->audio.menu_bgm, 1);
-    set_active_bgm(&g_src->audio, BOSS_BGM, 1);
+    audio_set_active_bgm(&g_src->audio, BGM_BOSS, 1);
 }

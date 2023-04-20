@@ -59,9 +59,7 @@ typedef struct {
     sound_t quest_sfx;
     sound_t explosion_sfx;
     sfMusic *current_bgm;
-    sound_t *current_sfx;
     audio_state_t bgm_state;
-    audio_state_t sfx_state;
     float sfx_volume;
     float bgm_volume;
 } audio_t;
@@ -73,12 +71,12 @@ typedef struct {
         the max value.
 */
 typedef enum {
-    MAIN_BGM = 0,
-    BOSS_BGM = 1,
-    BATTLE_BGM = 2,
-    MENU_BGM = 3,
-    END_BGM = 4,
-    MAX_BGM = 5
+    BGM_MAIN = 0,
+    BGM_BOSS = 1,
+    BGM_BATTLE = 2,
+    BGM_MENU = 3,
+    BGM_END = 4,
+    BGM_MAX = 5
 } bgm_t;
 
 /*
@@ -88,21 +86,10 @@ typedef enum {
         the max value.
 */
 typedef enum {
-    QUEST_SFX = 0,
-    EXPLOSION_SFX = 1,
-    MAX_SFX = 2
+    SFX_QUEST = 0,
+    SFX_EXPLOSION = 1,
+    SFX_MAX = 2
 } sfx_t;
-
-/*
-    Enum to represent what changes were effectively done when calling
-        audio_control_all(audio_ptr, action)
-*/
-typedef enum {
-    AUDIO_CHANGED_NOTHING = 0,
-    AUDIO_CHANGED_BGM_ONLY = 1 << 0,
-    AUDIO_CHANGED_SFX_ONLY = 1 << 1,
-    AUDIO_CHANGED_BGM_AND_SFX = AUDIO_CHANGED_BGM_ONLY | AUDIO_CHANGED_SFX_ONLY
-} audio_play_t;
 
 /*
     Enum to represent the actions when calling audio_control_* functions.
@@ -110,30 +97,29 @@ typedef enum {
     Must be the same as audio_state_t !
     AUDIO_CONTROL_MAX is not meant to be used directly, as it is a sentinel
         to highliht the max value.
+    AUDIO_RESUME = AUDIO_PLAY is intended, just for readability purpose.
 */
 typedef enum {
+    AUDIO_RESUME = 0,
     AUDIO_PLAY = 0,
     AUDIO_PAUSE = 1,
     AUDIO_STOP = 2,
     AUDIO_CONTROL_MAX = 3
 } audio_control_t;
 
-void init_base(audio_t *audio, float bgm_volume, float sfx_volume);
-bool init_bgm(sfMusic **bgm, const char *path, float bgm_volume);
-bool init_sfx(sound_t *sound, const char *path, float volume);
-bool init_audio(audio_t *audio, float bgm_volume, float sfx_volume);
-void free_audio(audio_t *audio);
-void free_sfx(sound_t *sound);
+void audio_init_base(audio_t *audio, float bgm_volume, float sfx_volume);
+bool audio_init_bgm(sfMusic **bgm, const char *path, float bgm_volume);
+bool audio_init_sfx(sound_t *sound, const char *path, float volume);
+bool audio_init(audio_t *audio, float bgm_volume, float sfx_volume);
+void audio_free(audio_t *audio);
+void audio_free_sfx(sound_t *sound);
 
-bool set_active_bgm(audio_t *audio, bgm_t bgm, bool start);
-bool set_active_sfx(audio_t *audio, sfx_t sfx, bool start);
-
+bool audio_set_active_bgm(audio_t *audio, bgm_t bgm, bool start);
 bool audio_control_bgm(audio_t *audio, audio_control_t action);
-bool audio_control_sfx(audio_t *audio, audio_control_t action);
-audio_play_t audio_control_all(audio_t *audio, audio_control_t action);
+bool audio_play_sfx(audio_t *audio, sfx_t sfx);
 
-bool is_volume_ok(float volume);
-void update_volume(audio_t *audio);
+bool audio_is_volume_ok(float volume);
+void audio_update_volume(audio_t *audio);
 
 extern const char *const MENU_BGM_PATH;
 extern const char *const BOSS_BGM_PATH;

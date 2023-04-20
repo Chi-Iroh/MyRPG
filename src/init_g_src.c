@@ -34,6 +34,6 @@ game_src_t* init_game_sources(window_t* wd)
     g_src->game = init_game(wd, &btns, g_src);
     g_src->game->pause_menu->pause_l->show = false;
     g_src->all_btn = btns;
-    init_audio(&g_src->audio, AUDIO_DEFAULT_VOLUME);
+    audio_init(&g_src->audio, AUDIO_DEFAULT_VOLUME);
     return g_src;
 }
