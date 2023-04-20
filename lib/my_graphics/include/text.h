@@ -22,7 +22,7 @@
     */
     typedef struct text {
         sfText * text;
-        sfUint32 * string;
+        const char * string;
         sfFont * font;
         sfColor color_in;
         sfColor color_out;

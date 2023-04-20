@@ -16,7 +16,7 @@ void set_pos_text(text_t * text, sfVector3f position)
 // set the size of a text
 void set_size_text(text_t * text, sfVector2f size)
 {
-    sfText_setCharacterSize(text->text, size.x);
+    sfText_setCharacterSize(text->text, size.y);
 }
 
 // set the rotation of a text

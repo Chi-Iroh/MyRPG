@@ -8,8 +8,8 @@
 
 void set_string_text(text_t * text, const char * string)
 {
-    text->string = (sfUint32 *)string;
+    text->string = string;
     if (text->string != NULL) {
-        sfText_setUnicodeString(text->text, text->string);
+        sfText_setString(text->text, text->string);
     }
 }
