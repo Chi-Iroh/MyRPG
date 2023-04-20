@@ -109,6 +109,7 @@ void free_audio(audio_t *audio);
 void free_sfx(sound_t *sound);
 
 bool set_active_bgm(audio_t *audio, bgm_t bgm, bool start);
+bool set_active_sfx(audio_t *audio, sfx_t sfx, bool start);
 audio_play_t audio_control(audio_t *audio, audio_control_t action);
 
 bool is_volume_ok(float volume);
@@ -119,6 +120,7 @@ extern const char *const BOSS_BGM_PATH;
 extern const char *const BOSS_BGM_PATH;
 
 extern const char *const QUEST_SFX_PATH;
+extern const char *const EXPLOSION_SFX_PATH;
 
 extern const float DONT_CHANGE_VOLUME;
 extern const float DEFAULT_BGM_VOLUME;
