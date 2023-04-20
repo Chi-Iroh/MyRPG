@@ -31,8 +31,6 @@ typedef enum {
     AUDIO_PAUSED,
     AUDIO_STOPPED,
     AUDIO_NOT_YET_STARTED
-    AUDIO_STOPPED,
-    AUDIO_NOT_YET_STARTED
 } audio_state_t;
 
 typedef struct {
@@ -93,15 +91,6 @@ typedef enum {
     AUDIO_CHANGED_SFX_ONLY = 1 << 1,
     AUDIO_CHANGED_BGM_AND_SFX = AUDIO_CHANGED_BGM_ONLY | AUDIO_CHANGED_SFX_ONLY
 } audio_play_t;
-
-/*
-    Don't change the order ! Must be the same as audio_state_t !
-*/
-typedef enum {
-    AUDIO_PLAY,
-    AUDIO_PAUSE,
-    AUDIO_STOP
-} audio_control_t;
 
 /*
     Don't change the order ! Must be the same as audio_state_t !

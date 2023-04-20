@@ -10,6 +10,7 @@
 #include <stdbool.h>
 #include <SFML/Audio.h>
 #include "../lib/audio/audio_play.h"
+#include "../lib/audio/audio_play.h"
 
 #ifdef DEFAULT_VOLUME
     #undef DEFAULT_VOLUME
@@ -17,6 +18,10 @@
 // To be used with init_audio as init_audio(audio_ptr, DEFAULT_VOLUME)
 #define DEFAULT_VOLUME DONT_CHANGE_VOLUME, DONT_CHANGE_VOLUME
 
+/*
+    Don't change the order ! Must be the same as audio_control_t with
+        AUDIO_NOT_YET_STARTED at the end !
+*/
 /*
     Don't change the order ! Must be the same as audio_control_t with
         AUDIO_NOT_YET_STARTED at the end !
@@ -110,6 +115,7 @@ bool is_volume_ok(float volume);
 void update_volume(audio_t *audio);
 
 extern const char *const MENU_BGM_PATH;
+extern const char *const BOSS_BGM_PATH;
 extern const char *const BOSS_BGM_PATH;
 
 extern const char *const QUEST_SFX_PATH;
