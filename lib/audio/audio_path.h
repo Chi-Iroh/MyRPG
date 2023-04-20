@@ -18,4 +18,6 @@
 #define SFX(path) "sounds/" path ".ogg"
 
 const char *const MENU_BGM_PATH = BGM("Kevin MacLeod - Happy Bee");
+const char *const BOSS_BGM_PATH = BGM("Bonetrousle");
+
 const char *const QUEST_SFX_PATH = SFX("Discord Notification");

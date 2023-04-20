@@ -9,7 +9,8 @@ SRC	= \
 audio_init.c \
 audio_free.c \
 audio_volume.c \
-audio_play.c
+audio_set.c \
+audio_control.c
 
 OBJ	=	$(SRC:.c=.o)
 
