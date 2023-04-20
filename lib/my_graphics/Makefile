@@ -49,6 +49,8 @@ SRC		=	vector/set_vector.c			\
 			draw/get_global_bounds_draw.c	\
 			draw/switch_draw_show.c		\
 			draw/swap_draw.c			\
+			draw/hitbox.c				\
+			draw/intersect.c			\
 			draw/draw_single_draw.c		\
 			draw/draw_draws.c			\
 			draw/free_single_draw.c		\

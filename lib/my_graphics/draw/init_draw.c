@@ -13,6 +13,7 @@ draw_t * init_draw(void)
     draw->type = NO_TYPE;
     draw->show = true;
     draw->data = init_data();
+    draw->hitbox = NULL_RECT;
     draw->next = NULL;
     draw->previous = NULL;
     return draw;

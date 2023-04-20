@@ -108,7 +108,14 @@
     sfFloatRect get_global_bounds_draw(draw_t * draw);
 
     // ### ### Hitbox ### ###
-    //void change_mass_hitbox_
+    void change_hitbox(draw_t * draw, sfIntRect hitbox);
+    void change_hitbox_by_id(draw_t * draw, int id, sfIntRect hitbox);
+    sfIntRect get_hitbox(draw_t * draw);
+    sfFloatRect get_f_hitbox(draw_t * draw);
+    bool intersect_with_draw(draw_t * draw1, draw_t * draw2);
+    bool intersect_with_id(draw_t * draw1, draw_t * list, int id);
+    bool intersect_with_map(draw_t * draw1, draw_t * list);
+    bool intersect_with_all(draw_t * draw1, draw_t * list);
 
     // ### ### Displaying ### ###
     draw_t * sort_draws(draw_t * draw);

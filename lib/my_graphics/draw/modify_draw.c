@@ -9,6 +9,9 @@
 // move the draw of the given offset
 void move_draw(draw_t * draw, sfVector2f offset)
 {
+    if (draw->id >= 0) {
+        return;
+    }
     draw->data->position.x += offset.x;
     draw->data->position.y += offset.y;
     switch (draw->type) {
@@ -28,6 +31,9 @@ void move_draw(draw_t * draw, sfVector2f offset)
 // scale the size of the draw
 void scale_draw(draw_t * draw, sfVector2f scale)
 {
+    if (draw->id >= 0) {
+        return;
+    }
     draw->data->size.x *= scale.x;
     draw->data->size.y *= scale.y;
     switch (draw->type) {
@@ -47,6 +53,9 @@ void scale_draw(draw_t * draw, sfVector2f scale)
 // rotate the draw of the given angle
 void rotate_draw(draw_t * draw, float angle)
 {
+    if (draw->id >= 0) {
+        return;
+    }
     draw->data->angle += angle;
     switch (draw->type) {
         case SHAPE:
@@ -66,7 +75,9 @@ void rotate_draw(draw_t * draw, float angle)
 void modify_draw(draw_t * draw, sfVector2f offset,
                     sfVector2f scale, float angle)
 {
-    switch (draw->type) {
+    if (draw->id >= 0) {
+        return;
+    } switch (draw->type) {
         case SHAPE:
             modify_shape((shape_t *)(draw->drawable), offset, scale, angle);
         break;

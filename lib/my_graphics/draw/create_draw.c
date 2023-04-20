@@ -17,6 +17,8 @@ draw_t * create_draw(void * drawable, draw_type_t type, data_t * data)
     draw->id = -1;
     draw->show = true;
     draw->data = data;
+    draw->hitbox = set_rectangle(data->position.x, data->position.y,
+                                    data->size.x, data->size.y);
     draw->next = NULL;
     draw->previous = NULL;
     return draw;
