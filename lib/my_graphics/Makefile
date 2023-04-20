@@ -5,6 +5,8 @@
 ## Makefile
 ##
 
+HEADERS	= $(wildcard include/*.h)
+
 SRC		=	vector/set_vector.c			\
 			vector/increment_vector.c	\
 			vector/scale_vector.c		\
@@ -104,21 +106,30 @@ NAME	=	../libgraphics.a
 all: CFLAGS += $(RELEASE)
 all: $(NAME)
 re: fclean all
+.PHONY: all re
 
 debug: CFLAGS += $(DEBUG)
 debug: $(NAME)
 redebug: fclean debug
+.PHONY: debug redebug
 
 sanitize: CFLAGS += $(DEBUG) $(SANITIZE)
 sanitize: AR_PRELOAD += asan ubsan
 sanitize: $(NAME)
 resanitize: fclean sanitize
+.PHONY: sanitize resanitize
 
-link_header: my_graphics.h
+link_subheaders_directory: $(HEADERS)
+	@echo [LIB MY_GRAPHICS] Linking subheaders directory
+	@ln -sf "$(shell pwd)/include/" ../../include/my_graphics
+
+link_headers: my_graphics.h link_subheaders_directory
 	@echo [LIB MY_GRAPHICS] Linking header my_graphics.h
 	@ln -f my_graphics.h ../../include/my_graphics.h
 
-$(NAME): link_header $(OBJ)
+.PHONY: link_subheaders_directory link_headers
+
+$(NAME): link_headers $(OBJ)
 	@echo Building lib graphics...
 	@echo Dependencies: $(AR_PRELOAD) $(AR_LDFLAGS)
 	@ar rc -l"$(AR_PRELOAD) $(AR_LDFLAGS)" $(NAME) $(OBJ)
@@ -140,3 +151,5 @@ clean:
 fclean: clean
 	@echo "[LIB MY_GRAPHICS] Removing binary."
 	@rm -f ../$(NAME)
+
+.PHONY: clean fclean

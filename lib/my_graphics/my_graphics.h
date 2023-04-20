@@ -6,14 +6,14 @@
 */
 #ifndef MY_GRAPHICS
     #define MY_GRAPHICS
-    #include "../lib/my_graphics/include/vector.h"
-    #include "../lib/my_graphics/include/rect.h"
-    #include "../lib/my_graphics/include/text.h"
-    #include "../lib/my_graphics/include/shape.h"
-    #include "../lib/my_graphics/include/sprite.h"
-    #include "../lib/my_graphics/include/data.h"
-    #include "../lib/my_graphics/include/draw.h"
-    #include "../lib/my_graphics/include/layer.h"
-    #include "../lib/my_graphics/include/background.h"
-    #include "../lib/my_graphics/include/window.h"
+    #include <my_graphics/vector.h>
+    #include <my_graphics/rect.h>
+    #include <my_graphics/text.h>
+    #include <my_graphics/shape.h>
+    #include <my_graphics/sprite.h>
+    #include <my_graphics/data.h>
+    #include <my_graphics/draw.h>
+    #include <my_graphics/layer.h>
+    #include <my_graphics/background.h>
+    #include <my_graphics/window.h>
 #endif
