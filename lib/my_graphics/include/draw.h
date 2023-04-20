@@ -39,6 +39,7 @@
         void * drawable;
         draw_type_t type;
         int id;
+        sfIntRect hitbox;
         bool show;
         data_t * data;
         draw_t * next;
@@ -105,6 +106,9 @@
     sfFloatRect get_local_bounds_draw(draw_t * draw);
     // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     sfFloatRect get_global_bounds_draw(draw_t * draw);
+
+    // ### ### Hitbox ### ###
+    //void change_mass_hitbox_
 
     // ### ### Displaying ### ###
     draw_t * sort_draws(draw_t * draw);
