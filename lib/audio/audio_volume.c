@@ -19,7 +19,7 @@ bool is_volume_ok(float volume)
 */
 static void change_sfx_volume(sfSound *sfx, float volume)
 {
-    if (sfx && !is_volume_ok(volume)) {
+    if (sfx && is_volume_ok(volume)) {
         sfSound_setVolume(sfx, volume);
     }
 }
