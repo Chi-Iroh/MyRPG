@@ -34,7 +34,6 @@
 
     sprite_t * init_sprite(void);
     void set_pos_sprite(sprite_t * sprite, sfVector3f position);
-    void set_scale_sprite(sprite_t * sprite, sfVector2f scale);
     void set_angle_sprite(sprite_t * sprite, float angle);
     void set_data_sprite(sprite_t * sprite, data_t * data);
     void set_texture_sprite(sprite_t * sprite,
