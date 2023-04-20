@@ -72,8 +72,10 @@
     void core(window_t* wd, game_src_t* g_src);
     void pause_menu(window_t* wd, game_src_t* g_src);
 
+    void settings_core(window_t* wd, game_src_t* g_src);
 
     menu_t* init_menu(window_t* wd, list_button_t** all_btn);
+    menu_cat_t* init_settings(list_button_t** all_btn, layer_t* spl);
     pause_t* init_pause_menu(window_t* wd, list_button_t** btns);
 
     inv_slot_t* init_inventory(window_t *wd, int nb_slots);
@@ -94,7 +96,7 @@
         game_src_t* g_src);
     void mouse_button_released(sfRenderWindow* wd, sfMouseButtonEvent evt,
         list_button_t* all_btn);
-    
+
     void free_g_src(game_src_t* g_src);
     void free_main(window_t *window, game_src_t *g_src);
 

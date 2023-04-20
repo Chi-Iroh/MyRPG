@@ -10,14 +10,6 @@
 #include <audio.h>
 #include <my_macros.h>
 
-list_button_t* append_btn_list(list_button_t* list, button_s_t* btn)
-{
-    list_button_t* new_btn = malloc(sizeof(list_button_t));
-    new_btn->btn = btn;
-    new_btn->next = list;
-    return new_btn;
-}
-
 button_s_t* set_button(list_button_t** a_btn, char* name,
     sfVector3f pos, sfVector2f size)
 {

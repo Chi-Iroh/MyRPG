@@ -54,6 +54,7 @@
     button_s_t* append_button_layer(layer_t* layer, button_s_t* btn);
     sliding_button_t** append_s_button_layer(layer_t* layer,
         sliding_button_t** s_btn, int nb_s_btn);
+    list_button_t* append_btn_list(list_button_t* list, button_s_t* btn);
 
     sfBool is_button_released(button_s_t* b, sfMouseButtonEvent* e);
     sfBool is_button_clicked(button_s_t* b, sfMouseButtonEvent* e);
