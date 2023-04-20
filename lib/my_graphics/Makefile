@@ -49,11 +49,14 @@ SRC		=	vector/set_vector.c			\
 			draw/get_global_bounds_draw.c	\
 			draw/switch_draw_show.c		\
 			draw/swap_draw.c			\
-			draw/sort_draws.c			\
 			draw/draw_single_draw.c		\
 			draw/draw_draws.c			\
 			draw/free_single_draw.c		\
 			draw/free_draws.c			\
+			sort/algo.c					\
+			sort/rotate.c				\
+			sort/sort.c					\
+			sort/swap_push.c			\
 			shape/init_shape.c			\
 			shape/create_shape.c		\
 			shape/set_data_shape.c		\
@@ -65,8 +68,8 @@ SRC		=	vector/set_vector.c			\
 			sprite/init_sprite.c		\
 			sprite/set_data_sprite.c	\
 			sprite/set_animation_sprite.c	\
-			sprite/get_data_sprite.c		\
-			sprite/modify_sprite.c			\
+			sprite/get_data_sprite.c	\
+			sprite/modify_sprite.c		\
 			sprite/set_texture_sprite.c	\
 			sprite/draw_sprite.c		\
 			sprite/free_sprite.c		\

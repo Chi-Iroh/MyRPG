@@ -10,11 +10,14 @@ void draw_single_layer(sfRenderWindow * window, layer_t * layer)
 {
     if (!layer->show) {
         return;
+    } if (layer->type != BACKGROUND) {
+        sfColor blank = {0.0, 0.0, 0.0, 0.0};
+        sfRenderTexture_clear(layer->texture, blank);
+    } if (layer->type == CORE) {
+        layer->draw = sort_draws(layer->draw);
+    } if (layer->type != BACKGROUND) {
+        draw_draws(layer->texture, layer->draw);
     }
-    sfColor blank = {0.0, 0.0, 0.0, 0.0};
-    sfRenderTexture_clear(layer->texture, blank);
-    layer->draw = sort_draws(layer->draw);
-    draw_draws(layer->texture, layer->draw);
     sfSprite_setTexture(layer->sprite,
                         sfRenderTexture_getTexture(layer->texture), sfTrue);
     sfRenderWindow_drawSprite(window, layer->sprite, NULL);

@@ -12,6 +12,7 @@
     #include <stdbool.h>
     #include "vector.h"
     #include "draw.h"
+    #include "sort.h"
     /*
     ** =============================== LAYER ===============================
     ** type : indicate to which section of the window the layer belong

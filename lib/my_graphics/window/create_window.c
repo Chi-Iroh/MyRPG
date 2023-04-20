@@ -48,6 +48,7 @@ window_t * create_window(const char * title, const sfVideoMode mode,
     window->view = setup_view(window->size);
     init_splash_screen(window);
     create_background(window);
+    draw_draws(window->background->texture, window->background->draw);
     window->core->next = create_layer(window->size, window->core);
     window->fx = window->core->next;
     window->fx->type = FX;

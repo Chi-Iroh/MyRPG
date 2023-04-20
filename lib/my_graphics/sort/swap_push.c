@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2022
-** B-CPE-110-LYN-1-1-pushswap-adrien.audiard
+** library MY_GRAPHICS
 ** File description:
 ** swap.c
 */
 
-#include "../include/pushswap.h"
+#include "../include/sort.h"
 
-void swap(operations *op, linked_list_t **list, int type)
+void swap(draw_t **list)
 {
     if ((*list) == NULL || (*list)->next == (*list))
         return;
@@ -20,23 +20,15 @@ void swap(operations *op, linked_list_t **list, int type)
         (*list)->next->previous = *list;
     }
     (*list) = (*list)->previous;
-    if (type != 3)
-        op->len += 3;
-    if (type == 1)
-        op->list_op = new_op(1, op->list_op);
-    if (type == 2)
-        op->list_op = new_op(2, op->list_op);
 }
 
-void swap_all(operations *op, linked_list_t **l_a, linked_list_t **l_b)
+void swap_all(draw_t **l_a, draw_t **l_b)
 {
-    swap(op, l_a, 3);
-    swap(op, l_b, 3);
-    op->len += 3;
-    op->list_op = new_op(3, op->list_op);
+    swap(l_a);
+    swap(l_b);
 }
 
-void push_bis(linked_list_t **dest, linked_list_t **inter)
+void push_bis(draw_t **dest, draw_t **inter)
 {
     (*inter)->previous = (*dest)->previous;
     (*inter)->previous->next = (*inter);
@@ -45,11 +37,11 @@ void push_bis(linked_list_t **dest, linked_list_t **inter)
     (*dest) = (*inter);
 }
 
-void push(operations *op, linked_list_t **dest, linked_list_t **src, int type)
+void push(draw_t **dest, draw_t **src)
 {
     if (*src == NULL)
         return;
-    linked_list_t *inter = *src;
+    draw_t *inter = *src;
     if ((*src)->next != *src) {
         (*src)->next->previous = (*src)->previous;
         (*src)->previous->next = (*src)->next;
@@ -62,9 +54,4 @@ void push(operations *op, linked_list_t **dest, linked_list_t **src, int type)
         (*dest)->previous = *dest;
     } else
         push_bis(dest, &inter);
-    op->len += 3;
-    if (type == 1)
-        op->list_op = new_op(4, op->list_op);
-    if (type == 2)
-        op->list_op = new_op(5, op->list_op);
 }
