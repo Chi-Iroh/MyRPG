@@ -8,21 +8,27 @@
 #ifndef MY_RPG_CHARACTERS_H
     #define MY_RPG_CHARACTERS_H
 
-    #include "drawable.h"
+    #include <my_graphics.h>
+    #include <drawable.h>
 
     extern const float POLITICS_STUDENT_CHARISM_MULTIPLIER;
     extern const float ART_STUDENT_TAG_XP_MULTIPLIER;
     extern const float WORKER_FENCE_COST_MULTIPLIER;
     extern const float WORKER_FENCE_BUILD_SPEED_MULTIPLIER;
 
+    /*
+        Beware of members order !
+        Must be the same as in src/character_menu/character_menu.c
+    */
     typedef enum {
-        CHARACTER_POLITICS_STUDENT,
-        CHARACTER_ART_STUDENT,
-        CHARACTER_WORKER,
-        CHARACTER_PREFECT_SON,
-        CHARACTER_RAILWAY_WORKER,
-        CHARACTER_TROUBLEMAKER,
-        CHARACTER_DOCTOR,
+        CHARACTER_RAILWAY_WORKER = 0,
+        CHARACTER_DOCTOR = 1,
+        CHARACTER_ART_STUDENT = 2,
+        CHARACTER_POLITICS_STUDENT = 3,
+        CHARACTER_PREFECT_SON = 4,
+        CHARACTER_WORKER = 5,
+        CHARACTER_TROUBLEMAKER = 6,
+        CHARACTER_NONE,
         CHARACTER_ERROR
     } character_type_t;
 

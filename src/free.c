@@ -10,7 +10,7 @@
 #include <audio.h>
 #include <my_macros.h>
 
-void free_button(list_button_t* l_btn)
+void free_button_list(list_button_t* l_btn)
 {
     if (l_btn) {
         if (l_btn->btn->s_btn)
@@ -25,8 +25,8 @@ void free_g_src(game_src_t* g_src)
     list_button_t* tmp = NULL;
     for (; g_src->all_btn;
         tmp = g_src->all_btn, g_src->all_btn = g_src->all_btn->next)
-            free_button(tmp);
-    free_button(tmp);
+            free_button_list(tmp);
+    free_button_list(tmp);
     free_crowd(&g_src->game->crowd);
     free(g_src->menu->settings->btn);
     free(g_src->menu->settings->s_btn);

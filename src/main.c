@@ -5,6 +5,7 @@
 ** main for my_rgpg
 */
 #include <my_rpg.h>
+#include <character_menu.h>
 #include <my_graphics.h>
 #include <audio.h>
 #include <stdlib.h>
@@ -20,6 +21,8 @@ int main(int argc, char **argv)
         free_main(window, g_src);
         return 84;
     }
+    audio_control_bgm(&g_src->audio, AUDIO_PLAY);
+    printf("%d\n", select_character());
     core(window, g_src);
     free_main(window, g_src);
     return 0;

@@ -8,7 +8,8 @@
 #include "../include/my_rpg.h"
 #include "../lib/my_graphics/my_graphics.h"
 
-void init_progress_bar(window_t *wd, progress_bar_t *bar, data_t *data, shape_t *shape)
+void init_progress_bar
+(window_t *wd, progress_bar_t *bar, data_t *data, shape_t *shape)
 {
     data_t *data_fill = create_data(set_3vector
     (data->position.x, data->position.y, 0),
