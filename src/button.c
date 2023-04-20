@@ -24,7 +24,7 @@ button_s_t* set_button(list_button_t** a_btn, char* name,
     shape_t* rect = create_shape(RECT, sfWhite, sfBlack, 3);
     text_t* text = create_text(name, NULL, sfBlack);
     data_t* data = create_data(pos, size, 0);
-    data_t* data_txt = create_data(pos, set_2vector(30, 0), 0);
+    data_t* data_txt = create_data(pos, set_2vector(0, 30), 0);
     button_s_t* button = malloc(sizeof(button_s_t));
     button->is_clicked = &is_button_clicked;
     button->is_hover = &is_button_hover;

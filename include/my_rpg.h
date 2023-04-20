@@ -60,7 +60,7 @@
         menu_t* menu;
         game_t* game;
         list_button_t* all_btn;
-        audio_t* audio;
+        audio_t audio;
     } game_src_t;
 
 

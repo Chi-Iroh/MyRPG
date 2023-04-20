@@ -20,9 +20,8 @@ draw_t** init_setting_titles(layer_t* layer)
     data_t* data = NULL;
     for (int i = 0; i < 3; i++) {
         txt = create_text(name[i], NULL, sfBlack);
-        data = create_data(pos[i], set_2vector(30, 0), 0);
+        data = create_data(pos[i], set_2vector(0, i == 1 ? 30 : 50), 0);
         titles[i] = create_draw(txt, TEXT, data);
-        set_size_draw(titles[i], set_2vector(i == 1 ? 30 : 50, 0));
         set_thick_draw(titles[i], 2);
         append_draw_layer(layer, titles[i]);
     }
@@ -76,14 +75,14 @@ menu_t* init_menu(window_t* wd, list_button_t** all_btn)
 void settings_core(window_t* wd, game_src_t* g_src)
 {
     if (IS_PRESSED(g_src->menu->settings->s_btn[0]->btn)) {
-        g_src->audio->bgm_volume = g_src->menu->settings->s_btn[0]->value
+        g_src->audio.bgm_volume = g_src->menu->settings->s_btn[0]->value
             (g_src->menu->settings->s_btn[0]);
-        update_volume(g_src->audio);
+        update_volume(&g_src->audio);
     }
     if (IS_RELEASED(g_src->menu->settings->s_btn[1]->btn)) {
-        g_src->audio->sfx_volume = g_src->menu->settings->s_btn[1]->value
+        g_src->audio.sfx_volume = g_src->menu->settings->s_btn[1]->value
             (g_src->menu->settings->s_btn[0]);
-        update_volume(g_src->audio);
+        update_volume(&g_src->audio);
         g_src->menu->settings->s_btn[1]->btn->state = NONE;
     }
 }
@@ -110,7 +109,7 @@ void menu_core(window_t* wd, game_src_t* g_src)
 void menu(window_t* wd, game_src_t* g_src)
 {
     g_src->menu->menu_l->show = true;
-    audio_control(g_src->audio, AUDIO_PLAY);
+    audio_control(&g_src->audio, AUDIO_PLAY);
     for (sfEvent menu_evt; sfRenderWindow_isOpen(wd->window) &&
         g_src->menu->show;) {
         wd->splash->draw->data->position.x -= 0.40;

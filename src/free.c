@@ -38,6 +38,6 @@ void free_g_src(game_src_t* g_src)
 void free_main(window_t *window, game_src_t *g_src)
 {
     FREE_IF_ALLOCATED(window, free_window);
-    FREE_IF_ALLOCATED(g_src->audio, free_audio);
+    free_audio(&g_src->audio);
     FREE_IF_ALLOCATED(g_src, free_g_src);
 }
