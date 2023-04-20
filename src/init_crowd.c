@@ -5,18 +5,8 @@
 ** init_crowd.c
 */
 
-#include "../include/my_rpg.h"
-#include "../lib/my_graphics/my_graphics.h"
-
-void init_sprite_sheet(sprite_sht_t *spsht, sfSprite *sprite)
-{
-    sfIntRect textureRect = {0, 0, 48, 72};
-    spsht->clock = sfClock_create();
-    spsht->cur_frame = 0;
-    spsht->elapsedTime = 0;
-    spsht->dir = -1;
-    sfSprite_setTextureRect(sprite, textureRect);
-}
+#include <my_rpg.h>
+#include <my_graphics.h>
 
 cop_t **init_crowd_cop(window_t* wd)
 {
@@ -63,19 +53,41 @@ mob_t **init_crowd_mob(window_t* wd)
     return mob;
 }
 
+void init_bar(player_t *player, window_t* wd)
+{
+    data_t *data_hp = create_data(set_3vector(70, 15, 50),
+    set_2vector(250, 35), 0.f);
+    shape_t *shape_hp = create_shape(RECT, sfGreen, sfBlack, 3);
+    init_progress_bar(wd, &player->hp, data_hp, shape_hp);
+    data_t *data_exp = create_data(set_3vector(450, 15, 50),
+    set_2vector(250, 35), 0.f);
+    shape_t *shape_exp = create_shape(RECT, sfBlue, sfBlack, 3);
+    init_progress_bar(wd, &player->exp, data_exp, shape_exp);
+    data_t *data_hp_txt = create_data(set_3vector(10, 10, 50),
+    set_2vector(0, 35), 0.f);
+    data_t *data_exp_txt = create_data(set_3vector(370, 10, 50),
+    set_2vector(0, 35), 0.f);
+    text_t *text_hp = create_text("HP", NULL, sfBlack);
+    text_t *text_exp = create_text("EXP", NULL, sfBlack);
+    draw_t *draw_hp = create_draw(text_hp, TEXT, data_hp_txt);
+    draw_t *draw_exp = create_draw(text_exp, TEXT, data_exp_txt);
+    append_draw_layer(wd->ui, draw_hp);
+    append_draw_layer(wd->ui, draw_exp);
+}
+
 player_t *init_player(window_t* wd)
 {
     player_t *player = malloc(sizeof(player_t));
-    data_t *data = create_data(set_3vector(WD_WIDTH / 2, WD_HEIGHT / 2, 50),
+    data_t *data = create_data(set_3vector(WD_WIDTH / 2 + 400, WD_HEIGHT / 2 + 400, 50),
     set_2vector(48, 72), 0.f);
     sprite_t *sprite = init_sprite();
     sfTexture *texture = rand_skin();
-
     set_texture_sprite(sprite, texture, (sfIntRect) {0, 0, 48, 72});
     player->draw = create_draw(sprite, SPRITE, data);
     //set_animation_draw(player->draw, 3);
     set_origin_draw(player->draw, (sfVector2f) {48 / 2, 72 / 2});
     append_draw_layer(wd->core, player->draw);
+    init_bar(player, wd);
     return player;
 }
 

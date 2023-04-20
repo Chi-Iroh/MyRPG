@@ -5,28 +5,8 @@
 ** update.c
 */
 
-#include "../include/my_rpg.h"
-#include "../lib/my_graphics/my_graphics.h"
-
-void update_spritesheet(sprite_sht_t *t, sfSprite *sprite)
-{
-    sfIntRect textureRect = {0, 0, 48, 72};
-    int frameWidth = 48;
-    int numFrames = 3;
-    float animationSpeed = 0.4f;
-    t->elapsedTime += sfTime_asSeconds(sfClock_getElapsedTime(t->clock));
-    if (t->elapsedTime >= animationSpeed) {
-        t->elapsedTime = 0;
-        t->cur_frame++;
-        t->cur_frame >= numFrames ? t->cur_frame = 0 : 0;
-        if (t->dir == UP)
-        textureRect.left = t->cur_frame * frameWidth + 144;
-        else
-        textureRect.left = t->cur_frame * frameWidth;
-        sfSprite_setTextureRect(sprite, textureRect);
-        sfClock_restart(t->clock);
-    }
-}
+#include <my_rpg.h>
+#include <my_graphics.h>
 
 sfVector2f move_player(draw_t *draw)
 {
