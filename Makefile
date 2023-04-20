@@ -17,6 +17,7 @@ SRC = 	src/main.c							\
 		src/sliding_button.c				\
 		src/button_append.c					\
 		src/button_interactions.c			\
+		src/init_character.c				\
 		src/inventory.c						\
 		src/save.c							\
 		src/free.c							\

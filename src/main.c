@@ -21,8 +21,6 @@ int main(int argc, char **argv)
         free_main(window, g_src);
         return 84;
     }
-    audio_control_bgm(&g_src->audio, AUDIO_PLAY);
-    printf("%d\n", select_character());
     core(window, g_src);
     free_main(window, g_src);
     return 0;

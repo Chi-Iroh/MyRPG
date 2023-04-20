@@ -60,7 +60,7 @@ void settings_core(window_t* wd, game_src_t* g_src, menu_cat_t* settings)
     if (IS_RELEASED(settings->s_btn[1]->btn)) {
         g_src->audio.sfx_volume = settings->s_btn[1]->value(settings->s_btn[1]);
         audio_update_volume(&g_src->audio);
-        audio_play_sfx(&g_src->audio, SFX_EXPLOSION);
+        audio_play_sfx(&g_src->audio, SFX_QUEST);
         settings->s_btn[1]->btn->state = NONE;
     }
 }

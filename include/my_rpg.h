@@ -79,6 +79,7 @@
         game_src_t* g_src);
 
     inv_slot_t* init_inventory(window_t *wd, int nb_slots);
+    character_t* init_character(window_t* wd);
     void change_slot_selected(character_t* charac, sfMouseWheelScrollEvent evt,
         game_src_t* g_src);
 

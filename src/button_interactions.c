@@ -22,7 +22,7 @@ static void handle_button_click
 
     if (all_btn->btn->is_clicked(all_btn->btn, event)) {
         set_color_in_draw(all_btn->btn->rect, color);
-        sfSound_play(g_src->audio.explosion_sfx.sound);
+        audio_play_sfx(&g_src->audio, SFX_EXPLOSION);
     }
 }
 

@@ -7,6 +7,7 @@
 
 #include <my_rpg.h>
 #include <my_graphics.h>
+#include <character_menu.h>
 #include <audio.h>
 #include <my_macros.h>
 
@@ -34,7 +35,9 @@ menu_t* init_menu(window_t* wd, list_button_t** all_btn)
 void menu_core(window_t* wd, game_src_t* g_src)
 {
     if (IS_RELEASED(g_src->menu->b_start)) {
-        g_src->menu->show = false;
+        g_src->game->character = init_character(wd);
+        if (g_src->game->character)
+            g_src->menu->show = false;
         g_src->menu->b_start->state = NONE;
     }
     if (IS_RELEASED(g_src->menu->b_settings) ||

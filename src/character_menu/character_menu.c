@@ -113,6 +113,8 @@ character_type_t select_character(void)
         return CHARACTER_ERROR;
     }
     while (sfRenderWindow_isOpen(menu.window)) {
+        if (!sfRenderWindow_hasFocus(menu.window))
+            sfRenderWindow_requestFocus(menu.window);
         character_menu_handle_events(&menu, &character);
         character_menu_draw(&menu);
         character_menu_rotate_sprites(&menu);
