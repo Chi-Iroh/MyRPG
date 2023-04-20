@@ -7,6 +7,13 @@
 
 #include "audio.h"
 
+/*
+    Changes the active BGM to one in the enum bgm_t.
+    If bgm isn't valid (<0 or >=MAX_BGM), nothing is done, false is returned
+        otherwise true.
+    If start is true, the BGM immediately starts playing, otherwise it will
+        need to be started manually.
+*/
 bool set_active_bgm(audio_t *audio, bgm_t bgm, bool start)
 {
     if (bgm < 0 || bgm >= MAX_BGM) {
@@ -23,6 +30,13 @@ bool set_active_bgm(audio_t *audio, bgm_t bgm, bool start)
     return true;
 }
 
+/*
+    Changes the active SFX to one in the enum bgm_t.
+    If bgm isn't valid (<0 or >=MAX_BGM), nothing is done, false is returned
+        otherwise true.
+    If start is true, the BGM immediately starts playing, otherwise it will
+        need to be started manually.
+*/
 bool set_active_sfx(audio_t *audio, sfx_t sfx, bool start)
 {
     if (sfx < 0 || sfx >= MAX_SFX) {

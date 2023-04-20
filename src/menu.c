@@ -53,7 +53,7 @@ void menu_core(window_t* wd, game_src_t* g_src)
 void menu(window_t* wd, game_src_t* g_src)
 {
     g_src->menu->menu_l->show = true;
-    audio_control(&g_src->audio, AUDIO_PLAY);
+    audio_control_all(&g_src->audio, AUDIO_PLAY);
     for (sfEvent menu_evt; sfRenderWindow_isOpen(wd->window) &&
         g_src->menu->show;) {
         wd->splash->draw->data->position.x -= 0.40;

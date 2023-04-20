@@ -33,6 +33,6 @@ game_src_t* init_game_sources(window_t* wd)
     g_src->menu = init_menu(wd, &btns);
     g_src->game = init_game(wd, &btns);
     g_src->all_btn = btns;
-    init_audio(&g_src->audio, DEFAULT_BGM_VOLUME, DEFAULT_SFX_VOLUME);
+    init_audio(&g_src->audio, AUDIO_DEFAULT_VOLUME);
     return g_src;
 }

@@ -12,18 +12,16 @@
 #include "../lib/audio/audio_play.h"
 #include "../lib/audio/audio_play.h"
 
-#ifdef DEFAULT_VOLUME
-    #undef DEFAULT_VOLUME
+#ifdef AUDIO_DEFAULT_VOLUME
+    #undef AUDIO_DEFAULT_VOLUME
 #endif
 // To be used with init_audio as init_audio(audio_ptr, DEFAULT_VOLUME)
-#define DEFAULT_VOLUME DONT_CHANGE_VOLUME, DONT_CHANGE_VOLUME
+#define AUDIO_DEFAULT_VOLUME AUDIO_DONT_CHANGE_VOLUME, AUDIO_DONT_CHANGE_VOLUME
 
 /*
-    Don't change the order ! Must be the same as audio_control_t with
-        AUDIO_NOT_YET_STARTED at the end !
-*/
-/*
-    Don't change the order ! Must be the same as audio_control_t with
+    Enum to get the current state of a BGM / SFX, used in audio_t structure:
+        audio.[bgm/sfx]_state.
+    Beware, members order matters ! Must be the same as audio_control_t with
         AUDIO_NOT_YET_STARTED at the end !
 */
 typedef enum {
@@ -33,6 +31,10 @@ typedef enum {
     AUDIO_NOT_YET_STARTED
 } audio_state_t;
 
+/*
+    Structure to represent a SFX.
+    Is not meant to be directly used, as it's properly handled in audio_t.
+*/
 typedef struct {
     sfSound *sound;
     sfSoundBuffer *buffer;
@@ -65,7 +67,10 @@ typedef struct {
 } audio_t;
 
 /*
-    MAX_BGM is the number of BGM
+    Enum to list BGM, meant to be used as:
+        audio_control_bgm(audio_ptr, MAIN_BGM) for instance.
+    MAX_BGM isn't meant to be directly used, as it's a sentinel to highlight
+        the max value.
 */
 typedef enum {
     MAIN_BGM,
@@ -77,7 +82,10 @@ typedef enum {
 } bgm_t;
 
 /*
-    MAX_SFX is the number of SFX
+    Enum to list SFX, meant to be used as:
+        audio_control_sfx(audio_ptr, QUEST_SFX) for instance.
+    MAX_SFX isn't meant to be directly used, as it's a sentinel to highlight
+        the max value.
 */
 typedef enum {
     QUEST_SFX,
@@ -85,6 +93,10 @@ typedef enum {
     MAX_SFX
 } sfx_t;
 
+/*
+    Enum to represent what changes were effectively done when calling
+        audio_control_all(audio_ptr, action)
+*/
 typedef enum {
     AUDIO_CHANGED_NOTHING = 0,
     AUDIO_CHANGED_BGM_ONLY = 1 << 0,
@@ -93,7 +105,11 @@ typedef enum {
 } audio_play_t;
 
 /*
-    Don't change the order ! Must be the same as audio_state_t !
+    Enum to represent the actions when calling audio_control_* functions.
+    Beware, members order matters !
+    Must be the same as audio_state_t !
+    AUDIO_CONTROL_MAX is not meant to be used directly, as it is a sentinel
+        to highliht the max value.
 */
 typedef enum {
     AUDIO_PLAY,
@@ -114,7 +130,7 @@ bool set_active_sfx(audio_t *audio, sfx_t sfx, bool start);
 
 bool audio_control_bgm(audio_t *audio, audio_control_t action);
 bool audio_control_sfx(audio_t *audio, audio_control_t action);
-audio_play_t audio_control(audio_t *audio, audio_control_t action);
+audio_play_t audio_control_all(audio_t *audio, audio_control_t action);
 
 bool is_volume_ok(float volume);
 void update_volume(audio_t *audio);
@@ -126,6 +142,6 @@ extern const char *const BOSS_BGM_PATH;
 extern const char *const QUEST_SFX_PATH;
 extern const char *const EXPLOSION_SFX_PATH;
 
-extern const float DONT_CHANGE_VOLUME;
-extern const float DEFAULT_BGM_VOLUME;
-extern const float DEFAULT_SFX_VOLUME;
+extern const float AUDIO_DONT_CHANGE_VOLUME;
+extern const float AUDIO_DEFAULT_BGM_VOLUME;
+extern const float AUDIO_DEFAULT_SFX_VOLUME;

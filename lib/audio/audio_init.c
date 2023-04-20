@@ -9,17 +9,19 @@
 #include "audio.h"
 #include "audio_path.h"
 
-const float DONT_CHANGE_VOLUME = -1.f;
-const float DEFAULT_BGM_VOLUME = 75.f;
-const float DEFAULT_SFX_VOLUME = 100.f;
+const float AUDIO_DONT_CHANGE_VOLUME = -1.f;
+const float AUDIO_DEFAULT_BGM_VOLUME = 75.f;
+const float AUDIO_DEFAULT_SFX_VOLUME = 100.f;
 
 /*
-    audio is always valid (not NULL)
+    Initializes all pointers of an audio structure to NULL.
+    For both BGM and SFX volume:
+        -> sets it if in [0;100], otherwise sets the default value.
 */
 void init_base(audio_t *audio, float bgm_volume, float sfx_volume)
 {
-    const float bgm_volumes[2] = { DEFAULT_BGM_VOLUME, bgm_volume };
-    const float sfx_volumes[2] = { DEFAULT_SFX_VOLUME, sfx_volume };
+const float bgm_volumes[2] = { AUDIO_DEFAULT_BGM_VOLUME, bgm_volume };
+const float sfx_volumes[2] = { AUDIO_DEFAULT_SFX_VOLUME, sfx_volume };
 
     *audio = (audio_t) {
         .battle_bgm = NULL,
@@ -38,6 +40,9 @@ void init_base(audio_t *audio, float bgm_volume, float sfx_volume)
 }
 
 /*
+    Properly initializes a BGM, frees all allocated memory if a problem
+        is encountered while initialization.
+    Returns false on error, otherwise true
     Any value of volume not in [0;100] won't change the volume.
 */
 bool init_bgm(sfMusic **bgm, const char *path, float bgm_volume)
@@ -50,6 +55,9 @@ bool init_bgm(sfMusic **bgm, const char *path, float bgm_volume)
 }
 
 /*
+    Properly initializes a SFX, frees all allocated memory if a problem
+        is encountered while initialization.
+    Returns false on error, otherwise true
     Any value of volume not in [0;100] won't change the volume.
 */
 bool init_sfx(sound_t *sound, const char *path, float volume)

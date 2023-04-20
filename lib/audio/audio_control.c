@@ -20,6 +20,9 @@ void (*sfx_functions[3])(sfSound*) = {
     [AUDIO_PAUSE] = sfSound_pause
 };
 
+/*
+    Controls (pause/play/stop) the current BGM.
+*/
 bool audio_control_bgm(audio_t *audio, audio_control_t action)
 {
     if (action < 0 || action >= AUDIO_CONTROL_MAX || !audio) {
@@ -33,6 +36,9 @@ bool audio_control_bgm(audio_t *audio, audio_control_t action)
     return false;
 }
 
+/*
+    Controls (pause/play/stop) the current SFX.
+*/
 bool audio_control_sfx(audio_t *audio, audio_control_t action)
 {
     if (action < 0 || action >= AUDIO_CONTROL_MAX || !audio) {
@@ -46,14 +52,17 @@ bool audio_control_sfx(audio_t *audio, audio_control_t action)
     return false;
 }
 
-audio_play_t audio_control(audio_t *audio, audio_control_t action)
+/*
+    Controls (pause/play/stop) both the current BGM anf SFX.
+*/
+audio_play_t audio_control_all(audio_t *audio, audio_control_t action)
 {
     audio_play_t changes = AUDIO_CHANGED_NOTHING;
 
-    if (audio_contol_bgm(audio, action)) {
+    if (audio_control_bgm(audio, action)) {
         changes |= AUDIO_CHANGED_BGM_ONLY;
     }
-    if (audio_contol_sfx(audio, action)) {
+    if (audio_control_sfx(audio, action)) {
         changes |= AUDIO_CHANGED_SFX_ONLY;
     }
     return changes;
