@@ -25,10 +25,10 @@
         AUDIO_NOT_YET_STARTED at the end !
 */
 typedef enum {
-    AUDIO_PLAYING,
-    AUDIO_PAUSED,
-    AUDIO_STOPPED,
-    AUDIO_NOT_YET_STARTED
+    AUDIO_PLAYING = 0,
+    AUDIO_PAUSED = 1,
+    AUDIO_STOPPED = 2,
+    AUDIO_NOT_YET_STARTED = 3
 } audio_state_t;
 
 /*
@@ -73,12 +73,12 @@ typedef struct {
         the max value.
 */
 typedef enum {
-    MAIN_BGM,
-    BOSS_BGM,
-    BATTLE_BGM,
-    MENU_BGM,
-    END_BGM,
-    MAX_BGM
+    MAIN_BGM = 0,
+    BOSS_BGM = 1,
+    BATTLE_BGM = 2,
+    MENU_BGM = 3,
+    END_BGM = 4,
+    MAX_BGM = 5
 } bgm_t;
 
 /*
@@ -88,9 +88,9 @@ typedef enum {
         the max value.
 */
 typedef enum {
-    QUEST_SFX,
-    EXPLOSION_SFX,
-    MAX_SFX
+    QUEST_SFX = 0,
+    EXPLOSION_SFX = 1,
+    MAX_SFX = 2
 } sfx_t;
 
 /*
@@ -112,10 +112,10 @@ typedef enum {
         to highliht the max value.
 */
 typedef enum {
-    AUDIO_PLAY,
-    AUDIO_PAUSE,
-    AUDIO_STOP,
-    AUDIO_CONTROL_MAX
+    AUDIO_PLAY = 0,
+    AUDIO_PAUSE = 1,
+    AUDIO_STOP = 2,
+    AUDIO_CONTROL_MAX = 3
 } audio_control_t;
 
 void init_base(audio_t *audio, float bgm_volume, float sfx_volume);
