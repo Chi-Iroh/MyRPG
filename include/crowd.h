@@ -90,7 +90,7 @@
 
     void update(crowd_t *crowd);
 
-    void update_mob(mob_t *mob, sfSprite *sprite, sfVector2f move);
+    void update_mob(mob_t *mob, draw_t *player, sfVector2f move);
     void update_cop(cop_t *cop, draw_t *player, sfVector2f spritePosition);
 
     /**/

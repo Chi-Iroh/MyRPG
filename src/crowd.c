@@ -20,9 +20,10 @@ void free_crowd(crowd_t *crowd)
         sfClock_destroy(crowd->cop[i]->clock);
         free(crowd->cop[i]);
         free(crowd->mob[i]);
-        
     }
-    free(crowd->mob); free(crowd->cop); free(crowd->player);
+    free(crowd->mob);
+    free(crowd->cop);
+    free(crowd->player);
 }
 
 void crowd(window_t* wd, crowd_t crowd)

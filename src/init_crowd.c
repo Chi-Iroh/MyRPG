@@ -20,7 +20,6 @@ void init_sprite_sheet(sprite_sht_t *spsht, sfSprite *sprite)
 
 cop_t **init_crowd_cop(window_t* wd)
 {
-    sfVector2f sprite_size = {288, 72};
     cop_t **cop = malloc(sizeof(cop_t*) * CROWD_SIZE);
     for (int i = 0; i < CROWD_SIZE; i++) {
         cop[i] = malloc(sizeof(cop_t));
@@ -43,7 +42,6 @@ cop_t **init_crowd_cop(window_t* wd)
 
 mob_t **init_crowd_mob(window_t* wd)
 {
-    sfVector2f sprite_size = {288, 72};
     mob_t **mob = malloc(sizeof(cop_t*) * CROWD_SIZE);
     for (int i = 0; i < CROWD_SIZE; i++) {
         mob[i] = malloc(sizeof(mob_t));

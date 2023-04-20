@@ -26,7 +26,7 @@ sfTexture* rand_skin(void)
 sfVector2f get_random_position(void)
 {
     sfVector2f position;
-    position.x = rand() % (WD_WIDTH);
-    position.y = rand() % (WD_HEIGHT);
+    position.x = (float)(rand() % (WD_WIDTH));
+    position.y = (float)(rand() % (WD_HEIGHT));
     return position;
 }
