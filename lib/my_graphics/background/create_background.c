@@ -92,7 +92,8 @@ void create_background(window_t * wd)
         write(2, "abort background creation\n", 26);
     } while (background[0][needs.width] != -2) { needs.width++;
     } while (background[needs.height] != NULL) { needs.height++;
-    } needs.tt = needs.width * needs.height; needs.i = 0;
+    } wd->map_size = set_2vector(needs.width * 64, needs.height * 64);
+    needs.tt = needs.width * needs.height; needs.i = 0;
     needs.pos = set_2vector(0.f, 0.f); needs.clock = sfClock_create();
     wd->background = create_layer(set_2vector(1920, 1080), NULL);
     wd->core = create_layer(set_2vector(1920, 1080), wd->background);
