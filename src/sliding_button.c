@@ -39,8 +39,8 @@ void set_value_sliding_button(sliding_button_t* s_btn, float value)
 {
     float x_line = get_position_draw(s_btn->line).x;
     sfVector3f pos = get_position_draw(s_btn->btn->rect);
-    sfVector3f new_pos = set_3vector(pos.x, pos.y, pos.z);
-    set_pos_draw(s_btn->btn->rect, new_pos);
+    float x_pos = 300 * value / (s_btn->max_value - s_btn->min_value) + x_line;
+    set_pos_draw(s_btn->btn->rect, set_3vector(x_pos, pos.y, pos.z));
 }
 
 void move_sliding_button_btn(sfMouseMoveEvent evt, sliding_button_t* s_btn)
@@ -69,8 +69,8 @@ sliding_button_t** set_sliding_button(list_button_t** all_btn, int nb_sl,
         s_btn[i]->max_value = value[1];
         s_btn[i]->value = &get_value_sliding_button;
     }
-    set_value_sliding_button(s_btn[0], value[2]);
-    set_value_sliding_button(s_btn[1], value[1]);
+    set_value_sliding_button(s_btn[0], value[1]);
+    set_value_sliding_button(s_btn[1], value[2]);
     s_btn[nb_sl] = NULL;
     return s_btn;
 }
