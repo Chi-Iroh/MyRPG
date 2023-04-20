@@ -21,22 +21,12 @@
         long double max;
         long double current;
         long double step;
-        sfColor background_color;
-        sfColor fill_color;
+        draw_t *draw;
+        draw_t *fill;
         sfFloatRect area;
-        sfFloatRect fill_area;
-        sfRectangleShape *shape;
-        sfRectangleShape *fill;
     } progress_bar_t;
 
     typedef enum {UP, DOWN} dir_e;
-
-    typedef struct sprite_sht {
-        sfClock *clock;
-        int cur_frame;
-        float elapsedTime;
-        dir_e dir;
-    } sprite_sht_t;
 
     typedef struct stat_e {
         double damage;
@@ -61,7 +51,8 @@
     typedef struct player {
         draw_t *draw;
         stat_t stat;
-        progress_bar_t bar;
+        progress_bar_t hp;
+        progress_bar_t exp;
     } player_t;
 
     typedef struct crowd {
@@ -71,12 +62,13 @@
     } crowd_t;
 
     /*progress_bar.c*/
-
+    sfBool draw_within_thr(draw_t *player, draw_t *crowd, float thr);
     void draw_progress_bar(sfRenderWindow *window, progress_bar_t *bar);
     void compute_fill_area(progress_bar_t *bar);
     void set_position_and_size_with_float_rect
     (sfRectangleShape *shape, sfFloatRect *rect);
-    bool init_progress_bar(progress_bar_t *bar);
+    void init_progress_bar
+    (window_t *window, progress_bar_t *bar, data_t *data, shape_t *shape);
 
     /*init_crowd.c*/
     void init_crowd(crowd_t *crowd, window_t* wd);
