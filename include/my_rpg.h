@@ -16,6 +16,8 @@
     #include <audio.h>
 
     #include <SFML/Audio.h>
+    #include <crowd.h>
+    #include <math.h>
 
     #include "characters.h"
     #include "button_simple.h"
@@ -53,7 +55,7 @@
     typedef struct {
         pause_t* pause_menu;
         character_t* character;
-        //crowd_t* crowd;
+        crowd_t crowd;
     } game_t;
 
     typedef struct {
@@ -92,7 +94,7 @@
         game_src_t* g_src);
     void mouse_button_released(sfRenderWindow* wd, sfMouseButtonEvent evt,
         list_button_t* all_btn);
-
+    
     void free_g_src(game_src_t* g_src);
     void free_main(window_t *window, game_src_t *g_src);
 
