@@ -16,7 +16,14 @@ SRC = 	src/main.c	\
 		src/button_interactions.c	\
 		src/event.c	\
 		src/manage_mouse.c	\
-		src/free.c
+		src/free.c		\
+		src/crowd.c 	\
+		src/progress_bar.c 	\
+		src/rand.c	\
+		src/init_crowd.c 	\
+		src/update_cop.c 	\
+		src/update_mob.c 	\
+		src/update.c
 
 OBJ =   $(SRC:.c=.o)
 
@@ -31,7 +38,7 @@ SANITIZE	=	-fsanitize=address,undefined \
 CFLAGS  +=  -Wall -Wextra -pedantic -fsigned-char       \
 -funsigned-bitfields -Wno-unused-parameter -std=gnu2x -fms-extensions
 LDFLAGS	+=	-L ./lib -l graphics -l csfml-graphics \
--l csfml-window -l csfml-system -l csfml-audio -l button -l my -l audio
+-l csfml-window -l csfml-system -l csfml-audio -l button -l my -l audio -lm
 LD_PRELOAD	=
 
 NAME    =   my_rpg

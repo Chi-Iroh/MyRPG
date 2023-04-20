@@ -51,12 +51,20 @@ while (sfRenderWindow_isOpen(window->window) && g_src->menu->show) {
 void game(window_t* wd, game_src_t* g_src)
 {
     wd->splash->show = false;
+    sfClock * clock = sfClock_create();
     for (sfEvent evt;
         sfRenderWindow_isOpen(wd->window) && !g_src->menu->show;) {
         while (sfRenderWindow_pollEvent(wd->window, &evt))
             analyse_events(wd, evt, g_src);
-        actualize_window(wd);
+        crowd(wd, g_src->game->crowd);
+        if (sfTime_asSeconds(sfClock_getElapsedTime(clock)) >= 0.01) {
+            view_center(wd, get_position_draw(g_src->game->crowd.player->draw));
+            actualize_window(wd);
+            sfClock_restart(clock);
+        }
+        
     }
+    sfClock_destroy(clock);
 }
 
 void core(window_t* wd, game_src_t* g_src)

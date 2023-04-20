@@ -20,6 +20,7 @@ game_t* init_game(window_t* wd)
     game_t* game = malloc(sizeof(game_t));
     game->character = init_char_test(wd);
     game->pause_menu = NULL;//init_pause_menu();
+    init_crowd(&game->crowd, wd);
     return game;
 }
 
