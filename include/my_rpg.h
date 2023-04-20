@@ -42,8 +42,7 @@
     typedef struct {
         button_s_t* b_resume;
         button_s_t* b_menu;
-        button_s_t* b_save_and_menu;
-        button_s_t* b_save_and_quit;
+        button_s_t* b_save;
         button_s_t* b_load;
         button_s_t* b_settings;
         menu_cat_t* settings;
@@ -72,11 +71,12 @@
     void core(window_t* wd, game_src_t* g_src);
     void pause_menu(window_t* wd, game_src_t* g_src);
 
-    void settings_core(window_t* wd, game_src_t* g_src);
+    void settings_core(window_t* wd, game_src_t* g_src, menu_cat_t* settings);
 
     menu_t* init_menu(window_t* wd, list_button_t** all_btn);
     menu_cat_t* init_settings(list_button_t** all_btn, layer_t* spl);
-    pause_t* init_pause_menu(window_t* wd, list_button_t** btns);
+    pause_t* init_pause_menu(window_t* wd, list_button_t** btns,
+        game_src_t* g_src);
 
     inv_slot_t* init_inventory(window_t *wd, int nb_slots);
     void change_slot_selected(character_t* charac, sfMouseWheelScrollEvent evt,
@@ -86,7 +86,7 @@
     bool read_from_file(char *filename, character_t *character);
 
     void button_pressed(window_t* wd, list_button_t* all_btn,
-        sfMouseButtonEvent evt);
+        sfMouseButtonEvent evt, game_src_t* g_src);
     void sliding_button_moved(list_button_t* all_btn, sfMouseMoveEvent evt);
 
     void analyse_events(window_t* wd, sfEvent event,

@@ -15,7 +15,7 @@ menu_t* init_menu(window_t* wd, list_button_t** all_btn)
     menu_t* m = malloc(sizeof(menu_t));
     sfVector2f size = set_2vector(300, 75);
     m->show = true;
-    m->menu_l = create_layer(set_2vector(1920, 1080), NULL);
+    m->menu_l = create_layer(set_2vector(WD_WIDTH, WD_HEIGHT), NULL);
     m->b_start = set_button(all_btn, "MANIFESTER",
         set_3vector(100, 900, 0), size);
     m->b_settings = set_button(all_btn, "PLANIFICATION",
@@ -46,22 +46,15 @@ void menu_core(window_t* wd, game_src_t* g_src)
     }
     if (IS_RELEASED(g_src->menu->b_quit))
         sfRenderWindow_close(wd->window);
-    settings_core(wd, g_src);
-    return;
+    settings_core(wd, g_src, g_src->menu->settings);
 }
 
 void menu(window_t* wd, game_src_t* g_src)
 {
     g_src->menu->menu_l->show = true;
-    audio_control_bgm(&g_src->audio, AUDIO_PLAY);
     for (sfEvent menu_evt; sfRenderWindow_isOpen(wd->window) &&
         g_src->menu->show;) {
-        wd->splash->draw->data->position.x -= 0.40;
-        wd->splash->draw->data->position.y -= 0.3377193;
-        if (wd->splash->draw->data->position.x < -684) {
-            wd->splash->draw->data->position.x = 0;
-            wd->splash->draw->data->position.y = 0;
-        }
+        move_splash(wd, 1);
         while (sfRenderWindow_pollEvent(wd->window, &menu_evt))
             analyse_events(wd, menu_evt, g_src);
         menu_core(wd, g_src);

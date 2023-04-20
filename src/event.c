@@ -25,6 +25,7 @@ void key_pressed(sfRenderWindow* wd, sfKeyEvent evt, game_src_t* g_src)
         }
         g_src->game->pause_menu->show =
             switch_bool(g_src->game->pause_menu->show);
+        g_src->game->pause_menu->settings->menu_cat_l->show = false;
         break;
     default:
         break;

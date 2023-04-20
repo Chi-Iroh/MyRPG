@@ -34,7 +34,7 @@ void mouse_button_released(sfRenderWindow* wd, sfMouseButtonEvent evt,
 void mouse_button_pressed(window_t* wd, sfMouseButtonEvent evt,
     game_src_t* g_src)
 {
-    button_pressed(wd, g_src->all_btn, evt);
+    button_pressed(wd, g_src->all_btn, evt, g_src);
 }
 
 void button_hovered(list_button_t* all_btn, sfMouseMoveEvent evt)

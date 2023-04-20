@@ -18,8 +18,10 @@ void game(window_t* wd, game_src_t* g_src)
         sfRenderWindow_isOpen(wd->window) && !g_src->menu->show;) {
         while (sfRenderWindow_pollEvent(wd->window, &evt))
             analyse_events(wd, evt, g_src);
-        if (g_src->game->pause_menu->show)
+        if (g_src->game->pause_menu->show) {
             pause_menu(wd, g_src);
+            continue;
+        }
         crowd(wd, g_src->game->crowd);
         if (sfTime_asSeconds(sfClock_getElapsedTime(clock)) >= 0.01) {
             actualize_window(wd);
@@ -36,9 +38,11 @@ void core(window_t* wd, game_src_t* g_src)
     while (sfRenderWindow_isOpen(wd->window)) {
         if (g_src->menu->show) {
             wd->splash->show = true;
+            set_active_bgm(&g_src->audio, MENU_BGM, 1);
             menu(wd, g_src);
             continue;
         }
+        set_active_bgm(&g_src->audio, BOSS_BGM, 1);
         game(wd, g_src);
     }
 }

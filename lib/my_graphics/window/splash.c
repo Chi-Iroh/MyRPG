@@ -31,15 +31,29 @@ void init_splash_screen(window_t* wd)
     wd->splash->draw->next->next = draw3; draw3->previous = draw2;
 }
 
+// function that animate the splash screen, main = 1: normal; main = 0: revert
+void move_splash(window_t* wd, int main)
+{
+    if (main) {
+        wd->splash->draw->data->position.x -= 0.40;
+        wd->splash->draw->data->position.y -= 0.3377193;
+        if (wd->splash->draw->data->position.x < -684) {
+            wd->splash->draw->data->position.x = 0;
+            wd->splash->draw->data->position.y = 0;
+        }
+    } else {
+        wd->splash->draw->data->position.x += 0.40 * 4;
+        wd->splash->draw->data->position.y += 0.3377193 * 4;
+        if (wd->splash->draw->data->position.x >= 0) {
+            wd->splash->draw->data->position.x = -684;
+            wd->splash->draw->data->position.y = -577.5;
+        }
+    }
+}
 // function that animate and display a layer splash during window creation
 void splash_screen(window_t * wd, int x, int x_max)
 {
-    wd->splash->draw->data->position.x -= 0.40;
-    wd->splash->draw->data->position.y -= 0.3377193;
-    if (wd->splash->draw->data->position.x < -684) {
-        wd->splash->draw->data->position.x = 0;
-        wd->splash->draw->data->position.y = 0;
-    }
+    move_splash(wd, 1);
     wd->splash->draw->next->next->data->size.x =
                             (float)x / (float)(x_max) * 1900;
     sfRenderTexture_setView(wd->splash->texture, wd->view);

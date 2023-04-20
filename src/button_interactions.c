@@ -11,26 +11,27 @@
 #include <my_macros.h>
 
 static void handle_button_click
-(list_button_t* all_btn, sfMouseButtonEvent *event)
+(list_button_t* all_btn, sfMouseButtonEvent *event, game_src_t* g_src)
 {
     static const sfColor color = {
         .r = 220,
         .g = 220,
-        .b = 200,
+        .b = 220,
         .a = 255
     };
 
     if (all_btn->btn->is_clicked(all_btn->btn, event)) {
         set_color_in_draw(all_btn->btn->rect, color);
+        sfSound_play(g_src->audio.explosion_sfx.sound);
     }
 }
 
 void button_pressed(window_t* wd, list_button_t* all_btn,
-    sfMouseButtonEvent evt)
+    sfMouseButtonEvent evt, game_src_t* g_src)
 {
     while (all_btn != NULL) {
         if (all_btn->btn->layer_on->show && all_btn->btn->rect->show) {
-            handle_button_click(all_btn, &evt);
+            handle_button_click(all_btn, &evt, g_src);
         } else {
             all_btn->btn->state = NONE;
         }

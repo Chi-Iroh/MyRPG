@@ -56,4 +56,6 @@
     */
     void init_splash_screen(window_t* wd);
     void splash_screen(window_t * wd, int x, int x_max);
+    void move_splash(window_t* wd, int main);
+
 #endif
