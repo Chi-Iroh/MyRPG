@@ -38,3 +38,4 @@ test*
 # trash
 .trash
 /log
+*valgrind.log.core.*
