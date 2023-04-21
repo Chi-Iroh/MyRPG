@@ -30,12 +30,12 @@ void switch_loop_draw(draw_t * draw)
     switch_loop_sprite((sprite_t *)(draw->drawable));
 }
 
-void animation_OFF_draw(draw_t * draw)
+void animation_off_draw(draw_t * draw)
 {
     if (draw->type != SPRITE) {
         return;
     }
-    animation_OFF_sprite((sprite_t *)(draw->drawable));
+    animation_off_sprite((sprite_t *)(draw->drawable));
 }
 
 void set_animation_draw(draw_t * draw, sfIntRect rect,

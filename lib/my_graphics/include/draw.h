@@ -46,12 +46,10 @@
         draw_t * previous;
     };
 
-    /*
-    ** ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ \
-    ** For following functions, there is commentaries to indicate the  |
-    ** compatibility of the functions with the different draw types    |
-    ** ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ /
-    */
+    // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ %
+    // For following functions, there is commentaries to indicate the  |
+    // compatibility of the functions with the different draw types    |
+    // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ %
     // ### ### Creation ### ###
     draw_t * init_draw(void);
     draw_t * create_draw(void * drawable, draw_type_t type, data_t * data);
@@ -115,7 +113,7 @@
     void set_anim_rect_draw(draw_t * draw, sfIntRect rect);
     void switch_animation_draw(draw_t * draw);
     void switch_loop_draw(draw_t * draw);
-    void animation_OFF_draw(draw_t * draw);
+    void animation_off_draw(draw_t * draw);
     void set_animation_draw(draw_t * draw, sfIntRect rect,
                                 int nb_frame, bool loop);
 

@@ -25,7 +25,7 @@ void draw_sprite(sfRenderTexture * texture, sprite_t * sprite)
             sprite->anim_rect.left -= sprite->anim_rect.width *
                                         (sprite->nb_frame - 1);
         } else {
-            animation_OFF_sprite(sprite);
+            animation_off_sprite(sprite);
         }
     }
 }
