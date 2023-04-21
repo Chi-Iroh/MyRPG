@@ -21,8 +21,8 @@
     #undef SPRITE_FILENAMES
 #endif
 #define SPRITE_FILENAMES(sprite) {  \
-    "images/" sprite ".png",        \
-    "images/" sprite "_de_dos.png"  \
+    "images/sprites/" sprite "/" sprite ".png",        \
+    "images/sprites/" sprite "/" sprite "_de_dos.png"  \
 }
 
 #ifdef UTF8
