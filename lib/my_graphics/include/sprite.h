@@ -26,19 +26,28 @@
     typedef struct sprite {
         sfSprite * sprite;
         sfTexture * texture;
-        sfIntRect rect;
+        sfIntRect idle_rect;
         bool animated;
+        bool loop;
+        sfIntRect anim_rect;
         int nb_frame;
         int current;
     } sprite_t;
 
     sprite_t * init_sprite(void);
+    sprite_t * create_sprite(sfTexture * texture, sfIntRect rect);
     void set_pos_sprite(sprite_t * sprite, sfVector3f position);
     void set_angle_sprite(sprite_t * sprite, float angle);
     void set_data_sprite(sprite_t * sprite, data_t * data);
+    void set_idle_rect_sprite(sprite_t * sprite, sfIntRect rect);
     void set_texture_sprite(sprite_t * sprite,
                             sfTexture * texture, sfIntRect rect);
-    void set_animation_sprite(sprite_t * sprite, int nb_frame);
+    void set_anim_rect_sprite(sprite_t * sprite, sfIntRect rect);
+    void switch_animation_sprite(sprite_t * sprite);
+    void switch_loop_sprite(sprite_t * sprite);
+    void animation_OFF_sprite(sprite_t * sprite);
+    void set_animation_sprite(sprite_t * sprite, sfIntRect rect,
+                                int nb_frame, bool loop);
     void set_origin_sprite(sprite_t * sprite, sfVector2f origin);
     sfVector2f get_position_sprite(sprite_t * sprite);
     float get_rotation_sprite(sprite_t * sprite);

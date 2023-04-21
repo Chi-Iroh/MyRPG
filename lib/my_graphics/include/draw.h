@@ -82,7 +82,7 @@
     // TEXT
     void set_string_draw(draw_t * draw, const char * string);
     // SPRITE
-    void set_animation_draw(draw_t * draw, int nb_frame);
+    void set_idle_rect_draw(draw_t * draw, sfIntRect rect);
     // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     void set_origin_draw(draw_t * draw, sfVector2f origin);
     // SPRITE, SHAPE (CIRCLE & RECT), TEXT
@@ -108,6 +108,14 @@
     sfFloatRect get_local_bounds_draw(draw_t * draw);
     // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     sfFloatRect get_global_bounds_draw(draw_t * draw);
+
+    // ### ### Animation (sprite only) ### ###
+    void set_anim_rect_draw(draw_t * draw, sfIntRect rect);
+    void switch_animation_draw(draw_t * draw);
+    void switch_loop_draw(draw_t * draw);
+    void animation_OFF_draw(draw_t * draw);
+    void set_animation_draw(draw_t * draw, sfIntRect rect,
+                                int nb_frame, bool loop);
 
     // ### ### Hitbox ### ###
     void change_hitbox(draw_t * draw, sfIntRect hitbox);

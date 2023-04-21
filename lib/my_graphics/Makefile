@@ -42,6 +42,7 @@ SRC		=	vector/set_vector.c			\
 			draw/set_data_draw.c		\
 			draw/set_attributes_draw.c	\
 			draw/set_string_draw.c		\
+			draw/set_idle_rect_draw.c	\
 			draw/set_animation_draw.c	\
 			draw/set_origin_draw.c		\
 			draw/get_data_draw.c		\
