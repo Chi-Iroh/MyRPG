@@ -17,7 +17,8 @@ void stat_interaction(stat_t* stat)
         stat->ui->stat_btns[i]->name->show = true;
         if (IS_RELEASED(stat->ui->stat_btns[i])) {
             stat->ui->stat_btns[i]->state = NONE;
-            return update_stat(stat, i);
+            update_stat(stat, i);
+            return;
         }
     }
 }
