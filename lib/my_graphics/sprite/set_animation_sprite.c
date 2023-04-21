@@ -31,7 +31,7 @@ void switch_loop_sprite(sprite_t * sprite)
     }
 }
 
-void animation_OFF_sprite(sprite_t * sprite)
+void animation_off_sprite(sprite_t * sprite)
 {
     sprite->animated = false;
     sprite->loop = false;

@@ -45,7 +45,7 @@
     void set_anim_rect_sprite(sprite_t * sprite, sfIntRect rect);
     void switch_animation_sprite(sprite_t * sprite);
     void switch_loop_sprite(sprite_t * sprite);
-    void animation_OFF_sprite(sprite_t * sprite);
+    void animation_off_sprite(sprite_t * sprite);
     void set_animation_sprite(sprite_t * sprite, sfIntRect rect,
                                 int nb_frame, bool loop);
     void set_origin_sprite(sprite_t * sprite, sfVector2f origin);
