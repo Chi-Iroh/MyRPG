@@ -5,8 +5,8 @@
 ** update_mob.c
 */
 
-#include "../include/my_rpg.h"
-#include "../lib/my_graphics/my_graphics.h"
+#include <my_rpg.h>
+#include <my_graphics.h>
 
 sfVector3f place_in_mob(mob_t *mob, draw_t *player)
 {
@@ -41,11 +41,11 @@ sfVector3f not_in_mob(mob_t *mob, draw_t *player)
     return newPosition;
 }
 
-void update_mob(mob_t *mob, draw_t *player, sfVector2f move)
+void update_mob(mob_t *mob, crowd_t *crowd, sfVector2f move)
 {
 
     if (mob->in_mob == OUT) {
-        sfVector3f newPosition = not_in_mob(mob, player);
+        sfVector3f newPosition = not_in_mob(mob, crowd->player->draw);
         set_pos_draw(mob->draw, newPosition);
         if (newPosition.x <= 0 || (newPosition.x) >= WD_WIDTH) {
             newPosition.x *= -1;

@@ -12,12 +12,11 @@ float rand_move(void)
 {
     float move = 0.0f;
     if (rand() % 5 == 0)
-    switch (rand() % 3 - 1) {
-        case 1: move = 0.03f; break;
-        case 0: move = 0.00f; break;
-        case -1: move = -0.03f; break;
-    }
-    //printf("%.2f\n", move);
+        switch (rand() % 3 - 1) {
+            case 1: move = 0.03f; break;
+            case 0: move = 0.00f; break;
+            case -1: move = -0.03f; break;
+        }
     return move;
 }
 
@@ -34,37 +33,40 @@ sfVector2f calculate_repulsion_force(sfVector2f pos1, sfVector2f pos2, float k)
     return rep;
 }
 
-
 void update_circle_cop
-(cop_t *cop, draw_t *player, sfVector3f cop_pos, sfVector2f dir)
+(cop_t *cop, player_t *player, sfVector3f cop_pos, sfVector2f dir)
 {
-    float distance = sqrtf(dir.x * dir.x +
-        dir.y * dir.y);
+    float distance = sqrtf(dir.x * dir.x + dir.y * dir.y);
     if (distance > 1.0f) {
         dir.x /= distance;
         dir.y /= distance;
     }
     sfVector3f newPosition;
     if (distance < 800.f) {
-        if (draw_within_thr(player, cop->draw, 70) &&
-        sfTime_asSeconds(sfClock_getElapsedTime(cop->clock)) > 5) {
-            //printf("is_hit\n");
+        if (draw_within_thr(player->draw, cop->draw, 70) &&
+        sfTime_asSeconds(sfClock_getElapsedTime(cop->clock)) > 5
+        && get_size_draw(player->hp.fill).x > 0) {
+            sfVector2f size = get_size_draw(player->hp.fill);
+            set_size_draw(player->hp.fill, set_2vector(size.x - 25, size.y));
             sfClock_restart(cop->clock);
         }
         newPosition.x = cop_pos.x + dir.x * 0.03f + rand_move();
         newPosition.y = cop_pos.y + dir.y * 0.03f + rand_move();
-        newPosition.z = 0;
     }
+    set_pos_draw
+    (cop->hp.fill, set_3vector(newPosition.x, newPosition.y - 40, 0));
     set_pos_draw(cop->draw, newPosition);
 }
 
-void update_cop(cop_t *cop, draw_t *player, sfVector3f spritePosition)
+void update_cop(cop_t *cop, crowd_t *crowd, sfVector3f spritePosition)
 {
-    sfVector3f cop_pos = get_position_draw(cop->draw);
-    sfVector2f direction;
-    direction.x = spritePosition.x - cop_pos.x;
-    direction.y = spritePosition.y - cop_pos.y;
-    update_circle_cop(cop, player, cop_pos, direction);
-    
-    //cop->spsht.dir = (direction.y >= 0) ? DOWN : UP;
+    if (cop->stat.hp <= 0)
+        move_draw(cop->draw, set_2vector(0.5f, rand_move()));
+    else {
+        sfVector3f cop_pos = get_position_draw(cop->draw);
+        sfVector2f direction;
+        direction.x = spritePosition.x - cop_pos.x;
+        direction.y = spritePosition.y - cop_pos.y;
+        update_circle_cop(cop, crowd->player, cop_pos, direction);
+    }
 }

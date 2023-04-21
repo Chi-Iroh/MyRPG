@@ -8,20 +8,16 @@
 #ifndef CROWD
     #define CROWD
 
-    #include "../lib/my_graphics/my_graphics.h"
+    #include <my_graphics.h>
+    #include <my_rpg.h>
 
-    #define CROWD_SIZE 25
+    #define CROWD_SIZE 100
     #define MAX_SPRITES 25
     #define WD_WIDTH 1920
     #define WD_HEIGHT 1080
     #define MAX_SPEED 0.05f
 
     typedef struct {
-        long double min;
-        long double max;
-        long double current;
-        long double step;
-        draw_t *draw;
         draw_t *fill;
         sfFloatRect area;
     } progress_bar_t;
@@ -29,15 +25,17 @@
     typedef enum {UP, DOWN} dir_e;
 
     typedef struct stat_e {
-        double damage;
-        double hp;
-        double speed;
+        float damage;
+        float hp;
+        float speed;
+        float defense;
     } stat_t;
 
     typedef struct cop {
         sfClock *clock;
         draw_t *draw;
         stat_t stat;
+        progress_bar_t hp;
     } cop_t;
 
     typedef enum {OUT, IN} in_mob_e;
@@ -49,10 +47,12 @@
     } mob_t;
 
     typedef struct player {
+        sfClock *clock;
         draw_t *draw;
         stat_t stat;
         progress_bar_t hp;
         progress_bar_t exp;
+        draw_t *range;
     } player_t;
 
     typedef struct crowd {
@@ -71,25 +71,24 @@
     (window_t *window, progress_bar_t *bar, data_t *data, shape_t *shape);
 
     /*init_crowd.c*/
-    void init_crowd(crowd_t *crowd, window_t* wd);
 
     /*rand.c*/
 
-    sfVector2f get_random_position(void);
+    sfVector2f get_random_position(window_t *wd);
     sfTexture* rand_skin(void);
 
     /*update.c*/
 
     void update(crowd_t *crowd);
     float rand_move(void);
-    void update_mob(mob_t *mob, draw_t *player, sfVector2f move);
-    void update_cop(cop_t *cop, draw_t *player, sfVector3f spritePosition);
+    void update_mob(mob_t *mob, crowd_t *crowd, sfVector2f move);
+    void update_cop(cop_t *cop, crowd_t *crowd, sfVector3f spritePosition);
 
     /**/
     void manage_event(sfRenderWindow* window, sfEvent event, player_t *player);
     void free_crowd(crowd_t *crowd);
     sfBool check_collision(draw_t *player, draw_t *crowd);
     void display_crowd(sfRenderWindow *window, crowd_t *crowd);
-    void crowd(window_t* wd, crowd_t crowd);    
+    void crowd(window_t* wd, crowd_t crowd);
 
 #endif /* CROWD_T */

@@ -32,7 +32,8 @@ SRC = 	src/main.c							\
 		src/character_menu/character_menu.c	\
 		src/character_menu/init_free.c		\
 		src/character_menu/shrink_window.c	\
-		src/countryball_49_3/countryball.c
+		src/countryball_49_3/countryball.c	\
+		src/init_player.c
 
 OBJ =   $(SRC:.c=.o)
 
