@@ -13,7 +13,7 @@
     #include <characters.h>
     #include <character_menu.h>
 
-    #define CROWD_SIZE 500
+    #define CROWD_SIZE 200
     #define MAX_SPRITES 25
     #define WD_WIDTH 1920
     #define WD_HEIGHT 1080
@@ -33,11 +33,14 @@
         float defense;
     } stat_t;
 
+    typedef enum {FALSE, TRUE} dead_e;
+
     typedef struct cop {
         sfClock *clock;
         draw_t *draw;
         stat_t stat;
         progress_bar_t hp;
+        dead_e dead;
     } cop_t;
 
     typedef enum {OUT, IN} in_mob_e;
@@ -72,7 +75,6 @@
     (sfRectangleShape *shape, sfFloatRect *rect);
     void init_progress_bar
     (window_t *window, progress_bar_t *bar, data_t *data, shape_t *shape);
-
     /*init_crowd.c*/
 
     /*rand.c*/
@@ -88,6 +90,11 @@
     void update_cop(cop_t *cop, crowd_t *crowd, sfVector3f spritePosition);
 
     /**/
+    void move_range
+    (draw_t *draw, sfVector2f move, sfVector3f spritePosition, float dist);
+    void check_hitbox(crowd_t *crowd, int i, sfVector3f spritePosition);
+    void knock_back(cop_t *cop, sfVector3f spritePosition, float pw);
+    sfVector3f calc_dist(sfVector3f pos1, sfVector3f pos2);
     void manage_event(sfRenderWindow* window, sfEvent event, player_t *player);
     void free_crowd(crowd_t *crowd);
     sfBool check_collision(draw_t *player, draw_t *crowd);

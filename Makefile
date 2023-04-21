@@ -33,7 +33,8 @@ SRC = 	src/main.c							\
 		src/character_menu/init_free.c		\
 		src/character_menu/shrink_window.c	\
 		src/countryball_49_3/countryball.c	\
-		src/init_player.c
+		src/init_player.c					\
+		src/hitbox.c
 
 OBJ =   $(SRC:.c=.o)
 

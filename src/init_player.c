@@ -67,6 +67,16 @@ void init_bar(player_t *player, window_t* wd)
     append_draw_layer(wd->ui, player->exp.fill);
 }
 
+void init_hitbox(player_t *player, window_t *wd, data_t *data)
+{
+    data_t *data_r = create_data(data->position, set_2vector(85, 85), 0.f);
+    shape_t *shape_r = create_shape(RECT, sfTransparent, sfBlack, 1);
+    player->range = create_draw(shape_r, SHAPE, data_r);
+    set_origin_draw(player->range, set_2vector
+    (data_r->size.x / 2, data_r->size.y / 2));
+    append_draw_layer(wd->core, player->range);
+}
+
 player_t *init_player(window_t* wd, game_t *game)
 {
     player_t *player = malloc(sizeof(player_t));
@@ -86,12 +96,7 @@ player_t *init_player(window_t* wd, game_t *game)
     (data->size.x / 2, data->size.y / 2));
     append_draw_layer(wd->core, player->draw);
     init_bar(player, wd);
-    data_t *data_r = create_data(data->position, set_2vector(85, 85), 0.f);
-    shape_t *shape_r = create_shape(RECT, sfTransparent, sfBlack, 1);
-    player->range = create_draw(shape_r, SHAPE, data_r);
-    set_origin_draw(player->range, set_2vector
-    (data_r->size.x / 2, data_r->size.y / 2));
-    append_draw_layer(wd->core, player->range);
+    init_hitbox(player, wd, data);
     init_stat(&player->stat, set_3vector(5, 5, 10), 20);
     return player;
 }
