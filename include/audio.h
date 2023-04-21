@@ -51,15 +51,16 @@ typedef struct {
     Breaking these rules may break some functionnalities and may cause crash.
 */
 typedef struct {
-    sfMusic *main_bgm;
-    sfMusic *boss_bgm;
-    sfMusic *battle_bgm;
-    sfMusic *menu_bgm;
-    sfMusic *end_bgm;
-    sound_t quest_sfx;
-    sound_t explosion_sfx;
-    sound_t level_sfx;
-    sound_t error_sfx;
+    sfMusic *bgm_main;
+    sfMusic *bgm_boss;
+    sfMusic *bgm_battle;
+    sfMusic *bgm_menu;
+    sfMusic *bgm_end;
+    sound_t sfx_quest;
+    sound_t sfx_explosion;
+    sound_t sfx_level_up;
+    sound_t sfx_error;
+    sound_t sfx_ok;
     sfMusic *current_bgm;
     audio_state_t bgm_state;
     float sfx_volume;
@@ -86,12 +87,15 @@ typedef enum {
         audio_control_sfx(audio_ptr, QUEST_SFX) for instance.
     MAX_SFX isn't meant to be directly used, as it's a sentinel to highlight
         the max value.
+    SFX_ERROR is a SFX which represents an error in-game, DOESN'T MEAN
+        that an there's some memory-related error !
 */
 typedef enum {
     SFX_QUEST,
     SFX_EXPLOSION,
     SFX_LEVEL_UP,
     SFX_ERROR,
+    SFX_OK,
     SFX_MAX
 } sfx_t;
 
@@ -125,15 +129,16 @@ bool audio_play_sfx(audio_t *audio, sfx_t sfx);
 bool audio_is_volume_ok(float volume);
 void audio_update_volume(audio_t *audio);
 
-extern const char *const MENU_BGM_PATH;
-extern const char *const BOSS_BGM_PATH;
-extern const char *const BOSS_BGM_PATH;
+extern const char *const BGM_MENU_PATH;
+extern const char *const BGM_BOSS_PATH;
+extern const char *const BGM_MAIN_PATH;
 
-extern const char *const QUEST_SFX_PATH;
-extern const char *const EXPLOSION_SFX_PATH;
-extern const char *const LEVEL_UP_SFX_PATH;
-extern const char *const ERROR_SFX_PATH;
+extern const char *const SFX_QUEST_PATH;
+extern const char *const SFX_EXPLOSION_PATH;
+extern const char *const SFX_LEVEL_UP_PATH;
+extern const char *const SFX_ERROR_PATH;
+extern const char *const SFX_OK_PATH;
 
 extern const float AUDIO_DONT_CHANGE_VOLUME;
-extern const float AUDIO_DEFAULT_BGM_VOLUME;
-extern const float AUDIO_DEFAULT_SFX_VOLUME;
+extern const float AUDIO_BGM_DEFAULT_VOLUME;
+extern const float AUDIO_SFX_DEFAULT_VOLUME;

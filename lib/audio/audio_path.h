@@ -27,10 +27,12 @@
 */
 #define SFX(path) "sounds/" path ".ogg"
 
-const char *const MENU_BGM_PATH = BGM("Kevin MacLeod - Happy Bee");
-const char *const BOSS_BGM_PATH = BGM("Bonetrousle");
+const char *const BGM_MENU_PATH = BGM("Kevin MacLeod - Happy Bee");
+const char *const BGM_BOSS_PATH = BGM("Bonetrousle");
+const char *const BGM_MAIN_PATH = BGM("Dalle Béton 49.3");
 
-const char *const QUEST_SFX_PATH = SFX("Discord Notification");
-const char *const EXPLOSION_SFX_PATH = SFX("Explosion");
-const char *const LEVEL_UP_SFX_PATH = SFX("Level Up");
-const char *const ERROR_SFX_PATH = SFX("Error");
+const char *const SFX_QUEST_PATH = SFX("Discord Notification");
+const char *const SFX_EXPLOSION_PATH = SFX("Explosion");
+const char *const SFX_LEVEL_UP_PATH = SFX("Level Up");
+const char *const SFX_ERROR_PATH = SFX("Error");
+const char *const SFX_OK_PATH = SFX("49.3");

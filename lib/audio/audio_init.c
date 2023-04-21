@@ -10,8 +10,8 @@
 #include "audio_path.h"
 
 const float AUDIO_DONT_CHANGE_VOLUME = -1.f;
-const float AUDIO_DEFAULT_BGM_VOLUME = 75.f;
-const float AUDIO_DEFAULT_SFX_VOLUME = 100.f;
+const float AUDIO_BGM_DEFAULT_VOLUME = 75.f;
+const float AUDIO_SFX_DEFAULT_VOLUME = 100.f;
 
 /*
     Initializes all pointers of an audio structure to NULL.
@@ -20,16 +20,19 @@ const float AUDIO_DEFAULT_SFX_VOLUME = 100.f;
 */
 void audio_init_base(audio_t *audio, float bgm_volume, float sfx_volume)
 {
-const float bgm_volumes[2] = { AUDIO_DEFAULT_BGM_VOLUME, bgm_volume };
-const float sfx_volumes[2] = { AUDIO_DEFAULT_SFX_VOLUME, sfx_volume };
+const float bgm_volumes[2] = { AUDIO_BGM_DEFAULT_VOLUME, bgm_volume };
+const float sfx_volumes[2] = { AUDIO_BGM_DEFAULT_VOLUME, sfx_volume };
 
     *audio = (audio_t) {
-        .battle_bgm = NULL,
-        .main_bgm = NULL,
-        .boss_bgm = NULL,
-        .menu_bgm = NULL,
-        .quest_sfx = { .buffer = NULL, .sound = NULL },
-        .explosion_sfx = { .buffer = NULL, .sound = NULL },
+        .bgm_battle = NULL,
+        .bgm_main = NULL,
+        .bgm_boss = NULL,
+        .bgm_menu = NULL,
+        .sfx_quest = { .buffer = NULL, .sound = NULL },
+        .sfx_explosion = { .buffer = NULL, .sound = NULL },
+        .sfx_error = { .buffer = NULL, .sound = NULL },
+        .sfx_level_up = { .buffer = NULL, .sound = NULL },
+        .sfx_ok = { .buffer = NULL, .sound = NULL },
         .current_bgm = NULL,
         .bgm_volume = bgm_volumes[audio_is_volume_ok(bgm_volume)],
         .bgm_state = AUDIO_NOT_YET_STARTED,
@@ -73,6 +76,21 @@ bool audio_init_sfx(sound_t *sound, const char *path, float volume)
     return true;
 }
 
+static bool audio_init_impl(audio_t *audio, float bgm, float sfx)
+{
+    bool status = true;
+
+    status &= audio_init_bgm(&audio->bgm_main, BGM_MAIN_PATH, bgm);
+    status &= audio_init_bgm(&audio->bgm_menu, BGM_MENU_PATH, bgm);
+    status &= audio_init_bgm(&audio->bgm_boss, BGM_BOSS_PATH, bgm);
+    status &= audio_init_sfx(&audio->sfx_quest, SFX_QUEST_PATH, sfx);
+    status &= audio_init_sfx(&audio->sfx_explosion, SFX_EXPLOSION_PATH, sfx);
+    status &= audio_init_sfx(&audio->sfx_level_up, SFX_LEVEL_UP_PATH, sfx);
+    status &= audio_init_sfx(&audio->sfx_error, SFX_ERROR_PATH, sfx);
+    status &= audio_init_sfx(&audio->sfx_ok, SFX_OK_PATH, sfx);
+    return status;
+}
+
 /*
     Properly initialized an audio_t structure.
     For both bgm_volume and sfx_volume:
@@ -81,21 +99,16 @@ bool audio_init_sfx(sound_t *sound, const char *path, float volume)
 */
 bool audio_init(audio_t *audio, float bgm_volume, float sfx_volume)
 {
-    const float bgm = bgm_volume;
-    const float sfx = sfx_volume;
     bool status = audio != NULL;
 
     RETURN_VALUE_IF(!status, false);
     audio_init_base(audio, bgm_volume, sfx_volume);
-    status &= audio_init_bgm(&audio->menu_bgm, MENU_BGM_PATH, bgm);
-    status &= audio_init_bgm(&audio->boss_bgm, BOSS_BGM_PATH, bgm);
-    status &= audio_init_sfx(&audio->quest_sfx, QUEST_SFX_PATH, sfx);
-    status &= audio_init_sfx(&audio->explosion_sfx, EXPLOSION_SFX_PATH, sfx);
+    status &= audio_init_impl(audio, bgm_volume, sfx_volume);
     if (!status) {
         audio_free(audio);
         return false;
     }
-    audio->current_bgm = audio->menu_bgm;
+    audio->current_bgm = audio->bgm_menu;
     audio_update_volume(audio);
     return true;
 }
