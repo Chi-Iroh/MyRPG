@@ -72,6 +72,9 @@ bool init_crowd(game_t *game, window_t* wd, list_button_t** a_btn)
     }
     game->crowd.player->stat.ui =
     init_stat_interface(game->crowd.player->stat, wd->ui, a_btn);
+    append_draw_layer(wd->ui, create_draw(create_shape(RECT,
+    sfColor_fromRGBA(220, 220, 220, 100), sfBlack, 3), SHAPE,
+    create_data(set_3vector(10, 60, 0), set_2vector(340, 280), 0)));
     game->crowd.mob = init_crowd_mob(wd);
     game->crowd.cop = init_crowd_cop(wd);
     return true;

@@ -23,6 +23,7 @@ button_s_t* init_stat_interface_bis(int i, list_button_t** a_btn, layer_t* ui)
     button_s_t* btn = set_button(a_btn, "+",
     set_3vector(320, 60 + i * 50, 0), set_2vector(25, 25));
     btn = append_button_layer(ui, btn);
+    set_size_draw(btn->name, set_2vector(0, 20));
     return btn;
 }
 
