@@ -83,7 +83,7 @@ static void my_while(window_t * wd, int *** maps, tmx_t * tmx, needs_t needs)
 
 void create_background(window_t * wd)
 {
-    tmx_t * tmx = parser_tmx("images/csv_and_tmx/map2.tmx"); needs_t needs;
+    tmx_t * tmx = parser_tmx("images/csv_and_tmx/All_map2.tmx"); needs_t needs;
     int ** background = parser_csv("./images/csv_and_tmx/map2_Background.csv");
     int ** core = parser_csv("./images/csv_and_tmx/map2_Core.csv");
     int *** maps = malloc(sizeof(int **) * 2); maps[0] = background;
