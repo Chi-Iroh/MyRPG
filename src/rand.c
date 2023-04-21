@@ -28,16 +28,8 @@ sfTexture* rand_skin(void)
 sfVector2f get_random_position(window_t *wd)
 {
     sfVector2f position;
-    position.x = (float)(rand() % (WD_WIDTH));
-    position.y = (float)(rand() % (WD_HEIGHT));
+    printf("map size x = %.3f, y = %.3f\n", wd->map_size.x, wd->map_size.y);
+    position.x = (float)(rand() % ((int)wd->map_size.x));
+    position.y = (float)(rand() % ((int)wd->map_size.y));
     return position;
 }
-
-/*sfVector2f get_random_position(window_t *wd)
-{
-    sfVector2f position;
-    printf("map size x = %.3f, y = %.3f\n", wd->map_size.x, wd->map_size.y);
-    position.x = (float)(rand() % ((int)wd->map_size.x - 800)) + 800;
-    position.y = (float)(rand() % ((int)wd->map_size.x - 400)) + 400;
-    return position;
-}*/

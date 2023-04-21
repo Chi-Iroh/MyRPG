@@ -10,8 +10,10 @@
 
     #include <my_graphics.h>
     #include <my_rpg.h>
+    #include <characters.h>
+    #include <character_menu.h>
 
-    #define CROWD_SIZE 100
+    #define CROWD_SIZE 500
     #define MAX_SPRITES 25
     #define WD_WIDTH 1920
     #define WD_HEIGHT 1080
@@ -53,6 +55,7 @@
         progress_bar_t hp;
         progress_bar_t exp;
         draw_t *range;
+        character_type_t type;
     } player_t;
 
     typedef struct crowd {

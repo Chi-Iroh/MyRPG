@@ -62,8 +62,15 @@ mob_t **init_crowd_mob(window_t* wd)
     return mob;
 }
 
-void init_crowd(game_t *game, window_t* wd)
+bool init_crowd(game_t *game, window_t* wd)
 {
+    game->crowd.player = init_player(wd, game);
+    if (game->crowd.player == NULL) {
+        game->crowd.mob = NULL;
+        game->crowd.cop = NULL;
+        return false;
+    }
     game->crowd.mob = init_crowd_mob(wd);
     game->crowd.cop = init_crowd_cop(wd);
+    return true;
 }

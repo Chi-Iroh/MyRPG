@@ -35,11 +35,9 @@ menu_t* init_menu(window_t* wd, list_button_t** all_btn)
 void menu_core(window_t* wd, game_src_t* g_src)
 {
     if (IS_RELEASED(g_src->menu->b_start)) {
-        g_src->game->character = init_character(wd);
-        if (g_src->game->character)
+        if (init_crowd(g_src->game, wd))
             g_src->menu->show = false;
         g_src->menu->b_start->state = NONE;
-        g_src->game->crowd.player = init_player(wd, g_src->game);
     }
     if (IS_RELEASED(g_src->menu->b_settings) ||
         IS_RELEASED(g_src->menu->settings->btn[0])) {

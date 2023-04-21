@@ -70,7 +70,7 @@
     void menu(window_t* wd, game_src_t* g_src);
     void core(window_t* wd, game_src_t* g_src);
     void pause_menu(window_t* wd, game_src_t* g_src);
-    void init_crowd(game_t *game, window_t* wd);
+    bool init_crowd(game_t *game, window_t* wd);
     player_t *init_player(window_t* wd, game_t *game);
     void init_stat(stat_t *stat, sfVector3f stat_value, float hp);
 

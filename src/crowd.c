@@ -31,6 +31,7 @@ sfBool check_collision(draw_t *player, draw_t *crowd)
 
 void free_crowd(crowd_t *crowd)
 {
+    sfClock_destroy(crowd->player->clock);
     for (int i = 0; i < CROWD_SIZE; i++) {
         sfClock_destroy(crowd->cop[i]->clock);
         free(crowd->cop[i]);

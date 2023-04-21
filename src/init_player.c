@@ -7,6 +7,7 @@
 
 #include <my_rpg.h>
 #include <my_graphics.h>
+#include <characters.h>
 
 void init_stat(stat_t *stat, sfVector3f stat_value, float hp)
 {
@@ -69,11 +70,16 @@ void init_bar(player_t *player, window_t* wd)
 player_t *init_player(window_t* wd, game_t *game)
 {
     player_t *player = malloc(sizeof(player_t));
+    player->type = select_character();
+    if (player->type == CHARACTER_NONE || player->type == CHARACTER_ERROR) {
+        free(player);
+        return NULL;
+    }
     player->clock = sfClock_create();
     data_t *data = create_data(set_3vector(WD_WIDTH / 2 + 400,
     WD_HEIGHT / 2 + 400, 50), set_2vector(48, 72), 0.f);
     sprite_t *sprite = init_sprite();
-    sfTexture *texture = init_player_text(game->character->type);
+    sfTexture *texture = init_player_text(player->type);
     set_texture_sprite(sprite, texture, (sfIntRect) {0, 0, 48, 72});
     player->draw = create_draw(sprite, SPRITE, data);
     set_origin_draw(player->draw, set_2vector
