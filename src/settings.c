@@ -22,6 +22,7 @@ draw_t** init_setting_titles(layer_t* layer)
         titles[i] = create_draw(txt, TEXT, data);
         set_thick_draw(titles[i], 2);
         append_draw_layer(layer, titles[i]);
+        set_color_out_draw(titles[i], sfWhite);
     }
     return titles;
 }

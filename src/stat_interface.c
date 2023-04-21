@@ -16,6 +16,22 @@ void update_stat_interface(draw_t** stat_nb, stat_t stat)
     set_string_draw(stat_nb[3], my_itoa(stat.hp));
     set_string_draw(stat_nb[4], my_itoa(stat.speed));
     set_string_draw(stat_nb[5], my_itoa(stat.defense));
+    if (!stat.exp_point) {
+        for (int i = 0; i < NB_STAT - 2; i++) {
+            stat.ui->stat_btns[i]->rect->show = false;
+            stat.ui->stat_btns[i]->name->show = false;
+        }
+    }
+}
+
+void update_stat(stat_t *stat, int type)
+{
+    stat->exp_point--;
+    stat->damage += type == 0 ? 1 : 0;
+    stat->hp += type == 1 ? 5 : 0;
+    stat->speed += type == 2 ? 1 : 0;
+    stat->defense += type == 3 ? 1 : 0;
+    update_stat_interface(stat->ui->stat_nb, *stat);
 }
 
 button_s_t* init_stat_interface_bis(int i, list_button_t** a_btn, layer_t* ui)
@@ -48,6 +64,5 @@ interface_t* init_stat_interface(stat_t stat, layer_t* ui,
         append_draw_layer(ui, stat_ui->stat_name[i]);
         append_draw_layer(ui, stat_ui->stat_nb[i]);
     }
-    update_stat_interface(stat_ui->stat_nb, stat);
     return stat_ui;
 }

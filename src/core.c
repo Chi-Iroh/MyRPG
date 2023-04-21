@@ -8,6 +8,26 @@
 #include <my_graphics.h>
 #include <my_rpg.h>
 
+void stat_interaction(stat_t* stat)
+{
+    if (!stat->exp_point)
+        return;
+    for (int i = 0; i < NB_STAT - 2; i++) {
+        stat->ui->stat_btns[i]->rect->show = true;
+        stat->ui->stat_btns[i]->name->show = true;
+        if (IS_RELEASED(stat->ui->stat_btns[i])) {
+            stat->ui->stat_btns[i]->state = NONE;
+            return update_stat(stat, i);
+        }
+    }
+}
+
+void game_core(window_t* wd, game_src_t* g_src)
+{
+    crowd(wd, g_src->game->crowd);
+    stat_interaction(&g_src->game->crowd.player->stat);
+}
+
 void game(window_t* wd, game_src_t* g_src)
 {
     wd->splash->show = false;
@@ -20,7 +40,7 @@ void game(window_t* wd, game_src_t* g_src)
             pause_menu(wd, g_src);
             continue;
         }
-        crowd(wd, g_src->game->crowd);
+        game_core(wd, g_src);
         if (sfTime_asSeconds(sfClock_getElapsedTime(clock)) >= 0.01) {
             actualize_window(wd);
             sfClock_restart(clock);
