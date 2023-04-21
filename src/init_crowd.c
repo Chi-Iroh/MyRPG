@@ -8,7 +8,7 @@
 #include <my_rpg.h>
 #include <my_graphics.h>
 
-void init_cop_bar(window_t *wd, cop_t * cop)
+void init_cop_hp_bar(window_t *wd, cop_t * cop, sfVector2f pos)
 {
     data_t *data_hp = create_data(set_3vector(pos.x, pos.y - 20, 50),
     set_2vector(80, 10), 0.f);
@@ -36,7 +36,7 @@ cop_t **init_crowd_cop(window_t* wd)
         set_origin_draw(cop[i]->draw, (sfVector2f) {48 / 2, 72 / 2});
         append_draw_layer(wd->core, cop[i]->draw);
         init_stat(&cop[i]->stat, set_3vector(5, 5, 5), 20);
-        init_cop_hp_bar(wd, cop[i]);
+        init_cop_hp_bar(wd, cop[i], pos);
     }
     return cop;
 }
