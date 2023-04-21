@@ -31,4 +31,6 @@ const char *const MENU_BGM_PATH = BGM("Kevin MacLeod - Happy Bee");
 const char *const BOSS_BGM_PATH = BGM("Bonetrousle");
 
 const char *const QUEST_SFX_PATH = SFX("Discord Notification");
-const char *const EXPLOSION_SFX_PATH = SFX("explosion");
+const char *const EXPLOSION_SFX_PATH = SFX("Explosion");
+const char *const LEVEL_UP_SFX_PATH = SFX("Level Up");
+const char *const ERROR_SFX_PATH = SFX("Error");

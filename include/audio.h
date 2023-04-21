@@ -25,10 +25,10 @@
         AUDIO_NOT_YET_STARTED at the end !
 */
 typedef enum {
-    AUDIO_PLAYING = 0,
-    AUDIO_PAUSED = 1,
-    AUDIO_STOPPED = 2,
-    AUDIO_NOT_YET_STARTED = 3
+    AUDIO_PLAYING,
+    AUDIO_PAUSED,
+    AUDIO_STOPPED,
+    AUDIO_NOT_YET_STARTED
 } audio_state_t;
 
 /*
@@ -58,6 +58,8 @@ typedef struct {
     sfMusic *end_bgm;
     sound_t quest_sfx;
     sound_t explosion_sfx;
+    sound_t level_sfx;
+    sound_t error_sfx;
     sfMusic *current_bgm;
     audio_state_t bgm_state;
     float sfx_volume;
@@ -71,12 +73,12 @@ typedef struct {
         the max value.
 */
 typedef enum {
-    BGM_MAIN = 0,
-    BGM_BOSS = 1,
-    BGM_BATTLE = 2,
-    BGM_MENU = 3,
-    BGM_END = 4,
-    BGM_MAX = 5
+    BGM_MAIN,
+    BGM_BOSS,
+    BGM_BATTLE,
+    BGM_MENU,
+    BGM_END,
+    BGM_MAX
 } bgm_t;
 
 /*
@@ -86,9 +88,11 @@ typedef enum {
         the max value.
 */
 typedef enum {
-    SFX_QUEST = 0,
-    SFX_EXPLOSION = 1,
-    SFX_MAX = 2
+    SFX_QUEST,
+    SFX_EXPLOSION,
+    SFX_LEVEL_UP,
+    SFX_ERROR,
+    SFX_MAX
 } sfx_t;
 
 /*
@@ -100,11 +104,11 @@ typedef enum {
     AUDIO_RESUME = AUDIO_PLAY is intended, just for readability purpose.
 */
 typedef enum {
-    AUDIO_RESUME = 0,
-    AUDIO_PLAY = 0,
-    AUDIO_PAUSE = 1,
-    AUDIO_STOP = 2,
-    AUDIO_CONTROL_MAX = 3
+    AUDIO_PLAY,
+    AUDIO_RESUME = AUDIO_PLAY,
+    AUDIO_PAUSE,
+    AUDIO_STOP,
+    AUDIO_CONTROL_MAX
 } audio_control_t;
 
 void audio_init_base(audio_t *audio, float bgm_volume, float sfx_volume);
@@ -127,6 +131,8 @@ extern const char *const BOSS_BGM_PATH;
 
 extern const char *const QUEST_SFX_PATH;
 extern const char *const EXPLOSION_SFX_PATH;
+extern const char *const LEVEL_UP_SFX_PATH;
+extern const char *const ERROR_SFX_PATH;
 
 extern const float AUDIO_DONT_CHANGE_VOLUME;
 extern const float AUDIO_DEFAULT_BGM_VOLUME;
