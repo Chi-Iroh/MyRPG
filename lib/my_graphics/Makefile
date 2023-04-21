@@ -77,6 +77,7 @@ SRC		=	vector/set_vector.c			\
 			sprite/set_texture_sprite.c	\
 			sprite/draw_sprite.c		\
 			sprite/free_sprite.c		\
+			sprite/create_sprite.c 		\
 			text/init_text.c			\
 			text/create_text.c			\
 			text/set_data_text.c		\

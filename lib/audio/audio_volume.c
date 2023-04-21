@@ -40,7 +40,7 @@ static void audio_change_bgm_volume(sfMusic *bgm, float volume)
 */
 void audio_update_volume(audio_t *audio)
 {
-    audio_change_bgm_volume(audio->bgm_battle, audio->bgm_volume);
+    audio_change_bgm_volume(audio->bgm_end, audio->bgm_volume);
     audio_change_bgm_volume(audio->bgm_main, audio->bgm_volume);
     audio_change_bgm_volume(audio->bgm_boss, audio->bgm_volume);
     audio_change_bgm_volume(audio->bgm_menu, audio->bgm_volume);

@@ -35,7 +35,8 @@ SRC = 	src/main.c							\
 		src/countryball_49_3/countryball.c	\
 		src/init_player.c					\
 		src/stat_interface.c 				\
-		src/hitbox.c
+		src/hitbox.c						\
+		src/speech_bubble.c
 
 OBJ =   $(SRC:.c=.o)
 

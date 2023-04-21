@@ -25,7 +25,7 @@ void audio_free_sfx(sound_t *sound)
 void audio_free(audio_t *audio)
 {
     RETURN_IF(!audio);
-    FREE_IF_ALLOCATED(audio->bgm_battle, sfMusic_destroy);
+    FREE_IF_ALLOCATED(audio->bgm_end, sfMusic_destroy);
     FREE_IF_ALLOCATED(audio->bgm_main, sfMusic_destroy);
     FREE_IF_ALLOCATED(audio->bgm_boss, sfMusic_destroy);
     FREE_IF_ALLOCATED(audio->bgm_menu, sfMusic_destroy);

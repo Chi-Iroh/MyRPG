@@ -21,6 +21,7 @@
 
     #include <characters.h>
     #include <countryball.h>
+    #include <speech_bubble.h>
     #include "button_simple.h"
     #include <my_macros.h>
     #include <my.h>
@@ -71,6 +72,7 @@
         game_t* game;
         list_button_t* all_btn;
         audio_t audio;
+        speech_bubble_t speech_bubble;
     } game_src_t;
 
 
