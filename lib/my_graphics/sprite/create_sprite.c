@@ -9,6 +9,6 @@
 sprite_t * create_sprite(sfTexture * texture, sfIntRect rect)
 {
     sprite_t * sprite = init_sprite();
-    et_texture_sprite(sprite, texture, rect);
+    set_texture_sprite(sprite, texture, rect);
     return sprite;
 }
