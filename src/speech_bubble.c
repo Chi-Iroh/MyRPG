@@ -70,25 +70,23 @@ static bool speech_bubble_alloc(speech_bubble_t *bubble)
 static void speech_bubble_init
 (sfVector3f bottom_left_pos, speech_bubble_t *bubble)
 {
-    *bubble = (speech_bubble_t) {
-        .size = {
-            .x = SPEECH_BUBBLE_WIDTH,
-            .y = SPEECH_BUBBLE_HEIGHT
-        },
-        .rect = {
-            .height = SPEECH_BUBBLE_HEIGHT,
-            .width = SPEECH_BUBBLE_WIDTH,
-            .top = bottom_left_pos.y - SPEECH_BUBBLE_HEIGHT,
-            .left = bottom_left_pos.x
-        },
-        .pos = bottom_left_pos,
-        .bubble_data = NULL,
-        .bubble_draw = NULL,
-        .bubble_sprite = NULL,
-        .text = NULL,
-        .text_data = NULL,
-        .text_draw = NULL
+    bubble->size = (sfVector2f) {
+        .x = SPEECH_BUBBLE_WIDTH,
+        .y = SPEECH_BUBBLE_HEIGHT
     };
+    bubble->rect = (sfIntRect) {
+        .height = SPEECH_BUBBLE_HEIGHT,
+        .width = SPEECH_BUBBLE_WIDTH,
+        .top = bottom_left_pos.y - SPEECH_BUBBLE_HEIGHT,
+        .left = bottom_left_pos.x
+    };
+    bubble->pos = bottom_left_pos;
+    bubble->bubble_data = NULL;
+    bubble->bubble_draw = NULL;
+    bubble->bubble_sprite = NULL;
+    bubble->text = NULL;
+    bubble->text_data = NULL;
+    bubble->text_draw = NULL;
 }
 
 

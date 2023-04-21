@@ -75,7 +75,7 @@ void pause_menu(window_t* wd, game_src_t* g_src)
         while (sfRenderWindow_pollEvent(wd->window, &pause_evt))
             analyse_events(wd, pause_evt, g_src);
         pause_core(wd, g_src);
-        printf("%d\n", speech_bubble_draw_text((sfVector3f){100,100,1}, &g_src->speech_bubble));
+        //printf("%d\n", speech_bubble_draw_text((sfVector3f){100,100,1}, &g_src->speech_bubble));
         draw_layers(wd->window, wd->splash, wd->view);
         sfRenderWindow_display(wd->window);
     }
