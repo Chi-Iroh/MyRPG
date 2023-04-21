@@ -16,7 +16,7 @@ void set_color_in_text(text_t * text, sfColor color)
 // change the color of the outline of a text
 void set_color_out_text(text_t * text, sfColor color)
 {
-    text->color_in = color;
+    text->color_out = color;
     sfText_setOutlineColor(text->text, color);
 }
 
