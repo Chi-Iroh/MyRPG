@@ -53,7 +53,6 @@ typedef struct {
 typedef struct {
     sfMusic *bgm_main;
     sfMusic *bgm_boss;
-    sfMusic *bgm_battle;
     sfMusic *bgm_menu;
     sfMusic *bgm_end;
     sound_t sfx_quest;
@@ -76,7 +75,6 @@ typedef struct {
 typedef enum {
     BGM_MAIN,
     BGM_BOSS,
-    BGM_BATTLE,
     BGM_MENU,
     BGM_END,
     BGM_MAX

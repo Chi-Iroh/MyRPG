@@ -24,7 +24,6 @@ const float bgm_volumes[2] = { AUDIO_BGM_DEFAULT_VOLUME, bgm_volume };
 const float sfx_volumes[2] = { AUDIO_BGM_DEFAULT_VOLUME, sfx_volume };
 
     *audio = (audio_t) {
-        .bgm_battle = NULL,
         .bgm_main = NULL,
         .bgm_boss = NULL,
         .bgm_menu = NULL,
