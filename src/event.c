@@ -34,6 +34,7 @@ void key_pressed(sfRenderWindow* wd, sfKeyEvent evt, game_src_t* g_src)
 
 void analyse_events(window_t* wd, sfEvent event, game_src_t *g_src)
 {
+    change_mouse_from_resolution(&event, wd->size);
     switch (event.type) {
         case sfEvtClosed:
             sfRenderWindow_close(wd->window); break;

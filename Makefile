@@ -9,6 +9,7 @@ SRC = 	src/main.c							\
 		src/init_g_src.c					\
 		src/menu.c							\
 		src/settings.c						\
+		src/resolution.c 					\
 		src/core.c 							\
 		src/pause_menu.c					\
 		src/event.c							\

@@ -50,6 +50,7 @@ void move_splash(window_t* wd, int main)
         }
     }
 }
+
 // function that animate and display a layer splash during window creation
 void splash_screen(window_t * wd, int x, int x_max)
 {
