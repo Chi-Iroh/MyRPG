@@ -7,9 +7,6 @@
 
 #include <my_rpg.h>
 #include <my_graphics.h>
-#include <character_menu.h>
-#include <audio.h>
-#include <my_macros.h>
 
 void change_mouse_from_resolution(sfEvent* evt, sfVector2f size)
 {

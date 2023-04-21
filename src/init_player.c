@@ -7,7 +7,6 @@
 
 #include <my_rpg.h>
 #include <my_graphics.h>
-#include <characters.h>
 
 void init_stat(stat_t *stat, sfVector3f stat_value, float hp)
 {
@@ -15,7 +14,10 @@ void init_stat(stat_t *stat, sfVector3f stat_value, float hp)
         .damage = stat_value.x,
         .defense = stat_value.y,
         .speed = stat_value.z,
-        .hp = hp
+        .hp = hp,
+        .level = 1,
+        .exp_point = 0,
+        .ui = NULL,
     };
 }
 

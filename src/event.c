@@ -7,8 +7,6 @@
 
 #include <my_rpg.h>
 #include <my_graphics.h>
-#include <audio.h>
-#include <my_macros.h>
 
 sfBool switch_bool(sfBool bool_value)
 {

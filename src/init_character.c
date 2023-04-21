@@ -7,9 +7,6 @@
 
 #include <my_rpg.h>
 #include <my_graphics.h>
-#include <audio.h>
-#include <my_macros.h>
-#include <character_menu.h>
 
 character_t* init_character(window_t* wd)
 {

@@ -7,8 +7,6 @@
 
 #include <my_rpg.h>
 #include <my_graphics.h>
-#include <audio.h>
-#include <my_macros.h>
 
 game_t* init_game(window_t* wd, list_button_t** btns, game_src_t* g_src)
 {

@@ -19,8 +19,17 @@
     #include <crowd.h>
     #include <math.h>
 
-    #include "characters.h"
+    #include <characters.h>
+    #include <countryball.h>
     #include "button_simple.h"
+    #include <my_macros.h>
+    #include <my.h>
+
+    typedef struct interface_s {
+        draw_t** stat_name;
+        draw_t** stat_nb;
+        button_s_t** stat_btns;
+    } interface_t;
 
     typedef struct {
         draw_t** title;
@@ -45,8 +54,8 @@
         button_s_t* b_save;
         button_s_t* b_load;
         button_s_t* b_settings;
+        button_s_t* b_quit;
         menu_cat_t* settings;
-        draw_t* bg;
         layer_t* pause_l;
         sfBool show;
     } pause_t;
@@ -70,10 +79,11 @@
     void menu(window_t* wd, game_src_t* g_src);
     void core(window_t* wd, game_src_t* g_src);
     void pause_menu(window_t* wd, game_src_t* g_src);
-    bool init_crowd(game_t *game, window_t* wd);
+    bool init_crowd(game_t *game, window_t* wd, list_button_t** a_btn);
     player_t *init_player(window_t* wd, game_t *game);
     void init_stat(stat_t *stat, sfVector3f stat_value, float hp);
-
+    interface_t* init_stat_interface(stat_t stat, layer_t* ui,
+        list_button_t** a_btn);
     void settings_core(window_t* wd, game_src_t* g_src, menu_cat_t* settings);
 
     menu_t* init_menu(window_t* wd, list_button_t** all_btn);

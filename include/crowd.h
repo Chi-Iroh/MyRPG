@@ -9,7 +9,7 @@
     #define CROWD
 
     #include <my_graphics.h>
-    #include <my_rpg.h>
+    #include "my_rpg.h"
     #include <characters.h>
     #include <character_menu.h>
 
@@ -19,6 +19,8 @@
     #define WD_HEIGHT 1080
     #define MAX_SPEED 0.05f
 
+    #define NB_STAT 6
+
     typedef struct {
         draw_t *fill;
         sfFloatRect area;
@@ -26,11 +28,16 @@
 
     typedef enum {UP, DOWN} dir_e;
 
+    struct interface_s;
+
     typedef struct stat_e {
         float damage;
         float hp;
         float speed;
         float defense;
+        int level;
+        int exp_point;
+        struct interface_s* ui;
     } stat_t;
 
     typedef enum {FALSE, TRUE} dead_e;

@@ -7,8 +7,6 @@
 
 #include <my_rpg.h>
 #include <my_graphics.h>
-#include <audio.h>
-#include <my_macros.h>
 
 bool save_to_file(char *filename, character_t *character)
 {

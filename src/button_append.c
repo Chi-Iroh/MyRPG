@@ -5,10 +5,8 @@
 ** button_append.c
 */
 
-#include <my_rpg.h>
 #include <my_graphics.h>
-#include <audio.h>
-#include <my_macros.h>
+#include <my_rpg.h>
 
 button_s_t* append_button_layer(layer_t* layer, button_s_t* btn)
 {

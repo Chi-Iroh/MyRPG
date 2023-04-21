@@ -8,7 +8,7 @@
 #ifndef BUTTON_SIMPLE_H
     #define BUTTON_SIMPLE_H
 
-    #include "my_rpg.h"
+    #include <my_rpg.h>
 
     #define IS_HOVER(b) (b->state == HOVER)
     #define IS_PRESSED(b) (b->state == PRESSED)

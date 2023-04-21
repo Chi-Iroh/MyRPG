@@ -5,7 +5,8 @@
 ** crowd.c
 */
 
-#include "../include/my_rpg.h"
+#include <my_rpg.h>
+#include <my_graphics.h>
 
 float calculate_sprite_distance(draw_t *player, draw_t *crowd)
 {

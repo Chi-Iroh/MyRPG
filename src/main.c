@@ -4,12 +4,9 @@
 ** File description:
 ** main for my_rgpg
 */
-#include <stdlib.h>
-#include <my_graphics.h>
-#include <audio.h>
+
 #include <my_rpg.h>
-#include <character_menu.h>
-#include <countryball.h>
+#include <my_graphics.h>
 
 int main(int argc, char **argv)
 {
@@ -17,7 +14,6 @@ int main(int argc, char **argv)
     window_t * window = create_window("49:3", mode, NULL);
     game_src_t* g_src = init_game_sources(window);
 
-    countryball_49_3();
     if (window == NULL || g_src == NULL) {
         write(2, "terminating process\n", 20);
         free_main(window, g_src);

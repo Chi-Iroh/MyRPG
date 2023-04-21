@@ -5,8 +5,8 @@
 ** progress_bar.c
 */
 
-#include "../include/my_rpg.h"
-#include "../lib/my_graphics/my_graphics.h"
+#include <my_rpg.h>
+#include <my_graphics.h>
 
 void init_progress_bar
 (window_t *wd, progress_bar_t *bar, data_t *data, shape_t *shape)

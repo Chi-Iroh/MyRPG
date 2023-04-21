@@ -7,8 +7,6 @@
 
 #include <my_rpg.h>
 #include <my_graphics.h>
-#include <audio.h>
-#include <my_macros.h>
 
 float get_value_sliding_button(sliding_button_t* s_btn)
 {

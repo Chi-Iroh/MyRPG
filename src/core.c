@@ -5,10 +5,8 @@
 ** core.c
 */
 
-#include <my_rpg.h>
 #include <my_graphics.h>
-#include <audio.h>
-#include <my_macros.h>
+#include <my_rpg.h>
 
 void game(window_t* wd, game_src_t* g_src)
 {

@@ -7,8 +7,6 @@
 
 #include <my_rpg.h>
 #include <my_graphics.h>
-#include <audio.h>
-#include <my_macros.h>
 
 draw_t** init_setting_titles(layer_t* layer)
 {

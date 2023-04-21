@@ -5,8 +5,8 @@
 ** rand.c
 */
 
-#include "../include/my_rpg.h"
-#include "../lib/my_graphics/my_graphics.h"
+#include <my_rpg.h>
+#include <my_graphics.h>
 
 sfTexture* rand_skin(void)
 {

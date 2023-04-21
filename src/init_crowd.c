@@ -62,7 +62,7 @@ mob_t **init_crowd_mob(window_t* wd)
     return mob;
 }
 
-bool init_crowd(game_t *game, window_t* wd)
+bool init_crowd(game_t *game, window_t* wd, list_button_t** a_btn)
 {
     game->crowd.player = init_player(wd, game);
     if (game->crowd.player == NULL) {
@@ -70,6 +70,8 @@ bool init_crowd(game_t *game, window_t* wd)
         game->crowd.cop = NULL;
         return false;
     }
+    game->crowd.player->stat.ui =
+    init_stat_interface(game->crowd.player->stat, wd->ui, a_btn);
     game->crowd.mob = init_crowd_mob(wd);
     game->crowd.cop = init_crowd_cop(wd);
     return true;

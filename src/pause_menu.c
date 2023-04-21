@@ -7,8 +7,6 @@
 
 #include <my_rpg.h>
 #include <my_graphics.h>
-#include <audio.h>
-#include <my_macros.h>
 
 void append_pause_button_layer(pause_t* pause)
 {
@@ -17,6 +15,7 @@ void append_pause_button_layer(pause_t* pause)
     append_button_layer(pause->pause_l, pause->b_load);
     append_button_layer(pause->pause_l, pause->b_settings);
     append_button_layer(pause->pause_l, pause->b_menu);
+    append_button_layer(pause->pause_l, pause->b_quit);
 }
 
 pause_t* init_pause_menu(window_t* wd, list_button_t** btns, game_src_t* g_src)
@@ -35,7 +34,8 @@ pause_t* init_pause_menu(window_t* wd, list_button_t** btns, game_src_t* g_src)
         set_3vector(800, 750, 0), size);
     pause->b_menu = set_button(btns, "RETOUR A LA CASE\nDEPART",
         set_3vector(800, 900, 0), size);
-    pause->bg = NULL;
+    pause->b_quit = set_button(btns, "ABANDONNER",
+        set_3vector(800, 1500, 0), size);
     append_pause_button_layer(pause);
     append_layer(wd->splash, pause->pause_l);
     pause->settings = g_src->menu->settings;

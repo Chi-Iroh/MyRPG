@@ -7,8 +7,6 @@
 
 #include <my_rpg.h>
 #include <my_graphics.h>
-#include <audio.h>
-#include <my_macros.h>
 
 button_s_t* set_button(list_button_t** a_btn, char* name,
     sfVector3f pos, sfVector2f size)
