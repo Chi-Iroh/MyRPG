@@ -74,7 +74,7 @@ void pause_menu(window_t* wd, game_src_t* g_src)
         while (sfRenderWindow_pollEvent(wd->window, &pause_evt))
             analyse_events(wd, pause_evt, g_src);
         pause_core(wd, g_src);
-        draw_layers(wd->window, wd->splash);
+        draw_layers(wd->window, wd->splash, wd->view);
         sfRenderWindow_display(wd->window);
     }
     g_src->game->pause_menu->pause_l->show = false;

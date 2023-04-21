@@ -6,11 +6,12 @@
 */
 #include "../include/layer.h"
 
-void draw_layers(sfRenderWindow * window, layer_t * layer)
+void draw_layers(sfRenderWindow * window, layer_t * layer, sfView * view)
 {
     layer_t * current = layer;
     while (current != NULL) {
-        draw_single_layer(window, current);
+        draw_single_layer(window, current, (current->type == BACKGROUND
+            || current->type == CORE || current->type == FX) ? view : NULL);
         current = current->next;
     }
 }
