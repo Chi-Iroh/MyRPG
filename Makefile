@@ -31,7 +31,8 @@ SRC = 	src/main.c							\
 		src/update.c						\
 		src/character_menu/character_menu.c	\
 		src/character_menu/init_free.c		\
-		src/character_menu/shrink_window.c
+		src/character_menu/shrink_window.c	\
+		src/countryball_49_3/countryball.c
 
 OBJ =   $(SRC:.c=.o)
 
@@ -82,7 +83,6 @@ $(NAME): make_libs $(OBJ)
 	@gcc $(OBJ) $(LD_PRELOAD) $(LDFLAGS) -o $(NAME)
 
 %.o: %.c
-	@echo "$< -> $@"
 	@$(CC) -c $(CFLAGS) -I ./include/ $< -o $@
 
 clean_libs:
