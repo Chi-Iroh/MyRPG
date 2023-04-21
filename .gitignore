@@ -13,6 +13,9 @@ vgcore.*
 StreetsOfRogueAssets
 *gdb*
 
+## useful note file
+!focus_note.txt
+
 # main
 my_rpg
 test*
