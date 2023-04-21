@@ -40,18 +40,17 @@
     void set_thick_text(text_t * text, int thick);
     void set_attributes_text(text_t * text, sfColor color_in,
                                 sfColor color_out, int thick);
-
     void set_origin_text(text_t * text, sfVector2f origin);
     sfVector2f get_position_text(text_t * text);
     float get_rotation_text(text_t * text);
     sfVector2f get_scale_text(text_t * text);
     sfVector2f get_origin_text(text_t * text);
+    const char * get_string_text(text_t * text);
     void move_text(text_t * text, sfVector2f offset);
     void scale_text(text_t * text, sfVector2f scale);
     void rotate_text(text_t * text, float angle);
     void modify_text(text_t * text, sfVector2f offset,
                     sfVector2f scale, float angle);
-
     void set_font_text(text_t * text, sfFont * font);
     void set_string_text(text_t * text, const char * string);
     void draw_text(sfRenderTexture * texture, text_t * text);

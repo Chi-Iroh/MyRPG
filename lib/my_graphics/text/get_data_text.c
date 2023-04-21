@@ -37,3 +37,8 @@ sfVector2f get_origin_text(text_t * text)
     vect = sfText_getOrigin((sfText *)(text->text));
     return vect;
 }
+
+const char * get_string_text(text_t * text)
+{
+    return text->string;
+}

@@ -95,6 +95,8 @@
     sfVector2f get_scale_draw(draw_t * draw);
     // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     sfVector2f get_origin_draw(draw_t * draw);
+    // TEXT
+    const char * get_string_draw(draw_t * draw);
     // SPRITE, SHAPE (CIRCLE & RECT), TEXT
     void move_draw(draw_t * draw, sfVector2f offset);
     // SPRITE, SHAPE (CIRCLE & RECT), TEXT
