@@ -125,6 +125,7 @@ void audio_free_sfx(sound_t *sound);
 bool audio_set_active_bgm(audio_t *audio, bgm_t bgm, bool start);
 bool audio_control_bgm(audio_t *audio, audio_control_t action);
 bool audio_play_sfx(audio_t *audio, sfx_t sfx);
+bool audio_set_bgm_pitch(audio_t *audio, float pitch);
 
 bool audio_is_volume_ok(float volume);
 void audio_update_volume(audio_t *audio);

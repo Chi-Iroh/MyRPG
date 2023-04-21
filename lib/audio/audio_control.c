@@ -52,3 +52,16 @@ bool audio_play_sfx(audio_t *audio, sfx_t sfx)
     sfx_functions[AUDIO_PLAY](sfx_ptr->sound);
     return true;
 }
+
+/*
+    Sets current BGM's pitch.
+    Does nothing there's no current BGM (returns false, otherwise true).
+*/
+bool audio_set_bgm_pitch(audio_t *audio, float pitch)
+{
+    if (audio->current_bgm) {
+        sfMusic_setPitch(audio->current_bgm, pitch);
+        return true;
+    }
+    return false;
+}
