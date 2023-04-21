@@ -51,17 +51,15 @@ void update_circle_cop
 {
     sfVector3f cord = calc_dist(pos_pl, cop_pos);
     sfVector3f newPosition;
-    if (cord.z < 10000.f) {
-        if (draw_within_thr(player->draw, cop->draw, 70) &&
-        sfTime_asSeconds(sfClock_getElapsedTime(cop->clock)) > 5
-        && get_size_draw(player->hp.fill).x > 0) {
-            sfVector2f size = get_size_draw(player->hp.fill);
-            set_size_draw(player->hp.fill, set_2vector(size.x - 25, size.y));
-            sfClock_restart(cop->clock);
-        }
-        newPosition.x = cop_pos.x + cord.x * 0.05f + rand_move();
-        newPosition.y = cop_pos.y + cord.y * 0.05f + rand_move();
+    if (draw_within_thr(player->draw, cop->draw, 70) &&
+    sfTime_asSeconds(sfClock_getElapsedTime(cop->clock)) > 5
+    && get_size_draw(player->hp.fill).x > 0) {
+        sfVector2f size = get_size_draw(player->hp.fill);
+        set_size_draw(player->hp.fill, set_2vector(size.x - 25, size.y));
+        sfClock_restart(cop->clock);
     }
+    newPosition.x = cop_pos.x + cord.x * 0.05f + rand_move();
+    newPosition.y = cop_pos.y + cord.y * 0.05f + rand_move();
     set_pos_draw
     (cop->hp.fill, set_3vector(newPosition.x, newPosition.y - 40, 0));
     set_pos_draw(cop->draw, newPosition);

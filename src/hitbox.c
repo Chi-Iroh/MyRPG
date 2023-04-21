@@ -48,5 +48,12 @@ void check_hitbox(crowd_t *crowd, int i, sfVector3f spritePosition)
     check_collision(crowd->cop[i]->draw, crowd->player->range)) {
         is_hit(crowd->cop[i], crowd->player);
         knock_back(crowd->cop[i], spritePosition, 50);
+        if (crowd->cop[i]->hp.fill->data->size.x <= 0) {
+            set_size_draw(crowd->player->exp.fill,
+            set_2vector(
+            get_size_draw(crowd->player->exp.fill).x + 10 * (rand_move() + 2),
+            get_size_draw(crowd->player->exp.fill).y));
+            crowd->cop[i]->dead = TRUE;
+        }
     }
 }

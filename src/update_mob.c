@@ -33,8 +33,8 @@ sfVector3f not_in_mob(mob_t *mob, draw_t *player)
         newPosition.x +  rand_move(),
         newPosition.y + (0.03 * mob->dir), 0
     };
-    float dx = get_position_draw(player).x - newPosition.x;
-    float dy = get_position_draw(player).y - newPosition.y;
+    float dx = get_position_draw(player).x - newPosition.x + rand_move();
+    float dy = get_position_draw(player).y - newPosition.y + rand_move();
     float distance = sqrt(dx * dx + dy * dy);
     if (distance < 50.0)
         newPosition = place_in_mob(mob, player);

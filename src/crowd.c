@@ -32,6 +32,8 @@ sfBool check_collision(draw_t *player, draw_t *crowd)
 
 void free_crowd(crowd_t *crowd)
 {
+    if (crowd->cop == NULL || crowd->mob == NULL || crowd->player == NULL)
+    return;
     sfClock_destroy(crowd->player->clock);
     for (int i = 0; i < CROWD_SIZE; i++) {
         sfClock_destroy(crowd->cop[i]->clock);
@@ -46,4 +48,12 @@ void free_crowd(crowd_t *crowd)
 void crowd(window_t* wd, crowd_t crowd)
 {
     update(&crowd);
+    if (crowd.player->exp.fill->data->size.x >= 250) {
+        float tmp = crowd.player->exp.fill->data->size.x - 250;
+        set_size_draw(crowd.player->exp.fill,
+        set_2vector(tmp, crowd.player->exp.fill->data->size.y));
+        crowd.player->stat.exp_point += 1;
+        crowd.player->stat.level += crowd.player->stat.level < 20 ?
+        1 : crowd.player->stat.level;
+    }
 }

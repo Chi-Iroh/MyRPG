@@ -52,7 +52,7 @@ void init_bar(player_t *player, window_t* wd)
     shape_t *shape_hp = create_shape(RECT, sfGreen, sfBlack, 3);
     init_progress_bar(wd, &player->hp, data_hp, shape_hp);
     data_t *data_exp = create_data(set_3vector(450, 15, 50),
-    set_2vector(250, 35), 0.f);
+    set_2vector(0, 35), 0.f);
     shape_t *shape_exp = create_shape(RECT, sfBlue, sfBlack, 3);
     init_progress_bar(wd, &player->exp, data_exp, shape_exp);
     data_t *data_hp_txt = create_data(set_3vector(10, 10, 50),

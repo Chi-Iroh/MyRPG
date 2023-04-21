@@ -29,7 +29,7 @@ void update_stat(stat_t *stat, int type)
     stat->exp_point--;
     stat->damage += type == 0 ? 1 : 0;
     stat->hp += type == 1 ? 5 : 0;
-    stat->speed += type == 2 ? 1 : 0;
+    stat->speed += type == 2 ? 10 : 0;
     stat->defense += type == 3 ? 1 : 0;
     update_stat_interface(stat->ui->stat_nb, *stat);
 }
