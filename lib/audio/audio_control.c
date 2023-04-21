@@ -42,12 +42,12 @@ bool audio_control_bgm(audio_t *audio, audio_control_t action)
 */
 bool audio_play_sfx(audio_t *audio, sfx_t sfx)
 {
-    sound_t *sfx_ptr = NULL;
+    sound_t *const sfx_ptr = audio ?
+        (sound_t*)((sfMusic**)audio + BGM_MAX) + sfx : NULL;
 
-    if (sfx < 0 || sfx >= SFX_MAX || !audio) {
+    if (sfx < 0 || sfx >= SFX_MAX || !audio || !sfx_ptr) {
         return false;
     }
-    sfx_ptr = (sound_t*)((sfMusic**)audio + BGM_MAX) + sfx;
     audio_update_volume(audio);
     sfx_functions[AUDIO_PLAY](sfx_ptr->sound);
     return true;

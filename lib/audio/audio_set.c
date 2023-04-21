@@ -16,13 +16,15 @@
 */
 bool audio_set_active_bgm(audio_t *audio, bgm_t bgm, bool start)
 {
-    if (bgm < 0 || bgm >= BGM_MAX) {
+    sfMusic *const new_bgm = audio ? *(bgm + (sfMusic**)(audio)) : NULL;
+
+    if (bgm < 0 || bgm >= BGM_MAX || !new_bgm) {
         return false;
     }
     if (audio->current_bgm) {
         bgm_functions[AUDIO_PAUSE](audio->current_bgm);
     }
-    audio->current_bgm = *(bgm + (sfMusic**)(audio));
+    audio->current_bgm = new_bgm;
     audio_update_volume(audio);
     if (start) {
         bgm_functions[AUDIO_PLAY](audio->current_bgm);
