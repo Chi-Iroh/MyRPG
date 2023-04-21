@@ -55,5 +55,7 @@ void crowd(window_t* wd, crowd_t crowd)
         crowd.player->stat.exp_point += 1;
         crowd.player->stat.level += crowd.player->stat.level < 20 ?
         1 : crowd.player->stat.level;
+        update_stat_interface(crowd.player->stat.ui->stat_nb,
+            crowd.player->stat);
     }
 }
