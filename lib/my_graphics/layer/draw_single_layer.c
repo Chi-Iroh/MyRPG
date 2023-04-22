@@ -5,10 +5,11 @@
 ** function that draw a specific layer to window
 */
 #include "../include/layer.h"
+#include <stdio.h>
 
 void draw_single_layer(sfRenderWindow * window, layer_t * layer)
 {
-    if (!layer->show) {
+    if (!layer->show || layer->draw == NULL) {
         return;
     } sfColor blank = {0.0, 0.0, 0.0, 0.0};
     sfRenderTexture_clear(layer->texture, blank);

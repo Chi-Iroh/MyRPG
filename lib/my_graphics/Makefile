@@ -57,10 +57,7 @@ SRC		=	vector/set_vector.c			\
 			draw/draw_draws.c			\
 			draw/free_single_draw.c		\
 			draw/free_draws.c			\
-			sort/algo.c					\
-			sort/rotate.c				\
 			sort/sort.c					\
-			sort/swap_push.c			\
 			shape/init_shape.c			\
 			shape/create_shape.c		\
 			shape/set_data_shape.c		\

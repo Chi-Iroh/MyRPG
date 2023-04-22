@@ -7,59 +7,33 @@
 
 #include "../include/sort.h"
 
-static int go_right(draw_t *l_a, int nb_nbr)
+static draw_t * algo(draw_t * list)
 {
-    int r = 0;
-    while (l_a->next->data->depth >= l_a->data->depth &&
-            l_a->previous->data->depth <= l_a->data->depth) {
-        l_a = l_a->next;
-        if (r > nb_nbr)
-            return -1;
-        r++;
-    }
-    return r;
-}
-
-static draw_t *algo(draw_t *l_a, int nb_nbr)
-{
-    int right = go_right(l_a, nb_nbr) + 1;
-    if (right == 0)
-        return l_a;
-    if (right <= nb_nbr / 2 && right != 0)
-        while (l_a->data->depth >= l_a->previous->data->depth)
-            rotate(&l_a);
-    if (right > nb_nbr / 2 && right != nb_nbr)
-        while (l_a->previous->data->depth <= l_a->data->depth)
-            rotate_right(&l_a);
-    l_a = partition(l_a, l_a->previous);
-    right = go_right(l_a, nb_nbr) + 1;
-    if (right <= nb_nbr / 2 && right != 0)
-        while (l_a->data->depth >= l_a->previous->data->depth)
-            rotate(&l_a);
-    if (right > nb_nbr / 2 && right != nb_nbr)
-        while (l_a->previous->data->depth <= l_a->data->depth)
-            rotate_right(&l_a);
-    return l_a;
+    int nb_swap = 1;
+    draw_t * first = list;
+    while (nb_swap > 0) {
+        draw_t * current = first;
+        nb_swap = 0;
+        while (current != NULL) {
+            if (current->next == NULL) {
+                current = current->next; continue;
+            } long double current_d = current->data->depth;
+            draw_t * next = current->next;
+            long double next_d = next->data->depth;
+            if (next_d < current_d) {
+                swap_draw_next(current); nb_swap++;
+                if (current == first) {
+                    first = next;
+                } continue;
+            } current = next;
+        }
+    } return first;
 }
 
 draw_t * sort_draws(draw_t * draw)
 {
-    draw_t * first = draw;
-    draw_t * last = draw;
-    int len = 1;
-    while (last->next != NULL) {
-        last = last->next;
-        len++;
-    }
-    first->previous = last;
-    last->next = first;
-    draw = algo(draw, len);
-    first = draw;
-    last = draw;
-    for (int i = 1; i < len; i++) {
-        last = last->next;
-    }
-    first->previous = NULL;
-    last->next = NULL;
+    if (draw == NULL)
+        return NULL;
+    draw = algo(draw);
     return draw;
 }

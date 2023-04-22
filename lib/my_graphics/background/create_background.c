@@ -33,7 +33,7 @@ void get_position(sfVector2f position, int ** map,
     } while (tmx->id != id) {
         tmx = tmx->next;
     } sfVector3f pos = set_3vector(position.x * 64,
-                                    position.y * 64 - tmx->height, 0.f);
+                                    position.y * 64 - tmx->height, -1000.f);
     sfVector2f size = set_2vector(tmx->width, tmx->height);
     char * path = get_path(id, tmx); draw_t * draw = NULL;
     data_t * data = create_data(pos, size, 0.f);
