@@ -8,6 +8,16 @@
 #include <my_rpg.h>
 #include <my_graphics.h>
 
+layer_t* init_background(void)
+{
+    layer_t* bg_l = create_layer(set_2vector(WD_WIDTH, WD_HEIGHT), NULL);
+    draw_t* bg = create_draw(create_shape(RECT, SF_GREY, sfWhite, 5), SHAPE,
+    create_data(set_3vector(30, 30, 0), set_2vector(1860, 1020), 0));
+    append_draw_layer(bg_l, bg);
+    bg_l->show = false;
+    return bg_l;
+}
+
 menu_t* init_menu(window_t* wd, list_button_t** all_btn)
 {
     menu_t* m = malloc(sizeof(menu_t));
@@ -23,29 +33,23 @@ menu_t* init_menu(window_t* wd, list_button_t** all_btn)
     m->b_start = append_button_layer(m->menu_l, m->b_start);
     m->b_settings = append_button_layer(m->menu_l, m->b_settings);
     m->b_quit = append_button_layer(m->menu_l, m->b_quit);
-    m->bg = NULL;
+    m->bg_l = init_background();
     append_layer(wd->splash, m->menu_l);
     m->settings = init_settings(all_btn, wd->splash);
+    append_layer(wd->splash, m->bg_l);
     return m;
 }
 
 void menu_core(window_t* wd, game_src_t* g_src)
 {
     if (IS_RELEASED(g_src->menu->b_start)) {
-        if (init_crowd(g_src->game, wd, &g_src->all_btn))
+        if (init_crowd(g_src->game, wd, &g_src->all_btn, g_src))
             g_src->menu->show = false;
         g_src->menu->b_start->state = NONE;
     }
-    if (IS_RELEASED(g_src->menu->b_settings) ||
-        IS_RELEASED(g_src->menu->settings->btn[0])) {
-        switch_layer_show(g_src->menu->settings->menu_cat_l);
-        switch_layer_show(g_src->menu->menu_l);
-        g_src->menu->b_settings->state = NONE;
-        g_src->menu->settings->btn[0]->state = NONE;
-    }
     if (IS_RELEASED(g_src->menu->b_quit))
         sfRenderWindow_close(wd->window);
-    settings_core(wd, g_src, g_src->menu->settings);
+    settings_core(wd, g_src, g_src->menu->b_settings, g_src->menu->menu_l);
 }
 
 void menu(window_t* wd, game_src_t* g_src)

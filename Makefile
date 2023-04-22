@@ -12,6 +12,7 @@ SRC = 	src/main.c							\
 		src/resolution.c 					\
 		src/core.c 							\
 		src/pause_menu.c					\
+		src/player_management.c 			\
 		src/event.c							\
 		src/manage_mouse.c					\
 		src/button.c						\

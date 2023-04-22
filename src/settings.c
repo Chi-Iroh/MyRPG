@@ -30,7 +30,7 @@ draw_t** init_setting_titles(layer_t* layer)
 menu_cat_t* init_settings(list_button_t** all_btn, layer_t* spl)
 {
     menu_cat_t* set = malloc(sizeof(menu_cat_t));
-    sfVector2f s[3] = {set_2vector(300, 75), set_2vector(200, 75)};
+    sfVector2f s[2] = {set_2vector(300, 75), set_2vector(200, 75)};
     float val[4] = {0, 100, 100, 75};
     char* name[5] = {"  MANIF PLANIFIEE", "1920x1080", "1280x720","960x540",
         "640x360"};
@@ -51,17 +51,27 @@ menu_cat_t* init_settings(list_button_t** all_btn, layer_t* spl)
     return set;
 }
 
-void settings_core(window_t* wd, game_src_t* g_src, menu_cat_t* settings)
+void settings_core(window_t* wd, game_src_t* g_src, button_s_t* set_btn,
+    layer_t* layer_to_switch)
 {
-    if (IS_PRESSED(settings->s_btn[0]->btn)) {
-        g_src->audio.bgm_volume = settings->s_btn[0]->value(settings->s_btn[0]);
+    if (IS_RELEASED(set_btn) || IS_RELEASED(g_src->menu->settings->btn[0])) {
+        switch_layer_show(g_src->menu->settings->menu_cat_l);
+        switch_layer_show(layer_to_switch);
+        switch_layer_show(g_src->menu->bg_l);
+        set_btn->state = NONE;
+        g_src->menu->settings->btn[0]->state = NONE;
+    }
+    if (IS_PRESSED(g_src->menu->settings->s_btn[0]->btn)) {
+        g_src->audio.bgm_volume =
+        g_src->menu->settings->s_btn[0]->value(g_src->menu->settings->s_btn[0]);
         audio_update_volume(&g_src->audio);
     }
-    if (IS_RELEASED(settings->s_btn[1]->btn)) {
-        g_src->audio.sfx_volume = settings->s_btn[1]->value(settings->s_btn[1]);
+    if (IS_RELEASED(g_src->menu->settings->s_btn[1]->btn)) {
+        g_src->audio.sfx_volume =
+        g_src->menu->settings->s_btn[1]->value(g_src->menu->settings->s_btn[1]);
         audio_update_volume(&g_src->audio);
         audio_play_sfx(&g_src->audio, SFX_QUEST);
-        settings->s_btn[1]->btn->state = NONE;
+        g_src->menu->settings->s_btn[1]->btn->state = NONE;
     }
-    resolutions(wd, settings);
+    resolutions(wd, g_src->menu->settings);
 }

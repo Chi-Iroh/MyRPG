@@ -26,6 +26,8 @@
     #include <my_macros.h>
     #include <my.h>
 
+    #define SF_GREY sfColor_fromRGBA(200, 200, 200, 100)
+
     typedef struct interface_s {
         draw_t** stat_name;
         draw_t** stat_nb;
@@ -36,6 +38,7 @@
         draw_t** title;
         button_s_t** btn;
         sliding_button_t** s_btn;
+        draw_t* bg;
         layer_t* menu_cat_l;
     } menu_cat_t;
 
@@ -44,7 +47,7 @@
         button_s_t* b_settings;
         button_s_t* b_quit;
         menu_cat_t* settings;
-        draw_t* bg;
+        layer_t* bg_l;
         layer_t* menu_l;
         sfBool show;
     } menu_t;
@@ -56,7 +59,9 @@
         button_s_t* b_load;
         button_s_t* b_settings;
         button_s_t* b_quit;
+        button_s_t* b_player;
         menu_cat_t* settings;
+        menu_cat_t* player;
         layer_t* pause_l;
         sfBool show;
     } pause_t;
@@ -81,14 +86,20 @@
     void menu(window_t* wd, game_src_t* g_src);
     void core(window_t* wd, game_src_t* g_src);
     void pause_menu(window_t* wd, game_src_t* g_src);
-    bool init_crowd(game_t *game, window_t* wd, list_button_t** a_btn);
+    menu_cat_t* init_management(window_t* wd, player_t* player,
+        list_button_t** a_btns);
+    bool init_crowd(game_t *game, window_t* wd, list_button_t** a_btn,
+        game_src_t* g_src);
     player_t *init_player(window_t* wd, game_t *game);
     void init_stat(stat_t *stat, sfVector3f stat_value, float hp);
     void update_stat_interface(draw_t** stat_nb, stat_t stat);
     void update_stat(stat_t *stat, int type);
     interface_t* init_stat_interface(stat_t stat, layer_t* ui,
         list_button_t** a_btn);
-    void settings_core(window_t* wd, game_src_t* g_src, menu_cat_t* settings);
+    void player_management_core(window_t* wd, game_src_t* g_src,
+        menu_cat_t* p_man);
+    void settings_core(window_t* wd, game_src_t* g_src, button_s_t* set_btn,
+        layer_t* layer_to_switch);
 
     menu_t* init_menu(window_t* wd, list_button_t** all_btn);
     menu_cat_t* init_settings(list_button_t** all_btn, layer_t* spl);

@@ -62,7 +62,8 @@ mob_t **init_crowd_mob(window_t* wd)
     return mob;
 }
 
-bool init_crowd(game_t *game, window_t* wd, list_button_t** a_btn)
+bool init_crowd(game_t *game, window_t* wd, list_button_t** a_btn,
+    game_src_t* g_src)
 {
     game->crowd = malloc(sizeof(crowd_t));
     game->crowd->player = init_player(wd, game);
@@ -80,5 +81,6 @@ bool init_crowd(game_t *game, window_t* wd, list_button_t** a_btn)
     create_data(set_3vector(10, 60, 0), set_2vector(340, 280), 0)));
     game->crowd->mob = init_crowd_mob(wd);
     game->crowd->cop = init_crowd_cop(wd);
+    game->pause_menu->player = init_management(wd, game->crowd->player, a_btn);
     return true;
 }
