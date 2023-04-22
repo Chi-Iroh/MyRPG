@@ -98,6 +98,7 @@ bool countryball_49_3(void)
 
     RETURN_VALUE_IF(!countryball_init(&countryball), false);
     while (sfRenderWindow_isOpen(countryball.window)) {
+        sfRenderWindow_setPosition(countryball.window, (sfVector2i){700, 300});
         is_wait_time_ok = sfClock_getElapsedTime
             (countryball.clock).microseconds >= FRAME_DELAY_MICROSECONDS;
         countryball_handle_events(&countryball);

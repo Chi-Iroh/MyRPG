@@ -113,6 +113,7 @@ character_type_t select_character(void)
         return CHARACTER_ERROR;
     }
     while (sfRenderWindow_isOpen(menu.window)) {
+        sfRenderWindow_setPosition(menu.window, (sfVector2i){540, 500});
         if (!sfRenderWindow_hasFocus(menu.window))
             sfRenderWindow_requestFocus(menu.window);
         character_menu_handle_events(&menu, &character);
