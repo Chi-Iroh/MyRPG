@@ -23,17 +23,6 @@ void stat_interaction(stat_t* stat)
     }
 }
 
-int game_core(window_t* wd, game_src_t* g_src)
-{
-    if (g_src->game->crowd->player->hp.fill->data->size.x <= 0) {
-        countryball_49_3();
-        return 1;
-    }
-    crowd(wd, g_src->game->crowd);
-    stat_interaction(&g_src->game->crowd->player->stat);
-    return 0;
-}
-
 void refresh(window_t *wd, game_src_t *g_src, sfClock *clock)
 {
     if (sfTime_asSeconds(sfClock_getElapsedTime(clock)) >= 0.01) {
@@ -42,6 +31,21 @@ void refresh(window_t *wd, game_src_t *g_src, sfClock *clock)
     }
     sfVector3f pos = get_position_draw(g_src->game->crowd->player->draw);
     view_center(wd, set_2vector(pos.x, pos.y));
+}
+
+int game_core(window_t* wd, game_src_t* g_src, sfClock *clock)
+{
+    if (g_src->game->crowd->player->hp.fill->data->size.x <= 0) {
+        refresh(wd, g_src, clock);
+        g_src->menu->show = true;
+        free_crowd(g_src->game->crowd);
+        g_src->game->crowd = NULL;
+        countryball_49_3();
+        return 1;
+    }
+    crowd(wd, g_src->game->crowd);
+    stat_interaction(&g_src->game->crowd->player->stat);
+    return 0;
 }
 
 void game(window_t* wd, game_src_t* g_src)
@@ -57,10 +61,7 @@ void game(window_t* wd, game_src_t* g_src)
             pause_menu(wd, g_src);
             continue;
         }
-        if (game_core(wd, g_src)) {
-            g_src->menu->show = true;
-            free_crowd(g_src->game->crowd);
-            g_src->game->crowd = NULL;
+        if (game_core(wd, g_src, clock)) {
             continue;
         }
         refresh(wd, g_src, clock);
