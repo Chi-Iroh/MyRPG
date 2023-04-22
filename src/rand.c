@@ -29,6 +29,7 @@ sfVector2f get_random_position(window_t *wd)
 {
     sfVector2f position;
     position.x = (float)(rand() % ((int)wd->map_size.x));
-    position.y = (float)(rand() % ((int)wd->map_size.y));
+    position.y = (float)(rand() % ((int)wd->map_size.y / 2) +
+    (int)wd->map_size.y / 4);
     return position;
 }

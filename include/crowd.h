@@ -59,7 +59,8 @@
 
     typedef enum in_mob_e {
         OUT,
-        IN
+        IN,
+        DEAD
     } in_mob_e;
 
     typedef struct mob_s {
@@ -112,8 +113,8 @@
     void move_range
     (player_t *player, sfVector2f move);
     void check_hitbox(crowd_t *crowd, int i, sfVector3f spritePosition);
-    void knock_back(cop_t *cop, sfVector3f spritePosition, float pw);
-    sfVector3f calc_dist(sfVector3f pos1, sfVector3f pos2);
+    void knock_back(cop_t *cop, player_t *player, float pw);
+    sfVector3f calc_dist(draw_t *draw1, draw_t *draw2);
     void manage_event(sfRenderWindow* window, sfEvent event, player_t *player);
     void free_crowd(crowd_t *crowd);
     sfBool check_collision(draw_t *player, draw_t *crowd);

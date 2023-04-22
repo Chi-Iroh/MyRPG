@@ -29,6 +29,7 @@ cop_t **init_crowd_cop(window_t* wd)
         sfTexture *texture = sfTexture_createFromFile
         ("images/spritesheets/crs_spritesheet.png", NULL);
         sfVector2f pos = get_random_position(wd);
+        pos.x += wd->map_size.x;
         data_t *data = create_data(set_3vector(pos.x, pos.y, 0),
         set_2vector(64, 72), 0.f);
         set_texture_sprite(sprite, texture, (sfIntRect) {0, 0, 64, 72});
@@ -50,6 +51,7 @@ mob_t **init_crowd_mob(window_t* wd)
         sprite_t *sprite = init_sprite();
         sfTexture *texture = rand_skin();
         sfVector2f pos = get_random_position(wd);
+        pos.x -= wd->map_size.x;
         data_t *data = create_data(set_3vector(pos.x, pos.y, 0),
         set_2vector(48, 72), 0.f);
         set_texture_sprite(sprite, texture, (sfIntRect) {0, 0, 48, 72});
@@ -57,8 +59,7 @@ mob_t **init_crowd_mob(window_t* wd)
         set_origin_draw(mob[i]->draw, (sfVector2f) {48 / 2, 72 / 2});
         append_draw_layer(wd->core, mob[i]->draw);
         mob[i]->in_mob = OUT;
-        mob[i]->dir = (pos.y > WD_HEIGHT / 2 && pos.y <= WD_HEIGHT) ? 1 : -1;
-
+        mob[i]->dir = 1;
     }
     return mob;
 }

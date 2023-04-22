@@ -39,10 +39,10 @@ void move_range
     set_3vector(hitboxPosition.x, hitboxPosition.y, 0));
 }
 
-void knock_back(cop_t *cop, sfVector3f spritePosition, float pw)
+void knock_back(cop_t *cop, player_t *player, float pw)
 {
     sfVector3f cop_pos = get_position_draw(cop->draw);
-    sfVector3f cord = calc_dist(cop_pos, spritePosition);
+    sfVector3f cord = calc_dist(cop->draw, player->draw);
     sfVector3f new_pos;
     new_pos.x = cop_pos.x + cord.x * pw;
     new_pos.y = cop_pos.y + cord.y * pw;
@@ -56,7 +56,7 @@ void check_hitbox(crowd_t *crowd, int i, sfVector3f spritePosition)
     if (crowd->cop[i]->dead != TRUE &&
     check_collision(crowd->cop[i]->draw, crowd->player->range)) {
         is_hit(crowd->cop[i], crowd->player);
-        knock_back(crowd->cop[i], spritePosition, 50);
+        knock_back(crowd->cop[i], crowd->player, 50);
         if (crowd->cop[i]->hp.fill->data->size.x <= 0) {
             set_size_draw(crowd->player->exp.fill,
             set_2vector(

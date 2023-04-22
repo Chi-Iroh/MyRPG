@@ -8,7 +8,7 @@
 #include <my_rpg.h>
 #include <my_graphics.h>
 
-sfVector3f place_in_mob(mob_t *mob, draw_t *player)
+void place_in_mob(mob_t *mob, draw_t *player)
 {
     float angle = (float)(rand() % 360);
     float r = (float)rand() / RAND_MAX * 180;
@@ -18,41 +18,29 @@ sfVector3f place_in_mob(mob_t *mob, draw_t *player)
         0
     };
     mob->in_mob = IN;
-    return newPosition;
+    set_pos_draw(mob->draw, newPosition);
 }
 
-sfVector3f not_in_mob(mob_t *mob, draw_t *player)
+void not_in_mob(mob_t *mob, draw_t *player)
 {
-    sfVector3f newPosition = (sfVector3f) {
-        get_position_draw(mob->draw).x,
-        get_position_draw(mob->draw).y,
-        0
-    };
-    if ((rand() % 5) == 0)
-    newPosition = (sfVector3f) {
-        rand_move(), (0.03 * mob->dir), 0
-    };
-    float dx = get_position_draw(player).x - newPosition.x + rand_move();
-    float dy = get_position_draw(player).y - newPosition.y + rand_move();
+    sfVector3f pos = get_position_draw(mob->draw);
+    sfVector2f move = set_2vector(0, 0);
+    if ((rand() % 10) == 0)
+        move = set_2vector((0.3 * mob->dir), rand_move());
+    sfVector3f pos_p = get_position_draw(player);
+    float dx = pos_p.x - pos.x;
+    float dy = pos_p.y - pos.y;
     float distance = sqrt(dx * dx + dy * dy);
-    if (distance < 50.0)
-        newPosition = place_in_mob(mob, player);
-    return newPosition;
+    move_draw(mob->draw, move);
+    if (distance < 50.0 && mob->in_mob != DEAD)
+        place_in_mob(mob, player);
 }
 
 void update_mob(mob_t *mob, crowd_t *crowd, sfVector2f move)
 {
 
-    if (mob->in_mob == OUT) {
-        sfVector3f newPosition = not_in_mob(mob, crowd->player->draw);
-        set_pos_draw(mob->draw, newPosition);
-        if (newPosition.x <= 0 || (newPosition.x) >= WD_WIDTH) {
-            newPosition.x *= -1;
-        }
-        if (newPosition.y <= 0 || (newPosition.y) >= WD_HEIGHT) {
-            mob->dir *= -1;
-        }
-    }
+    if (mob->in_mob == OUT || mob->in_mob == DEAD)
+        not_in_mob(mob, crowd->player->draw);
     if (mob->in_mob == IN)
         move_draw(mob->draw, move);
 }

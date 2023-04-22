@@ -102,8 +102,7 @@ void init_hitbox(player_t *player, window_t *wd, data_t *data)
     data_t *fst = create_data(set_3vector(55, 830, 0), set_2vector(160, -160),
     0);
     sprite_t *sprite = init_sprite();
-    sfTexture *texture = sfTexture_createFromFile
-    ("images/Fist.png", NULL);
+    sfTexture *texture = sfTexture_createFromFile ("images/Fist.png", NULL);
     set_texture_sprite(sprite, texture, (sfIntRect) {0, 0, 139, 160});
     draw_t *fist = create_draw(sprite, SPRITE, fst);
     append_draw_layer(wd->ui, fist);
