@@ -55,6 +55,7 @@ SRC		=	vector/set_vector.c			\
 			draw/intersect.c			\
 			draw/draw_single_draw.c		\
 			draw/draw_draws.c			\
+			draw/remove_single_draw.c	\
 			draw/free_single_draw.c		\
 			draw/free_draws.c			\
 			sort/sort.c					\

@@ -132,6 +132,9 @@
     void draw_single_draw(sfRenderTexture * texture, draw_t * draw);
     void draw_draws(sfRenderTexture * texture, draw_t * draw);
 
+    // ### ### Remove ### ###
+    void remove_single_draw(draw_t * draw);
+
     // ### ### Free ### ###
     void free_single_draw(draw_t * draw);
     void free_draws(draw_t * draw);
