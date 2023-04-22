@@ -8,7 +8,11 @@
 
 void free_text(text_t * text)
 {
-    sfText_destroy(text->text);
-    sfFont_destroy(text->font);
+    if (text == NULL)
+        return;
+    if (text->text != NULL)
+        sfText_destroy(text->text);
+    if (text->font != NULL)
+        sfFont_destroy(text->font);
     free(text);
 }
