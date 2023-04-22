@@ -13,7 +13,7 @@
     #include <characters.h>
     #include <character_menu.h>
 
-    #define CROWD_SIZE 200
+    #define CROWD_SIZE 50
     #define MAX_SPRITES 25
     #define WD_WIDTH 1920
     #define WD_HEIGHT 1080
@@ -106,6 +106,6 @@
     void free_crowd(crowd_t *crowd);
     sfBool check_collision(draw_t *player, draw_t *crowd);
     void display_crowd(sfRenderWindow *window, crowd_t *crowd);
-    void crowd(window_t* wd, crowd_t crowd);
+    void crowd(window_t* wd, crowd_t *crowd);
 
 #endif /* CROWD_T */

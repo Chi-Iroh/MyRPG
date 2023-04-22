@@ -64,7 +64,7 @@
     typedef struct {
         pause_t* pause_menu;
         character_t* character;
-        crowd_t crowd;
+        crowd_t *crowd;
     } game_t;
 
     typedef struct {

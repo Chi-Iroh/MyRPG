@@ -99,6 +99,6 @@ player_t *init_player(window_t* wd, game_t *game)
     append_draw_layer(wd->core, player->draw);
     init_bar(player, wd);
     init_hitbox(player, wd, data);
-    init_stat(&player->stat, set_3vector(5, 5, 10), 20);
+    init_stat(&player->stat, set_3vector(5, 5, 8), 20);
     return player;
 }

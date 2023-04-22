@@ -35,7 +35,7 @@ cop_t **init_crowd_cop(window_t* wd)
         cop[i]->draw = create_draw(sprite, SPRITE, data);
         set_origin_draw(cop[i]->draw, (sfVector2f) {48 / 2, 72 / 2});
         append_draw_layer(wd->core, cop[i]->draw);
-        init_stat(&cop[i]->stat, set_3vector(5, 5, 5), 20);
+        init_stat(&cop[i]->stat, set_3vector(5, 5, 5), 80);
         init_cop_hp_bar(wd, cop[i], pos);
     }
     return cop;
@@ -64,20 +64,21 @@ mob_t **init_crowd_mob(window_t* wd)
 
 bool init_crowd(game_t *game, window_t* wd, list_button_t** a_btn)
 {
-    game->crowd.player = init_player(wd, game);
-    if (game->crowd.player == NULL) {
-        game->crowd.mob = NULL;
-        game->crowd.cop = NULL;
+    game->crowd = malloc(sizeof(crowd_t));
+    game->crowd->player = init_player(wd, game);
+    if (game->crowd->player == NULL) {
+        game->crowd = NULL;
+        free(game->crowd);
         return false;
     }
-    game->crowd.player->stat.ui =
-    init_stat_interface(game->crowd.player->stat, wd->ui, a_btn);
-    update_stat_interface(game->crowd.player->stat.ui->stat_nb,
-        game->crowd.player->stat);
+    game->crowd->player->stat.ui =
+    init_stat_interface(game->crowd->player->stat, wd->ui, a_btn);
+    update_stat_interface(game->crowd->player->stat.ui->stat_nb,
+        game->crowd->player->stat);
     append_draw_layer(wd->ui, create_draw(create_shape(RECT,
     sfColor_fromRGBA(220, 220, 220, 100), sfBlack, 3), SHAPE,
     create_data(set_3vector(10, 60, 0), set_2vector(340, 280), 0)));
-    game->crowd.mob = init_crowd_mob(wd);
-    game->crowd.cop = init_crowd_cop(wd);
+    game->crowd->mob = init_crowd_mob(wd);
+    game->crowd->cop = init_crowd_cop(wd);
     return true;
 }

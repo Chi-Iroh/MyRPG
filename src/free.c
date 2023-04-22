@@ -25,7 +25,7 @@ void free_g_src(game_src_t* g_src)
         tmp = g_src->all_btn, g_src->all_btn = g_src->all_btn->next)
             free_button_list(tmp);
     free_button_list(tmp);
-    free_crowd(&g_src->game->crowd);
+    free_crowd(g_src->game->crowd);
     free(g_src->menu->settings->btn);
     free(g_src->menu->settings->s_btn);
     free(g_src->menu->settings->title);
