@@ -35,7 +35,7 @@ pause_t* init_pause_menu(window_t* wd, list_button_t** btns, game_src_t* g_src)
     pause->b_menu = set_button(btns, "RETOUR A LA CASE\nDEPART",
         set_3vector(800, 900, 0), size);
     pause->b_quit = set_button(btns, "ABANDONNER",
-        set_3vector(800, 1500, 0), size);
+        set_3vector(1500, 900, 0), size);
     append_pause_button_layer(pause);
     append_layer(wd->splash, pause->pause_l);
     pause->settings = g_src->menu->settings;
@@ -44,6 +44,8 @@ pause_t* init_pause_menu(window_t* wd, list_button_t** btns, game_src_t* g_src)
 
 void pause_core(window_t* wd, game_src_t* g_src)
 {
+    if (IS_RELEASED(g_src->game->pause_menu->b_quit))
+        sfRenderWindow_close(wd->window);
     if (IS_RELEASED(g_src->game->pause_menu->b_resume)) {
         g_src->game->pause_menu->show = false;
         g_src->game->pause_menu->b_resume->state = NONE;
