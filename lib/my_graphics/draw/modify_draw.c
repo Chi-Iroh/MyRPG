@@ -14,8 +14,8 @@ void move_draw(draw_t * draw, sfVector2f offset)
     }
     draw->data->position.x += offset.x;
     draw->data->position.y += offset.y;
-    draw->hitbox.left += offset.x;
-    draw->hitbox.top += offset.y;
+    draw->hitbox.left = draw->data->position.x;
+    draw->hitbox.top = draw->data->position.y;
     switch (draw->type) {
         case SHAPE:
             move_shape((shape_t *)(draw->drawable), offset);
