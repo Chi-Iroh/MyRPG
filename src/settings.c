@@ -32,14 +32,14 @@ menu_cat_t* init_settings(list_button_t** all_btn, layer_t* spl)
     menu_cat_t* set = malloc(sizeof(menu_cat_t));
     sfVector2f s[2] = {set_2vector(300, 75), set_2vector(200, 75)};
     float val[4] = {0, 100, 100, 75};
-    char* name[5] = {"  MANIF PLANIFIEE", "1920x1080", "1280x720","960x540",
-        "640x360"};
+    char* name[6] = {"  MANIF PLANIFIEE", "FULLSCREEN", "1920x1080", "1280x720",
+        "960x540", "640x360"};
     set->menu_cat_l = create_layer(set_2vector(1920, 1080), NULL);
     set->title = init_setting_titles(set->menu_cat_l);
-    set->btn = malloc(sizeof(button_s_t*) * 5);
+    set->btn = malloc(sizeof(button_s_t*) * 6);
     set->btn[0] = set_button(all_btn, name[0], set_3vector(100, 900, 0), s[0]);
     set->btn[0] = append_button_layer(set->menu_cat_l, set->btn[0]);
-    for (int i = 1; i < 5; i++) {
+    for (int i = 1; i < 6; i++) {
         set->btn[i] = set_button(all_btn, name[i],
         set_3vector(1500, 300 + i * 100, 0), s[1]);
         set->btn[i] = append_button_layer(set->menu_cat_l, set->btn[i]);

@@ -10,7 +10,7 @@
 
 int main(int argc, char **argv)
 {
-    sfVideoMode mode = {1920, 1080, 32};
+    sfVideoMode mode = {WD_WIDTH, WD_HEIGHT, 32};
     window_t * window = create_window("49:3", mode, NULL);
     game_src_t* g_src = init_game_sources(window);
 
