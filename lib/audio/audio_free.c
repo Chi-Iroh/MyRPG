@@ -28,6 +28,10 @@ void audio_free(audio_t *audio)
     FREE_IF_ALLOCATED(audio->bgm_main, sfMusic_destroy);
     FREE_IF_ALLOCATED(audio->bgm_boss, sfMusic_destroy);
     FREE_IF_ALLOCATED(audio->bgm_menu, sfMusic_destroy);
-    audio_free_sfx(&audio->sfx_explosion);
     audio_free_sfx(&audio->sfx_quest);
+    audio_free_sfx(&audio->sfx_explosion);
+    audio_free_sfx(&audio->sfx_error);
+    audio_free_sfx(&audio->sfx_49_3);
+    audio_free_sfx(&audio->sfx_level_up);
+    audio_free_sfx(&audio->sfx_ok);
 }
