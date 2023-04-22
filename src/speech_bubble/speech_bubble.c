@@ -107,8 +107,8 @@ bool speech_bubble_spawn(game_t* game, char* str, sfVector3f pos, float time)
         speech_bubble_free(&bubble, true);
         return false;
     }
-    append_draw_layer(game->layer_fx, bubble->sprite);
     append_draw_layer(game->layer_fx, bubble->text);
+    append_draw_layer(game->layer_fx, bubble->sprite);
     return true;
 }
 
@@ -120,7 +120,6 @@ void speech_bubble_clean(game_t *game)
     while (true) {
         time = sfClock_getElapsedTime(game->list_bubbles->bubble->clock);
         if (time.microseconds > game->list_bubbles->bubble->time * 1'000'000) {
-            puts("here");
             remove_single_draw(game->list_bubbles->bubble->sprite);
             remove_single_draw(game->list_bubbles->bubble->text);
             speech_bubble_remove(&game->list_bubbles);

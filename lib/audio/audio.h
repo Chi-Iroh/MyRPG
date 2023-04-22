@@ -54,12 +54,12 @@ typedef struct {
     sfMusic *bgm_main;
     sfMusic *bgm_boss;
     sfMusic *bgm_menu;
-    sfMusic *bgm_end;
     sound_t sfx_quest;
     sound_t sfx_explosion;
     sound_t sfx_level_up;
     sound_t sfx_error;
     sound_t sfx_ok;
+    sound_t sfx_49_3;
     sfMusic *current_bgm;
     audio_state_t bgm_state;
     float sfx_volume;
@@ -76,7 +76,6 @@ typedef enum {
     BGM_MAIN,
     BGM_BOSS,
     BGM_MENU,
-    BGM_END,
     BGM_MAX
 } bgm_t;
 
@@ -94,6 +93,7 @@ typedef enum {
     SFX_LEVEL_UP,
     SFX_ERROR,
     SFX_OK,
+    SFX_49_3,
     SFX_MAX
 } sfx_t;
 
