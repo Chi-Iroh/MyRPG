@@ -76,7 +76,7 @@ void pause_menu(window_t* wd, game_src_t* g_src)
             analyse_events(wd, pause_evt, g_src);
         pause_core(wd, g_src);
         //printf("%d\n", speech_bubble_draw_text((sfVector3f){100,100,1}, &g_src->speech_bubble));
-        draw_layers(wd->window, wd->splash, wd->view);
+        draw_layers(wd->window, wd->splash);
         sfRenderWindow_display(wd->window);
     }
     g_src->game->pause_menu->pause_l->show = false;

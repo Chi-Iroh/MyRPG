@@ -7,6 +7,18 @@
 #include "../include/draw.h"
 #include <stdio.h>
 
+void draw_draws(sfRenderTexture * texture, draw_t * draw)
+{
+    draw_t * current = draw;
+    while (current != NULL) {
+        draw_single_draw(texture, current);
+        current = current->next;
+    }
+}
+
+/*
+DEPRECATED:
+
 static void simple_draw_draws(sfRenderTexture * texture, draw_t * draw)
 {
     draw_t * current = draw;
@@ -32,7 +44,7 @@ static bool in_view(draw_t * draw, sfVector2f min, sfVector2f max)
 
 void draw_draws(sfRenderTexture * texture, draw_t * draw, sfView * view)
 {
-    if (/*view == NULL*/1) {
+    if (view == NULL) {
         simple_draw_draws(texture, draw); return;
     }
     sfVector2f center = sfView_getCenter(view);
@@ -47,3 +59,4 @@ void draw_draws(sfRenderTexture * texture, draw_t * draw, sfView * view)
         current = current->next;
     }
 }
+*/

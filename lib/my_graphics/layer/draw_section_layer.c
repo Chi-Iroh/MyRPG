@@ -6,8 +6,7 @@
 */
 #include "../include/layer.h"
 
-void draw_section_layer(sfRenderWindow * window, layer_t * layer,
-                        sfView * view)
+void draw_section_layer(sfRenderWindow * window, layer_t * layer)
 {
     layer_t * current = layer;
     layer_type_t type = current->type;
@@ -15,8 +14,7 @@ void draw_section_layer(sfRenderWindow * window, layer_t * layer,
         if (current->type != type) {
             return;
         }
-        draw_single_layer(window, current, (current->type == BACKGROUND
-            || current->type == CORE || current->type == FX) ? view : NULL);
+        draw_single_layer(window, current);
         current = current->next;
     }
 }

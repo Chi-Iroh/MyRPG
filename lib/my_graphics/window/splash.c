@@ -58,6 +58,6 @@ void splash_screen(window_t * wd, int x, int x_max)
     wd->splash->draw->next->next->data->size.x =
                             (float)x / (float)(x_max) * 1900;
     sfRenderTexture_setView(wd->splash->texture, wd->view);
-    draw_single_layer(wd->window, wd->splash, NULL);
+    draw_single_layer(wd->window, wd->splash);
     sfRenderWindow_display(wd->window);
 }

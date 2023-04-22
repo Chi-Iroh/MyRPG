@@ -57,7 +57,7 @@ void menu(window_t* wd, game_src_t* g_src)
         while (sfRenderWindow_pollEvent(wd->window, &menu_evt))
             analyse_events(wd, menu_evt, g_src);
         menu_core(wd, g_src);
-        draw_layers(wd->window, wd->splash, wd->view);
+        draw_layers(wd->window, wd->splash);
         sfRenderWindow_display(wd->window);
     }
     g_src->menu->menu_l->show = false;
