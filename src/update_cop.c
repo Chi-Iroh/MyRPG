@@ -55,7 +55,7 @@ sfVector3f get_closer_mob(cop_t *cop, crowd_t *crowd)
     float dist_min = 10000;
     int tmp = 0;
     for (int i = 0; i < CROWD_SIZE; i++) {
-        if (crowd->mob[i]->in_mob == IN)
+        if (crowd->mob[i]->in_mob != OUT)
         continue;
         cord = calc_dist(crowd->mob[i]->draw, cop->draw);
         tmp = dist_min > cord.z ? i: tmp;
