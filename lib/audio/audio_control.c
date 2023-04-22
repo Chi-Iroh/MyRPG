@@ -49,8 +49,10 @@ bool audio_play_sfx(audio_t *audio, sfx_t sfx)
         return false;
     }
     audio_update_volume(audio);
-    sfx_functions[AUDIO_PLAY](sfx_ptr->sound);
-    return true;
+    if (sfx_ptr->sound) {
+        sfx_functions[AUDIO_PLAY](sfx_ptr->sound);
+    }
+    return sfx_ptr != NULL;
 }
 
 /*

@@ -9,6 +9,7 @@
 
 #include <stdbool.h>
 #include <SFML/Graphics.h>
+#include <audio.h>
 
 typedef struct countryball_s {
     sfRenderWindow *window;
@@ -17,7 +18,7 @@ typedef struct countryball_s {
     sfClock *clock;
 } countryball_t;
 
-bool countryball_49_3(void);
+bool countryball_49_3(audio_t *audio);
 
 extern const char *const SPRITESHEET_PATH;
 extern const unsigned N_COLUMNS;

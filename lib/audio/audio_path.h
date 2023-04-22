@@ -35,4 +35,5 @@ const char *const SFX_QUEST_PATH = SFX("Discord Notification");
 const char *const SFX_EXPLOSION_PATH = SFX("Explosion");
 const char *const SFX_LEVEL_UP_PATH = SFX("Level Up");
 const char *const SFX_ERROR_PATH = SFX("Error");
-const char *const SFX_OK_PATH = SFX("49.3");
+const char *const SFX_OK_PATH = SFX("Nyah");
+const char *const SFX_49_3_PATH = SFX("49.3");

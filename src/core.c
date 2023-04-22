@@ -40,7 +40,8 @@ int game_core(window_t* wd, game_src_t* g_src, sfClock *clock)
         g_src->menu->show = true;
         free_crowd(g_src->game->crowd);
         g_src->game->crowd = NULL;
-        countryball_49_3();
+        audio_control_bgm(&g_src->audio, AUDIO_STOP);
+        countryball_49_3(&g_src->audio);
         return 1;
     }
     crowd(wd, g_src->game->crowd, g_src->game->stat_ui);

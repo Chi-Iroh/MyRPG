@@ -137,6 +137,7 @@ extern const char *const SFX_EXPLOSION_PATH;
 extern const char *const SFX_LEVEL_UP_PATH;
 extern const char *const SFX_ERROR_PATH;
 extern const char *const SFX_OK_PATH;
+extern const char *const SFX_49_3_PATH;
 
 extern const float AUDIO_DONT_CHANGE_VOLUME;
 extern const float AUDIO_BGM_DEFAULT_VOLUME;

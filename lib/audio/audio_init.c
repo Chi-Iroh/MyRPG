@@ -87,6 +87,7 @@ static bool audio_init_impl(audio_t *audio, float bgm, float sfx)
     status &= audio_init_sfx(&audio->sfx_level_up, SFX_LEVEL_UP_PATH, sfx);
     status &= audio_init_sfx(&audio->sfx_error, SFX_ERROR_PATH, sfx);
     status &= audio_init_sfx(&audio->sfx_ok, SFX_OK_PATH, sfx);
+    status &= audio_init_sfx(&audio->sfx_49_3, SFX_49_3_PATH, sfx);
     return status;
 }
 

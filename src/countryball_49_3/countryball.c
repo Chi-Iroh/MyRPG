@@ -55,7 +55,8 @@ static bool countryball_init(countryball_t *countryball)
     return true;
 }
 
-static void countryball_draw(countryball_t *countryball, bool draw_next)
+static void countryball_draw
+(countryball_t *countryball, bool draw_next, audio_t *audio)
 {
     static unsigned n_line = 0;
     static unsigned n_column = 0;
@@ -66,9 +67,11 @@ static void countryball_draw(countryball_t *countryball, bool draw_next)
         .top = n_line * FRAME_SIZE.y,
     };
 
+    if (n_line == 0 && n_column == 0) {
+        audio_play_sfx(audio, SFX_49_3);
+    }
     sfSprite_setTextureRect(countryball->sprite, frame);
-    sfRenderWindow_drawSprite
-        (countryball->window, countryball->sprite, NULL);
+    sfRenderWindow_drawSprite(countryball->window, countryball->sprite, NULL);
     if (draw_next) {
         n_line += n_column == N_COLUMNS;
         n_line *= n_line != N_LINES;
@@ -91,7 +94,7 @@ static void countryball_handle_events(countryball_t *countryball)
     }
 }
 
-bool countryball_49_3(void)
+bool countryball_49_3(audio_t *audio)
 {
     countryball_t countryball;
     bool is_wait_time_ok = false;
@@ -103,12 +106,13 @@ bool countryball_49_3(void)
             (countryball.clock).microseconds >= FRAME_DELAY_MICROSECONDS;
         countryball_handle_events(&countryball);
         sfRenderWindow_clear(countryball.window, sfWhite);
-        countryball_draw(&countryball, is_wait_time_ok);
+        countryball_draw(&countryball, is_wait_time_ok, audio);
         sfRenderWindow_display(countryball.window);
         if (is_wait_time_ok) {
             sfClock_restart(countryball.clock);
         }
     }
+    sfSound_stop(audio->sfx_49_3.sound);
     countryball_free(&countryball);
     return true;
 }
