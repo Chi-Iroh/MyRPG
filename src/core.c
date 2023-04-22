@@ -33,6 +33,7 @@ void game(window_t* wd, game_src_t* g_src)
 {
     wd->splash->show = false;
     sfClock * clock = sfClock_create();
+    speech_bubble_draw_text((sfVector3f){1000,1000,0}, &g_src->speech_bubble);
     for (sfEvent evt;
         sfRenderWindow_isOpen(wd->window) && !g_src->menu->show;) {
         while (sfRenderWindow_pollEvent(wd->window, &evt))

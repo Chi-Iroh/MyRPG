@@ -10,8 +10,8 @@
 #include <speech_bubble.h>
 #include <my_rpg.h>
 
-const unsigned SPEECH_BUBBLE_HEIGHT = 24;
-const unsigned SPEECH_BUBBLE_WIDTH = 96;
+const unsigned SPEECH_BUBBLE_HEIGHT = 64;
+const unsigned SPEECH_BUBBLE_WIDTH = 256;
 
 void speech_bubble_free(speech_bubble_t *speech_bubble)
 {
@@ -54,9 +54,9 @@ static bool speech_bubble_alloc(speech_bubble_t *bubble)
         .z = bubble->pos.z
     };
     data_t *data = create_data(pos, bubble->size, 0);
-    sprite_t *sprite = data ? create_sprite(bubble->texture, bubble->rect) : NULL;
+    sprite_t *sprite = data ?
+    create_sprite(bubble->texture, set_rectangle(0, 0, 256, 64)) : NULL;
     draw_t *draw = sprite ? create_draw(sprite, SPRITE, data) : NULL;
-
     bubble->bubble_data = data;
     bubble->bubble_sprite = sprite;
     bubble->bubble_draw = draw;
@@ -89,7 +89,6 @@ static void speech_bubble_init
     bubble->text_draw = NULL;
 }
 
-
 bool speech_bubble_draw_text
 (sfVector3f bottom_left_pos, speech_bubble_t *bubble)
 {
@@ -103,7 +102,7 @@ bool speech_bubble_draw_text
         speech_bubble_free(bubble);
         return false;
     }
-    append_draw_layer(bubble->layer, bubble->bubble_draw);
     append_draw_layer(bubble->layer, bubble->text_draw);
+    append_draw_layer(bubble->layer, bubble->bubble_draw);
     return true;
 }

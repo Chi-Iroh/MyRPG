@@ -68,15 +68,12 @@ void pause_menu(window_t* wd, game_src_t* g_src)
     wd->splash->show = true;
     audio_set_active_bgm(&g_src->audio, BGM_MENU, 1);
     audio_set_bgm_pitch(&g_src->audio, 1.5);
-    g_src->speech_bubble.str = "Hello World!";
     for (sfEvent pause_evt; sfRenderWindow_isOpen(wd->window) &&
         g_src->game->pause_menu->show;) {
         move_splash(wd, 0);
         while (sfRenderWindow_pollEvent(wd->window, &pause_evt))
             analyse_events(wd, pause_evt, g_src);
         pause_core(wd, g_src);
-        g_src->speech_bubble.layer = wd->splash;
-        //printf("%d\n", speech_bubble_draw_text((sfVector3f){100,100,10000}, &g_src->speech_bubble));
         draw_layers(wd->window, wd->splash);
         sfRenderWindow_display(wd->window);
     }
@@ -84,5 +81,4 @@ void pause_menu(window_t* wd, game_src_t* g_src)
     wd->splash->show = false;
     audio_set_bgm_pitch(&g_src->audio, 1);
     audio_set_active_bgm(&g_src->audio, BGM_MAIN, 1);
-    //speech_bubble_free(&g_src->speech_bubble);
 }

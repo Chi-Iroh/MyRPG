@@ -28,9 +28,9 @@ static bool init_speech_bubble(speech_bubble_t *bubble, layer_t *layer)
         .bubble_draw = NULL,
         .bubble_sprite = NULL,
         .pos = { 0, 0, 0 },
-        .rect = { 0, 0, 0, 0 },
+        .rect = { 0, 0, 96, 24 },
         .size = { 0, 0 },
-        .str = NULL,
+        .str = "Hello World !",
         .text = NULL,
         .text_data = NULL,
         .text_draw = NULL,
@@ -44,7 +44,7 @@ game_src_t* init_game_sources(window_t* wd)
     list_button_t* btns = NULL;
     g_src->menu = init_menu(wd, &btns);
     g_src->game = init_game(wd, &btns, g_src);
-    init_speech_bubble(&g_src->speech_bubble, wd->splash/*fx*/);
+    init_speech_bubble(&g_src->speech_bubble, wd->fx);
     g_src->game->pause_menu->pause_l->show = false;
     g_src->all_btn = btns;
     audio_init(&g_src->audio, AUDIO_DEFAULT_VOLUME);
