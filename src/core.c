@@ -50,8 +50,9 @@ int game_core(window_t* wd, game_src_t* g_src, sfClock *clock)
 
 void game(window_t* wd, game_src_t* g_src)
 {
-    wd->splash->show = false;
     sfClock * clock = sfClock_create();
+
+    wd->splash->show = false;
     for (sfEvent evt;
         sfRenderWindow_isOpen(wd->window) && !g_src->menu->show;) {
         while (sfRenderWindow_pollEvent(wd->window, &evt))
