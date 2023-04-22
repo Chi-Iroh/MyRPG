@@ -8,7 +8,16 @@
 #include <my_rpg.h>
 #include <my_graphics.h>
 
-sfVector2f move_player(player_t *player)
+bool check_pos(draw_t *draw, window_t *wd)
+{
+    if (intersect_with_id(draw, wd->core->draw, 29) == true) {
+        printf("true\n");
+        return true;
+    }
+    return false;
+}
+
+sfVector2f move_player(player_t *player, window_t *wd)
 {
     sfVector2f move = {0.f, 0.f};
     if (sfKeyboard_isKeyPressed(sfKeyQ))
@@ -20,13 +29,15 @@ sfVector2f move_player(player_t *player)
     if (sfKeyboard_isKeyPressed(sfKeyS))
         move.y += player->stat.speed / 100;
     move.y != 0 && move.x != 0 ? move.x /= 1.33, move.y /= 1.33 : 0;
+
+    check_pos(player->draw, wd);
     move_draw(player->draw, set_2vector(move.x, move.y));
     return move;
 }
 
-void update(crowd_t *crowd)
+void update(crowd_t *crowd, window_t *wd)
 {
-    sfVector2f move = move_player(crowd->player);
+    sfVector2f move = move_player(crowd->player, wd);
     sfVector3f spritePosition = get_position_draw(crowd->player->draw);
     if (move.x != 0 || move.y != 0)
         move_range(crowd->player, move);

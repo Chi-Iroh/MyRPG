@@ -10,7 +10,7 @@ bool intersect_with_draw(draw_t * draw1, draw_t * draw2)
 {
     sfIntRect rect1 = draw1->hitbox;
     sfIntRect rect2 = draw2->hitbox;
-    return (bool)sfIntRect_intersects(&rect1, &rect2, NULL);
+    return sfIntRect_intersects(&rect1, &rect2, NULL);
 }
 
 bool intersect_with_id(draw_t * draw1, draw_t * list, int id)

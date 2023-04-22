@@ -10,6 +10,8 @@
 void set_pos_draw(draw_t * draw, sfVector3f position)
 {
     draw->data->position = position;
+    draw->hitbox.left = position.x;
+    draw->hitbox.top = position.y;
     switch (draw->type) {
         case SHAPE:
             set_pos_shape((shape_t *)(draw->drawable), position);

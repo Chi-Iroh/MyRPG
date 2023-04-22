@@ -71,6 +71,7 @@
         cop_t **cop;
         mob_t **mob;
         player_t *player;
+        sfClock *clock;
     } crowd_t;
 
     /*progress_bar.c*/
@@ -90,7 +91,7 @@
 
     /*update.c*/
 
-    void update(crowd_t *crowd);
+    void update(crowd_t *crowd, window_t *wd);
     float rand_move(void);
     void update_mob(mob_t *mob, crowd_t *crowd, sfVector2f move);
     void update_cop(cop_t *cop, crowd_t *crowd, sfVector3f spritePosition);
