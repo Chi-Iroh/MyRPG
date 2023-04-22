@@ -28,19 +28,19 @@
         sfBool (*is_hover)(struct button_s* , sfMouseMoveEvent*);
         sfBool (*is_released)(struct button_s* , sfMouseButtonEvent*);
         enum e_gui_state state;
-        struct sliding_button* s_btn;
+        struct sliding_button_s* s_btn;
         layer_t* layer_on;
     } button_s_t;
 
-    typedef struct list_button {
+    typedef struct list_button_s {
         button_s_t* btn;
-        struct list_button* next;
+        struct list_button_s* next;
     } list_button_t;
 
-    typedef struct sliding_button {
+    typedef struct sliding_button_s {
         float min_value;
         float max_value;
-        float (*value)(struct sliding_button*);
+        float (*value)(struct sliding_button_s*);
         draw_t* line;
         button_s_t* btn;
     } sliding_button_t;

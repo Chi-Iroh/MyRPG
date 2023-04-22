@@ -10,7 +10,7 @@
 #include <stdbool.h>
 #include <SFML/Graphics.h>
 
-typedef struct {
+typedef struct countryball_s {
     sfRenderWindow *window;
     sfTexture *spritesheet;
     sfSprite *sprite;

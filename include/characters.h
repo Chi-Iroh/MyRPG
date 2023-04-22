@@ -20,20 +20,20 @@
         Beware of members order !
         Must be the same as in src/character_menu/character_menu.c
     */
-    typedef enum {
-        CHARACTER_RAILWAY_WORKER = 0,
-        CHARACTER_DOCTOR = 1,
-        CHARACTER_ART_STUDENT = 2,
-        CHARACTER_POLITICS_STUDENT = 3,
-        CHARACTER_PREFECT_SON = 4,
-        CHARACTER_WORKER = 5,
-        CHARACTER_TROUBLEMAKER = 6,
+    typedef enum character_type_e {
+        CHARACTER_RAILWAY_WORKER,
+        CHARACTER_DOCTOR,
+        CHARACTER_ART_STUDENT,
+        CHARACTER_POLITICS_STUDENT,
+        CHARACTER_PREFECT_SON,
+        CHARACTER_WORKER,
+        CHARACTER_TROUBLEMAKER,
         CHARACTER_MAX,
         CHARACTER_NONE,
         CHARACTER_ERROR
     } character_type_t;
 
-    typedef enum {
+    typedef enum character_origin_e {
         FROM_MARSEILLE,
         FROM_BRETAGNE,
         FROM_CORSE,
@@ -42,7 +42,7 @@
         FROM_SEINE_ST_DENIS
     } character_origin_t;
 
-    typedef enum {
+    typedef enum trade_union_e {
         CGT,
         NO_TRADE_UNION,
         LREM,
@@ -51,26 +51,26 @@
         HARD = LREM
     } trade_union_t;
 
-    typedef enum {
+    typedef enum weapon_e {
         NO_WEAPON = 0,
         SPRAY_PAINT = 1 << 0,
         FIREWORKS_MORTAR = 1 << 1,
         BASEBALL_BAT = 1 << 2
     } weapon_t;
 
-    typedef enum {
+    typedef enum armor_e {
         NO_ARMOR = 0
     } armor_t;
 
-    typedef struct inv_slot {
+    typedef struct inv_slot_s {
         draw_t* object;
         draw_t* slot;
         sfBool is_selected;
-        struct inv_slot* prev;
-        struct inv_slot* next;
+        struct inv_slot_s* prev;
+        struct inv_slot_s* next;
     } inv_slot_t;
 
-    typedef struct {
+    typedef struct character_s {
         drawable_t;
         character_type_t type;
         unsigned char hp;

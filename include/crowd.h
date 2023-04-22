@@ -8,8 +8,10 @@
 #ifndef CROWD
     #define CROWD
 
+    #include <rpg_types.h>
+    #include <rpg_types.h>
     #include <my_graphics.h>
-    #include "my_rpg.h"
+    #include <my_rpg.h>
     #include <characters.h>
     #include <character_menu.h>
 
@@ -21,18 +23,19 @@
 
     #define NB_STAT 6
 
-    extern const int CHARACTERS_BASE_STATS[CHARACTER_MAX][5];
-
-    typedef struct {
+    typedef struct progress_bar_s {
         draw_t *fill;
         sfFloatRect area;
     } progress_bar_t;
 
-    typedef enum {UP, DOWN} dir_e;
+    typedef enum dir_e {
+        UP,
+        DOWN
+    } dir_e;
 
     struct interface_s;
 
-    typedef struct stat_e {
+    typedef struct stat_s {
         float damage;
         float hp;
         float speed;
@@ -41,9 +44,12 @@
         int exp_point;
     } stat_t;
 
-    typedef enum {FALSE, TRUE} dead_e;
+    typedef enum dead_e {
+        FALSE,
+        TRUE
+    } dead_e;
 
-    typedef struct cop {
+    typedef struct cop_s {
         sfClock *clock;
         draw_t *draw;
         stat_t stat;
@@ -51,15 +57,18 @@
         dead_e dead;
     } cop_t;
 
-    typedef enum {OUT, IN} in_mob_e;
+    typedef enum in_mob_e {
+        OUT,
+        IN
+    } in_mob_e;
 
-    typedef struct mob {
+    typedef struct mob_s {
         draw_t *draw;
         in_mob_e in_mob;
         int dir;
     } mob_t;
 
-    typedef struct player {
+    typedef struct player_s {
         sfClock *clock;
         draw_t *draw;
         stat_t stat;
@@ -71,7 +80,7 @@
         stat_t base;
     } player_t;
 
-    typedef struct crowd {
+    typedef struct crowd_s {
         cop_t **cop;
         mob_t **mob;
         player_t *player;

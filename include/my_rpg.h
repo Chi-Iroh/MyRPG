@@ -8,6 +8,7 @@
 #ifndef MY_RPG_H
     #define MY_RPG_H
 
+    #include <rpg_types.h>
     #include <stdbool.h>
     #include <stdio.h>
     #include <stdlib.h>
@@ -19,10 +20,10 @@
     #include <crowd.h>
     #include <math.h>
 
+    #include <speech_bubble.h>
     #include <characters.h>
     #include <countryball.h>
-    #include <speech_bubble.h>
-    #include "button_simple.h"
+    #include <button_simple.h>
     #include <my_macros.h>
     #include <my.h>
 
@@ -34,7 +35,7 @@
         button_s_t** stat_btns;
     } interface_t;
 
-    typedef struct {
+    typedef struct menu_cat_s {
         draw_t** title;
         button_s_t** btn;
         sliding_button_t** s_btn;
@@ -43,7 +44,7 @@
         void** other;
     } menu_cat_t;
 
-    typedef struct {
+    typedef struct menu_s {
         button_s_t* b_start;
         button_s_t* b_settings;
         button_s_t* b_quit;
@@ -53,7 +54,7 @@
         sfBool show;
     } menu_t;
 
-    typedef struct {
+    typedef struct pause_s {
         button_s_t* b_resume;
         button_s_t* b_menu;
         button_s_t* b_save;
@@ -67,18 +68,19 @@
         sfBool show;
     } pause_t;
 
-    typedef struct {
+    typedef struct game_s {
         pause_t* pause_menu;
         crowd_t *crowd;
         interface_t* stat_ui;
+        list_bubble_t* list_bubbles;
+        layer_t *layer_fx;
     } game_t;
 
-    typedef struct {
+    typedef struct game_src_s {
         menu_t* menu;
         game_t* game;
         list_button_t* all_btn;
         audio_t audio;
-        speech_bubble_t speech_bubble;
     } game_src_t;
 
 
