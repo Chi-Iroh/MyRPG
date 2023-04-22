@@ -89,7 +89,7 @@ player_t *init_player(window_t* wd, game_t *game)
     }
     player->clock = sfClock_create();
     data_t *data = create_data(set_3vector(WD_WIDTH / 2 + 400,
-    WD_HEIGHT / 2 + 400, 50), set_2vector(48, 72), 0.f);
+    WD_HEIGHT / 2 + 400, 0), set_2vector(48, 72), 0.f);
     sprite_t *sprite = init_sprite();
     sfTexture *texture = init_player_text(player->type);
     set_texture_sprite(sprite, texture, (sfIntRect) {0, 0, 48, 72});

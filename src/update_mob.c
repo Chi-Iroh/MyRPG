@@ -30,8 +30,7 @@ sfVector3f not_in_mob(mob_t *mob, draw_t *player)
     };
     if ((rand() % 5) == 0)
     newPosition = (sfVector3f) {
-        newPosition.x +  rand_move(),
-        newPosition.y + (0.03 * mob->dir), 0
+        rand_move(), (0.03 * mob->dir), 0
     };
     float dx = get_position_draw(player).x - newPosition.x + rand_move();
     float dy = get_position_draw(player).y - newPosition.y + rand_move();

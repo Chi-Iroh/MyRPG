@@ -98,7 +98,7 @@
 
     /**/
     void move_range
-    (draw_t *draw, sfVector2f move, sfVector3f spritePosition, float dist);
+    (player_t *player, sfVector2f move, float dist);
     void check_hitbox(crowd_t *crowd, int i, sfVector3f spritePosition);
     void knock_back(cop_t *cop, sfVector3f spritePosition, float pw);
     sfVector3f calc_dist(sfVector3f pos1, sfVector3f pos2);
