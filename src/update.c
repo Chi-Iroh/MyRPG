@@ -19,27 +19,25 @@ bool check_pos(draw_t *draw, window_t *wd)
 
 sfVector2f move_player(player_t *player, window_t *wd)
 {
-    sfVector2f move = {0.f, 0.f}; int opt = 0;
+    sfVector2f move = {0.f, 0.f}; sfVector2f dir;
     if (sfKeyboard_isKeyPressed(sfKeyQ))
-        {move.x -= player->stat.speed / 100; opt = 1;}
+        {move.x -= player->stat.speed / 100;}
     if (sfKeyboard_isKeyPressed(sfKeyD))
-        {move.x += player->stat.speed / 100; opt = 2;}
+        {move.x += player->stat.speed / 100;}
     if (sfKeyboard_isKeyPressed(sfKeyZ))
-        {move.y -= player->stat.speed / 100; opt = 3;}
+        {move.y -= player->stat.speed / 100;}
     if (sfKeyboard_isKeyPressed(sfKeyS))
-        {move.y += player->stat.speed / 100; opt = 4;}
+        {move.y += player->stat.speed / 100;}
     move.y != 0 && move.x != 0 ? move.x /= 1.33, move.y /= 1.33 : 0;
     move_draw(player->draw, set_2vector(move.x, move.y));
-    if (check_pos(player->draw, wd)) {
-        move.x = 0.f; move.y = 0.f;
-        if (opt == 1)
-            move.x += player->stat.speed / 100;
-        if (opt == 2)
-            move.x -= player->stat.speed / 100;
-        if (opt == 3)
-            move.y += player->stat.speed / 100;
-        if (opt == 4)
-            move.y -= player->stat.speed / 100;
+    if ((move.x != 0 || move.y != 0) && check_pos(player->draw, wd)) {
+        dir.x = move.x > 0 ? 1 : move.x < 0 ? -1 : 0;
+        dir.y = move.y > 0 ? 1 : move.y < 0 ? -1 : 0;
+        move.x = 0; move.y = 0;
+        move.x += dir.x == -1 ? player->stat.speed / 100 : 0;
+        move.x -= dir.x == 1 ? player->stat.speed / 100 : 0;
+        move.y += dir.y == -1 ? player->stat.speed / 100 : 0;
+        move.y -= dir.y == 1 ? player->stat.speed / 100 : 0;
         move.y != 0 && move.x != 0 ? move.x /= 1.33, move.y /= 1.33 : 0;
         move_draw(player->draw, set_2vector(move.x, move.y));
     }
