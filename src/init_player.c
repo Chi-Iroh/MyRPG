@@ -95,7 +95,7 @@ player_t *init_player(window_t* wd, game_t *game)
     set_texture_sprite(sprite, texture, (sfIntRect) {0, 0, 48, 72});
     player->draw = create_draw(sprite, SPRITE, data);
     set_origin_draw(player->draw, set_2vector
-    (data->size.x / 2, data->size.y / 2));
+    (data->size.x / 2, data->size.y));
     append_draw_layer(wd->core, player->draw);
     init_bar(player, wd);
     init_hitbox(player, wd, data);
