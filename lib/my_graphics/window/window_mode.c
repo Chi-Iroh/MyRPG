@@ -19,6 +19,10 @@ void window_windowed(window_t * window, const char * title,
         sfImage_destroy(icon);
     }
     sfRenderWindow_setFramerateLimit(window->window, 120);
+    sfVector2u size = sfRenderWindow_getSize(window->window);
+    window->size.x = (float)size.x;
+    window->size.y = (float)size.y;
+    window->fullscreen = false;
 }
 
 void window_fullscreen(window_t * window, const char * title,
@@ -34,4 +38,8 @@ void window_fullscreen(window_t * window, const char * title,
         sfImage_destroy(icon);
     }
     sfRenderWindow_setFramerateLimit(window->window, 120);
+    sfVector2u size = sfRenderWindow_getSize(window->window);
+    window->size.x = (float)size.x;
+    window->size.y = (float)size.y;
+    window->fullscreen = true;
 }

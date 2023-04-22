@@ -17,5 +17,6 @@ window_t * init_window(void)
     window->core = NULL;
     window->fx = NULL;
     window->ui = NULL;
+    window->fullscreen = false;
     return window;
 }

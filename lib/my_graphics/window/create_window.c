@@ -57,5 +57,6 @@ window_t * create_window(const char * title, const sfVideoMode mode,
     window->ui->next = window->splash;
     window->splash->previous = window->ui;
     window->splash->type = SPLASH;
+    window->fullscreen = false;
     return window;
 }

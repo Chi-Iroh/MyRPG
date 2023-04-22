@@ -32,6 +32,7 @@
         sfVector2f map_size;
         sfRenderWindow * window;
         sfView * view;
+        bool fullscreen;
         layer_t * background;
         layer_t * core;
         layer_t * fx;
