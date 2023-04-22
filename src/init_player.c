@@ -8,15 +8,33 @@
 #include <my_rpg.h>
 #include <my_graphics.h>
 
-void init_stat(stat_t *stat, sfVector3f stat_value, float hp)
+const int CHARACTERS_MAX_BASE_STATS[CHARACTER_MAX][5] = {
+    [CHARACTER_RAILWAY_WORKER] = {3,20, 12, 6, 0},
+    [CHARACTER_DOCTOR] = {-1, 50, 8, 4, 4},
+    [CHARACTER_ART_STUDENT] = {3, 20, 10, 2, 6},
+    [CHARACTER_POLITICS_STUDENT] = {1, 21, 10, 12, 0},
+    [CHARACTER_PREFECT_SON] = {5, 25, 5, 12, 0},
+    [CHARACTER_WORKER] = {5, 25, 5, 5, 5},
+    [CHARACTER_TROUBLEMAKER] = {12, 10, 10, 1, 0},
+};
+
+void init_stat(stat_t *stat, stat_t* base, character_type_t type)
 {
-    *stat = (stat_t) {
-        .damage = stat_value.x,
-        .defense = stat_value.y,
-        .speed = stat_value.z,
-        .hp = hp,
+    *base = (stat_t) {
+        .damage = CHARACTERS_MAX_BASE_STATS[type][0],
+        .defense = CHARACTERS_MAX_BASE_STATS[type][1],
+        .speed = CHARACTERS_MAX_BASE_STATS[type][2],
+        .hp = CHARACTERS_MAX_BASE_STATS[type][3],
         .level = 1,
-        .exp_point = 0,
+        .exp_point = CHARACTERS_MAX_BASE_STATS[type][4],
+    };
+    *stat = (stat_t) {
+        .damage = base->damage,
+        .defense = base->defense,
+        .speed = base->speed,
+        .hp = base->hp,
+        .level = base->level,
+        .exp_point = base->exp_point,
     };
 }
 
@@ -112,6 +130,6 @@ player_t *init_player(window_t* wd, game_t *game)
     append_draw_layer(wd->core, player->draw);
     init_bar(player, wd);
     init_hitbox(player, wd, data);
-    init_stat(&player->stat, set_3vector(5, 5, 8), 20);
+    init_stat(&player->stat, &player->base, player->type);
     return player;
 }

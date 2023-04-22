@@ -36,6 +36,7 @@ menu_t* init_menu(window_t* wd, list_button_t** all_btn)
     m->bg_l = init_background();
     append_layer(wd->splash, m->menu_l);
     m->settings = init_settings(all_btn, wd->splash);
+    m->settings->other = NULL;
     append_layer(wd->splash, m->bg_l);
     return m;
 }

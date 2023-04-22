@@ -21,6 +21,8 @@
 
     #define NB_STAT 6
 
+    extern const int CHARACTERS_BASE_STATS[CHARACTER_MAX][5];
+
     typedef struct {
         draw_t *fill;
         sfFloatRect area;
@@ -66,6 +68,7 @@
         draw_t *range;
         draw_t *cooldown;
         character_type_t type;
+        stat_t base;
     } player_t;
 
     typedef struct crowd {

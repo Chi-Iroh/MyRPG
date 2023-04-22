@@ -40,6 +40,7 @@
         sliding_button_t** s_btn;
         draw_t* bg;
         layer_t* menu_cat_l;
+        void** other;
     } menu_cat_t;
 
     typedef struct {
@@ -90,10 +91,13 @@
     bool init_crowd(game_t *game, window_t* wd, list_button_t** a_btn,
         game_src_t* g_src);
     player_t *init_player(window_t* wd, game_t *game);
-    void init_stat(stat_t *stat, sfVector3f stat_value, float hp);
+    void init_stat(stat_t *stat, stat_t* base, character_type_t type);
     void update_stat_ui(stat_t stat, interface_t* stat_ui);
     void update_stat(stat_t *stat, int type, interface_t* stat_ui);
+    button_s_t* init_stat_interface_bis(int i, list_button_t** a_btn, layer_t* ui);
     interface_t* init_stat_interface(layer_t* ui, list_button_t** a_btn);
+    void stat_interaction(stat_t* stat, interface_t* stat_ui);
+    void stat_interaction_p_man(stat_t* stat, stat_t base, interface_t* stat_ui);
     void player_management_core(window_t* wd, game_src_t* g_src,
         menu_cat_t* p_man);
     void settings_core(window_t* wd, game_src_t* g_src, button_s_t* set_btn,

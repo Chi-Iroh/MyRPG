@@ -36,6 +36,7 @@ SRC = 	src/main.c							\
 		src/countryball_49_3/countryball.c	\
 		src/init_player.c					\
 		src/stat_interface.c 				\
+		src/management_interaction.c		\
 		src/hitbox.c						\
 		src/speech_bubble.c
 

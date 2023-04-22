@@ -28,6 +28,7 @@
         CHARACTER_PREFECT_SON = 4,
         CHARACTER_WORKER = 5,
         CHARACTER_TROUBLEMAKER = 6,
+        CHARACTER_MAX,
         CHARACTER_NONE,
         CHARACTER_ERROR
     } character_type_t;

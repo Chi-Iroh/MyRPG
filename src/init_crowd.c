@@ -35,7 +35,8 @@ cop_t **init_crowd_cop(window_t* wd)
         cop[i]->draw = create_draw(sprite, SPRITE, data);
         set_origin_draw(cop[i]->draw, (sfVector2f) {64 / 2, 72 / 2});
         append_draw_layer(wd->core, cop[i]->draw);
-        init_stat(&cop[i]->stat, set_3vector(5, 5, 5), 80);
+        cop[i]->stat = (stat_t) {.damage = 5, .hp = 80, .speed = 5,
+        .defense = 5};
         init_cop_hp_bar(wd, cop[i], pos);
     }
     return cop;

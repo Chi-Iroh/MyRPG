@@ -26,11 +26,15 @@ void update_stat_ui(stat_t stat, interface_t* stat_ui)
 
 void update_stat(stat_t *stat, int type, interface_t* stat_ui)
 {
-    stat->exp_point--;
+    stat->exp_point -= type > 3 ? -1 : 1;
     stat->damage += type == 0 ? 1 : 0;
     stat->hp += type == 1 ? 5 : 0;
     stat->speed += type == 2 ? 1 : 0;
     stat->defense += type == 3 ? 1 : 0;
+    stat->damage -= type == 4 ? 1 : 0;
+    stat->hp -= type == 5 ? 5 : 0;
+    stat->speed -= type == 6 ? 1 : 0;
+    stat->defense -= type == 7 ? 1 : 0;
     update_stat_ui(*stat, stat_ui);
 }
 
