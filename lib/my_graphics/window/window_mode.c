@@ -11,7 +11,7 @@ void window_windowed(window_t * window, const char * title,
 {
     sfContextSettings sett = sfRenderWindow_getSettings(window->window);
     sfRenderWindow_destroy(window->window);
-    window->window = sfRenderWindow_create(mode, title, sfDefaultStyle, &sett);
+    window->window = sfRenderWindow_create(mode, title, sfClose, &sett);
     if (file != NULL) {
         sfImage * icon = sfImage_createFromFile(file);
         sfRenderWindow_setIcon(window->window, sfImage_getSize(icon).x,
