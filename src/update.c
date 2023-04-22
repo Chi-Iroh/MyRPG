@@ -29,7 +29,7 @@ void update(crowd_t *crowd)
     sfVector2f move = move_player(crowd->player);
     sfVector3f spritePosition = get_position_draw(crowd->player->draw);
     if (move.x != 0 || move.y != 0)
-        move_range(crowd->player, move, 50);
+        move_range(crowd->player->range, move, spritePosition, 50);
     for (int i = 0; i < CROWD_SIZE; i++) {
         update_cop(crowd->cop[i], crowd, spritePosition);
         update_mob(crowd->mob[i], crowd, move);

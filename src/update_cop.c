@@ -61,6 +61,7 @@ void update_circle_cop
     }
     newPosition.x = cop_pos.x + cord.x * (cop->stat.speed / 100) + rand_move();
     newPosition.y = cop_pos.y + cord.y * (cop->stat.speed / 100) + rand_move();
+    newPosition.z = 0;
     set_pos_draw
     (cop->hp.fill, set_3vector(newPosition.x, newPosition.y - 40, 0));
     set_pos_draw(cop->draw, newPosition);
