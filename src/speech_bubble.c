@@ -34,7 +34,7 @@ static bool speech_bubble_text_alloc(speech_bubble_t *bubble)
     const sfColor black = sfBlack;
     data_t *data = create_data(pos, bubble->size, 0);
     text_t *text = data ? create_text(bubble->str, NULL, black) : NULL;
-    draw_t *draw = text ? create_draw(text, SPRITE, data) : NULL;
+    draw_t *draw = text ? create_draw(text, TEXT, data) : NULL;
 
     bubble->text_data = data;
     bubble->text = text;
