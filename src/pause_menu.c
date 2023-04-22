@@ -48,7 +48,7 @@ pause_t* init_pause_menu(window_t* wd, list_button_t** btns, game_src_t* g_src)
     append_pause_button_layer(pause);
     append_layer(wd->splash, pause->pause_l);
     pause->settings = g_src->menu->settings;
-    pause->player = NULL;
+    pause->player = init_management(wd, btns);
     return pause;
 }
 

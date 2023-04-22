@@ -81,6 +81,5 @@ bool init_crowd(game_t *game, window_t* wd, list_button_t** a_btn,
     create_data(set_3vector(10, 60, 0), set_2vector(340, 280), 0)));
     game->crowd->mob = init_crowd_mob(wd);
     game->crowd->cop = init_crowd_cop(wd);
-    game->pause_menu->player = init_management(wd, game->crowd->player, a_btn);
     return true;
 }

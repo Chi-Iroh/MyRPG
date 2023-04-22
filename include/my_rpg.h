@@ -86,8 +86,7 @@
     void menu(window_t* wd, game_src_t* g_src);
     void core(window_t* wd, game_src_t* g_src);
     void pause_menu(window_t* wd, game_src_t* g_src);
-    menu_cat_t* init_management(window_t* wd, player_t* player,
-        list_button_t** a_btns);
+    menu_cat_t* init_management(window_t* wd, list_button_t** a_btns);
     bool init_crowd(game_t *game, window_t* wd, list_button_t** a_btn,
         game_src_t* g_src);
     player_t *init_player(window_t* wd, game_t *game);

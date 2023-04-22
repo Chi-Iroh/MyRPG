@@ -28,8 +28,7 @@ draw_t** init_p_man_titles(layer_t* layer)
     return titles;
 }
 
-menu_cat_t* init_management(window_t* wd, player_t* player,
-    list_button_t** a_btns)
+menu_cat_t* init_management(window_t* wd, list_button_t** a_btns)
 {
     menu_cat_t* p_man = malloc(sizeof(menu_cat_t));
     sfVector2f s[2] = {set_2vector(300, 75), set_2vector(200, 75)};
