@@ -64,6 +64,7 @@
         progress_bar_t hp;
         progress_bar_t exp;
         draw_t *range;
+        draw_t *cooldown;
         character_type_t type;
     } player_t;
 
@@ -71,7 +72,6 @@
         cop_t **cop;
         mob_t **mob;
         player_t *player;
-        sfClock *clock;
     } crowd_t;
 
     /*progress_bar.c*/

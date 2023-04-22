@@ -11,7 +11,6 @@
 bool check_pos(draw_t *draw, window_t *wd)
 {
     if (intersect_with_id(draw, wd->core->draw, 29) == true) {
-        printf("true\n");
         return true;
     }
     return false;
@@ -35,6 +34,18 @@ sfVector2f move_player(player_t *player, window_t *wd)
     return move;
 }
 
+void update_attack_cl(player_t *player)
+{
+    float time = sfTime_asSeconds
+    (sfClock_getElapsedTime(player->clock));
+    if (time <= 0.8)
+    set_size_draw(player->cooldown,
+    set_2vector(player->cooldown->data->size.x, time * -200));
+    if (time > 0.8)
+    set_size_draw(player->cooldown,
+    set_2vector(player->cooldown->data->size.x , -160));
+}
+
 void update(crowd_t *crowd, window_t *wd)
 {
     sfVector2f move = move_player(crowd->player, wd);
@@ -45,11 +56,11 @@ void update(crowd_t *crowd, window_t *wd)
         update_cop(crowd->cop[i], crowd, spritePosition);
         update_mob(crowd->mob[i], crowd, move);
     }
-    if (sfKeyboard_isKeyPressed(sfKeySpace) &&
-        sfTime_asSeconds
-        (sfClock_getElapsedTime(crowd->player->clock)) > 0.8f) {
-    sfClock_restart(crowd->player->clock);
+    if (sfKeyboard_isKeyPressed(sfKeySpace) && sfTime_asSeconds
+    (sfClock_getElapsedTime(crowd->player->clock)) > 0.8f) {
+        sfClock_restart(crowd->player->clock);
         for (int i = 0; i < CROWD_SIZE; i++)
             check_hitbox(crowd, i, spritePosition);
     }
+    update_attack_cl(crowd->player);
 }

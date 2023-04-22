@@ -27,13 +27,13 @@ cop_t **init_crowd_cop(window_t* wd)
         cop[i]->clock = sfClock_create();
         sprite_t *sprite = init_sprite();
         sfTexture *texture = sfTexture_createFromFile
-        ("images/spritesheets/casseur_spritesheet.png", NULL);
+        ("images/spritesheets/crs_spritesheet.png", NULL);
         sfVector2f pos = get_random_position(wd);
         data_t *data = create_data(set_3vector(pos.x, pos.y, 0),
-        set_2vector(48, 72), 0.f);
-        set_texture_sprite(sprite, texture, (sfIntRect) {0, 0, 48, 72});
+        set_2vector(64, 72), 0.f);
+        set_texture_sprite(sprite, texture, (sfIntRect) {0, 0, 64, 72});
         cop[i]->draw = create_draw(sprite, SPRITE, data);
-        set_origin_draw(cop[i]->draw, (sfVector2f) {48 / 2, 72 / 2});
+        set_origin_draw(cop[i]->draw, (sfVector2f) {64 / 2, 72 / 2});
         append_draw_layer(wd->core, cop[i]->draw);
         init_stat(&cop[i]->stat, set_3vector(5, 5, 5), 80);
         init_cop_hp_bar(wd, cop[i], pos);
@@ -72,7 +72,6 @@ bool init_crowd(game_t *game, window_t* wd, list_button_t** a_btn,
         free(game->crowd);
         return false;
     }
-    game->crowd->clock = sfClock_create();
     update_stat_ui(game->crowd->player->stat, game->stat_ui);
     append_draw_layer(wd->ui, create_draw(create_shape(RECT,
     sfColor_fromRGBA(220, 220, 220, 100), sfBlack, 3), SHAPE,
