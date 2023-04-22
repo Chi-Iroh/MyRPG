@@ -21,17 +21,22 @@ void is_hit(cop_t *cop, player_t *player)
 }
 
 void move_range
-(draw_t *draw, sfVector2f move, sfVector3f spritePosition, float dist)
+(player_t *player, sfVector2f move)
 {
-    sfVector2f offset;
+    float offset = player->range->data->size.x / 2;
     move.x = move.x > 0 ? 1 : move.x < 0 ? -1 : 0;
     move.y = move.y > 0 ? 1 : move.y < 0 ? -1 : 0;
-    offset.x = move.x * dist;
-    offset.y = move.y * dist;
-    sfVector3f hitboxPos;
-    hitboxPos.x = spritePosition.x + offset.x;
-    hitboxPos.y = spritePosition.y + offset.y;
-    set_pos_draw(draw, hitboxPos);
+    set_angle_draw(player->draw, atan2(move.y, move.x) * 180 / M_PI);
+    float rot = get_rotation_draw(player->draw);
+    sfVector2f hitboxPosition =
+    set_2vector
+    (player->draw->data->position.x, player->draw->data->position.y);
+    hitboxPosition.x += offset * cos(rot * M_PI / 180);
+    hitboxPosition.y += offset * sin(rot * M_PI / 180);
+    set_angle_draw(player->range, rot);
+    set_angle_draw(player->draw, 0);
+    set_pos_draw(player->range,
+    set_3vector(hitboxPosition.x, hitboxPosition.y, 0));
 }
 
 void knock_back(cop_t *cop, sfVector3f spritePosition, float pw)

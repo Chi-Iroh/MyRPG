@@ -71,7 +71,7 @@ void init_bar(player_t *player, window_t* wd)
 
 void init_hitbox(player_t *player, window_t *wd, data_t *data)
 {
-    data_t *data_r = create_data(data->position, set_2vector(85, 85), 0.f);
+    data_t *data_r = create_data(data->position, set_2vector(150, 80), 0.f);
     shape_t *shape_r = create_shape(RECT, sfTransparent, sfBlack, 1);
     player->range = create_draw(shape_r, SHAPE, data_r);
     set_origin_draw(player->range, set_2vector

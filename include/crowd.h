@@ -98,7 +98,7 @@
 
     /**/
     void move_range
-    (draw_t *draw, sfVector2f move, sfVector3f Pos,float dist);
+    (player_t *player, sfVector2f move);
     void check_hitbox(crowd_t *crowd, int i, sfVector3f spritePosition);
     void knock_back(cop_t *cop, sfVector3f spritePosition, float pw);
     sfVector3f calc_dist(sfVector3f pos1, sfVector3f pos2);
@@ -109,22 +109,3 @@
     void crowd(window_t* wd, crowd_t *crowd);
 
 #endif /* CROWD_T */
-/*void move_range
-(player_t *player, sfVector2f move, float dist)
-{
-    sfVector2f offset;
-    move.x = move.x > 0 ? 1 : move.x < 0 ? -1 : 0;
-    move.y = move.y > 0 ? 1 : move.y < 0 ? -1 : 0;
-    set_angle_draw(player->draw, atan2(move.y, move.x) * 180 / M_PI);
-    offset.x = move.x * dist;
-    offset.y = move.y * dist;
-    float rot = get_rotation_draw(player->draw);
-    sfVector2f hitboxPosition =  set_2vector(player->draw->data->position.x, player->draw->data->position.y);
-    hitboxPosition.x += offset.x * cos(rot * M_PI / 180);
-    hitboxPosition.y += offset.x * sin(rot * M_PI / 180);
-    sfVector3f hitboxPos;
-    set_angle_draw(player->draw, 0);
-    hitboxPos.x = spritePosition.x + offset.x;
-    hitboxPos.y = spritePosition.y + offset.y;
-    set_pos_draw(player->range, hitboxPos);
-}*/
