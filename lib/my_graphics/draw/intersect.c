@@ -20,6 +20,7 @@ bool intersect_with_id(draw_t * draw1, draw_t * list, int id)
         if (result) {
             return true;
         }
+        list = list->next;
     }
     return false;
 }
@@ -31,6 +32,7 @@ bool intersect_with_map(draw_t * draw1, draw_t * list)
         if (result) {
             return true;
         }
+        list = list->next;
     }
     return false;
 }
@@ -42,6 +44,7 @@ bool intersect_with_all(draw_t * draw1, draw_t * list)
         if (result) {
             return true;
         }
+        list = list->next;
     }
     return false;
 }
