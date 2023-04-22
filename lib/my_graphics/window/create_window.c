@@ -5,14 +5,14 @@
 ** function that create a window struct from parameters
 */
 #include "../include/window.h"
-#include <stdlib.h>
 
 // function that set up the sfRenderWindow struct
 // if file is NULL, no icon is set
 static sfRenderWindow * setup_window(const char * title,
                         const sfVideoMode mode, const char * file)
 {
-    sfRenderWindow * win = sfRenderWindow_create(mode, title, sfClose, NULL);
+    sfRenderWindow * win = sfRenderWindow_create(mode, title,
+                                                    sfDefaultStyle, NULL);
     if (file != NULL) {
         sfImage * icon = sfImage_createFromFile(file);
         sfRenderWindow_setIcon(win, sfImage_getSize(icon).x,

@@ -43,6 +43,10 @@
     window_t * create_window(const char * title, const sfVideoMode mode,
                             const char * file);
     void actualize_window(window_t * window);
+    void window_windowed(window_t * window, const char * title,
+                        const sfVideoMode mode, const char * file);
+    void window_fullscreen(window_t * window, const char * title,
+                        const sfVideoMode mode, const char * file);
     void append_layer(layer_t * first, layer_t * layer);
     void view_resize(window_t * window, sfVector2f size);
     void view_center(window_t * window, sfVector2f center);

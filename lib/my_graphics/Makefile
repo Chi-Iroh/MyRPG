@@ -14,6 +14,7 @@ SRC		=	vector/set_vector.c			\
 			rect/next_rectangle.c		\
 			window/init_window.c		\
 			window/create_window.c		\
+			window/window_mode.c		\
 			window/splash.c				\
 			window/actualize_window.c	\
 			window/append_layer.c		\
