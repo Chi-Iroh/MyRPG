@@ -8,16 +8,16 @@
 #include <my_graphics.h>
 #include <my_rpg.h>
 
-void stat_interaction(stat_t* stat)
+void stat_interaction(stat_t* stat, interface_t* stat_ui)
 {
     if (!stat->exp_point)
         return;
     for (int i = 0; i < NB_STAT - 2; i++) {
-        stat->ui->stat_btns[i]->rect->show = true;
-        stat->ui->stat_btns[i]->name->show = true;
-        if (IS_RELEASED(stat->ui->stat_btns[i])) {
-            stat->ui->stat_btns[i]->state = NONE;
-            update_stat(stat, i);
+        stat_ui->stat_btns[i]->rect->show = true;
+        stat_ui->stat_btns[i]->name->show = true;
+        if (IS_RELEASED(stat_ui->stat_btns[i])) {
+            stat_ui->stat_btns[i]->state = NONE;
+            update_stat(stat, i, stat_ui);
             return;
         }
     }
@@ -43,8 +43,8 @@ int game_core(window_t* wd, game_src_t* g_src, sfClock *clock)
         countryball_49_3();
         return 1;
     }
-    crowd(wd, g_src->game->crowd);
-    stat_interaction(&g_src->game->crowd->player->stat);
+    crowd(wd, g_src->game->crowd, g_src->game->stat_ui);
+    stat_interaction(&g_src->game->crowd->player->stat, g_src->game->stat_ui);
     return 0;
 }
 

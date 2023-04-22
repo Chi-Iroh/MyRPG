@@ -46,7 +46,7 @@ void free_crowd(crowd_t *crowd)
     free(crowd);
 }
 
-void crowd(window_t* wd, crowd_t *crowd)
+void crowd(window_t* wd, crowd_t *crowd, interface_t* stat_ui)
 {
     update(crowd);
     if (crowd->player->exp.fill->data->size.x >= 250) {
@@ -56,7 +56,6 @@ void crowd(window_t* wd, crowd_t *crowd)
         crowd->player->stat.exp_point += 1;
         crowd->player->stat.level += crowd->player->stat.level < 20 ?
         1 : 0;
-        update_stat_interface(crowd->player->stat.ui->stat_nb,
-            crowd->player->stat);
+        update_stat_ui(crowd->player->stat, stat_ui);
     }
 }

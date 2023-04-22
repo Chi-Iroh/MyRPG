@@ -48,8 +48,8 @@ void analyse_events(window_t* wd, sfEvent event, game_src_t *g_src)
         case sfEvtMouseMoved:
             mouse_moved(event.mouseMove, g_src); break;
         case sfEvtMouseWheelScrolled:
-            change_slot_selected(g_src->game->character,
-                event.mouseWheelScroll, g_src); break;
+            //change_slot_selected(g_src->game->character,
+            //    event.mouseWheelScroll, g_src); break;
         default: break;
     }
 }

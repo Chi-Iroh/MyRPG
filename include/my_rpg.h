@@ -68,8 +68,8 @@
 
     typedef struct {
         pause_t* pause_menu;
-        character_t* character;
         crowd_t *crowd;
+        interface_t* stat_ui;
     } game_t;
 
     typedef struct {
@@ -91,10 +91,9 @@
         game_src_t* g_src);
     player_t *init_player(window_t* wd, game_t *game);
     void init_stat(stat_t *stat, sfVector3f stat_value, float hp);
-    void update_stat_interface(draw_t** stat_nb, stat_t stat);
-    void update_stat(stat_t *stat, int type);
-    interface_t* init_stat_interface(stat_t stat, layer_t* ui,
-        list_button_t** a_btn);
+    void update_stat_ui(stat_t stat, interface_t* stat_ui);
+    void update_stat(stat_t *stat, int type, interface_t* stat_ui);
+    interface_t* init_stat_interface(layer_t* ui, list_button_t** a_btn);
     void player_management_core(window_t* wd, game_src_t* g_src,
         menu_cat_t* p_man);
     void settings_core(window_t* wd, game_src_t* g_src, button_s_t* set_btn,

@@ -37,7 +37,6 @@
         float defense;
         int level;
         int exp_point;
-        struct interface_s* ui;
     } stat_t;
 
     typedef enum {FALSE, TRUE} dead_e;
@@ -106,6 +105,6 @@
     void free_crowd(crowd_t *crowd);
     sfBool check_collision(draw_t *player, draw_t *crowd);
     void display_crowd(sfRenderWindow *window, crowd_t *crowd);
-    void crowd(window_t* wd, crowd_t *crowd);
+    void crowd(window_t* wd, crowd_t *crowd, struct interface_s* stat_ui);
 
 #endif /* CROWD_T */

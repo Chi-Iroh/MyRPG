@@ -17,7 +17,6 @@ void init_stat(stat_t *stat, sfVector3f stat_value, float hp)
         .hp = hp,
         .level = 1,
         .exp_point = 0,
-        .ui = NULL,
     };
 }
 
