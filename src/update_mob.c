@@ -47,6 +47,11 @@ void update_mob
 {
     if (mob->in_mob == OUT || mob->in_mob == DEAD)
         not_in_mob(mob, crowd->player, wd);
-    if (mob->in_mob == IN)
+    if (mob->in_mob == IN) {
+        sfVector3f pos_tmp = get_position_draw(mob->draw);
         move_draw(mob->draw, move);
+        set_anim_mob(mob->draw, move, &mob->mov);
+        if (check_pos(mob->draw, wd))
+            set_pos_draw(mob->draw, pos_tmp);
+    }
 }

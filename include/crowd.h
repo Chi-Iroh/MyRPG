@@ -75,6 +75,7 @@
         draw_t *draw;
         in_mob_e in_mob;
         int dir;
+        dir_e mov;
     } mob_t;
 
     typedef struct player_s {
@@ -89,6 +90,7 @@
         draw_t **weapon_draw;
         character_type_t type;
         weapon_t* weapon;
+        dir_e dir;
     } player_t;
 
     typedef struct crowd_s {
@@ -130,7 +132,7 @@
     void free_crowd(crowd_t *crowd);
     sfBool check_collision(draw_t *player, draw_t *crowd);
     void display_crowd(sfRenderWindow *window, crowd_t *crowd);
-    void crowd(window_t* wd, crowd_t *crowd, interface_t* stat_ui,
-        audio_t audio);
+    void crowd(window_t* wd, crowd_t *crowd, interface_t* stat_ui, audio_t audio);
+    void set_anim_mob(draw_t *draw, sfVector2f move, dir_e *dir);
 
 #endif /* CROWD_T */
