@@ -5,8 +5,6 @@
 ## Makefile
 ##
 
-HEADERS	= $(wildcard include/*.h)
-
 SRC		=	vector/set_vector.c			\
 			vector/increment_vector.c	\
 			vector/scale_vector.c		\
@@ -104,42 +102,58 @@ SANITIZE	=	-fsanitize=address,undefined \
 -fno-sanitize-recover=address,undefined
 AR_LDFLAGS 	= csfml-graphics csfml-window csfml-system
 AR_PRELOAD 	=
+ANALYZER	=
 
 CFLAGS	+=	-Wall -Wextra -pedantic -fsigned-char		\
 -funsigned-bitfields -Wno-unused-parameter -std=gnu2x -pedantic
 
 NAME	=	../libgraphics.a
 
+.PHONY: all re
 all: CFLAGS += $(RELEASE)
 all: $(NAME)
 re: fclean all
-.PHONY: all re
 
+.PHONY: debug redebug
 debug: CFLAGS += $(DEBUG)
 debug: $(NAME)
 redebug: fclean debug
-.PHONY: debug redebug
 
+.PHONY: sanitize resanitize
 sanitize: CFLAGS += $(DEBUG) $(SANITIZE)
 sanitize: AR_PRELOAD += asan ubsan
 sanitize: $(NAME)
 resanitize: fclean sanitize
-.PHONY: sanitize resanitize
 
-link_headers: my_graphics.h
+.PHONY: analyzer reanalyzer
+analyzer: ANALYZER += on
+analyzer: CFLAGS += $(DEBUG) -fanalyzer
+analyzer: $(NAME)
+reanalyzer: fclean analyzer
+
+.PHONY: link_header
+link_header: my_graphics.h
 	@echo [LIB MY_GRAPHICS] Linking header my_graphics.h
 	@ln -f my_graphics.h ../../include/my_graphics.h
 
-.PHONY: link_headers
+.PHONY: link_header
 
-$(NAME): link_headers $(OBJ)
+$(NAME): link_header $(OBJ)
 	@echo Building lib graphics...
 	@echo Dependencies: $(AR_PRELOAD) $(AR_LDFLAGS)
 	@ar rc -l"$(AR_PRELOAD) $(AR_LDFLAGS)" $(NAME) $(OBJ)
+	@if [[ "$(ANALYZER)" != "" ]]; then\
+		echo "[LIB GRAPHICS] GCC Analyzer log in analyzer.log";\
+	fi
 
 %.o: %.c
-	@$(CC) -c $(CFLAGS) $< -I ../../include/ -o $@
+	@if [[ "$(ANALYZER)" != "" ]]; then\
+		$(CC) -c $(CFLAGS) $< -I ./include/ -o $@ 2>> analyzer.log;\
+	else\
+		$(CC) -c $(CFLAGS) $< -I ./include/ -o $@;\
+	fi
 
+.PHONY: clean
 clean:
 	@echo "[LIB MY_GRAPHICS] Removing temporary and object files."
 	@rm -f *.gcda
@@ -150,8 +164,7 @@ clean:
 	@rm -f $(NAME)
 	@rm -f ../$(NAME)
 
+.PHONY: fclean
 fclean: clean
 	@echo "[LIB MY_GRAPHICS] Removing binary."
 	@rm -f ../$(NAME)
-
-.PHONY: clean fclean

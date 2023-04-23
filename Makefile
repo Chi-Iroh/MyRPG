@@ -55,6 +55,7 @@ DEBUG   =   -g3 -p -ggdb3 -DDEBUG_MODE
 RELEASE = -O0 -fno-builtin
 SANITIZE	=	-fsanitize=address,undefined \
 -fsanitize-recover=address,undefined
+ANALYZER	=
 
 CFLAGS  +=  -Wall -Wextra -pedantic -fsigned-char       \
 -funsigned-bitfields -Wno-unused-parameter -std=gnu2x -fms-extensions
@@ -64,23 +65,35 @@ LD_PRELOAD	=
 
 NAME    =   my_rpg
 
-.PHONY: all re debug redebug sanitize resanitize make_libs \
-lean_libs clean fclean
+.PHONY: all re
 all: CFLAGS += $(RELEASE)
 all: $(NAME)
 re: fclean all
 
+.PHONY: debug redebug
 debug: CFLAGS += $(DEBUG)
 debug: LIB_COMPILE += debug
 debug: $(NAME)
 redebug: fclean debug
 
+.PHONY: sanitize resanitize
 sanitize: CFLAGS += $(DEBUG) $(SANITIZE)
 sanitize: LIB_COMPILE += sanitize
 sanitize: LD_PRELOAD += -lasan -lubsan
 sanitize: $(NAME)
 resanitize: fclean sanitize
 
+.PHONY: analyzer reanalyzer reset_analyzer
+reset_analyzer:
+	@rm -f analyzer.log
+	@echo Removing old analyzer.log
+analyzer: ANALYZER += on
+analyzer: CFLAGS += $(DEBUG) -fanalyzer
+analyzer: LIB_COMPILE += analyzer
+analyzer: reset_analyzer $(NAME)
+reanalyzer: fclean analyzer
+
+.PHONY: make_libs
 make_libs:
 	@$(MAKE) -s -j -C lib/my/ $(LIB_COMPILE)
 	@$(MAKE) -s -j -C lib/my_graphics $(LIB_COMPILE)
@@ -93,16 +106,25 @@ $(NAME): make_libs $(OBJ)
 	@echo CFLAGS : $(CFLAGS)
 	@echo LDFLAGS : $(LD_PRELOAD) $(LDFLAGS)
 	@gcc $(OBJ) $(LD_PRELOAD) $(LDFLAGS) -o $(NAME)
+	@if [[ "$(ANALYZER)" != "" ]]; then\
+		echo "GCC Analyzer log in analyzer.log";\
+	fi
 
 %.o: %.c
-	@$(CC) -c $(CFLAGS) -I ./include/ $< -o $@
+	@if [[ "$(ANALYZER)" != "" ]]; then\
+		$(CC) -c $(CFLAGS) $< -I ./include/ -o $@ 2>> analyzer.log;\
+	else\
+		$(CC) -c $(CFLAGS) $< -I ./include/ -o $@;\
+	fi
 
+.PHONY: clean_libs
 clean_libs:
 	@$(MAKE) -s -j -C ./lib/my/ clean
 	@$(MAKE) -s -j -C ./lib/my_graphics clean
 	@$(MAKE) -s -j -C ./lib/button clean
 	@$(MAKE) -s -j -C ./lib/audio clean
 
+.PHONY: clean
 clean: clean_libs
 	@rm -f *.gcno
 	@rm -f *.gcda
@@ -110,11 +132,13 @@ clean: clean_libs
 	@rm -f *.log
 	@rm -f $(OBJ)
 
+.PHONY: fclean_libs
 fclean_libs:
 	@$(MAKE) -s -j -C ./lib/my/ fclean
 	@$(MAKE) -s -j -C ./lib/my_graphics fclean
 	@$(MAKE) -s -j -C ./lib/button fclean
 	@$(MAKE) -s -j -C ./lib/audio fclean
 
+.PHONY: fclean
 fclean: clean fclean_libs
 	@rm -f $(NAME)
