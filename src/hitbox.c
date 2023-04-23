@@ -21,9 +21,10 @@ void is_hit(cop_t *cop, player_t *player)
 }
 
 void move_range
-(player_t *player, sfVector2f move)
+(player_t *player, sfVector2f move, weapon_t *weapon)
 {
-    float offset = player->range->data->size.x / 2;
+    set_size_draw(player->range, set_2vector(weapon->size_hitbox.x, weapon->size_hitbox.y));
+    float offset = weapon->size_hitbox.x / 2;
     move.x = move.x > 0 ? 1 : move.x < 0 ? -1 : 0;
     move.y = move.y > 0 ? 1 : move.y < 0 ? -1 : 0;
     set_angle_draw(player->draw, atan2(move.y, move.x) * 180 / M_PI);
@@ -33,6 +34,8 @@ void move_range
     (player->draw->data->position.x, player->draw->data->position.y);
     hitboxPosition.x += offset * cos(rot * M_PI / 180);
     hitboxPosition.y += offset * sin(rot * M_PI / 180);
+    set_origin_draw(player->range, set_2vector
+    (weapon->size_hitbox.x / 2, weapon->size_hitbox.y / 2));
     set_angle_draw(player->range, rot);
     set_angle_draw(player->draw, 0);
     set_pos_draw(player->range,
@@ -56,7 +59,8 @@ void check_hitbox(crowd_t *crowd, int i, sfVector3f spritePosition)
     if (crowd->cop[i]->dead != TRUE &&
     check_collision(crowd->cop[i]->draw, crowd->player->range)) {
         is_hit(crowd->cop[i], crowd->player);
-        knock_back(crowd->cop[i], crowd->player, 50);
+        knock_back(crowd->cop[i], crowd->player,
+        crowd->player->weapon->knockback);
         if (crowd->cop[i]->hp.fill->data->size.x <= 0) {
             set_size_draw(crowd->player->exp.fill,
             set_2vector(

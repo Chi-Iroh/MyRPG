@@ -68,7 +68,7 @@ void update(crowd_t *crowd, window_t *wd)
     sfVector2f move = move_player(crowd->player, wd);
     sfVector3f spritePosition = get_position_draw(crowd->player->draw);
     if (move.x != 0 || move.y != 0)
-        move_range(crowd->player, move);
+        move_range(crowd->player, move, crowd->player->weapon);
     for (int i = 0; i < CROWD_SIZE; i++) {
         sfVector3f pos_tmp = get_position_draw(crowd->cop[i]->draw);
         update_cop(crowd->cop[i], crowd, spritePosition);
@@ -78,7 +78,7 @@ void update(crowd_t *crowd, window_t *wd)
         update_mob(crowd->mob[i], crowd, move, wd);
     }
     if (sfKeyboard_isKeyPressed(sfKeySpace) && sfTime_asSeconds
-    (sfClock_getElapsedTime(crowd->player->clock)) > 0.8f) {
+    (sfClock_getElapsedTime(crowd->player->clock)) > crowd->player->weapon->cooldown) {
         sfClock_restart(crowd->player->clock);
         for (int i = 0; i < CROWD_SIZE; i++)
             check_hitbox(crowd, i, spritePosition);
