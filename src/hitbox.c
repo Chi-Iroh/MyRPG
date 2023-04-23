@@ -8,9 +8,6 @@
 #include <my_rpg.h>
 #include <my_graphics.h>
 
-#define ATTACK \
-    sfMouse_isButtonPressed(sfMouseLeft) || sfKeyboard_isKeyPressed(sfKeySpace)
-
 void is_hit(cop_t *cop, player_t *player)
 {
     cop->stat.hp -= (player->stat.damage * 4) * player->weapon->dmg;
@@ -78,7 +75,10 @@ void check_hitbox(crowd_t *crowd, int i)
 
 void attack(crowd_t *crowd)
 {
-    if ((ATTACK) && sfTime_asSeconds(
+    const bool is_attack = sfMouse_isButtonPressed(sfMouseLeft) ||
+        sfKeyboard_isKeyPressed(sfKeySpace);
+
+    if (is_attack && sfTime_asSeconds(
         sfClock_getElapsedTime(crowd->player->clock)) >
         crowd->player->weapon->cooldown) {
         sfClock_restart(crowd->player->clock);
