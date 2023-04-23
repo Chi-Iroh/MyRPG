@@ -34,8 +34,10 @@ typedef struct {
     sfRenderWindow *window;
     sfFont *font;
     sfClock *clock;
+    sfText *descriptions[N_CHARACTERS];
     button_t buttons[N_CHARACTERS];
     sfEvent event;
+    unsigned character_selected;
     unsigned allocated_buttons;
 } character_menu_t;
 
@@ -48,6 +50,8 @@ extern const char *SPRITES_FILENAMES[N_CHARACTERS][2];
 extern const sfUint32 *CHARACTER_NAMES_UTF8[N_CHARACTERS];
 extern const char *CHARACTER_NAMES_ANSI[N_CHARACTERS];
 extern const float DESCRIPTION_Y_OFFSET;
+extern const sfUint32 *CHARACTER_DESCRIPTION[N_CHARACTERS];
+extern const sfVector2f DESCRIPTION_POSITION;
 
 bool character_menu_init(character_menu_t *menu);
 void character_menu_free(character_menu_t *menu);

@@ -61,6 +61,30 @@ static bool character_menu_allocate_buttons(character_menu_t *menu)
     return true;
 }
 
+/*
+    Allocates all description text.
+    NOTE: menu->font must be allocated.
+*/
+static bool character_menu_init_descriptions(character_menu_t *menu)
+{
+    bool status = true;
+
+    for (unsigned i = 0; i < N_CHARACTERS; i++) {
+        menu->descriptions[i] = status ? sfText_create() : NULL;
+        if (!menu->descriptions[i]) {
+            status = false;
+        } else {
+            sfText_setFont(menu->descriptions[i], menu->font);
+            sfText_setUnicodeString
+                (menu->descriptions[i], CHARACTER_DESCRIPTION[i]);
+            sfText_setCharacterSize(menu->descriptions[i], 24);
+            sfText_setPosition(menu->descriptions[i], DESCRIPTION_POSITION);
+            sfText_setFillColor(menu->descriptions[i], sfRed);
+        }
+    }
+    return status;
+}
+
 bool character_menu_init(character_menu_t *menu)
 {
     const sfVideoMode resolution = sfVideoMode_getDesktopMode();
@@ -73,23 +97,14 @@ bool character_menu_init(character_menu_t *menu)
         .clock = sfClock_create(),
         .font = sfFont_createFromFile("fonts/Arial.ttf"),
         .window = sfRenderWindow_create(resolution, title, style, NULL),
-        .allocated_buttons = 0
+        .allocated_buttons = 0,
+        .character_selected = N_CHARACTERS
     };
     status &= menu->clock && menu->font && menu->window;
     status &= character_menu_allocate_buttons(menu);
+    status &= character_menu_init_descriptions(menu);
     if (!status) {
         character_menu_free(menu);
     }
     return status;
-}
-
-void character_menu_free(character_menu_t *menu)
-{
-    RETURN_IF(!menu);
-    FREE_IF_ALLOCATED(menu->clock, sfClock_destroy);
-    FREE_IF_ALLOCATED(menu->font, sfFont_destroy);
-    FREE_IF_ALLOCATED(menu->window, sfRenderWindow_destroy);
-    for (unsigned i = 0; i < menu->allocated_buttons; i++) {
-        free_button(&menu->buttons[i]);
-    }
 }

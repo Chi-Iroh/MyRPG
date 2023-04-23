@@ -8,7 +8,7 @@
 #include <button.h>
 #include <character_menu.h>
 
-const float DESCRIPTION_Y_OFFSET = 100.f;
+const float DESCRIPTION_Y_OFFSET = 250.f;
 
 static sfVector2u character_menu_get_minimal_window
 (button_t *bottom_right_button)
@@ -45,9 +45,10 @@ bool character_menu_shrink_window
         .height = current_size.y
     };
     sfView *view = sfView_createFromRect(window_rect);
-    const sfVector2u minimal_size =
+    sfVector2u minimal_size =
         character_menu_get_minimal_window(bottom_right_button);
 
+    minimal_size.y += DESCRIPTION_Y_OFFSET;
     if (!view) {
         return false;
     }
