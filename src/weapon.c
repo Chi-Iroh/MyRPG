@@ -44,11 +44,11 @@ weapon_t** init_all_weapons(void)
     *all_weapons[0] = (weapon_t) {.cooldown = 0.2, .dmg = 1, .knockback = 40,
         .size_hitbox = set_2vector(50, 50),
     };
-    *all_weapons[1] = (weapon_t) {.cooldown = 0.8, .dmg = 1.5, .knockback = 40,
-        .size_hitbox = set_2vector(50, 100),
+    *all_weapons[1] = (weapon_t) {.cooldown = 1, .dmg = 1.5, .knockback = 40,
+        .size_hitbox = set_2vector(100, 50),
     };
-    *all_weapons[2] = (weapon_t) {.cooldown = 0.6, .dmg = 0, .knockback = 150,
-        .size_hitbox = set_2vector(150, 100),
+    *all_weapons[2] = (weapon_t) {.cooldown = 0.6, .dmg = 0, .knockback = 200,
+        .size_hitbox = set_2vector(-75, 200),
     };
     return all_weapons;
 }
