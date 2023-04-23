@@ -20,7 +20,7 @@ int main(int argc, char **argv)
         free_main(window, g_src);
         return 84;
     }
-    core(window, g_src);
+    core(&window, &g_src);
     free_main(window, g_src);
     return 0;
 }

@@ -75,16 +75,18 @@ void game(window_t* wd, game_src_t* g_src)
     sfClock_destroy(clock);
 }
 
-void core(window_t* wd, game_src_t* g_src)
+void core(window_t** wd, game_src_t** g_src)
 {
-    while (sfRenderWindow_isOpen(wd->window)) {
-        if (g_src->menu->show) {
-            wd->splash->show = true;
-            audio_set_active_bgm(&g_src->audio, BGM_MENU, 1);
-            menu(wd, g_src);
+    while (sfRenderWindow_isOpen((*wd)->window)) {
+        if ((*g_src)->menu->show) {
+            (*wd)->splash->show = true;
+            audio_set_active_bgm(&(*g_src)->audio, BGM_MENU, 1);
+            menu(*wd, *g_src);
             continue;
         }
-        audio_set_active_bgm(&g_src->audio, BGM_MAIN, 1);
-        game(wd, g_src);
+        audio_set_active_bgm(&(*g_src)->audio, BGM_MAIN, 1);
+        game(*wd, *g_src);
+        if ((*g_src)->menu->show)
+            restart(wd, g_src);
     }
 }

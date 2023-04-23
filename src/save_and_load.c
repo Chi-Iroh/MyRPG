@@ -16,6 +16,8 @@ void refresh_player(player_t* player, sprite_t* player_sprite, game_t* game)
         (sfIntRect) {0, 0, 48, 72});
     update_stat_ui(player->stat, game->pause_menu->player->other[0]);
     update_stat_ui(player->stat, game->stat_ui);
+    set_size_draw(player->exp.fill, get_size_draw(player->exp.fill));
+    set_size_draw(player->hp.fill, get_size_draw(player->hp.fill));
 }
 
 void save_and_load(game_src_t* g_src)

@@ -10,7 +10,8 @@
 // window. So, you should not need to call the free sub-functions.
 void free_window(window_t * window)
 {
-    sfRenderWindow_destroy(window->window);
+    if (window->window)
+        sfRenderWindow_destroy(window->window);
     sfView_destroy(window->view);
     free_layers(window->background);
     free(window);

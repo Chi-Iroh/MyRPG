@@ -32,6 +32,10 @@ bool save_to_file(player_t *player)
     }
     status &= fwrite(&player->base, sizeof(player->base), 1, file) == 1;
     status &= fwrite(&player->stat, sizeof(player->stat), 1, file) == 1;
+    status &= fwrite(&player->hp.fill->data->size,
+        sizeof(player->hp.fill->data->size), 1, file) == 1;
+    status &= fwrite(&player->exp.fill->data->size,
+        sizeof(player->exp.fill->data->size), 1, file) == 1;
     status &= fwrite(&player->type, sizeof(player->type), 1, file) == 1;
     fclose(file);
     return status;
@@ -47,6 +51,10 @@ bool load_from_file(player_t *player)
     }
     status &= fread(&player->base, sizeof(player->base), 1, file) == 1;
     status &= fread(&player->stat, sizeof(player->stat), 1, file) == 1;
+    status &= fread(&player->hp.fill->data->size,
+        sizeof(player->hp.fill->data->size), 1, file) == 1;
+    status &= fread(&player->exp.fill->data->size,
+        sizeof(player->exp.fill->data->size), 1, file) == 1;
     status &= fread(&player->type, sizeof(player->type), 1, file) == 1;
     fclose(file);
     return status;

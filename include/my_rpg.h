@@ -99,7 +99,7 @@
     game_src_t* init_game_sources(window_t* wd);
 
     void menu(window_t* wd, game_src_t* g_src);
-    void core(window_t* wd, game_src_t* g_src);
+    void core(window_t** wd, game_src_t** g_src);
     void pause_menu(window_t* wd, game_src_t* g_src);
     void save_and_load(game_src_t* g_src);
     menu_cat_t* init_management(window_t* wd, list_button_t** a_btns);
@@ -165,5 +165,7 @@
     void free_menu(menu_t *menu);
     void free_g_src(game_src_t* g_src);
     void free_main(window_t *window, game_src_t *g_src);
+
+    void restart(window_t** wd, game_src_t** g_src);
 
 #endif
