@@ -46,10 +46,10 @@ draw_t** init_p_man_inv_descriptions(layer_t* lyr)
     draw_t** desc = malloc(sizeof(draw_t*) * (NB_WEAPON * 2));
     char *title[NB_WEAPON] = {"TES POINGS DE FORAINS", "LA BATTE DE TA MAMIE",
         "CODE CIVIL"};
-    char *name[NB_WEAPON] = {"LE CAC MON GARS !\nPortee: courtenDegats bonus: "
-    "+0\nRecharge: courte", "ELLE T'AS DEMANDE D'EN PRENDRE SOIN !\nPortee: lon"
-    "gue\nDegats bonus: +5\nRecharge: longue", "L'ARME DES GROS CERVEAUX !\nPor"
-    "tee: longue\nDegat bonus: pas de degat\nRecharge: moyenne\nRepousse: haute"
+    char *name[NB_WEAPON] = {"LE CAC MON GARS !\nPortee: courtenDegats: "
+    "x1\nRecharge: courte", "ELLE T'AS DEMANDE D'EN PRENDRE SOIN !\nPortee: lon"
+    "gue\nDegats: x1.3\nRecharge: longue", "L'ARME DES GROS CERVEAUX !\nPor"
+    "tee: longue\nDegat: x0\nRecharge: moyenne\nRepousse: haute"
     };
     for (int i = 0; i < NB_WEAPON; i++) {
         desc[i] = create_draw(create_text(title[i], NULL, sfBlack), TEXT,

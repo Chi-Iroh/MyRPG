@@ -35,6 +35,15 @@ void key_pressed(sfRenderWindow* wd, sfKeyEvent evt, game_src_t* g_src)
     }
 }
 
+void wheel_scrolled(window_t* wd, sfEvent event, game_src_t *g_src)
+{
+    if (!wd->splash->show) {
+        g_src->game->crowd->player->weapon =
+        select_weapon(g_src->game->all_weapons,
+        g_src->game->crowd->player->weapon, event.mouseWheelScroll.delta);
+    }
+}
+
 void analyse_events(window_t* wd, sfEvent event, game_src_t *g_src)
 {
     change_mouse_from_resolution(&event, wd->size);
@@ -51,8 +60,7 @@ void analyse_events(window_t* wd, sfEvent event, game_src_t *g_src)
         case sfEvtMouseMoved:
             mouse_moved(event.mouseMove, g_src); break;
         case sfEvtMouseWheelScrolled:
-            //change_slot_selected(g_src->game->character,
-            //    event.mouseWheelScroll, g_src); break;
+            wheel_scrolled(wd, event, g_src); break;
         default: break;
     }
 }
