@@ -25,6 +25,8 @@ SRC = 	src/main.c												\
 		src/button_interactions.c								\
 		src/save.c												\
 		src/free.c												\
+		src/free_cop.c 											\
+		src/free_weapon_sprite.c 								\
 		src/crowd.c 											\
 		src/progress_bar.c 										\
 		src/rand.c												\

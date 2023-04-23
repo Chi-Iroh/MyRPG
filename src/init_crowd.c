@@ -38,6 +38,7 @@ cop_t* init_boss(window_t* wd)
     boss->clock = sfClock_create();
     sfVector2f pos = set_2vector(wd->map_size.x - 100, wd->map_size.y / 2);
     boss->draw = init_boss_draw(wd, pos);
+    boss->dead = false;
     set_origin_draw(boss->draw, set_2vector
         (64 / 2, 72 - 5));
     append_draw_layer(wd->core, boss->draw);

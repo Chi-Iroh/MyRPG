@@ -187,6 +187,8 @@
     void free_menu(menu_t *menu);
     void free_g_src(game_src_t* g_src);
     void free_main(window_t *window, game_src_t *g_src);
+    void free_weapon_sprite(draw_t **weapon);
+    void free_single_cop(cop_t **cop);
 
     void restart(window_t** wd, game_src_t** g_src);
 

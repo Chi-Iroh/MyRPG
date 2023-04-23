@@ -40,6 +40,7 @@ cop_t **init_crowd_cop(window_t* wd)
     int tmp = 1;
     for (int i = 0; i < CROWD_SIZE; i++) {
         cop[i] = malloc(sizeof(cop_t));
+        cop[i]->dead = false;
         tmp = i == 30 ? 3 : tmp;
         tmp = i == 100 ? 5 : tmp;
         cop[i]->clock = sfClock_create();
