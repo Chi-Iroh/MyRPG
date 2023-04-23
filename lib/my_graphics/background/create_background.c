@@ -28,8 +28,7 @@ static char * get_path(int id, tmx_t * tmx)
 void get_position(sfVector2f position, int ** map,
                         tmx_t * tmx, layer_t * layer)
 {
-    int id = map[(int)position.y][(int)position.x];
-    RETURN_IF(id == -1);
+    int id = map[(int)position.y][(int)position.x]; RETURN_IF(id == -1);
     while (tmx->id != id) {
         tmx = tmx->next;
     } sfVector3f pos = set_3vector(position.x * 64 + tmx->width / 2,
@@ -43,7 +42,8 @@ void get_position(sfVector2f position, int ** map,
     set_texture_sprite(sprite, texture,
                         set_rectangle(0, 0, tmx->width, tmx->height));
     draw = create_draw(sprite, SPRITE, data);
-    change_hitbox(draw, set_rectangle(-(size.x / 2), -(size.y - 5), size.x, size.y));
+    change_hitbox(draw, set_rectangle(-(size.x / 2), -(size.y - 5),
+    size.x, size.y));
     draw->id = id;
     set_origin_draw(draw, set_2vector(size.x / 2, size.y - 5));
     append_draw_layer(layer, draw);
