@@ -33,5 +33,5 @@ void audio_free(audio_t *audio)
     audio_free_sfx(&audio->sfx_error);
     audio_free_sfx(&audio->sfx_49_3);
     audio_free_sfx(&audio->sfx_level_up);
-    audio_free_sfx(&audio->sfx_ok);
+    audio_free_sfx(&audio->sfx_nyah);
 }

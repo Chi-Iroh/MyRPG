@@ -27,7 +27,17 @@
     #include <my_macros.h>
     #include <my.h>
 
+    extern const char *const SAVE_PATH;
+    extern const char *const INDICATOR_SAVE_LOAD_BUTTON;
+    extern const char *const INDICATORS_STATS_INVENTORY_BUTTON;
+
     #define SF_GREY sfColor_fromRGBA(200, 200, 200, 100)
+
+    typedef enum {
+        SAVE_FILE_EXISTS,
+        SAVE_FILE_DOESNT_EXIST,
+        SAVE_FILE_ERROR
+    } save_file_state_t;
 
     typedef struct interface_s {
         draw_t** stat_name;
@@ -84,7 +94,6 @@
         audio_t audio;
     } game_src_t;
 
-
     void edit_hitbox(window_t * wd);
     game_src_t* init_game_sources(window_t* wd);
 
@@ -126,8 +135,9 @@
     void change_slot_selected(character_t* charac, sfMouseWheelScrollEvent evt,
         game_src_t* g_src);
 
-    bool save_to_file(char *filename, character_t *character);
-    bool read_from_file(char *filename, character_t *character);
+    save_file_state_t does_save_file_exist(void);
+    bool save_to_file(player_t *player);
+    bool load_from_file(player_t *player);
 
     void button_pressed(window_t* wd, list_button_t* all_btn,
         sfMouseButtonEvent evt, game_src_t* g_src);

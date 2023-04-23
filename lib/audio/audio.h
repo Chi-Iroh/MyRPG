@@ -58,7 +58,7 @@ typedef struct {
     sound_t sfx_explosion;
     sound_t sfx_level_up;
     sound_t sfx_error;
-    sound_t sfx_ok;
+    sound_t sfx_nyah;
     sound_t sfx_49_3;
     sfMusic *current_bgm;
     audio_state_t bgm_state;
@@ -92,7 +92,7 @@ typedef enum {
     SFX_EXPLOSION,
     SFX_LEVEL_UP,
     SFX_ERROR,
-    SFX_OK,
+    SFX_NYAH,
     SFX_49_3,
     SFX_MAX
 } sfx_t;
@@ -136,7 +136,7 @@ extern const char *const SFX_QUEST_PATH;
 extern const char *const SFX_EXPLOSION_PATH;
 extern const char *const SFX_LEVEL_UP_PATH;
 extern const char *const SFX_ERROR_PATH;
-extern const char *const SFX_OK_PATH;
+extern const char *const SFX_NYAH_PATH;
 extern const char *const SFX_49_3_PATH;
 
 extern const float AUDIO_DONT_CHANGE_VOLUME;

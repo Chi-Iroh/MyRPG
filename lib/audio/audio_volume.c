@@ -47,6 +47,6 @@ void audio_update_volume(audio_t *audio)
     audio_change_sfx_volume(audio->sfx_explosion.sound, audio->sfx_volume);
     audio_change_sfx_volume(audio->sfx_level_up.sound, audio->sfx_volume);
     audio_change_sfx_volume(audio->sfx_error.sound, audio->sfx_volume);
-    audio_change_sfx_volume(audio->sfx_ok.sound, audio->sfx_volume);
+    audio_change_sfx_volume(audio->sfx_nyah.sound, audio->sfx_volume);
     audio_change_sfx_volume(audio->sfx_49_3.sound, audio->sfx_volume);
 }

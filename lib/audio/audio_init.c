@@ -31,7 +31,7 @@ const float sfx_volumes[2] = { AUDIO_BGM_DEFAULT_VOLUME, sfx_volume };
         .sfx_explosion = { .buffer = NULL, .sound = NULL },
         .sfx_error = { .buffer = NULL, .sound = NULL },
         .sfx_level_up = { .buffer = NULL, .sound = NULL },
-        .sfx_ok = { .buffer = NULL, .sound = NULL },
+        .sfx_nyah = { .buffer = NULL, .sound = NULL },
         .current_bgm = NULL,
         .bgm_volume = bgm_volumes[audio_is_volume_ok(bgm_volume)],
         .bgm_state = AUDIO_NOT_YET_STARTED,
@@ -86,7 +86,7 @@ static bool audio_init_impl(audio_t *audio, float bgm, float sfx)
     status &= audio_init_sfx(&audio->sfx_explosion, SFX_EXPLOSION_PATH, sfx);
     status &= audio_init_sfx(&audio->sfx_level_up, SFX_LEVEL_UP_PATH, sfx);
     status &= audio_init_sfx(&audio->sfx_error, SFX_ERROR_PATH, sfx);
-    status &= audio_init_sfx(&audio->sfx_ok, SFX_OK_PATH, sfx);
+    status &= audio_init_sfx(&audio->sfx_nyah, SFX_NYAH_PATH, sfx);
     status &= audio_init_sfx(&audio->sfx_49_3, SFX_49_3_PATH, sfx);
     return status;
 }

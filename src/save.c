@@ -5,31 +5,49 @@
 ** -> Save game into a file.
 */
 
+#include <errno.h>
 #include <my_rpg.h>
 #include <my_graphics.h>
 
-bool save_to_file(char *filename, character_t *character)
+const char *const SAVE_PATH = "helloworld.49.3";
+
+save_file_state_t does_save_file_exist(void)
 {
-    FILE *file = fopen(filename, "wb");
-    bool status = true;
+    FILE *file = fopen(SAVE_PATH, "rb");
+
+    if (!file) {
+        return errno == ENOENT ? SAVE_FILE_DOESNT_EXIST : SAVE_FILE_ERROR;
+    }
+    fclose(file);
+    return SAVE_FILE_EXISTS;
+}
+
+bool save_to_file(player_t *player)
+{
+    bool status = player != NULL;
+    FILE *file = status ? fopen(SAVE_PATH, "wb") : NULL;
 
     if (!file) {
         return false;
     }
-    status = fwrite(character, sizeof(*character), 1, file) == 1;
+    status &= fwrite(&player->base, sizeof(player->base), 1, file) == 1;
+    status &= fwrite(&player->stat, sizeof(player->stat), 1, file) == 1;
+    status &= fwrite(&player->type, sizeof(player->type), 1, file) == 1;
     fclose(file);
     return status;
 }
 
-bool read_from_file(char *filename, character_t *character)
+bool load_from_file(player_t *player)
 {
-    FILE *file = fopen(filename, "rb");
-    bool status = true;
+    bool status = player != NULL;
+    FILE *file = status ? fopen(SAVE_PATH, "rb") : NULL;
 
     if (!file) {
         return false;
     }
-    status = fread(character, sizeof(*character), 1, file) == 1;
+    status &= fread(&player->base, sizeof(player->base), 1, file) == 1;
+    status &= fread(&player->stat, sizeof(player->stat), 1, file) == 1;
+    status &= fread(&player->type, sizeof(player->type), 1, file) == 1;
     fclose(file);
     return status;
 }

@@ -42,3 +42,4 @@ test*
 .trash
 /log
 *valgrind.log.core.*
+*.49.3
