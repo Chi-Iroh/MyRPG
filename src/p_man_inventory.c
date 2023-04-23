@@ -35,8 +35,8 @@ draw_t** init_weapon_sprite(layer_t* lyr)
         set_3vector(1350, 360, 0), set_2vector(100, 100), 0));
         append_draw_layer(lyr, sprite[i]);
     }
-    sprite[NB_WEAPON] = create_draw(create_shape(RECT, sfWhite, sfRed, 5), SHAPE,
-    create_data(set_3vector(1320, 330, 0), set_2vector(200, 250), 0));
+    sprite[NB_WEAPON] = create_draw(create_shape(RECT, sfWhite, sfYellow, 5),
+    SHAPE, create_data(set_3vector(1320, 330, 0), set_2vector(200, 250), 0));
     append_draw_layer(lyr, sprite[NB_WEAPON]);
     return sprite;
 }
@@ -46,15 +46,15 @@ draw_t** init_p_man_inv_descriptions(layer_t* lyr)
     draw_t** desc = malloc(sizeof(draw_t*) * (NB_WEAPON * 2));
     char *title[NB_WEAPON] = {"TES POINGS DE FORAINS", "LA BATTE DE TA MAMIE",
         "CODE CIVIL"};
-    char *name[NB_WEAPON] = {"LE CAC MON GARS !\nPortee: courtenDegats: "
-    "x1\nRecharge: courte", "ELLE T'AS DEMANDE D'EN PRENDRE SOIN !\nPortee: lon"
-    "gue\nDegats: x1.3\nRecharge: longue", "L'ARME DES GROS CERVEAUX !\nPor"
-    "tee: longue\nDegat: x0\nRecharge: moyenne\nRepousse: haute"
+    char *name[NB_WEAPON] = {"LE CAC MON GARS !\n\tPortee: courte\n\tDegats: x1"
+    "\n\tRecharge: courte", "ELLE T'AS DEMANDE.E D'EN PRENDRE SOIN !\n\tPortee:"
+    " longue\n\tDegats: x1.3\n\tRecharge: longue", "L'ARME DES GROS CERVEAUX !"
+    "\n\tPortee: longue\n\tDegats: x0\n\tRecharge: moyenne\n\tRepousse: haute"
     };
     for (int i = 0; i < NB_WEAPON; i++) {
         desc[i] = create_draw(create_text(title[i], NULL, sfBlack), TEXT,
-        create_data(set_3vector(1100, 250, 0), set_2vector(0, 40), 0));
-        set_thick_draw(desc[i], 1);
+        create_data(set_3vector(1100, 250, 0), set_2vector(0, 50), 0));
+        set_thick_draw(desc[i], 2);
         append_draw_layer(lyr, desc[i]);
     } for (int i = NB_WEAPON; i < NB_WEAPON * 2; i++) {
         desc[i] = create_draw(create_text(name[i - NB_WEAPON], NULL, sfBlack),

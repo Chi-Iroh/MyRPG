@@ -31,7 +31,6 @@ weapon_t* select_weapon(weapon_t** all_weapons, weapon_t* current, int dir)
         slct = NB_WEAPON - 1;
     if (slct == NB_WEAPON)
         slct = 0;
-    printf("%d\n", slct);
     return all_weapons[slct];
 }
 
