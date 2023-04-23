@@ -8,7 +8,10 @@
 
 void change_hitbox(draw_t * draw, sfIntRect hitbox)
 {
-    draw->hitbox = hitbox;
+    draw->hitbox.left += hitbox.left;
+    draw->hitbox.top += hitbox.top;
+    draw->hitbox.width = hitbox.width;
+    draw->hitbox.height = hitbox.height;
 }
 
 void change_hitbox_by_id(draw_t * draw, int id, sfIntRect hitbox)

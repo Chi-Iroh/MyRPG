@@ -9,8 +9,10 @@
 void draw_single_draw(sfRenderTexture * texture, draw_t * draw)
 {
     set_data_draw(draw, draw->data);
-    draw->hitbox.left = draw->data->position.x;
-    draw->hitbox.top = draw->data->position.y;
+    if (draw->id < 0) {
+        draw->hitbox.left = draw->data->position.x;
+        draw->hitbox.top = draw->data->position.y;
+    }
     if (!draw->show) {
         return;
     }

@@ -84,6 +84,7 @@
     } game_src_t;
 
 
+    void edit_hitbox(window_t * wd);
     game_src_t* init_game_sources(window_t* wd);
 
     void menu(window_t* wd, game_src_t* g_src);

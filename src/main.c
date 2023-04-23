@@ -12,6 +12,7 @@ int main(int argc, char **argv)
 {
     sfVideoMode mode = {WD_WIDTH, WD_HEIGHT, 32};
     window_t * window = create_window("49:3", mode, NULL);
+    edit_hitbox(window);
     game_src_t* g_src = init_game_sources(window);
 
     if (window == NULL || g_src == NULL) {

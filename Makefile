@@ -36,11 +36,12 @@ SRC = 	src/main.c										\
 		src/countryball_49_3/countryball.c				\
 		src/init_player.c								\
 		src/stat_interface.c 							\
-		src/management_interaction.c		\
+		src/management_interaction.c					\
 		src/hitbox.c									\
 		src/speech_bubble/speech_bubble.c				\
 		src/speech_bubble/speech_bubble_free.c			\
 		src/speech_bubble/speech_bubble_linked_list.c	\
+		src/scripts/edit_hitbox.c
 
 OBJ =   $(SRC:.c=.o)
 
