@@ -55,10 +55,10 @@ void update_attack_cl(player_t *player)
 {
     float time = sfTime_asSeconds
     (sfClock_getElapsedTime(player->clock));
-    if (time <= 0.8)
+    if (time <= player->weapon->cooldown)
     set_size_draw(player->cooldown,
-    set_2vector(player->cooldown->data->size.x, time * -200));
-    if (time > 0.8)
+    set_2vector(player->cooldown->data->size.x, -160 * (time / player->weapon->cooldown)));
+    if (time > player->weapon->cooldown)
     set_size_draw(player->cooldown,
     set_2vector(player->cooldown->data->size.x , -160));
 }
