@@ -11,13 +11,13 @@
 void init_boss_hp_bar(window_t *wd, cop_t * cop, sfVector2f pos)
 {
     data_t *data_hp = create_data(set_3vector(pos.x, pos.y - 90, 0),
-    set_2vector(200, 15), 0.f);
+    set_2vector(600, 35), 0.f);
     shape_t *shape_hp = create_shape(RECT, sfRed, sfBlack, 3);
     init_progress_bar(wd, &cop->hp, data_hp, shape_hp);
     set_origin_draw(cop->hp.fill, (sfVector2f)
     {data_hp->size.x / 2, data_hp->size.y / 2});
     append_draw_layer(wd->core, cop->hp.fill);
-    cop->stat = (stat_t) {.damage = 15, .hp = 200, .speed = 3, .defense = 5
+    cop->stat = (stat_t) {.damage = 15, .hp = 600, .speed = 3, .defense = 5
     };
 }
 
