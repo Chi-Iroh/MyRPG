@@ -8,19 +8,27 @@
 #include <my_rpg.h>
 #include <my_graphics.h>
 
-void place_in_mob(mob_t *mob, draw_t *player, window_t *wd)
+void place_in_mob(mob_t *mob, player_t *player, window_t *wd)
 {
     float angle = (float)(rand() % 360);
     float r = (float)rand() / RAND_MAX * 180;
     sfVector3f newPosition = {
-        get_position_draw(player).x + cos(angle) * (r + 60),
-        get_position_draw(player).y + sin(angle) * (r + 60),
+        get_position_draw(player->draw).x + cos(angle) * (r + 60),
+        get_position_draw(player->draw).y + sin(angle) * (r + 60),
         0
     };
     mob->in_mob = IN;
     set_pos_draw(mob->draw, newPosition);
     if (check_pos(mob->draw, wd))
         place_in_mob(mob, player, wd);
+    if (mob->type == CHARACTER_DOCTOR &&
+    player->hp.fill->data->size.x + 50 < player->stat.hp * 40)
+        set_size_draw(player->hp.fill, set_2vector(player->hp.fill->data->size.x
+        + 50, player->hp.fill->data->size.y));
+    else if (mob->type == CHARACTER_DOCTOR &&
+    player->hp.fill->data->size.x + 50 >= player->stat.hp * 40)
+        set_size_draw(player->hp.fill, set_2vector(player->stat.hp * 40,
+        player->hp.fill->data->size.y));
 }
 
 void not_in_mob(mob_t *mob, player_t *player, window_t *wd)
@@ -40,7 +48,7 @@ void not_in_mob(mob_t *mob, player_t *player, window_t *wd)
         ((20  - player->stat.level) *
         (rand_move() + 2)),
         get_size_draw(player->exp.fill).y));
-        place_in_mob(mob, player->draw, wd);
+        place_in_mob(mob, player, wd);
     }
 }
 

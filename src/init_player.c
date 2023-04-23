@@ -65,7 +65,7 @@ sfTexture *init_player_text(character_type_t type)
 void init_bar(player_t *player, window_t* wd)
 {
     data_t *data_hp = create_data(set_3vector(70, 15, 50),
-    set_2vector(player->stat.hp * 20, 35), 0.f);
+    set_2vector(player->stat.hp * 40, 35), 0.f);
     shape_t *shape_hp = create_shape(RECT, sfGreen, sfBlack, 3);
     init_progress_bar(wd, &player->hp, data_hp, shape_hp);
     data_t *data_exp = create_data(set_3vector(1600, 15, 50),

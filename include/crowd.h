@@ -88,6 +88,7 @@
         in_mob_e in_mob;
         int dir;
         dir_e mov;
+        character_type_t type;
     } mob_t;
 
     typedef struct player_s {
@@ -124,7 +125,7 @@
     /*rand.c*/
 
     sfVector2f get_random_position(window_t *wd);
-    sfTexture* rand_skin(void);
+    sfTexture* rand_skin(character_type_t *type);
     bool check_pos(draw_t *draw, window_t *wd);
     /*update.c*/
 

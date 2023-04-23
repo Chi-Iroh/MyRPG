@@ -49,7 +49,7 @@ int game_core(window_t* wd, game_src_t* g_src, sfClock *clock)
     stat_interaction(&g_src->game->crowd->player->stat, g_src->game->stat_ui);
     if (g_src->game->crowd->player->stat.hp > hp_tmp)
     set_size_draw(g_src->game->crowd->player->hp.fill, set_2vector
-    (g_src->game->crowd->player->hp.fill->data->size.x + 100,
+    (g_src->game->crowd->player->hp.fill->data->size.x + 40,
     g_src->game->crowd->player->hp.fill->data->size.y));
     return 0;
 }

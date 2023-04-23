@@ -53,7 +53,7 @@ mob_t **init_crowd_mob(window_t* wd)
     for (int i = 0; i < CROWD_SIZE; i++) {
         mob[i] = malloc(sizeof(mob_t));
         sprite_t *sprite = init_sprite();
-        sfTexture *texture = rand_skin();
+        sfTexture *texture = rand_skin(&mob[i]->type);
         sfVector2f pos = get_random_position(wd);
         pos.x -= wd->map_size.x;
         data_t *data = create_data(set_3vector(pos.x, pos.y, 0),
