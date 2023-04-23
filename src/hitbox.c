@@ -49,7 +49,7 @@ void knock_back(cop_t *cop, player_t *player, float pw)
     sfVector2f move;
     move.x = cord.x * pw;
     move.y = cord.y * pw;
-    move_draw(cop->hp.fill, move); 
+    move_draw(cop->hp.fill, move);
     move_draw(cop->draw, move);
     get_sprt_cop(cop->draw, move, &cop->cop_e);
 }

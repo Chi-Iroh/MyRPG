@@ -19,7 +19,7 @@
 const sfUint32 *CHARACTER_DESCRIPTION[N_CHARACTERS] = {
     UTF8(
         "Bébert le Cheminot bosse à la SNCF depuis ses 18 ans.\n"
-        "Gréviste de père en fil, la dynastie des Bébert perpétue cette\n"
+        "Gréviste de père en fils, la dynastie des Bébert perpétue cette\n"
         "tradition ancestrale avec un savoir-faire\net une application "
         "qui forcent le respect.\n"
         "Manifeste parce qu'une manif sans un Bébert, c'est un déshonneur\n"
@@ -45,7 +45,7 @@ const sfUint32 *CHARACTER_DESCRIPTION[N_CHARACTERS] = {
     ),
     UTF8(
         "Théophile, Étudiant à Sciences Po parce que c'est pépère et que\n"
-        "bosser c'est clairement secondaire.\n"
+        "bosser est clairement secondaire.\n"
         "Le travail c'est pas son fort, mais râler et\ntrouver des prétextes "
         "bidons pour ne pas en faire une, il connaît.\n"
         "Manifeste parce que ça serait sa matière principale\ndans son emploi "
@@ -56,14 +56,14 @@ const sfUint32 *CHARACTER_DESCRIPTION[N_CHARACTERS] = {
         "parce que ça fait \"petit peuple\" et que c'est rigolo.\n"
         "Est entré à l'ENA pour suivre les traces de papa, d'ailleurs\n"
         "c'est lui qui l'a fait rentrer grâce à ses \"relations\".\n"
-        "Manifeste pour aller regarder le bas peuple,\nmais s'est fait "
-        "entraîner au coeur de la manif.\n"
+        "Manifeste pour aller regarder ceux qui ont besoin de travailler,\n"
+        "mais s'est fait entraîner au coeur de la manif.\n"
         "Il a beau hurler \"Je suis le fils du préfet\" (comme d'habitude),\n"
         "rien n'y fait (comme d'habitude)."
     ),
     UTF8(
         "René l'Ouvrier, prolétaire depuis toujours, regrette Lénine et le "
-        " PCF.\n"
+        "PCF.\n"
         "Entre les conditions de travail qui se dégradent, le salaire\n"
         "stagnant malgré une inflation démentielle, rien ne va plus !\n"
         "Manifeste parce que l'état est corrompu\net n'a aucune considération "
@@ -74,7 +74,7 @@ const sfUint32 *CHARACTER_DESCRIPTION[N_CHARACTERS] = {
         "Appelé par une multitude de noms, \"le Casseur\" est celui qu'il\n"
         "préfère, sobre mais néanmoins efficace.\nTout comme sa batte de "
         "base-ball ou son marteau.\n"
-        "Manifeste meme s'il n'est pas beaucoup aprécié.\nSes revendications"
+        "Manifeste même s'il n'est pas beaucoup aprécié.\nSes revendications"
         " sont floues, mais il sera "
         "systématiquement sous\nla lumière des projecteurs !"
     )

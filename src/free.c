@@ -11,13 +11,13 @@
 static void free_button_list(list_button_t** l_btn)
 {
     RETURN_IF(!l_btn || !(*l_btn));
-    if (*l_btn) {
-        if ((*l_btn)->btn && (*l_btn)->btn->s_btn)
-            free((*l_btn)->btn->s_btn);
-        FREE_IF_ALLOCATED((*l_btn)->btn, free);
-        free(*l_btn);
-        *l_btn = NULL;
+    if ((*l_btn)->btn && (*l_btn)->btn->s_btn) {
+        free((*l_btn)->btn->s_btn);
+        (*l_btn)->btn->s_btn = NULL;
     }
+    FREE_IF_ALLOCATED((*l_btn)->btn, free);
+    free(*l_btn);
+    *l_btn = NULL;
 }
 
 void free_menu(menu_t *menu)
@@ -32,18 +32,13 @@ void free_menu(menu_t *menu)
 
 void free_g_src(game_src_t* g_src)
 {
-    list_button_t *tmp = NULL;
+    list_button_t *next = NULL;
 
     RETURN_IF(!g_src);
     while(g_src->all_btn) {
-        tmp = g_src->all_btn;
-        free_button_list(&tmp);
-        if (g_src->all_btn) {
-            g_src->all_btn = g_src->all_btn->next;
-        }
-    }
-    if (tmp) {
-        free_button_list(&tmp);
+        next = g_src->all_btn->next;
+        free_button_list(&g_src->all_btn);
+        g_src->all_btn = next;
     }
     speech_bubble_remove_all(&g_src->game->list_bubbles);
     FREE_IF_ALLOCATED(g_src->game->crowd, free_crowd);

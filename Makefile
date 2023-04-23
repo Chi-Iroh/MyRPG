@@ -8,6 +8,7 @@
 SRC = 	src/main.c												\
 		src/init_g_src.c										\
 		src/menu.c												\
+		src/menu_init.c											\
 		src/settings.c											\
 		src/resolution.c 										\
 		src/core.c 												\
@@ -39,6 +40,7 @@ SRC = 	src/main.c												\
 		src/countryball_49_3/countryball_free.c					\
 		src/init_player.c										\
 		src/stat_interface.c 									\
+		src/stat_interface_init.c								\
 		src/management_interaction.c							\
 		src/hitbox.c											\
 		src/speech_bubble/speech_bubble.c						\

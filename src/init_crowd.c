@@ -24,6 +24,7 @@ cop_t **init_crowd_cop(window_t* wd)
     cop_t **cop = malloc(sizeof(cop_t*) * CROWD_SIZE);
     for (int i = 0; i < CROWD_SIZE; i++) {
         cop[i] = malloc(sizeof(cop_t));
+        cop[i]->dead = FALSE;
         cop[i]->clock = sfClock_create();
         sprite_t *sprite = init_sprite();
         sfTexture *texture = sfTexture_createFromFile

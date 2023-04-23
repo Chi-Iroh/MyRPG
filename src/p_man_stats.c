@@ -12,7 +12,8 @@ draw_t** init_p_man_titles(layer_t* layer)
 {
     draw_t** titles = malloc(sizeof(draw_t*) * 4);
     char *name[4] = {"STATS", "INVENTAIRE", "QUETE EN COURS", "Reunir 30 manife"
-    "stant pour invoquer le mechant Macrongue et lui faire retirer sa reforme"};
+    "stants pour invoquer le mechant Macrongue et lui faire retirer sa reforme"
+    };
     sfVector3f pos[4] = {set_3vector(100, 100, 0), set_3vector(1000, 100, 0),
         set_3vector(100, 800, 0), set_3vector(150, 900, 0)};
     text_t* txt = NULL;
@@ -55,6 +56,7 @@ interface_t* init_p_man_stat_ui(layer_t* lyr, list_button_t** a_btn)
     stat_ui->stat_name = malloc(sizeof(draw_t*) * NB_STAT);
     stat_ui->stat_nb = malloc(sizeof(draw_t*) * NB_STAT);
     stat_ui->stat_btns = init_p_man_stat_button(a_btn, lyr);
+    init_stat_ui_values(stat_ui);
     for (int i = 0; i < NB_STAT; i++) {
         stat_ui->stat_name[i] = create_draw(create_text(name[i], NULL, i == 1 ?
             sfYellow : sfBlack), TEXT, create_data(set_3vector(300, !i ?
