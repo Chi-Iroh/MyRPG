@@ -39,7 +39,7 @@ const sfUint32 *CHARACTER_DESCRIPTION[N_CHARACTERS] = {
         "il aimait bien dessiner au collège quand il n'écoutait pas les "
         "cours.\n"
         "En a aussi marre qu'on le prenne pour un flemmard et un chômeur\n"
-        "(et oui, la vériré fait mal). Manifeste pour montrer que quand il "
+        "(et oui, la vériré fait mal).\nManifeste pour montrer que quand il "
         "veut, il peut !\nC'est lui et sa bande qui sont chargés de taguer\n"
         "les murs des banques pour dénoncer le capitalisme."
     ),
@@ -74,8 +74,8 @@ const sfUint32 *CHARACTER_DESCRIPTION[N_CHARACTERS] = {
         "Appelé par une multitude de noms, \"le Casseur\" est celui qu'il\n"
         "préfère, sobre mais néanmoins efficace.\nTout comme sa batte de "
         "base-ball ou son marteau.\n"
-        "Manifeste, enfin détruit parce qu'il peut faire accuser les\n"
-        "ouvriers, pendant qu'il peut tout brûler sur son passage."
+        "Manifeste meme s'il n'est pas beaucoup aprécié.\nIl sera "
+        "systématiquement sous la lumière des projecteurs !"
     )
 };
 
