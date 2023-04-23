@@ -46,7 +46,7 @@ void free_crowd(crowd_t *crowd)
     free(crowd);
 }
 
-void crowd(window_t* wd, crowd_t *crowd, interface_t* stat_ui)
+void crowd(window_t* wd, crowd_t *crowd, interface_t* stat_ui, audio_t audio)
 {
     update(crowd, wd);
     if (crowd->player->exp.fill->data->size.x >= 250) {
@@ -57,5 +57,6 @@ void crowd(window_t* wd, crowd_t *crowd, interface_t* stat_ui)
         crowd->player->stat.level += crowd->player->stat.level < 20 ?
         1 : 0;
         update_stat_ui(crowd->player->stat, stat_ui);
+        audio_play_sfx(&audio, SFX_LEVEL_UP);
     }
 }

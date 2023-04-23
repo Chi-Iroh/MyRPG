@@ -9,6 +9,9 @@
 #include <my_graphics.h>
 #include <stdio.h>
 
+#define ATTACK \
+    sfMouse_isButtonPressed(sfMouseLeft) || sfKeyboard_isKeyPressed(sfKeySpace)
+
 bool check_pos(draw_t *draw, window_t *wd)
 {
     if (intersect_with_map(draw, wd->core->draw)) {
@@ -90,8 +93,9 @@ void update(crowd_t *crowd, window_t *wd)
             set_pos_draw(crowd->cop[i]->draw, pos_tmp);
         update_mob(crowd->mob[i], crowd, move, wd);
     }
-    if (sfKeyboard_isKeyPressed(sfKeySpace) && sfTime_asSeconds
-    (sfClock_getElapsedTime(crowd->player->clock)) > crowd->player->weapon->cooldown) {
+    if ((ATTACK) && sfTime_asSeconds(
+        sfClock_getElapsedTime(crowd->player->clock)) >
+        crowd->player->weapon->cooldown) {
         sfClock_restart(crowd->player->clock);
         for (int i = 0; i < CROWD_SIZE; i++)
             check_hitbox(crowd, i, spritePosition);

@@ -41,6 +41,8 @@ void wheel_scrolled(window_t* wd, sfEvent event, game_src_t *g_src)
         g_src->game->crowd->player->weapon =
         select_weapon(g_src->game->all_weapons,
         g_src->game->crowd->player->weapon, event.mouseWheelScroll.delta);
+        update_weapon_ui(g_src->game->all_weapons, g_src->game->crowd->player,
+        g_src->game->pause_menu->player->other[1]);
     }
 }
 

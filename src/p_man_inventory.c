@@ -23,21 +23,26 @@ button_s_t** init_p_man_inv_button(list_button_t** a_btn,
     return btns;
 }
 
-draw_t** init_weapon_sprite(layer_t* lyr)
+draw_t** init_weapon_sprite(layer_t* lyr, bool pause)
 {
-    draw_t** sprite = malloc(sizeof(draw_t*) * (NB_WEAPON + 1));
+    int p = pause ? 1 : 0;
+    draw_t** sprite = malloc(sizeof(draw_t*) * (NB_WEAPON + p));
     const char *tx_path[3] = {"./images/Fist.png", "./images/Batte.png",
     "./images/CodeCivil.png"};
     for (int i = 0; i < NB_WEAPON; i++) {
         sfTexture* tx = sfTexture_createFromFile(tx_path[i], NULL);
         sprite[i] = create_draw(create_sprite(tx,
         set_rectangle(0, 0, 139, 160)), SPRITE, create_data(
-        set_3vector(1350, 360, 0), set_2vector(100, 100), 0));
+        set_3vector(pause ? 1350 : 55, pause ? 360 : 830, 0),
+        set_2vector(100, 100), 0));
         append_draw_layer(lyr, sprite[i]);
     }
-    sprite[NB_WEAPON] = create_draw(create_shape(RECT, sfWhite, sfYellow, 5),
-    SHAPE, create_data(set_3vector(1320, 330, 0), set_2vector(200, 250), 0));
-    append_draw_layer(lyr, sprite[NB_WEAPON]);
+    if (pause) {
+        sprite[NB_WEAPON] = create_draw(create_shape(RECT, sfWhite, sfYellow,
+        5), SHAPE, create_data(set_3vector(1320, 330, 0),
+        set_2vector(200, 250), 0));
+        append_draw_layer(lyr, sprite[NB_WEAPON]);
+    }
     return sprite;
 }
 
@@ -70,6 +75,6 @@ interface_t* init_p_man_inventory(layer_t* lyr, list_button_t** a_btn)
     interface_t* inv_ui = malloc(sizeof(interface_t));
     inv_ui->stat_name = init_p_man_inv_descriptions(lyr);
     inv_ui->stat_btns = init_p_man_inv_button(a_btn, lyr);
-    inv_ui->stat_nb = init_weapon_sprite(lyr);
+    inv_ui->stat_nb = init_weapon_sprite(lyr, true);
     return inv_ui;
 }

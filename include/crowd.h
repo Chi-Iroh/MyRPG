@@ -86,6 +86,7 @@
         progress_bar_t exp;
         draw_t *range;
         draw_t *cooldown;
+        draw_t **weapon_draw;
         character_type_t type;
         weapon_t* weapon;
     } player_t;
@@ -129,6 +130,7 @@
     void free_crowd(crowd_t *crowd);
     sfBool check_collision(draw_t *player, draw_t *crowd);
     void display_crowd(sfRenderWindow *window, crowd_t *crowd);
-    void crowd(window_t* wd, crowd_t *crowd, struct interface_s* stat_ui);
+    void crowd(window_t* wd, crowd_t *crowd, interface_t* stat_ui,
+        audio_t audio);
 
 #endif /* CROWD_T */

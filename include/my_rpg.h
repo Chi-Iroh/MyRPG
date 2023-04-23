@@ -109,10 +109,11 @@
     void update_stat(stat_t *stat, int type, interface_t* stat_ui);
     button_s_t* init_stat_interface_bis(int i, list_button_t** a_btn, layer_t* ui);
     interface_t* init_stat_interface(layer_t* ui, list_button_t** a_btn);
+    draw_t** init_weapon_sprite(layer_t* lyr, bool pause);
     interface_t* init_p_man_inventory(layer_t* lyr, list_button_t** a_btn);
-    void update_weapon_ui(weapon_t** all_weapons, weapon_t* current,
+    void update_weapon_ui(weapon_t** all_weapons, player_t* player,
         interface_t* inv_ui);
-    void weapon_interaction_p_man(weapon_t** all_weapons, weapon_t** current,
+    void weapon_interaction_p_man(weapon_t** all_weapons, player_t* player,
         interface_t* inv_ui);
     weapon_t* select_weapon(weapon_t** all_weapons, weapon_t* current, int dir);
     weapon_t** init_all_weapons(void);

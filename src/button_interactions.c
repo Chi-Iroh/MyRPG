@@ -23,7 +23,8 @@ const char *const INDICATORS_STATS_INVENTORY_BUTTON = "+-<>";
     Contains "exploit" --> no sound
     Else --> explosion
 */
-static void play_button_sound(button_s_t *button, audio_t *audio) {
+static void play_button_sound(button_s_t *button, audio_t *audio)
+{
     char *const str = (char*)((text_t*)button->name->drawable)->string;
 
     if (my_strstr(str, INDICATOR_SAVE_LOAD_BUTTON)) {

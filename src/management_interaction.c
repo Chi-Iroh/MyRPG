@@ -9,19 +9,18 @@
 #include <my_graphics.h>
 
 
-void weapon_interaction_p_man(weapon_t** all_weapons, weapon_t** current,
+void weapon_interaction_p_man(weapon_t** all_weapons, player_t* player,
     interface_t* inv_ui)
 {
     if (IS_RELEASED(inv_ui->stat_btns[0])) {
         inv_ui->stat_btns[0]->state = NONE;
-        *current = select_weapon(all_weapons, *current, -1);
-        update_weapon_ui(all_weapons, *current, inv_ui);
-        //printf("<\n");
+        player->weapon = select_weapon(all_weapons, player->weapon, -1);
+        update_weapon_ui(all_weapons, player, inv_ui);
     }
     if (IS_RELEASED(inv_ui->stat_btns[1])) {
         inv_ui->stat_btns[1]->state = NONE;
-        *current = select_weapon(all_weapons, *current, 1);
-        update_weapon_ui(all_weapons, *current, inv_ui);
+        player->weapon = select_weapon(all_weapons, player->weapon, 1);
+        update_weapon_ui(all_weapons, player, inv_ui);
     }
 }
 

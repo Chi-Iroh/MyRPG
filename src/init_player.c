@@ -99,13 +99,7 @@ void init_hitbox(player_t *player, window_t *wd, data_t *data)
     shape_t *shape = create_shape(RECT,
     sfColor_fromRGBA(200, 200, 200, 150), sfTransparent, 1);
     player->cooldown = create_draw(shape, SHAPE, data_tmp);
-    data_t *fst = create_data(set_3vector(55, 830, 0), set_2vector(160, -160),
-    0);
-    sprite_t *sprite = init_sprite();
-    sfTexture *texture = sfTexture_createFromFile ("images/Fist.png", NULL);
-    set_texture_sprite(sprite, texture, (sfIntRect) {0, 0, 139, 160});
-    draw_t *fist = create_draw(sprite, SPRITE, fst);
-    append_draw_layer(wd->ui, fist);
+    player->weapon_draw = init_weapon_sprite(wd->ui, false);
     append_draw_layer(wd->ui, player->cooldown);
 }
 

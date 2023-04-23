@@ -103,11 +103,11 @@ void player_management_core(window_t* wd, game_src_t* g_src, menu_cat_t* p_man)
         p_man->btn[0]->state = NONE;
         update_stat_ui(g_src->game->crowd->player->stat, g_src->game->stat_ui);
         update_stat_ui(g_src->game->crowd->player->stat, p_man->other[0]);
-        update_weapon_ui(g_src->game->all_weapons,
-            g_src->game->crowd->player->weapon, p_man->other[1]);
+        update_weapon_ui(g_src->game->all_weapons, g_src->game->crowd->player,
+            g_src->game->pause_menu->player->other[1]);
     }
     stat_interaction_p_man(&g_src->game->crowd->player->stat,
         g_src->game->crowd->player->base, p_man->other[0]);
     weapon_interaction_p_man(g_src->game->all_weapons,
-        &g_src->game->crowd->player->weapon, p_man->other[1]);
+        g_src->game->crowd->player, p_man->other[1]);
 }

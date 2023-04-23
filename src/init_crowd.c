@@ -38,8 +38,8 @@ cop_t **init_crowd_cop(window_t* wd)
             (data->size.x / 2, data->size.y - 5));
         append_draw_layer(wd->core, cop[i]->draw);
         set_animation_draw(cop[i]->draw, (sfIntRect) {0, 0, 64, 72}, 3, true);
-        cop[i]->stat = (stat_t) {
-            .damage = 5, .hp = 80, .speed = 5, .defense = 5};
+        cop[i]->stat = (stat_t) {.damage = 5, .hp = 80, .speed = 5, .defense = 5
+        };
         init_cop_hp_bar(wd, cop[i], pos);
         cop[i]->draw->id = -88;
     }
@@ -82,7 +82,7 @@ bool init_crowd(game_t *game, window_t* wd, list_button_t** a_btn,
         return false;
     }
     game->crowd->player->weapon = game->all_weapons[0];
-    update_weapon_ui(game->all_weapons, game->crowd->player->weapon,
+    update_weapon_ui(game->all_weapons, game->crowd->player,
         game->pause_menu->player->other[1]);
     update_stat_ui(game->crowd->player->stat, game->stat_ui);
     append_draw_layer(wd->ui, create_draw(create_shape(RECT,
