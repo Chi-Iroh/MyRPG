@@ -27,7 +27,7 @@ const sfUint32 *CHARACTER_DESCRIPTION[N_CHARACTERS] = {
         ),
     UTF8(
         "Didier le Docteur ne manque pas de travail dans son désert médical.\n"
-        "Entre les visites de routine, les accidents domestiques\net les"
+        "Entre les visites de routine, les accidents domestiques\net les "
         "consultations d'animaux de la ferme\n(parce que oui, c'est ça la "
         "Creuse), il est débordé.\n"
         "Manifeste parce qu'à la Sécu rien ne va plus et qu'il voudrait "
