@@ -29,6 +29,17 @@
         sfFloatRect area;
     } progress_bar_t;
 
+    typedef enum dir_cop {
+        N,
+        NE,
+        E,
+        SE,
+        S,
+        SW,
+        W,
+        NW
+    } dir_cop_e;
+
     typedef enum dir_e {
         UP,
         DOWN
@@ -63,6 +74,7 @@
         stat_t stat;
         progress_bar_t hp;
         dead_e dead;
+        dir_cop_e cop_e;
     } cop_t;
 
     typedef enum in_mob_e {
@@ -114,13 +126,13 @@
     sfVector2f get_random_position(window_t *wd);
     sfTexture* rand_skin(void);
     bool check_pos(draw_t *draw, window_t *wd);
-
     /*update.c*/
 
     void update(crowd_t *crowd, window_t *wd);
     float rand_move(void);
     void update_mob(mob_t *mob, crowd_t *crowd, sfVector2f move, window_t *wd);
     void update_cop(cop_t *cop, crowd_t *crowd, sfVector3f spritePosition);
+    void get_sprt_cop(draw_t *draw, sfVector2f move, dir_cop_e *dir);
 
     /**/
     void move_range

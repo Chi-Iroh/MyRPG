@@ -45,14 +45,13 @@ void move_range
 
 void knock_back(cop_t *cop, player_t *player, float pw)
 {
-    sfVector3f cop_pos = get_position_draw(cop->draw);
     sfVector3f cord = calc_dist(cop->draw, player->draw);
-    sfVector3f new_pos;
-    new_pos.x = cop_pos.x + cord.x * pw;
-    new_pos.y = cop_pos.y + cord.y * pw;
-    set_pos_draw
-    (cop->hp.fill, set_3vector(new_pos.x, new_pos.y - 40, 0));
-    set_pos_draw(cop->draw, new_pos);
+    sfVector2f move;
+    move.x = cord.x * pw;
+    move.y = cord.y * pw;
+    move_draw(cop->hp.fill, move); 
+    move_draw(cop->draw, move);
+    get_sprt_cop(cop->draw, move, &cop->cop_e);
 }
 
 void check_hitbox(crowd_t *crowd, int i, sfVector3f spritePosition)

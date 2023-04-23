@@ -19,6 +19,8 @@ void place_in_mob(mob_t *mob, draw_t *player, window_t *wd)
     };
     mob->in_mob = IN;
     set_pos_draw(mob->draw, newPosition);
+    if (check_pos(mob->draw, wd))
+        place_in_mob(mob, player, wd);
 }
 
 void not_in_mob(mob_t *mob, player_t *player, window_t *wd)

@@ -7,7 +7,6 @@
 
 #include <my_rpg.h>
 #include <my_graphics.h>
-#include <stdio.h>
 
 #define ATTACK \
     sfMouse_isButtonPressed(sfMouseLeft) || sfKeyboard_isKeyPressed(sfKeySpace)
@@ -77,8 +76,12 @@ void update(crowd_t *crowd, window_t *wd)
         sfVector3f pos_tmp = get_position_draw(crowd->cop[i]->draw);
         update_cop(crowd->cop[i], crowd, spritePosition);
         if (crowd->cop[i]->draw->data->position.x < 3200 &&
-        check_pos(crowd->cop[i]->draw, wd))
+        check_pos(crowd->cop[i]->draw, wd)) {
             set_pos_draw(crowd->cop[i]->draw, pos_tmp);
+            set_pos_draw(crowd->cop[i]->hp.fill, set_3vector(pos_tmp.x,
+            pos_tmp.y - 50, 0));
+        }
+            
         update_mob(crowd->mob[i], crowd, move, wd);
     }
     if ((ATTACK) && sfTime_asSeconds(

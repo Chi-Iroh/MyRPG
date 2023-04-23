@@ -45,7 +45,8 @@ SRC = 	src/main.c												\
 		src/speech_bubble/speech_bubble_free.c					\
 		src/speech_bubble/speech_bubble_linked_list.c			\
 		src/speech_bubble/speech_bubble_resize_text_and_move.c	\
-		src/scripts/edit_hitbox.c
+		src/scripts/edit_hitbox.c								\
+		src/update_sheet.c
 
 OBJ =   $(SRC:.c=.o)
 

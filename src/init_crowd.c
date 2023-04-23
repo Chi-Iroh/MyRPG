@@ -41,6 +41,7 @@ cop_t **init_crowd_cop(window_t* wd)
         cop[i]->stat = (stat_t) {.damage = 5, .hp = 80, .speed = 5, .defense = 5
         };
         init_cop_hp_bar(wd, cop[i], pos);
+        cop[i]->cop_e = S;
         cop[i]->draw->id = -88;
     }
     return cop;
@@ -61,7 +62,6 @@ mob_t **init_crowd_mob(window_t* wd)
         mob[i]->draw = create_draw(sprite, SPRITE, data);
         set_origin_draw(mob[i]->draw, set_2vector
             (data->size.x / 2, data->size.y - 5));
-        set_origin_draw(mob[i]->draw, (sfVector2f) {48 / 2, 72 / 2});
         set_animation_draw(mob[i]->draw, (sfIntRect) {0, 0, 48, 72}, 11, true);
         append_draw_layer(wd->core, mob[i]->draw);
         mob[i]->in_mob = OUT;
