@@ -55,10 +55,12 @@ void free_g_src(game_src_t* g_src)
         free_button_list(&g_src->all_btn);
         g_src->all_btn = next;
     }
-    if (g_src->game->crowd->boss) {
-        free_single_cop(&g_src->game->crowd->boss);
+    if (g_src->game->crowd) {
+        if (g_src->game->crowd->boss)
+            free_single_cop(&g_src->game->crowd->boss);
+        if (g_src->game->crowd->player)
+            FREE_IF_ALLOCATED(g_src->game->crowd->player->weapon_draw, free);
     }
-    FREE_IF_ALLOCATED(g_src->game->crowd->player->weapon_draw, free);
     speech_bubble_remove_all(&g_src->game->list_bubbles);
     FREE_IF_ALLOCATED(g_src->game->crowd, free_crowd);
     FREE_IF_ALLOCATED(g_src->menu, free_menu);
