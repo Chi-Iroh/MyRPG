@@ -9,5 +9,5 @@
 void set_pos_data(data_t * data, sfVector3f position)
 {
     data->position = position;
-    data->depth = set_depth(position, data->size);
+    data->depth = set_depth(position);
 }

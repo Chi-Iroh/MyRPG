@@ -32,8 +32,8 @@ void get_position(sfVector2f position, int ** map,
         return;
     } while (tmx->id != id) {
         tmx = tmx->next;
-    } sfVector3f pos = set_3vector(position.x * 64,
-                                    position.y * 64 - tmx->height, 0.f);
+    } sfVector3f pos = set_3vector(position.x * 64 + tmx->width / 2,
+                                    position.y * 64 - 5, 0.f);
     sfVector2f size = set_2vector(tmx->width, tmx->height);
     char * path = get_path(id, tmx); draw_t * draw = NULL;
     data_t * data = create_data(pos, size, 0.f);
@@ -43,7 +43,9 @@ void get_position(sfVector2f position, int ** map,
     set_texture_sprite(sprite, texture,
                         set_rectangle(0, 0, tmx->width, tmx->height));
     draw = create_draw(sprite, SPRITE, data);
+    change_hitbox(draw, set_rectangle(-(size.x / 2), -(size.y - 5), size.x, size.y));
     draw->id = id;
+    set_origin_draw(draw, set_2vector(size.x / 2, size.y - 5));
     append_draw_layer(layer, draw);
     free(path);
 }

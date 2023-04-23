@@ -12,6 +12,6 @@ data_t * create_data(sfVector3f position, sfVector2f size, float angle)
     data->position = position;
     data->size = size;
     data->angle = angle;
-    data->depth = set_depth(position, size);
+    data->depth = set_depth(position);
     return data;
 }

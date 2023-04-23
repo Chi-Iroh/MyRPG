@@ -17,9 +17,9 @@ static draw_t * algo(draw_t * list)
         while (current != NULL) {
             if (current->next == NULL) {
                 current = current->next; continue;
-            } long double current_d = current->data->depth;
+            } long double current_d = set_depth(current->data->position);
             draw_t * next = current->next;
-            long double next_d = next->data->depth;
+            long double next_d = set_depth(next->data->position);
             if (next_d < current_d) {
                 swap_draw_next(current); nb_swap++;
                 if (current == first) {
