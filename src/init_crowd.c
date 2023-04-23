@@ -43,7 +43,7 @@ cop_t* init_boss(window_t* wd)
     append_draw_layer(wd->core, boss->draw);
     set_animation_draw(boss->draw, (sfIntRect) {0, 0, 64, 72}, 3, true);
     init_boss_hp_bar(wd, boss, pos);
-    boss->cop_e = S;
+    boss->cop_e = DIR_COP_S;
     boss->draw->id = -88;
     return boss;
 }
