@@ -18,6 +18,16 @@ void free_button_list(list_button_t* l_btn)
     }
 }
 
+void free_menu(menu_t *menu)
+{
+    RETURN_IF(!menu);
+    FREE_IF_ALLOCATED(menu->settings->btn, free);
+    FREE_IF_ALLOCATED(menu->settings->s_btn, free);
+    FREE_IF_ALLOCATED(menu->settings->title, free);
+    FREE_IF_ALLOCATED(menu->settings, free);
+    FREE_IF_ALLOCATED(menu, free);
+}
+
 void free_g_src(game_src_t* g_src)
 {
     list_button_t* tmp = NULL;
@@ -27,11 +37,7 @@ void free_g_src(game_src_t* g_src)
     free_button_list(tmp);
     speech_bubble_remove_all(&g_src->game->list_bubbles);
     free_crowd(g_src->game->crowd);
-    free(g_src->menu->settings->btn);
-    free(g_src->menu->settings->s_btn);
-    free(g_src->menu->settings->title);
-    free(g_src->menu->settings);
-    free(g_src->menu);
+    free_menu(g_src->menu);
     free(g_src);
 }
 
