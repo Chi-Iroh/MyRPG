@@ -10,10 +10,10 @@
 
 void is_hit(cop_t *cop, player_t *player)
 {
-    cop->stat.hp -= (player->stat.damage * 2) * player->weapon->dmg;
+    cop->stat.hp -= (player->stat.damage * 4) * player->weapon->dmg;
     set_size_draw(cop->hp.fill, set_2vector
     (cop->hp.fill->data->size.x -
-    (player->stat.damage * 2) * player->weapon->dmg,
+    (player->stat.damage * 4) * player->weapon->dmg,
     cop->hp.fill->data->size.y));
     if (cop->stat.hp <= 0) {
         set_size_draw(cop->hp.fill, set_2vector
@@ -24,7 +24,7 @@ void is_hit(cop_t *cop, player_t *player)
 void move_range
 (player_t *player, sfVector2f move, weapon_t *weapon)
 {
-    set_size_draw(player->range, set_2vector(weapon->size_hitbox.x, weapon->size_hitbox.y));
+    set_size_draw(player->range, weapon->size_hitbox);
     float offset = weapon->size_hitbox.x / 2;
     move.x = move.x > 0 ? 1 : move.x < 0 ? -1 : 0;
     move.y = move.y > 0 ? 1 : move.y < 0 ? -1 : 0;

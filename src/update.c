@@ -17,6 +17,18 @@ bool check_pos(draw_t *draw, window_t *wd)
     return false;
 }
 
+void set_anim_mob(draw_t *draw, sfVector2f move)
+{
+    if (move.x == 0 && move.y == 0) {
+        set_anim_rect_draw(draw, (sfIntRect) {0, 0, 48, 72});
+        return;
+    }
+    if (move.y < 0)
+        set_anim_rect_draw(draw, (sfIntRect) {528, 0, 48, 72});
+    else
+        set_anim_rect_draw(draw, (sfIntRect) {0, 0, 48, 72});
+}
+
 void move_player_bis(sfVector2f move, player_t *player)
 {
     sfVector2f dir;
@@ -48,6 +60,7 @@ sfVector2f move_player(player_t *player, window_t *wd)
         move_player_bis(move, player);
         move.x = 0; move.y = 0;
     }
+    set_anim_mob(player->draw, move);
     return move;
 }
 

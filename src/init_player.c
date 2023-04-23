@@ -118,8 +118,8 @@ player_t *init_player(window_t* wd, game_t *game)
         return NULL;
     }
     player->clock = sfClock_create();
-    data_t *data = create_data(set_3vector(WD_WIDTH / 2 + 400,
-    WD_HEIGHT / 2 + 400, 0), set_2vector(48, 72), 0.f);
+    data_t *data = create_data(set_3vector(1200,
+    800, 0), set_2vector(48, 72), 0.f);
     sprite_t *sprite = init_sprite();
     sfTexture *texture = init_player_text(player->type);
     set_texture_sprite(sprite, texture, (sfIntRect) {0, 0, 48, 72});
@@ -127,8 +127,10 @@ player_t *init_player(window_t* wd, game_t *game)
     set_origin_draw(player->draw, set_2vector
     (data->size.x / 2, data->size.y - 5));
     append_draw_layer(wd->core, player->draw);
+    set_animation_draw(player->draw, (sfIntRect) {0, 0, 48, 72}, 11, true);
     init_hitbox(player, wd, data);
     init_stat(&player->stat, &player->base, player->type);
     init_bar(player, wd);
+    player->draw->id = -88;
     return player;
 }

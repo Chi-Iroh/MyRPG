@@ -15,7 +15,7 @@ void init_cop_hp_bar(window_t *wd, cop_t * cop, sfVector2f pos)
     shape_t *shape_hp = create_shape(RECT, sfRed, sfBlack, 3);
     init_progress_bar(wd, &cop->hp, data_hp, shape_hp);
     set_origin_draw(cop->hp.fill, (sfVector2f)
-    {data_hp->size.x / 2, data_hp->size.y / 2});
+    {data_hp->size.x / 2, data_hp->size.y});
     append_draw_layer(wd->core, cop->hp.fill);
 }
 
@@ -37,9 +37,11 @@ cop_t **init_crowd_cop(window_t* wd)
         set_origin_draw(cop[i]->draw, set_2vector
             (data->size.x / 2, data->size.y - 5));
         append_draw_layer(wd->core, cop[i]->draw);
+        set_animation_draw(cop[i]->draw, (sfIntRect) {0, 0, 64, 72}, 3, true);
         cop[i]->stat = (stat_t) {
             .damage = 5, .hp = 80, .speed = 5, .defense = 5};
         init_cop_hp_bar(wd, cop[i], pos);
+        cop[i]->draw->id = -88;
     }
     return cop;
 }
@@ -60,9 +62,11 @@ mob_t **init_crowd_mob(window_t* wd)
         set_origin_draw(mob[i]->draw, set_2vector
             (data->size.x / 2, data->size.y - 5));
         set_origin_draw(mob[i]->draw, (sfVector2f) {48 / 2, 72 / 2});
+        set_animation_draw(mob[i]->draw, (sfIntRect) {0, 0, 48, 72}, 11, true);
         append_draw_layer(wd->core, mob[i]->draw);
         mob[i]->in_mob = OUT;
         mob[i]->dir = 1;
+        mob[i]->draw->id = -88;
     }
     return mob;
 }
