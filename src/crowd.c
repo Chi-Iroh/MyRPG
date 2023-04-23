@@ -59,9 +59,8 @@ void crowd(window_t *wd, crowd_t *crowd, interface_t *stat_ui, audio_t audio)
         update_stat_ui(crowd->player->stat, stat_ui);
         audio_play_sfx(&audio, SFX_LEVEL_UP);
     }
-    if (crowd->player->nb_allied == 30) {
+    if (crowd->player->nb_allied == 29) {
         set_pos_draw(crowd->boss->draw, set_3vector(4000, 800, 0));
         set_pos_draw(crowd->boss->hp.fill, set_3vector(4000, 650, 0));
-        crowd->player->nb_allied++;
     }
 }

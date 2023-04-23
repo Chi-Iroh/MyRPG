@@ -37,7 +37,6 @@ int game_core(window_t* wd, game_src_t* g_src, sfClock *clock)
 {
     if (g_src->game->crowd->player->hp.fill->data->size.x <= 0) {
         refresh(wd, g_src, clock);
-        g_src->menu->show = true;
         free_crowd(g_src->game->crowd);
         g_src->game->crowd = NULL;
         audio_control_bgm(&g_src->audio, AUDIO_STOP);
@@ -45,8 +44,10 @@ int game_core(window_t* wd, game_src_t* g_src, sfClock *clock)
         return 1;
     }
     crowd(wd, g_src->game->crowd, g_src->game->stat_ui, g_src->audio);
-    if (g_src->game->crowd->boss->dead == true)
-        printf("U win\n");
+    if (g_src->game->crowd->boss->dead == true) {
+        win_pop_up();
+        return 1;
+    }
     float hp_tmp = g_src->game->crowd->player->stat.hp;
     stat_interaction(&g_src->game->crowd->player->stat, g_src->game->stat_ui);
     if (g_src->game->crowd->player->stat.hp > hp_tmp)
@@ -70,6 +71,7 @@ void game(window_t* wd, game_src_t* g_src)
             continue;
         }
         if (game_core(wd, g_src, clock)) {
+            g_src->menu->show = true;
             continue;
         }
         refresh(wd, g_src, clock);

@@ -192,4 +192,6 @@
 
     void restart(window_t** wd, game_src_t** g_src);
 
+    void win_pop_up(void);
+
 #endif

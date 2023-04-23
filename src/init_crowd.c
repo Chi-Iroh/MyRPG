@@ -45,6 +45,7 @@ cop_t* init_boss(window_t* wd)
     set_animation_draw(boss->draw, (sfIntRect) {0, 0, 128, 144}, 3, true);
     init_boss_hp_bar(wd, boss, pos);
     boss->cop_e = DIR_COP_S;
+    boss->dead = false;
     boss->draw->id = -88;
     return boss;
 }

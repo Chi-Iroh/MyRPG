@@ -70,6 +70,7 @@ void update(crowd_t *crowd, window_t *wd)
     sfVector3f spritePosition = get_position_draw(crowd->player->draw);
     if (move.x != 0 || move.y != 0)
         move_range(crowd->player, move, crowd->player->weapon);
+    crowd->player->nb_allied = 0;
     for (int i = 0; i < CROWD_SIZE; i++) {
         sfVector3f pos_tmp = get_position_draw(crowd->cop[i]->draw);
         update_cop(crowd->cop[i], crowd, spritePosition);
