@@ -43,7 +43,7 @@ void move_range
     set_3vector(hitboxPosition.x, hitboxPosition.y, 0));
 }
 
-void knock_back(cop_t *cop, player_t *player, float pw)
+void knock_back(cop_t *cop, player_t *player, float pw, crowd_t* crowd)
 {
     sfVector3f cord = calc_dist(cop->draw, player->draw);
     sfVector2f move;
@@ -52,15 +52,17 @@ void knock_back(cop_t *cop, player_t *player, float pw)
     move_draw(cop->hp.fill, move);
     move_draw(cop->draw, move);
     get_sprt_cop(cop->draw, move, &cop->cop_e);
+    if (cop == crowd->boss)
+        get_sprt_boss(crowd->boss->draw, move, &cop->cop_e);
 }
 
-void check_hitbox(cop_t *cop, player_t* player)
+void check_hitbox(cop_t *cop, player_t* player, crowd_t* crowd)
 {
     if (cop->dead != true &&
     check_collision(cop->draw, player->range)) {
         is_hit(cop, player);
         knock_back(cop, player,
-        player->weapon->knockback);
+        player->weapon->knockback, crowd);
         if (cop->hp.fill->data->size.x <= 0) {
             set_size_draw(player->exp.fill,
             set_2vector(
@@ -83,7 +85,7 @@ void attack(crowd_t *crowd)
         crowd->player->weapon->cooldown) {
         sfClock_restart(crowd->player->clock);
         for (int i = 0; i < CROWD_SIZE; i++)
-            check_hitbox(crowd->cop[i], crowd->player);
-        check_hitbox(crowd->boss, crowd->player);
+            check_hitbox(crowd->cop[i], crowd->player, crowd);
+        check_hitbox(crowd->boss, crowd->player, crowd);
     }
 }

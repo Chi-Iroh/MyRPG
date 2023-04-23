@@ -49,15 +49,17 @@ void update_circle_cop
     move_draw(cop->hp.fill, move);
     move_draw(cop->draw, move);
     get_sprt_cop(cop->draw, move, &cop->cop_e);
+    if (cop == crowd->boss)
+        get_sprt_boss(crowd->boss->draw, move, &cop->cop_e);
 }
 
-void is_dead(cop_t *cop, player_t *player)
+void is_dead(cop_t *cop, player_t *player, crowd_t* crowd)
 {
     cop->dead = true;
     set_thick_draw(cop->hp.fill, 0);
     sfVector3f cord = calc_dist(player->draw, cop->draw);
     if (cord.z < 400) {
-        knock_back(cop, player, (cop->stat.speed / 100));
+        knock_back(cop, player, (cop->stat.speed / 100), crowd);
         return;
     }
     sfVector2f move = set_2vector(0.03, 0);
@@ -75,9 +77,10 @@ void update_cop(cop_t *cop, crowd_t *crowd, sfVector3f spritePosition)
         return;
     }
     if (cop->stat.hp <= 0) {
-        is_dead(cop, crowd->player);
+        is_dead(cop, crowd->player, crowd);
         return;
     }
     sfVector3f cop_pos = get_position_draw(cop->draw);
     update_circle_cop(cop, crowd, cop_pos, spritePosition);
+
 }

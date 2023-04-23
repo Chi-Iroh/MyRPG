@@ -8,9 +8,12 @@
 #include <my_rpg.h>
 #include <my_graphics.h>
 
-inline bool check_pos(draw_t *draw, window_t *wd)
+bool check_pos(draw_t *draw, window_t *wd)
 {
-    return intersect_with_map(draw, wd->core->draw);
+    if (intersect_with_map(draw, wd->core->draw)) {
+        return true;
+    }
+    return false;
 }
 
 void move_player_bis(sfVector2f move, player_t *player)
@@ -77,6 +80,7 @@ void update(crowd_t *crowd, window_t *wd)
             pos_tmp.y - 50, 0));
         }
         update_mob(crowd->mob[i], crowd, move, wd);
+        crowd->player->nb_allied += crowd->mob[i]->in_mob == true ? 1 : 0;
     }
     update_cop(crowd->boss, crowd, spritePosition);
     attack(crowd);

@@ -106,6 +106,7 @@
         character_type_t type;
         weapon_t* weapon;
         dir_e dir;
+        int nb_allied;
     } player_t;
 
     typedef struct crowd_s {
@@ -141,11 +142,12 @@
     void update_mob(mob_t *mob, crowd_t *crowd, sfVector2f move, window_t *wd);
     void update_cop(cop_t *cop, crowd_t *crowd, sfVector3f spritePosition);
     void get_sprt_cop(draw_t *draw, sfVector2f move, dir_cop_e *dir);
+    void get_sprt_boss(draw_t *draw, sfVector2f move, dir_cop_e *dir);
 
     /**/
     void move_range
     (player_t *player, sfVector2f move, weapon_t *weapon);
-    void knock_back(cop_t *cop, player_t *player, float pw);
+    void knock_back(cop_t *cop, player_t *player, float pw, crowd_t* crowd);
     sfVector3f calc_dist(draw_t *draw1, draw_t *draw2);
     void manage_event(sfRenderWindow* window, sfEvent event, player_t *player);
     void free_crowd(crowd_t *crowd);
