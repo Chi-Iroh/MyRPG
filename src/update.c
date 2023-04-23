@@ -8,12 +8,9 @@
 #include <my_rpg.h>
 #include <my_graphics.h>
 
-bool check_pos(draw_t *draw, window_t *wd)
+inline bool check_pos(draw_t *draw, window_t *wd)
 {
-    if (intersect_with_map(draw, wd->core->draw)) {
-        return true;
-    }
-    return false;
+    return intersect_with_map(draw, wd->core->draw);
 }
 
 void move_player_bis(sfVector2f move, player_t *player)

@@ -8,46 +8,49 @@
 #include <my_rpg.h>
 #include <my_graphics.h>
 
-void other_dir(draw_t *draw, sfVector2f move, dir_cop_e *dir)
+const sfIntRect COP_SPRITESHEET_RECTS[DIR_COP_MAX] = {
+    [DIR_COP_N] = {192, 0, 64, 72},
+    [DIR_COP_NE] = {192 * 5, 0, 64, 72},
+    [DIR_COP_E] = {384, 0, 64, 72},
+    [DIR_COP_SE] = {192 * 7, 0, 64, 72},
+    [DIR_COP_S] = {0, 0, 64, 72},
+    [DIR_COP_SW] = {192 * 6, 0, 64, 72},
+    [DIR_COP_W] = {576, 0, 64, 72},
+    [DIR_COP_NW] = {192 * 4, 0, 64, 72}
+};
+
+static bool test_dir(draw_t *draw, sfVector2f move, dir_cop_e dir)
 {
-    if (move.x < 0 && move.y >= 0 && *dir != SW) {
-        set_anim_rect_draw(draw, (sfIntRect) {192 * 6, 0, 64, 72});
-        *dir = SW;
-    }
-    if (move.x < 0 && move.y <= 0 && *dir != NW) {
-        set_anim_rect_draw(draw, (sfIntRect) {192 * 4, 0, 64, 72});
-        *dir = NW;
-    }
-    if (move.x >= 0 && move.y >= 0 && *dir != SE) {
-        set_anim_rect_draw(draw, (sfIntRect) {192 * 7, 0, 64, 72});
-        *dir = SE;
-    }
-    if (move.x >= 0 && move.y <= 0 && *dir != NE) {
-        set_anim_rect_draw(draw, (sfIntRect) {192 * 5, 0, 64, 72});
-        *dir = NE;
-    }
+    const bool conditions[DIR_COP_MAX] = {
+        [DIR_COP_N] = move.y < 0 && move.x == 0,
+        [DIR_COP_NE] = move.x >= 0 && move.y <= 0,
+        [DIR_COP_E] = move.x < 0 && move.y == 0,
+        [DIR_COP_S] = move.y >= 0 && move.x == 0,
+        [DIR_COP_SE] = move.x >= 0 && move.y >= 0,
+        [DIR_COP_SW] = move.x < 0 && move.y >= 0,
+        [DIR_COP_W] = move.x >= 0 && move.y == 0,
+        [DIR_COP_NW] = move.x < 0 && move.y <= 0
+    };
+
+    return conditions[dir];
 }
 
 void get_sprt_cop(draw_t *draw, sfVector2f move, dir_cop_e *dir)
 {
     if (move.x == 0 && move.y == 0) {
-        set_anim_rect_draw(draw, (sfIntRect) {0, 0, 64, 72});
+        set_anim_rect_draw(draw, COP_SPRITESHEET_RECTS[DIR_COP_DEFAULT]);
         return;
     }
-    if (move.y < 0 && move.x == 0 && *dir != N) {
-        set_anim_rect_draw(draw, (sfIntRect) {192, 0, 64, 72});
-        *dir = N;
+    for (dir_cop_e i_dir = 0; i_dir < DIR_COP_MAX; i_dir += 2) {
+        if (*dir != i_dir && test_dir(draw, move, i_dir)) {
+            set_anim_rect_draw(draw, COP_SPRITESHEET_RECTS[i_dir]);
+            break;
+        }
     }
-    if (move.y >= 0 && move.x == 0 && *dir != S) {
-        set_anim_rect_draw(draw, (sfIntRect) {0, 0, 64, 72});
-        *dir = S;
+    for (dir_cop_e i_dir = 1; i_dir < DIR_COP_MAX; i_dir += 2) {
+        if (*dir != i_dir && test_dir(draw, move, i_dir)) {
+            set_anim_rect_draw(draw, COP_SPRITESHEET_RECTS[i_dir]);
+            break;
+        }
     }
-    if (move.x < 0 && move.y == 0 && *dir != E) {
-        set_anim_rect_draw(draw, (sfIntRect) {384, 0, 64, 72});
-        *dir = E;
-    }
-    if (move.x >= 0 && move.y == 0 && *dir != W) {
-        set_anim_rect_draw(draw, (sfIntRect) {576, 0, 64, 72});
-        *dir = W;
-    } other_dir(draw, move, dir);
 }

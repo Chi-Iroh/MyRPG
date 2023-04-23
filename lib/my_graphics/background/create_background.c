@@ -6,6 +6,7 @@
 */
 #include "../include/background.h"
 #include "../include/window.h"
+#include "../../../include/my_macros.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -28,9 +29,8 @@ void get_position(sfVector2f position, int ** map,
                         tmx_t * tmx, layer_t * layer)
 {
     int id = map[(int)position.y][(int)position.x];
-    if (id == -1) {
-        return;
-    } while (tmx->id != id) {
+    RETURN_IF(id == -1);
+    while (tmx->id != id) {
         tmx = tmx->next;
     } sfVector3f pos = set_3vector(position.x * 64 + tmx->width / 2,
                                     position.y * 64 - 5, 0.f);

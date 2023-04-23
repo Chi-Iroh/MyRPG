@@ -36,17 +36,17 @@ void set_anim_mob(draw_t *draw, sfVector2f move, dir_e *dir)
         set_anim_rect_draw(draw, (sfIntRect) {0, 0, 48, 72});
         return;
     }
-    if (move.y < 0 && *dir != UP) {
+    if (move.y < 0 && *dir != DIR_PLAYER_UP) {
         set_anim_rect_draw(draw, (sfIntRect) {528, 0, 48, 72});
-        *dir = UP;
+        *dir = DIR_PLAYER_UP;
         return;
-    } else if (move.y >= 0 && *dir != DOWN) {
+    } else if (move.y >= 0 && *dir != DIR_PLAYER_DOWN) {
         set_anim_rect_draw(draw, (sfIntRect) {0, 0, 48, 72});
-        *dir = DOWN;
+        *dir = DIR_PLAYER_DOWN;
     }
 }
 
-void crowd(window_t* wd, crowd_t *crowd, interface_t* stat_ui, audio_t audio)
+void crowd(window_t *wd, crowd_t *crowd, interface_t *stat_ui, audio_t audio)
 {
     update(crowd, wd);
     if (crowd->player->exp.fill->data->size.x >= 250) {

@@ -29,21 +29,28 @@
         sfFloatRect area;
     } progress_bar_t;
 
+    /*
+        Don't change the order !
+    */
     typedef enum dir_cop {
-        N,
-        NE,
-        E,
-        SE,
-        S,
-        SW,
-        W,
-        NW
+        DIR_COP_N,
+        DIR_COP_NE,
+        DIR_COP_E,
+        DIR_COP_SE,
+        DIR_COP_S,
+        DIR_COP_SW,
+        DIR_COP_W,
+        DIR_COP_NW,
+        DIR_COP_MAX,
+        DIR_COP_DEFAULT = DIR_COP_S
     } dir_cop_e;
 
     typedef enum dir_e {
-        UP,
-        DOWN
+        DIR_PLAYER_UP,
+        DIR_PLAYER_DOWN
     } dir_e;
+
+    extern const sfIntRect COP_SPRITESHEET_RECTS[DIR_COP_MAX];
 
     struct interface_s;
 
@@ -63,17 +70,12 @@
         int exp_point;
     } stat_t;
 
-    typedef enum dead_e {
-        FALSE,
-        TRUE
-    } dead_e;
-
     typedef struct cop_s {
         sfClock *clock;
         draw_t *draw;
         stat_t stat;
         progress_bar_t hp;
-        dead_e dead;
+        bool dead;
         dir_cop_e cop_e;
     } cop_t;
 
@@ -149,8 +151,8 @@
     void free_crowd(crowd_t *crowd);
     sfBool check_collision(draw_t *player, draw_t *crowd);
     void display_crowd(sfRenderWindow *window, crowd_t *crowd);
-    void crowd
-    (window_t* wd, crowd_t *crowd, interface_t* stat_ui, audio_t audio);
     void set_anim_mob(draw_t *draw, sfVector2f move, dir_e *dir);
+    void crowd
+        (window_t* wd, crowd_t *crowd, interface_t* stat_ui, audio_t audio);
 
 #endif /* CROWD_T */
