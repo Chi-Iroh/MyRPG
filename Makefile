@@ -12,15 +12,15 @@ SRC = 	src/main.c										\
 		src/resolution.c 								\
 		src/core.c 										\
 		src/pause_menu.c								\
-		src/player_management.c 						\
+		src/p_man_stats.c 								\
+		src/p_man_inventory.c 							\
+		src/weapon.c 									\
 		src/event.c										\
 		src/manage_mouse.c								\
 		src/button.c									\
 		src/sliding_button.c							\
 		src/button_append.c								\
 		src/button_interactions.c						\
-		src/init_character.c							\
-		src/inventory.c									\
 		src/save.c										\
 		src/free.c										\
 		src/crowd.c 									\

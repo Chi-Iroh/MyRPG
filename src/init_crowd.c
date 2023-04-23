@@ -74,6 +74,9 @@ bool init_crowd(game_t *game, window_t* wd, list_button_t** a_btn,
         free(game->crowd);
         return false;
     }
+    game->crowd->player->weapon = game->all_weapons[0];
+    update_weapon_ui(game->all_weapons, game->crowd->player->weapon,
+        game->pause_menu->player->other[1]);
     update_stat_ui(game->crowd->player->stat, game->stat_ui);
     append_draw_layer(wd->ui, create_draw(create_shape(RECT,
     sfColor_fromRGBA(220, 220, 220, 100), sfBlack, 3), SHAPE,

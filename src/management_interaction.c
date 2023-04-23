@@ -8,6 +8,23 @@
 #include <my_rpg.h>
 #include <my_graphics.h>
 
+
+void weapon_interaction_p_man(weapon_t** all_weapons, weapon_t** current,
+    interface_t* inv_ui)
+{
+    if (IS_RELEASED(inv_ui->stat_btns[0])) {
+        inv_ui->stat_btns[0]->state = NONE;
+        *current = select_weapon(all_weapons, *current, -1);
+        update_weapon_ui(all_weapons, *current, inv_ui);
+        //printf("<\n");
+    }
+    if (IS_RELEASED(inv_ui->stat_btns[1])) {
+        inv_ui->stat_btns[1]->state = NONE;
+        *current = select_weapon(all_weapons, *current, 1);
+        update_weapon_ui(all_weapons, *current, inv_ui);
+    }
+}
+
 bool cap_stat(stat_t stat, stat_t base, interface_t* stat_ui, int i)
 {
     int cap = i < 4 && !stat.exp_point ? true : false;

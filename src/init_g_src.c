@@ -14,6 +14,7 @@ game_t* init_game(window_t* wd, list_button_t** btns, game_src_t* g_src)
     game->pause_menu = init_pause_menu(wd, btns, g_src);
     game->stat_ui = init_stat_interface(wd->ui, btns);
     game->layer_fx = wd->fx;
+    game->all_weapons = init_all_weapons();
     game->list_bubbles = NULL;
     game->crowd = NULL;
     return game;

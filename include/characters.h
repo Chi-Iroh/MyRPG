@@ -51,12 +51,12 @@
         HARD = LREM
     } trade_union_t;
 
-    typedef enum weapon_e {
+    /*typedef enum weapon_e {
         NO_WEAPON = 0,
         SPRAY_PAINT = 1 << 0,
         FIREWORKS_MORTAR = 1 << 1,
         BASEBALL_BAT = 1 << 2
-    } weapon_t;
+    } weapon_t;*/
 
     typedef enum armor_e {
         NO_ARMOR = 0
@@ -92,7 +92,7 @@
         float charism_multiplier;
         float luck_multiplier;
         armor_t armor;
-        weapon_t weapon;
+        //weapon_t weapon;
         trade_union_t trade_union;
         character_origin_t origin;
         inv_slot_t* inv;

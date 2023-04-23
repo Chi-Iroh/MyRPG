@@ -22,6 +22,7 @@
     #define MAX_SPEED 0.05f
 
     #define NB_STAT 6
+    #define NB_WEAPON 3
 
     typedef struct progress_bar_s {
         draw_t *fill;
@@ -34,6 +35,13 @@
     } dir_e;
 
     struct interface_s;
+
+    typedef struct {
+        sfVector2f size_hitbox;
+        float dmg;
+        float cooldown;
+        float knockback;
+    } weapon_t;
 
     typedef struct stat_s {
         float damage;
@@ -73,12 +81,13 @@
         sfClock *clock;
         draw_t *draw;
         stat_t stat;
+        stat_t base;
         progress_bar_t hp;
         progress_bar_t exp;
         draw_t *range;
         draw_t *cooldown;
         character_type_t type;
-        stat_t base;
+        weapon_t* weapon;
     } player_t;
 
     typedef struct crowd_s {

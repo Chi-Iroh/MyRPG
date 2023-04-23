@@ -73,6 +73,7 @@
         crowd_t *crowd;
         interface_t* stat_ui;
         list_bubble_t* list_bubbles;
+        weapon_t** all_weapons;
         layer_t *layer_fx;
     } game_t;
 
@@ -99,6 +100,15 @@
     void update_stat(stat_t *stat, int type, interface_t* stat_ui);
     button_s_t* init_stat_interface_bis(int i, list_button_t** a_btn, layer_t* ui);
     interface_t* init_stat_interface(layer_t* ui, list_button_t** a_btn);
+    interface_t* init_p_man_inventory(layer_t* lyr, list_button_t** a_btn);
+    void update_weapon_ui(weapon_t** all_weapons, weapon_t* current,
+        interface_t* inv_ui);
+    void weapon_interaction_p_man(weapon_t** all_weapons, weapon_t** current,
+        interface_t* inv_ui);
+    weapon_t* select_weapon(weapon_t** all_weapons, weapon_t* current, int dir);
+    weapon_t** init_all_weapons(void);
+
+
     void stat_interaction(stat_t* stat, interface_t* stat_ui);
     void stat_interaction_p_man(stat_t* stat, stat_t base, interface_t* stat_ui);
     void player_management_core(window_t* wd, game_src_t* g_src,
