@@ -5,42 +5,43 @@
 ## Makefile
 ##
 
-SRC = 	src/main.c										\
-		src/init_g_src.c								\
-		src/menu.c										\
-		src/settings.c									\
-		src/resolution.c 								\
-		src/core.c 										\
-		src/pause_menu.c								\
-		src/player_management.c 						\
-		src/event.c										\
-		src/manage_mouse.c								\
-		src/button.c									\
-		src/sliding_button.c							\
-		src/button_append.c								\
-		src/button_interactions.c						\
-		src/init_character.c							\
-		src/inventory.c									\
-		src/save.c										\
-		src/free.c										\
-		src/crowd.c 									\
-		src/progress_bar.c 								\
-		src/rand.c										\
-		src/init_crowd.c 								\
-		src/update_cop.c 								\
-		src/update_mob.c 								\
-		src/update.c									\
-		src/character_menu/character_menu.c				\
-		src/character_menu/init_free.c					\
-		src/character_menu/shrink_window.c				\
-		src/countryball_49_3/countryball.c				\
-		src/init_player.c								\
-		src/stat_interface.c 							\
-		src/management_interaction.c					\
-		src/hitbox.c									\
-		src/speech_bubble/speech_bubble.c				\
-		src/speech_bubble/speech_bubble_free.c			\
-		src/speech_bubble/speech_bubble_linked_list.c	\
+SRC = 	src/main.c												\
+		src/init_g_src.c										\
+		src/menu.c												\
+		src/settings.c											\
+		src/resolution.c 										\
+		src/core.c 												\
+		src/pause_menu.c										\
+		src/player_management.c 								\
+		src/event.c												\
+		src/manage_mouse.c										\
+		src/button.c											\
+		src/sliding_button.c									\
+		src/button_append.c										\
+		src/button_interactions.c								\
+		src/init_character.c									\
+		src/inventory.c											\
+		src/save.c												\
+		src/free.c												\
+		src/crowd.c 											\
+		src/progress_bar.c 										\
+		src/rand.c												\
+		src/init_crowd.c 										\
+		src/update_cop.c 										\
+		src/update_mob.c 										\
+		src/update.c											\
+		src/character_menu/character_menu.c						\
+		src/character_menu/init_free.c							\
+		src/character_menu/shrink_window.c						\
+		src/countryball_49_3/countryball.c						\
+		src/init_player.c										\
+		src/stat_interface.c 									\
+		src/management_interaction.c							\
+		src/hitbox.c											\
+		src/speech_bubble/speech_bubble.c						\
+		src/speech_bubble/speech_bubble_free.c					\
+		src/speech_bubble/speech_bubble_linked_list.c			\
+		src/speech_bubble/speech_bubble_resize_text_and_move.c	\
 		src/scripts/edit_hitbox.c
 
 OBJ =   $(SRC:.c=.o)

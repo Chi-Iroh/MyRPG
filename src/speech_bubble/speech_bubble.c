@@ -32,17 +32,22 @@ const sfIntRect SPEECH_BUBBLE_AREA = {
     NOTE: bubble must be a valid pointer.
 */
 static bool speech_bubble_text_alloc
-(bubble_t *bubble, char *str, sfVector3f pos)
+(bubble_t *bubble, char *str, sfVector3f pos, sfTexture *bubble_texture)
 {
-    pos.x += 10;
-    pos.y -= (SPEECH_BUBBLE_HEIGHT - 15);
-    data_t *data = create_data(pos, SPEECH_BUBBLE_SIZE, 0);
+    const sfVector3f new_pos = {
+        .x = pos.x + SPEECH_BUBBLE_WIDTH * 0.15f,
+        .y = pos.y - SPEECH_BUBBLE_HEIGHT,
+        .z = pos.z
+    };
+    data_t *data = create_data(new_pos, SPEECH_BUBBLE_SIZE, 0);
     text_t *text = data ? create_text(str, NULL, sfBlack) : NULL;
     draw_t *draw = text ? create_draw(text, TEXT, data) : NULL;
 
     if (!draw) {
         FREE_IF_ALLOCATED(data, free);
         FREE_IF_ALLOCATED(text, free_text);
+    } else {
+        speech_bubble_resize_text_and_move(data, draw, str, bubble_texture);
     }
     bubble->text = draw;
     return draw != NULL;
@@ -85,7 +90,7 @@ static bubble_t *speech_bubble_create
     RETURN_VALUE_IF(!status, NULL);
     bubble->time = time;
     status &= speech_bubble_alloc(bubble, texture, pos);
-    status &= speech_bubble_text_alloc(bubble, str, pos);
+    status &= speech_bubble_text_alloc(bubble, str, pos, texture);
     status &= (bubble->clock = sfClock_create()) != NULL;
     if (!status) {
         speech_bubble_free(&bubble, true);

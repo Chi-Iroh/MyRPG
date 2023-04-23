@@ -27,6 +27,8 @@ void speech_bubble_free(bubble_t **bubble, bool free_layers);
 bool speech_bubble_spawn(game_t* game, char* str, sfVector3f pos, float time);
 void speech_bubble_clean(game_t *game);
 
+void speech_bubble_resize_text_and_move
+(data_t *text_data, draw_t *text_draw, char *str, sfTexture *bubble_texture);
 bool speech_bubble_append
 (list_bubble_t **head, bubble_t *bubble);
 bool speech_bubble_remove(list_bubble_t **bubble);
