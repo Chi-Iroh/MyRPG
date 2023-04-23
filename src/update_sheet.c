@@ -49,6 +49,5 @@ void get_sprt_cop(draw_t *draw, sfVector2f move, dir_cop_e *dir)
     if (move.x >= 0 && move.y == 0 && *dir != W) {
         set_anim_rect_draw(draw, (sfIntRect) {576, 0, 64, 72});
         *dir = W;
-    }
-    other_dir(draw, move, dir);
+    } other_dir(draw, move, dir);
 }

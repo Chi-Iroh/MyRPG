@@ -38,30 +38,6 @@ void init_stat(stat_t *stat, stat_t* base, character_type_t type)
     };
 }
 
-sfTexture *init_player_text(character_type_t type)
-{
-    char buff[256] = "images/spritesheets/";
-    switch (type) {
-        case CHARACTER_RAILWAY_WORKER:
-            mystrcat(buff,"cheminot_spritesheet"); break;
-        case CHARACTER_DOCTOR :
-            mystrcat(buff, "docteur_spritesheet"); break;
-        case CHARACTER_ART_STUDENT :
-            mystrcat(buff,"étudiant_en_arts_spritesheet"); break;
-        case CHARACTER_POLITICS_STUDENT :
-            mystrcat(buff,"étudiant_sciences_po_spritesheet"); break;
-        case CHARACTER_PREFECT_SON :
-            mystrcat(buff, "fils_du_préfet_spritesheet"); break;
-        case CHARACTER_WORKER :
-            mystrcat(buff, "ouvrier_spritesheet"); break;
-        case CHARACTER_TROUBLEMAKER :
-            mystrcat(buff, "casseur_spritesheet"); break;
-        default: break;
-    } mystrcat(buff, ".png");
-    sfTexture* text = sfTexture_createFromFile(buff, NULL);
-    return text;
-}
-
 void init_bar(player_t *player, window_t* wd)
 {
     data_t *data_hp = create_data(set_3vector(70, 15, 50),
@@ -114,12 +90,8 @@ player_t *init_player(window_t* wd, game_t *game, bool resume)
     player->clock = sfClock_create();
     data_t *data = create_data(set_3vector(1200,
     800, 0), set_2vector(48, 72), 0.f);
-    sprite_t *sprite = init_sprite();
-    sfTexture *texture = init_player_text(player->type);
-    set_texture_sprite(sprite, texture, (sfIntRect) {0, 0, 48, 72});
-    player->draw = create_draw(sprite, SPRITE, data);
-    set_origin_draw(player->draw, set_2vector
-    (data->size.x / 2, data->size.y - 5));
+    player->draw = init_player_draw(player->type, data);
+    set_origin_draw(player->draw, set_2vector(48 / 2, 72 - 5));
     append_draw_layer(wd->core, player->draw);
     set_animation_draw(player->draw, (sfIntRect) {0, 0, 48, 72}, 11, true);
     init_hitbox(player, wd, data);

@@ -30,6 +30,22 @@ void free_menu(menu_t *menu)
     FREE_IF_ALLOCATED(menu, free);
 }
 
+void free_crowd(crowd_t *crowd)
+{
+    if (crowd == NULL)
+    return;
+    sfClock_destroy(crowd->player->clock);
+    for (int i = 0; i < CROWD_SIZE; i++) {
+        sfClock_destroy(crowd->cop[i]->clock);
+        free(crowd->cop[i]);
+        free(crowd->mob[i]);
+    }
+    free(crowd->mob);
+    free(crowd->cop);
+    free(crowd->player);
+    free(crowd);
+}
+
 void free_g_src(game_src_t* g_src)
 {
     list_button_t *next = NULL;

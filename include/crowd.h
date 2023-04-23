@@ -15,7 +15,7 @@
     #include <characters.h>
     #include <character_menu.h>
 
-    #define CROWD_SIZE 50
+    #define CROWD_SIZE 200
     #define MAX_SPRITES 25
     #define WD_WIDTH 1920
     #define WD_HEIGHT 1080
@@ -118,15 +118,19 @@
     void compute_fill_area(progress_bar_t *bar);
     void set_position_and_size_with_float_rect
     (sfRectangleShape *shape, sfFloatRect *rect);
+
+    /*init_crowd.c*/
+    mob_t **init_crowd_mob(window_t* wd);
     void init_progress_bar
     (window_t *window, progress_bar_t *bar, data_t *data, shape_t *shape);
-    /*init_crowd.c*/
-
+    cop_t **init_crowd_cop(window_t* wd);
+    draw_t *init_player_draw(character_type_t type, data_t *data);
     /*rand.c*/
 
     sfVector2f get_random_position(window_t *wd);
     sfTexture* rand_skin(character_type_t *type);
     bool check_pos(draw_t *draw, window_t *wd);
+    void attack(crowd_t *crowd);
     /*update.c*/
 
     void update(crowd_t *crowd, window_t *wd);
@@ -138,14 +142,14 @@
     /**/
     void move_range
     (player_t *player, sfVector2f move, weapon_t *weapon);
-    void check_hitbox(crowd_t *crowd, int i, sfVector3f spritePosition);
     void knock_back(cop_t *cop, player_t *player, float pw);
     sfVector3f calc_dist(draw_t *draw1, draw_t *draw2);
     void manage_event(sfRenderWindow* window, sfEvent event, player_t *player);
     void free_crowd(crowd_t *crowd);
     sfBool check_collision(draw_t *player, draw_t *crowd);
     void display_crowd(sfRenderWindow *window, crowd_t *crowd);
-    void crowd(window_t* wd, crowd_t *crowd, interface_t* stat_ui, audio_t audio);
+    void crowd
+    (window_t* wd, crowd_t *crowd, interface_t* stat_ui, audio_t audio);
     void set_anim_mob(draw_t *draw, sfVector2f move, dir_e *dir);
 
 #endif /* CROWD_T */

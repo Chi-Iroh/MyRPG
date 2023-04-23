@@ -46,22 +46,6 @@ void set_anim_mob(draw_t *draw, sfVector2f move, dir_e *dir)
     }
 }
 
-void free_crowd(crowd_t *crowd)
-{
-    if (crowd == NULL)
-    return;
-    sfClock_destroy(crowd->player->clock);
-    for (int i = 0; i < CROWD_SIZE; i++) {
-        sfClock_destroy(crowd->cop[i]->clock);
-        free(crowd->cop[i]);
-        free(crowd->mob[i]);
-    }
-    free(crowd->mob);
-    free(crowd->cop);
-    free(crowd->player);
-    free(crowd);
-}
-
 void crowd(window_t* wd, crowd_t *crowd, interface_t* stat_ui, audio_t audio)
 {
     update(crowd, wd);

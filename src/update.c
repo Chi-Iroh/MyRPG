@@ -8,9 +8,6 @@
 #include <my_rpg.h>
 #include <my_graphics.h>
 
-#define ATTACK \
-    sfMouse_isButtonPressed(sfMouseLeft) || sfKeyboard_isKeyPressed(sfKeySpace)
-
 bool check_pos(draw_t *draw, window_t *wd)
 {
     if (intersect_with_map(draw, wd->core->draw)) {
@@ -60,7 +57,8 @@ void update_attack_cl(player_t *player)
     (sfClock_getElapsedTime(player->clock));
     if (time <= player->weapon->cooldown)
     set_size_draw(player->cooldown,
-    set_2vector(player->cooldown->data->size.x, -160 * (time / player->weapon->cooldown)));
+    set_2vector(player->cooldown->data->size.x, -160 *
+    (time / player->weapon->cooldown)));
     if (time > player->weapon->cooldown)
     set_size_draw(player->cooldown,
     set_2vector(player->cooldown->data->size.x , -160));
@@ -81,15 +79,8 @@ void update(crowd_t *crowd, window_t *wd)
             set_pos_draw(crowd->cop[i]->hp.fill, set_3vector(pos_tmp.x,
             pos_tmp.y - 50, 0));
         }
-            
         update_mob(crowd->mob[i], crowd, move, wd);
     }
-    if ((ATTACK) && sfTime_asSeconds(
-        sfClock_getElapsedTime(crowd->player->clock)) >
-        crowd->player->weapon->cooldown) {
-        sfClock_restart(crowd->player->clock);
-        for (int i = 0; i < CROWD_SIZE; i++)
-            check_hitbox(crowd, i, spritePosition);
-    }
+    attack(crowd);
     update_attack_cl(crowd->player);
 }

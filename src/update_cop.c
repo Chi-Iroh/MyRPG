@@ -8,34 +8,6 @@
 #include <my_rpg.h>
 #include <my_graphics.h>
 
-sfVector2f calculate_repulsion_force(sfVector2f pos1, sfVector2f pos2, float k)
-{
-    sfVector2f rep;
-    float dx = pos2.x - pos1.x;
-    float dy = pos2.y - pos2.y;
-    float dist_sq = dx * dx + dy * dy;
-    float dist = sqrt(dist_sq);
-    float force = k / dist_sq;
-    rep.x = force * dx / dist;
-    rep.y = force * dy / dist;
-    return rep;
-}
-
-sfVector3f calc_dist(draw_t *draw1, draw_t *draw2)
-{
-    sfVector3f pos1 = draw1->data->position;
-    sfVector3f pos2 = draw2->data->position;
-    sfVector2f dir;
-        dir.x = pos1.x - pos2.x;
-        dir.y = pos1.y - pos2.y;
-    float distance = sqrtf(dir.x * dir.x + dir.y * dir.y);
-    if (distance > 1.0f) {
-        dir.x /= distance;
-        dir.y /= distance;
-    }
-    return set_3vector(dir.x, dir.y, distance);
-}
-
 sfVector3f get_closer_mob(cop_t *cop, crowd_t *crowd)
 {
     sfVector3f cord;
@@ -79,21 +51,33 @@ void update_circle_cop
     get_sprt_cop(cop->draw, move, &cop->cop_e);
 }
 
+void is_dead(cop_t *cop, player_t *player)
+{
+    cop->dead = TRUE;
+    set_thick_draw(cop->hp.fill, 0);
+    sfVector3f cord = calc_dist(player->draw, cop->draw);
+    if (cord.z < 400) {
+        knock_back(cop, player, (cop->stat.speed / 100));
+        return;
+    }
+    sfVector2f move = set_2vector(0.03, 0);
+    move_draw(cop->draw, move);
+    get_sprt_cop(cop->draw, move, &cop->cop_e);
+}
+
 void update_cop(cop_t *cop, crowd_t *crowd, sfVector3f spritePosition)
 {
-    if (cop->stat.hp <= 0) {
-        cop->dead = TRUE;
-        set_thick_draw(cop->hp.fill, 0);
-        sfVector3f cord = calc_dist(crowd->player->draw, cop->draw);
-        if (cord.z < 400)
-        knock_back(cop, crowd->player, (cop->stat.speed / 100));
-        else {
-            sfVector2f move = set_2vector(0.03, 0);
-            move_draw(cop->draw, move);
-            get_sprt_cop(cop->draw, move, &cop->cop_e);
-        }
-    } else {
-        sfVector3f cop_pos = get_position_draw(cop->draw);
-        update_circle_cop(cop, crowd, cop_pos, spritePosition);
+    if (cop->draw->data->position.x > 3800) {
+        float dir = cop->dead != TRUE ? -0.03 : 0.03;
+        sfVector2f moved = set_2vector(dir, 0);
+        move_draw(cop->hp.fill, moved);
+        move_draw(cop->draw, moved);
+        return;
     }
+    if (cop->stat.hp <= 0) {
+        is_dead(cop, crowd->player);
+        return;
+    }
+    sfVector3f cop_pos = get_position_draw(cop->draw);
+    update_circle_cop(cop, crowd, cop_pos, spritePosition);
 }

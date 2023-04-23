@@ -8,6 +8,9 @@
 #include <my_rpg.h>
 #include <my_graphics.h>
 
+#define ATTACK \
+    sfMouse_isButtonPressed(sfMouseLeft) || sfKeyboard_isKeyPressed(sfKeySpace)
+
 void is_hit(cop_t *cop, player_t *player)
 {
     cop->stat.hp -= (player->stat.damage * 4) * player->weapon->dmg;
@@ -54,7 +57,7 @@ void knock_back(cop_t *cop, player_t *player, float pw)
     get_sprt_cop(cop->draw, move, &cop->cop_e);
 }
 
-void check_hitbox(crowd_t *crowd, int i, sfVector3f spritePosition)
+void check_hitbox(crowd_t *crowd, int i)
 {
     if (crowd->cop[i]->dead != TRUE &&
     check_collision(crowd->cop[i]->draw, crowd->player->range)) {
@@ -70,5 +73,16 @@ void check_hitbox(crowd_t *crowd, int i, sfVector3f spritePosition)
             get_size_draw(crowd->player->exp.fill).y));
             crowd->cop[i]->dead = TRUE;
         }
+    }
+}
+
+void attack(crowd_t *crowd)
+{
+    if ((ATTACK) && sfTime_asSeconds(
+        sfClock_getElapsedTime(crowd->player->clock)) >
+        crowd->player->weapon->cooldown) {
+        sfClock_restart(crowd->player->clock);
+        for (int i = 0; i < CROWD_SIZE; i++)
+            check_hitbox(crowd, i);
     }
 }

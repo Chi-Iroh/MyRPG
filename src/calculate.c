@@ -21,8 +21,10 @@ sfVector3f calculate_repulsion_force(sfVector3f pos1, sfVector3f pos2, float k)
     return rep;
 }
 
-sfVector3f calc_dist(sfVector3f pos1, sfVector3f pos2)
+sfVector3f calc_dist(draw_t *draw1, draw_t *draw2)
 {
+    sfVector3f pos1 = draw1->data->position;
+    sfVector3f pos2 = draw2->data->position;
     sfVector2f dir;
         dir.x = pos1.x - pos2.x;
         dir.y = pos1.y - pos2.y;

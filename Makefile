@@ -49,7 +49,11 @@ SRC = 	src/main.c												\
 		src/speech_bubble/speech_bubble_resize_text_and_move.c	\
 		src/scripts/edit_hitbox.c								\
 		src/update_sheet.c										\
-		src/restart.c
+		src/restart.c											\
+		src/init_cop.c 											\
+		src/init_mob.c											\
+		src/init_player_draw.c									\
+		src/calculate.c
 
 OBJ =   $(SRC:.c=.o)
 
