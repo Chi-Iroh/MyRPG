@@ -101,12 +101,13 @@
 
     sfVector2f get_random_position(window_t *wd);
     sfTexture* rand_skin(void);
+    bool check_pos(draw_t *draw, window_t *wd);
 
     /*update.c*/
 
     void update(crowd_t *crowd, window_t *wd);
     float rand_move(void);
-    void update_mob(mob_t *mob, crowd_t *crowd, sfVector2f move);
+    void update_mob(mob_t *mob, crowd_t *crowd, sfVector2f move, window_t *wd);
     void update_cop(cop_t *cop, crowd_t *crowd, sfVector3f spritePosition);
 
     /**/

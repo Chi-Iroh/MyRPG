@@ -70,8 +70,12 @@ void update(crowd_t *crowd, window_t *wd)
     if (move.x != 0 || move.y != 0)
         move_range(crowd->player, move);
     for (int i = 0; i < CROWD_SIZE; i++) {
+        sfVector3f pos_tmp = get_position_draw(crowd->cop[i]->draw);
         update_cop(crowd->cop[i], crowd, spritePosition);
-        update_mob(crowd->mob[i], crowd, move);
+        if (crowd->cop[i]->draw->data->position.x < 3200 &&
+        check_pos(crowd->cop[i]->draw, wd))
+            set_pos_draw(crowd->cop[i]->draw, pos_tmp);
+        update_mob(crowd->mob[i], crowd, move, wd);
     }
     if (sfKeyboard_isKeyPressed(sfKeySpace) && sfTime_asSeconds
     (sfClock_getElapsedTime(crowd->player->clock)) > 0.8f) {

@@ -8,18 +8,6 @@
 #include <my_rpg.h>
 #include <my_graphics.h>
 
-float rand_move(void)
-{
-    float move = 0.0f;
-    if (rand() % 5 == 0)
-        switch (rand() % 3 - 1) {
-            case 1: move = 0.05f; break;
-            case 0: move = 0.00f; break;
-            case -1: move = -0.05f; break;
-        }
-    return move;
-}
-
 sfVector2f calculate_repulsion_force(sfVector2f pos1, sfVector2f pos2, float k)
 {
     sfVector2f rep;
@@ -35,8 +23,8 @@ sfVector2f calculate_repulsion_force(sfVector2f pos1, sfVector2f pos2, float k)
 
 sfVector3f calc_dist(draw_t *draw1, draw_t *draw2)
 {
-    sfVector3f pos1 = get_position_draw(draw1);
-    sfVector3f pos2 = get_position_draw(draw2);
+    sfVector3f pos1 = draw1->data->position;
+    sfVector3f pos2 = draw2->data->position;
     sfVector2f dir;
         dir.x = pos1.x - pos2.x;
         dir.y = pos1.y - pos2.y;
@@ -51,27 +39,21 @@ sfVector3f calc_dist(draw_t *draw1, draw_t *draw2)
 sfVector3f get_closer_mob(cop_t *cop, crowd_t *crowd)
 {
     sfVector3f cord;
-    sfVector3f new_pos;
     float dist_min = 10000;
     int tmp = 0;
     for (int i = 0; i < CROWD_SIZE; i++) {
         if (crowd->mob[i]->in_mob != OUT)
         continue;
         cord = calc_dist(crowd->mob[i]->draw, cop->draw);
-        tmp = dist_min > cord.z ? i: tmp;
-        dist_min = dist_min > cord.z ? cord.z: dist_min;
+        tmp = dist_min > cord.z ? i : tmp;
+        dist_min = dist_min > cord.z ? cord.z : dist_min;
         if (cord.z < 50) {
             crowd->mob[i]->in_mob = DEAD;
             crowd->mob[i]->dir = -1;
         }
     }
     cord = calc_dist(crowd->mob[tmp]->draw, cop->draw);
-    new_pos.x = cop->draw->data->position.x +
-    cord.x * (cop->stat.speed / 100) + rand_move();
-    new_pos.y = cop->draw->data->position.y +
-    cord.y * (cop->stat.speed / 100) + rand_move();
-    new_pos.z = 0;
-    return new_pos;
+    return cord;
 }
 
 void update_circle_cop
@@ -88,12 +70,11 @@ void update_circle_cop
         size.y));
         sfClock_restart(cop->clock);
     }
-    new_pos = get_closer_mob(cop, crowd);
-    if (cord.z < 500) {
-        new_pos.x = cop_pos.x + cord.x * (cop->stat.speed / 100) + rand_move();
-        new_pos.y = cop_pos.y + cord.y * (cop->stat.speed / 100) + rand_move();
-        new_pos.z = 0;
-    }
+    sfVector3f cord_mob = get_closer_mob(cop, crowd);
+    cord = cord.z < cord_mob.z ? cord : cord_mob;
+    new_pos.x = cop_pos.x + cord.x * (cop->stat.speed / 100) + rand_move();
+    new_pos.y = cop_pos.y + cord.y * (cop->stat.speed / 100) + rand_move();
+    new_pos.z = 0;
     set_pos_draw
     (cop->hp.fill, set_3vector(new_pos.x, new_pos.y - 40, 0));
     set_pos_draw(cop->draw, new_pos);
@@ -102,8 +83,15 @@ void update_circle_cop
 void update_cop(cop_t *cop, crowd_t *crowd, sfVector3f spritePosition)
 {
     if (cop->stat.hp <= 0) {
-        knock_back(cop, crowd->player, (cop->stat.speed / 100));
         cop->dead = TRUE;
+        set_thick_draw(cop->hp.fill, 0);
+        sfVector3f cord = calc_dist(crowd->player->draw, cop->draw);
+        if (cord.z < 400)
+        knock_back(cop, crowd->player, (cop->stat.speed / 100));
+        else {
+            sfVector2f move = set_2vector((0.03), rand_move());
+            move_draw(cop->draw, move);
+        }
     } else {
         sfVector3f cop_pos = get_position_draw(cop->draw);
         update_circle_cop(cop, crowd, cop_pos, spritePosition);

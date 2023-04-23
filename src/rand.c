@@ -33,3 +33,15 @@ sfVector2f get_random_position(window_t *wd)
     (int)wd->map_size.y / 4);
     return position;
 }
+
+float rand_move(void)
+{
+    float move = 0.0f;
+    if (rand() % 5 == 0)
+        switch (rand() % 3 - 1) {
+            case 1: move = 0.05f; break;
+            case 0: move = 0.00f; break;
+            case -1: move = -0.05f; break;
+        }
+    return move;
+}
