@@ -36,7 +36,7 @@ menu_t* init_menu(window_t* wd, list_button_t** all_btn)
     sfVector2f size = set_2vector(300, 75);
     m->show = true;
     m->menu_l = create_layer(set_2vector(WD_WIDTH, WD_HEIGHT), NULL);
-    m->b_resume = set_button(all_btn, "REPRENDRE UNE\nMANIF PRECEDENTE",
+    m->b_resume = set_button(all_btn, "REPRENDRE VOS\nEXPLOITS",
         set_3vector(100, 900, 0), size);
     m->b_start = set_button(all_btn, "MANIFESTER",
         set_3vector(550, 900, 0), size);
@@ -61,7 +61,7 @@ void menu_core(window_t* wd, game_src_t* g_src)
             g_src->menu->show = false;
         } else
             audio_play_sfx(&g_src->audio, SFX_ERROR);
-        g_src->menu->b_start->state = NONE;
+        g_src->menu->b_resume->state = NONE;
     }
     if (IS_RELEASED(g_src->menu->b_start)) {
         if (init_crowd(wd, &g_src->all_btn, g_src, false))
