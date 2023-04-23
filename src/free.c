@@ -32,8 +32,7 @@ void free_menu(menu_t *menu)
 
 void free_crowd(crowd_t *crowd)
 {
-    if (crowd == NULL)
-    return;
+    RETURN_IF(!crowd);
     sfClock_destroy(crowd->player->clock);
     for (int i = 0; i < CROWD_SIZE; i++) {
         sfClock_destroy(crowd->cop[i]->clock);
@@ -51,7 +50,7 @@ void free_g_src(game_src_t* g_src)
     list_button_t *next = NULL;
 
     RETURN_IF(!g_src);
-    while(g_src->all_btn) {
+    while (g_src->all_btn) {
         next = g_src->all_btn->next;
         free_button_list(&g_src->all_btn);
         g_src->all_btn = next;

@@ -53,7 +53,7 @@ void update_circle_cop
 
 void is_dead(cop_t *cop, player_t *player)
 {
-    cop->dead = TRUE;
+    cop->dead = true;
     set_thick_draw(cop->hp.fill, 0);
     sfVector3f cord = calc_dist(player->draw, cop->draw);
     if (cord.z < 400) {
@@ -68,7 +68,7 @@ void is_dead(cop_t *cop, player_t *player)
 void update_cop(cop_t *cop, crowd_t *crowd, sfVector3f spritePosition)
 {
     if (cop->draw->data->position.x > 3800) {
-        float dir = cop->dead != TRUE ? -0.03 : 0.03;
+        float dir = !cop->dead ? -0.03 : 0.03;
         sfVector2f moved = set_2vector(dir, 0);
         move_draw(cop->hp.fill, moved);
         move_draw(cop->draw, moved);

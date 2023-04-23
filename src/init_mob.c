@@ -35,7 +35,7 @@ mob_t **init_crowd_mob(window_t* wd)
         append_draw_layer(wd->core, mob[i]->draw);
         mob[i]->in_mob = OUT;
         mob[i]->dir = 1;
-        mob[i]->mov = DOWN;
+        mob[i]->mov = DIR_PLAYER_DOWN;
         mob[i]->draw->id = -88;
     }
     return mob;

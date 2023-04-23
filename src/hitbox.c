@@ -59,7 +59,7 @@ void knock_back(cop_t *cop, player_t *player, float pw)
 
 void check_hitbox(crowd_t *crowd, int i)
 {
-    if (crowd->cop[i]->dead != TRUE &&
+    if (!crowd->cop[i]->dead &&
     check_collision(crowd->cop[i]->draw, crowd->player->range)) {
         is_hit(crowd->cop[i], crowd->player);
         knock_back(crowd->cop[i], crowd->player,
@@ -71,7 +71,7 @@ void check_hitbox(crowd_t *crowd, int i)
             ((20  - crowd->player->stat.level) *
             (rand_move() + 2)),
             get_size_draw(crowd->player->exp.fill).y));
-            crowd->cop[i]->dead = TRUE;
+            crowd->cop[i]->dead = true;
         }
     }
 }

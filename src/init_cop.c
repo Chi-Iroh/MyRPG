@@ -50,7 +50,7 @@ cop_t **init_crowd_cop(window_t* wd)
         append_draw_layer(wd->core, cop[i]->draw);
         set_animation_draw(cop[i]->draw, (sfIntRect) {0, 0, 64, 72}, 3, true);
         init_cop_hp_bar(wd, cop[i], pos, tmp);
-        cop[i]->cop_e = S;
+        cop[i]->cop_e = DIR_COP_S;
         cop[i]->draw->id = -88;
     }
     return cop;
