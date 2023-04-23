@@ -22,7 +22,7 @@ const sfVector2f FRAME_SIZE = {
     .y = 454
 };
 
-const char *const LOSE_TEXT = "Victoire du 49.3 par K.O.";
+const char *const LOSE_TEXT = "Perdu";
 const sfVector2f LOSE_TEXT_POS = {
     .x = 15.f,
     .y = 15.f

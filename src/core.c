@@ -89,7 +89,10 @@ void core(window_t** wd, game_src_t** g_src)
             continue;
         }
         audio_set_active_bgm(&(*g_src)->audio, BGM_MAIN, 1);
-        game(*wd, *g_src);
+        if ((*g_src)->tuto)
+            tuto(*wd, *g_src);
+        if (!(*g_src)->tuto)
+            game(*wd, *g_src);
         if ((*g_src)->menu->show)
             restart(wd, g_src);
     }
