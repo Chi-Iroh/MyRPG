@@ -30,6 +30,22 @@ sfBool check_collision(draw_t *player, draw_t *crowd)
     return sfFloatRect_intersects(&spriteBounds, &crowdBounds, NULL);
 }
 
+void set_anim_mob(draw_t *draw, sfVector2f move, dir_e *dir)
+{
+    if (move.x == 0 && move.y == 0) {
+        set_anim_rect_draw(draw, (sfIntRect) {0, 0, 48, 72});
+        return;
+    }
+    if (move.y < 0 && *dir != UP) {
+        set_anim_rect_draw(draw, (sfIntRect) {528, 0, 48, 72});
+        *dir = UP;
+        return;
+    } else if (move.y >= 0 && *dir != DOWN) {
+        set_anim_rect_draw(draw, (sfIntRect) {0, 0, 48, 72});
+        *dir = DOWN;
+    }
+}
+
 void free_crowd(crowd_t *crowd)
 {
     if (crowd == NULL)

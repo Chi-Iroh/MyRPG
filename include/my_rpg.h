@@ -162,7 +162,7 @@
     void change_resolution(window_t* wd, sfVector2f size);
     void resolutions(window_t* wd, menu_cat_t* settings);
 
-
+    void free_menu(menu_t *menu);
     void free_g_src(game_src_t* g_src);
     void free_main(window_t *window, game_src_t *g_src);
 

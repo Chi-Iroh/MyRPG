@@ -125,6 +125,6 @@ player_t *init_player(window_t* wd, game_t *game, bool resume)
     init_hitbox(player, wd, data);
     init_stat(&player->stat, &player->base, player->type);
     init_bar(player, wd);
-    player->draw->id = -88;
+    player->draw->id = -88; player->dir = DOWN;
     return player;
 }
