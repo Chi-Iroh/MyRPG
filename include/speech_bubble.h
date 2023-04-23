@@ -32,6 +32,7 @@ void speech_bubble_resize_text_and_move
 bool speech_bubble_append
 (list_bubble_t **head, bubble_t *bubble);
 bool speech_bubble_remove(list_bubble_t **bubble);
+void speech_bubble_remove_all(list_bubble_t **bubble);
 
 extern const char *SPEECH_BUBBLE_SPRITE_PATH;
 extern const unsigned SPEECH_BUBBLE_HEIGHT;

@@ -43,3 +43,11 @@ bool speech_bubble_remove(list_bubble_t **bubble)
     *bubble = next;
     return true;
 }
+
+void speech_bubble_remove_all(list_bubble_t **bubble)
+{
+    RETURN_IF(!bubble || !(*bubble));
+    while (*bubble) {
+        speech_bubble_remove(bubble);
+    }
+}
