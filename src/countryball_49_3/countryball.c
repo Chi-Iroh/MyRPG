@@ -22,16 +22,16 @@ const sfVector2f FRAME_SIZE = {
     .y = 454
 };
 
-static void countryball_free(countryball_t *countryball)
-{
-    RETURN_IF(!countryball);
-    FREE_IF_ALLOCATED(countryball->window, sfRenderWindow_destroy);
-    FREE_IF_ALLOCATED(countryball->spritesheet, sfTexture_destroy);
-    FREE_IF_ALLOCATED(countryball->sprite, sfSprite_destroy);
-    FREE_IF_ALLOCATED(countryball->clock, sfClock_destroy);
-}
+const char *const LOSE_TEXT = "Victoire du 49.3 par K.O.";
+const sfVector2f LOSE_TEXT_POS = {
+    .x = 15.f,
+    .y = 15.f
+};
 
-static bool countryball_init(countryball_t *countryball)
+/*
+    Initializes a countryball structure without error handling.
+*/
+static bool countryball_init_impl(countryball_t *countryball)
 {
     const sfWindowStyle style = sfTitlebar | sfClose;
     const sfVideoMode mode = {
@@ -39,19 +39,35 @@ static bool countryball_init(countryball_t *countryball)
         .height = FRAME_SIZE.y,
         .bitsPerPixel = 32
     };
+    bool status = countryball != NULL;
 
     RETURN_VALUE_IF(!countryball, false);
-    countryball->window = sfRenderWindow_create(mode, "49.3", style, NULL);
-    countryball->spritesheet =
-        sfTexture_createFromFile(SPRITESHEET_PATH, NULL);
-    countryball->sprite = sfSprite_create();
-    countryball->clock = sfClock_create();
-    if (!countryball->window || !countryball->spritesheet
-        || !countryball->sprite || !countryball->clock) {
-            countryball_free(countryball);
-            return false;
+    status &= (countryball->sprite = sfSprite_create()) != NULL;
+    status &= (countryball->clock = sfClock_create()) != NULL;
+    status &= (countryball->lose_text = sfText_create()) != NULL;
+    status &= (countryball->window =
+        sfRenderWindow_create(mode, "49.3", style, NULL)) != NULL;
+    status &= (countryball->spritesheet =
+        sfTexture_createFromFile(SPRITESHEET_PATH, NULL)) != NULL;
+    status &= (countryball->font =
+        sfFont_createFromFile("fonts/Arial.ttf")) != NULL;
+    return status;
+}
+
+/*
+    Properly initializing a countryball structure (with error handling).
+*/
+static bool countryball_init(countryball_t *countryball)
+{
+    if (!countryball_init_impl(countryball)) {
+        countryball_free(countryball);
+        return false;
     }
     sfSprite_setTexture(countryball->sprite, countryball->spritesheet, false);
+    sfText_setString(countryball->lose_text, LOSE_TEXT);
+    sfText_setPosition(countryball->lose_text, LOSE_TEXT_POS);
+    sfText_setFillColor(countryball->lose_text, sfBlack);
+    sfText_setFont(countryball->lose_text, countryball->font);
     return true;
 }
 
@@ -72,6 +88,7 @@ static void countryball_draw
     }
     sfSprite_setTextureRect(countryball->sprite, frame);
     sfRenderWindow_drawSprite(countryball->window, countryball->sprite, NULL);
+    sfRenderWindow_drawText(countryball->window, countryball->lose_text, NULL);
     if (draw_next) {
         n_line += n_column == N_COLUMNS;
         n_line *= n_line != N_LINES;
@@ -99,7 +116,7 @@ bool countryball_49_3(audio_t *audio)
     countryball_t countryball;
     bool is_wait_time_ok = false;
 
-    RETURN_VALUE_IF(!countryball_init(&countryball), false);
+    RETURN_VALUE_IF(!audio || !countryball_init(&countryball), false);
     while (sfRenderWindow_isOpen(countryball.window)) {
         sfRenderWindow_setPosition(countryball.window, (sfVector2i){700, 300});
         is_wait_time_ok = sfClock_getElapsedTime

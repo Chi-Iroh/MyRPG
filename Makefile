@@ -35,6 +35,7 @@ SRC = 	src/main.c												\
 		src/character_menu/character_menu_free.c				\
 		src/character_menu/character_menu_shrink_window.c		\
 		src/countryball_49_3/countryball.c						\
+		src/countryball_49_3/countryball_free.c					\
 		src/init_player.c										\
 		src/stat_interface.c 									\
 		src/management_interaction.c							\
