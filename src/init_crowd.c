@@ -25,10 +25,10 @@ draw_t *init_boss_draw(window_t* wd, sfVector2f pos)
 {
     sprite_t *sprite = init_sprite();
     sfTexture *texture = sfTexture_createFromFile
-    ("images/spritesheets/crs_spritesheet.png", NULL);
+    ("images/spritesheets/boss_spritesheet.png", NULL);
     data_t *data = create_data(set_3vector(pos.x, pos.y, 0),
-    set_2vector(64, 72), 0.f);
-    set_texture_sprite(sprite, texture, (sfIntRect) {0, 0, 64, 72});
+    set_2vector(128, 144), 0.f);
+    set_texture_sprite(sprite, texture, (sfIntRect) {0, 0, 128, 144});
     return create_draw(sprite, SPRITE, data);
 }
 
@@ -36,12 +36,12 @@ cop_t* init_boss(window_t* wd)
 {
     cop_t* boss = malloc(sizeof(cop_t));
     boss->clock = sfClock_create();
-    sfVector2f pos = set_2vector(wd->map_size.x - 100, wd->map_size.y / 2);
+    sfVector2f pos = set_2vector(100000, wd->map_size.y / 2);
     boss->draw = init_boss_draw(wd, pos);
     set_origin_draw(boss->draw, set_2vector
-        (64 / 2, 72 - 5));
+        (128 / 2, 144 - 10));
     append_draw_layer(wd->core, boss->draw);
-    set_animation_draw(boss->draw, (sfIntRect) {0, 0, 64, 72}, 3, true);
+    set_animation_draw(boss->draw, (sfIntRect) {0, 0, 128, 144}, 3, true);
     init_boss_hp_bar(wd, boss, pos);
     boss->cop_e = DIR_COP_S;
     boss->draw->id = -88;
