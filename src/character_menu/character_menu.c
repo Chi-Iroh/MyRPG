@@ -74,8 +74,9 @@ const sfUint32 *CHARACTER_DESCRIPTION[N_CHARACTERS] = {
         "Appelé par une multitude de noms, \"le Casseur\" est celui qu'il\n"
         "préfère, sobre mais néanmoins efficace.\nTout comme sa batte de "
         "base-ball ou son marteau.\n"
-        "Manifeste meme s'il n'est pas beaucoup aprécié.\nIl sera "
-        "systématiquement sous la lumière des projecteurs !"
+        "Manifeste meme s'il n'est pas beaucoup aprécié.\nSes revendications"
+        " sont floues, mais il sera "
+        "systématiquement sous\nla lumière des projecteurs !"
     )
 };
 
