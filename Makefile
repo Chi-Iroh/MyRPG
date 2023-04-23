@@ -12,6 +12,7 @@ SRC = 	src/main.c												\
 		src/resolution.c 										\
 		src/core.c 												\
 		src/pause_menu.c										\
+		src/save_and_load.c 									\
 		src/p_man_stats.c 										\
 		src/p_man_inventory.c 									\
 		src/weapon.c 											\

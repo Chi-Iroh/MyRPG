@@ -58,6 +58,7 @@
         button_s_t* b_start;
         button_s_t* b_settings;
         button_s_t* b_quit;
+        button_s_t* b_resume;
         menu_cat_t* settings;
         layer_t* bg_l;
         layer_t* menu_l;
@@ -100,10 +101,12 @@
     void menu(window_t* wd, game_src_t* g_src);
     void core(window_t* wd, game_src_t* g_src);
     void pause_menu(window_t* wd, game_src_t* g_src);
+    void save_and_load(game_src_t* g_src);
     menu_cat_t* init_management(window_t* wd, list_button_t** a_btns);
-    bool init_crowd(game_t *game, window_t* wd, list_button_t** a_btn,
-        game_src_t* g_src);
-    player_t *init_player(window_t* wd, game_t *game);
+    bool init_crowd(window_t* wd, list_button_t** a_btn,
+        game_src_t* g_src, bool resume);
+    sfTexture *init_player_text(character_type_t type);
+    player_t *init_player(window_t* wd, game_t *game, bool resume);
     void init_stat(stat_t *stat, stat_t* base, character_type_t type);
     void update_stat_ui(stat_t stat, interface_t* stat_ui);
     void update_stat(stat_t *stat, int type, interface_t* stat_ui);
@@ -138,6 +141,8 @@
 
     save_file_state_t does_save_file_exist(void);
     bool save_to_file(player_t *player);
+    void refresh_player(player_t* player, sprite_t* player_sprite,
+        game_t* game);
     bool load_from_file(player_t *player);
 
     void button_pressed(window_t* wd, list_button_t* all_btn,

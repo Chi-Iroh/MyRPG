@@ -64,6 +64,7 @@ void pause_core(window_t* wd, game_src_t* g_src)
         g_src->game->pause_menu->show = false;
         g_src->menu->show = true;
     }
+    save_and_load(g_src);
     player_management_core(wd, g_src, g_src->game->pause_menu->player);
     settings_core(wd, g_src, g_src->game->pause_menu->b_settings,
         g_src->game->pause_menu->pause_l);

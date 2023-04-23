@@ -103,10 +103,10 @@ void init_hitbox(player_t *player, window_t *wd, data_t *data)
     append_draw_layer(wd->ui, player->cooldown);
 }
 
-player_t *init_player(window_t* wd, game_t *game)
+player_t *init_player(window_t* wd, game_t *game, bool resume)
 {
     player_t *player = malloc(sizeof(player_t));
-    player->type = select_character();
+    player->type = !resume ? select_character() : 0;
     if (player->type == CHARACTER_NONE || player->type == CHARACTER_ERROR) {
         free(player);
         return NULL;
