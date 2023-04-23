@@ -56,10 +56,7 @@ SRC = 	src/main.c												\
 		src/init_mob.c											\
 		src/init_player_draw.c									\
 		src/calculate.c											\
-		src/win_pop_up/win_pop_up.c								\
-		src/scripts/tuto.c										\
-		src/scripts/my_function_part1.c							\
-		src/scripts/my_function_part2.c
+		src/win_pop_up/win_pop_up.c
 
 OBJ =   $(SRC:.c=.o)
 

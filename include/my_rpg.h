@@ -104,13 +104,10 @@
         game_t* game;
         list_button_t* all_btn;
         audio_t audio;
-        bool tuto;
     } game_src_t;
 
     void edit_hitbox(window_t * wd);
     game_src_t* init_game_sources(window_t* wd);
-
-    void tuto(window_t* wd, game_src_t* g_src);
 
     void menu(window_t* wd, game_src_t* g_src);
     void core(window_t** wd, game_src_t** g_src);
