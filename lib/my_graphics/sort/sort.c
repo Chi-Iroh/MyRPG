@@ -7,42 +7,32 @@
 
 #include "../include/sort.h"
 
-static bool algo_impl
-(draw_t **current_address, draw_t **first_address, int *nb_swap)
+static draw_t * sub_algo(draw_t * current, draw_t * first, int * nb_swap)
 {
-    if ((*current_address)->next == NULL) {
-        *current_address = (*current_address)->next;
-        return false;
+    while (current != NULL) {
+        if (current->next == NULL) {
+            current = current->next; continue;
+        } long double current_d = set_depth(current->data->position);
+        draw_t * next = current->next;
+        long double next_d = set_depth(next->data->position);
+        if (next_d < current_d) {
+            swap_draw_next(current); *nb_swap += 1;
+            first = (current == first) ? next : first;
+            continue;
+        } current = next;
     }
-    long double current_d = set_depth((*current_address)->data->position);
-    draw_t * next = (*current_address)->next;
-    long double next_d = set_depth(next->data->position);
-    if (next_d < current_d) {
-        swap_draw_next(*current_address);
-        (*nb_swap)++;
-        if (*current_address == *first_address) {
-            *first_address = next;
-        }
-        return false;
-    }
-    return true;
+    return first;
 }
 
 static draw_t * algo(draw_t * list)
 {
     int nb_swap = 1;
     draw_t * first = list;
-    bool status = true;
-
     while (nb_swap > 0) {
         draw_t * current = first;
         nb_swap = 0;
-        while (status && current != NULL) {
-            status &= algo_impl(&current, &first, &nb_swap);
-            current = status ? current->next : current;
-        }
-    }
-    return first;
+        first = sub_algo(current, first, &nb_swap);
+    } return first;
 }
 
 draw_t * sort_draws(draw_t * draw)
