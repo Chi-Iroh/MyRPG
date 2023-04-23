@@ -34,7 +34,8 @@ cop_t **init_crowd_cop(window_t* wd)
         set_2vector(64, 72), 0.f);
         set_texture_sprite(sprite, texture, (sfIntRect) {0, 0, 64, 72});
         cop[i]->draw = create_draw(sprite, SPRITE, data);
-        set_origin_draw(cop[i]->draw, (sfVector2f) {64 / 2, 72 / 2});
+        set_origin_draw(cop[i]->draw, set_2vector
+            (data->size.x / 2, data->size.y - 5));
         append_draw_layer(wd->core, cop[i]->draw);
         cop[i]->stat = (stat_t) {
             .damage = 5, .hp = 80, .speed = 5, .defense = 5};
@@ -56,6 +57,8 @@ mob_t **init_crowd_mob(window_t* wd)
         set_2vector(48, 72), 0.f);
         set_texture_sprite(sprite, texture, (sfIntRect) {0, 0, 48, 72});
         mob[i]->draw = create_draw(sprite, SPRITE, data);
+        set_origin_draw(mob[i]->draw, set_2vector
+            (data->size.x / 2, data->size.y - 5));
         set_origin_draw(mob[i]->draw, (sfVector2f) {48 / 2, 72 / 2});
         append_draw_layer(wd->core, mob[i]->draw);
         mob[i]->in_mob = OUT;

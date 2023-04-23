@@ -10,9 +10,10 @@
 
 void is_hit(cop_t *cop, player_t *player)
 {
-    cop->stat.hp -= (player->stat.damage * 4);
+    cop->stat.hp -= (player->stat.damage * 2) * player->weapon->dmg;
     set_size_draw(cop->hp.fill, set_2vector
-    (cop->hp.fill->data->size.x - (player->stat.damage * 4),
+    (cop->hp.fill->data->size.x -
+    (player->stat.damage * 2) * player->weapon->dmg,
     cop->hp.fill->data->size.y));
     if (cop->stat.hp <= 0) {
         set_size_draw(cop->hp.fill, set_2vector
