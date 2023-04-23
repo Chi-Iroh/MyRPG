@@ -81,6 +81,7 @@ void update(crowd_t *crowd, window_t *wd)
         }
         update_mob(crowd->mob[i], crowd, move, wd);
     }
+    update_cop(crowd->boss, crowd, spritePosition);
     attack(crowd);
     update_attack_cl(crowd->player);
 }

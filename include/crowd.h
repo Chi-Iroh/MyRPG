@@ -109,6 +109,7 @@
     typedef struct crowd_s {
         cop_t **cop;
         mob_t **mob;
+        cop_t *boss;
         player_t *player;
     } crowd_t;
 

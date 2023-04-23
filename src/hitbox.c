@@ -57,21 +57,21 @@ void knock_back(cop_t *cop, player_t *player, float pw)
     get_sprt_cop(cop->draw, move, &cop->cop_e);
 }
 
-void check_hitbox(crowd_t *crowd, int i)
+void check_hitbox(cop_t *cop, player_t* player)
 {
-    if (crowd->cop[i]->dead != TRUE &&
-    check_collision(crowd->cop[i]->draw, crowd->player->range)) {
-        is_hit(crowd->cop[i], crowd->player);
-        knock_back(crowd->cop[i], crowd->player,
-        crowd->player->weapon->knockback);
-        if (crowd->cop[i]->hp.fill->data->size.x <= 0) {
-            set_size_draw(crowd->player->exp.fill,
+    if (cop->dead != TRUE &&
+    check_collision(cop->draw, player->range)) {
+        is_hit(cop, player);
+        knock_back(cop, player,
+        player->weapon->knockback);
+        if (cop->hp.fill->data->size.x <= 0) {
+            set_size_draw(player->exp.fill,
             set_2vector(
-            get_size_draw(crowd->player->exp.fill).x +
-            ((20  - crowd->player->stat.level) *
+            get_size_draw(player->exp.fill).x +
+            ((20  - player->stat.level) *
             (rand_move() + 2)),
-            get_size_draw(crowd->player->exp.fill).y));
-            crowd->cop[i]->dead = TRUE;
+            get_size_draw(player->exp.fill).y));
+            cop->dead = TRUE;
         }
     }
 }
@@ -83,6 +83,7 @@ void attack(crowd_t *crowd)
         crowd->player->weapon->cooldown) {
         sfClock_restart(crowd->player->clock);
         for (int i = 0; i < CROWD_SIZE; i++)
-            check_hitbox(crowd, i);
+            check_hitbox(crowd->cop[i], crowd->player);
+        check_hitbox(crowd->boss, crowd->player);
     }
 }

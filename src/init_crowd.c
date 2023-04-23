@@ -8,6 +8,46 @@
 #include <my_rpg.h>
 #include <my_graphics.h>
 
+void init_boss_hp_bar(window_t *wd, cop_t * cop, sfVector2f pos)
+{
+    data_t *data_hp = create_data(set_3vector(pos.x, pos.y - 90, 0),
+    set_2vector(200, 15), 0.f);
+    shape_t *shape_hp = create_shape(RECT, sfRed, sfBlack, 3);
+    init_progress_bar(wd, &cop->hp, data_hp, shape_hp);
+    set_origin_draw(cop->hp.fill, (sfVector2f)
+    {data_hp->size.x / 2, data_hp->size.y / 2});
+    append_draw_layer(wd->core, cop->hp.fill);
+    cop->stat = (stat_t) {.damage = 15, .hp = 200, .speed = 3, .defense = 5
+    };
+}
+
+draw_t *init_boss_draw(window_t* wd, sfVector2f pos)
+{
+    sprite_t *sprite = init_sprite();
+    sfTexture *texture = sfTexture_createFromFile
+    ("images/spritesheets/crs_spritesheet.png", NULL);
+    data_t *data = create_data(set_3vector(pos.x, pos.y, 0),
+    set_2vector(64, 72), 0.f);
+    set_texture_sprite(sprite, texture, (sfIntRect) {0, 0, 64, 72});
+    return create_draw(sprite, SPRITE, data);
+}
+
+cop_t* init_boss(window_t* wd)
+{
+    cop_t* boss = malloc(sizeof(cop_t));
+    boss->clock = sfClock_create();
+    sfVector2f pos = set_2vector(wd->map_size.x - 100, wd->map_size.y / 2);
+    boss->draw = init_boss_draw(wd, pos);
+    set_origin_draw(boss->draw, set_2vector
+        (64 / 2, 72 - 5));
+    append_draw_layer(wd->core, boss->draw);
+    set_animation_draw(boss->draw, (sfIntRect) {0, 0, 64, 72}, 3, true);
+    init_boss_hp_bar(wd, boss, pos);
+    boss->cop_e = S;
+    boss->draw->id = -88;
+    return boss;
+}
+
 bool init_crowd(window_t* wd, list_button_t** a_btn,
     game_src_t* g_src, bool resume)
 {
@@ -27,5 +67,6 @@ bool init_crowd(window_t* wd, list_button_t** a_btn,
     create_data(set_3vector(10, 60, 0), set_2vector(340, 280), 0)));
     g_src->game->crowd->mob = init_crowd_mob(wd);
     g_src->game->crowd->cop = init_crowd_cop(wd);
+    g_src->game->crowd->boss = init_boss(wd);
     return true;
 }
