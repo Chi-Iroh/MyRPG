@@ -8,7 +8,7 @@
 #include <my_rpg.h>
 #include <my_graphics.h>
 
-void place_in_mob(mob_t *mob, draw_t *player)
+void place_in_mob(mob_t *mob, draw_t *player, window_t *wd)
 {
     float angle = (float)(rand() % 360);
     float r = (float)rand() / RAND_MAX * 180;
@@ -21,26 +21,25 @@ void place_in_mob(mob_t *mob, draw_t *player)
     set_pos_draw(mob->draw, newPosition);
 }
 
-void not_in_mob(mob_t *mob, draw_t *player)
+void not_in_mob(mob_t *mob, draw_t *player, window_t *wd)
 {
     sfVector3f pos = get_position_draw(mob->draw);
     sfVector2f move = set_2vector(0, 0);
-    if ((rand() % 10) == 0)
-        move = set_2vector((0.3 * mob->dir), rand_move());
+    move = set_2vector((0.03 * mob->dir), rand_move());
     sfVector3f pos_p = get_position_draw(player);
     float dx = pos_p.x - pos.x;
     float dy = pos_p.y - pos.y;
     float distance = sqrt(dx * dx + dy * dy);
     move_draw(mob->draw, move);
     if (distance < 50.0 && mob->in_mob != DEAD)
-        place_in_mob(mob, player);
+        place_in_mob(mob, player, wd);
 }
 
-void update_mob(mob_t *mob, crowd_t *crowd, sfVector2f move)
+void update_mob
+(mob_t *mob, crowd_t *crowd, sfVector2f move, window_t *wd)
 {
-
     if (mob->in_mob == OUT || mob->in_mob == DEAD)
-        not_in_mob(mob, crowd->player->draw);
+        not_in_mob(mob, crowd->player->draw, wd);
     if (mob->in_mob == IN)
         move_draw(mob->draw, move);
 }

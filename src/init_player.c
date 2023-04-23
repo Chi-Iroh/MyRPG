@@ -65,16 +65,16 @@ sfTexture *init_player_text(character_type_t type)
 void init_bar(player_t *player, window_t* wd)
 {
     data_t *data_hp = create_data(set_3vector(70, 15, 50),
-    set_2vector(250, 35), 0.f);
+    set_2vector(player->stat.hp * 20, 35), 0.f);
     shape_t *shape_hp = create_shape(RECT, sfGreen, sfBlack, 3);
     init_progress_bar(wd, &player->hp, data_hp, shape_hp);
-    data_t *data_exp = create_data(set_3vector(450, 15, 50),
+    data_t *data_exp = create_data(set_3vector(1600, 15, 50),
     set_2vector(0, 35), 0.f);
     shape_t *shape_exp = create_shape(RECT, sfBlue, sfBlack, 3);
     init_progress_bar(wd, &player->exp, data_exp, shape_exp);
     data_t *data_hp_txt = create_data(set_3vector(10, 10, 50),
     set_2vector(0, 35), 0.f);
-    data_t *data_exp_txt = create_data(set_3vector(370, 10, 50),
+    data_t *data_exp_txt = create_data(set_3vector(1510, 10, 50),
     set_2vector(0, 35), 0.f);
     text_t *text_hp = create_text("HP", NULL, sfBlack);
     text_t *text_exp = create_text("EXP", NULL, sfBlack);
@@ -94,8 +94,8 @@ void init_hitbox(player_t *player, window_t *wd, data_t *data)
     set_origin_draw(player->range, set_2vector
     (data_r->size.x / 2, data_r->size.y / 2));
     append_draw_layer(wd->core, player->range);
-    data_t *data_tmp = create_data(set_3vector(50, 990, 0), set_2vector(160, -160),
-    0);
+    data_t *data_tmp = create_data(
+    set_3vector(50, 990, 0), set_2vector(160, -160), 0);
     shape_t *shape = create_shape(RECT,
     sfColor_fromRGBA(200, 200, 200, 150), sfTransparent, 1);
     player->cooldown = create_draw(shape, SHAPE, data_tmp);
@@ -127,8 +127,8 @@ player_t *init_player(window_t* wd, game_t *game)
     set_origin_draw(player->draw, set_2vector
     (data->size.x / 2, data->size.y - 5));
     append_draw_layer(wd->core, player->draw);
-    init_bar(player, wd);
     init_hitbox(player, wd, data);
     init_stat(&player->stat, &player->base, player->type);
+    init_bar(player, wd);
     return player;
 }
