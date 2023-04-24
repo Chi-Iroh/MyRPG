@@ -1,4 +1,11 @@
 NOTE:
 
-This program may control focus on its windows, and some desktop managers may attempt to block or control windows focus (for example, KDE defaultly does).
-Please be sure to disable any setting like this to funny experience the game.
+(en)
+This program needs to control focus on its windows, and some desktop managers may attempt to block or control windows focus (for example, KDE defaultly does).
+Please be sure to disable any setting like this to fully experience the game.
+
+--
+
+(fr)
+Ce programme contrôle le focus de ses fenêtres, et certains environnements de bureau bloquent ce comportement par défaut (KDE par exemple).
+Pensez-bien à désactiver ces paramètres pour expérimenter toutes les fonctionnalités du jeu.
