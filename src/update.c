@@ -78,7 +78,7 @@ void update(crowd_t *crowd, window_t *wd)
         check_pos(crowd->cop[i]->draw, wd)) {
             set_pos_draw(crowd->cop[i]->draw, pos_tmp);
             set_pos_draw(crowd->cop[i]->hp.fill, set_3vector(pos_tmp.x,
-            pos_tmp.y - 50, 0));
+            pos_tmp.y - 65, 1));
         }
         update_mob(crowd->mob[i], crowd, move, wd);
         crowd->player->nb_allied += crowd->mob[i]->in_mob == true ? 1 : 0;

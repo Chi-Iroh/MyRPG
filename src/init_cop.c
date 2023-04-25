@@ -11,7 +11,7 @@
 void init_cop_hp_bar(window_t *wd, cop_t * cop, sfVector2f pos, int tmp)
 {
     pos.x += wd->map_size.x / 2 * tmp;
-    data_t *data_hp = create_data(set_3vector(pos.x, pos.y - 65, 0),
+    data_t *data_hp = create_data(set_3vector(pos.x, pos.y - 65, 1),
     set_2vector(80, 10), 0.f);
     shape_t *shape_hp = create_shape(RECT, sfRed, sfBlack, 3);
     init_progress_bar(wd, &cop->hp, data_hp, shape_hp);

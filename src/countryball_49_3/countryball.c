@@ -101,7 +101,7 @@ static void countryball_handle_events(countryball_t *countryball)
     sfEvent event;
 
     while (sfRenderWindow_pollEvent(countryball->window, &event)) {
-        if (event.type == sfEvtClosed) {
+        if (event.type == sfEvtClosed || sfKeyboard_isKeyPressed(sfKeyEscape)) {
             sfRenderWindow_close(countryball->window);
             return;
         }
