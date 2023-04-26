@@ -1,0 +1,9 @@
+(en)
+
+Few commits with my personal e-mail address weren't signed (right after the project's deadline), as I was setting up my GPG keys.
+So unless they are marked as unverified by GitHub, they can fully be trusted.
+
+(fr)
+
+Quelques commits de mon courriel personnel ne sont pas signés (juste après la date de rendu), je mettais en place des clés GPG.
+Même s'ils sont marqués comme étant non vérifiés par GitHub, ils sont légitimes.
