@@ -14,7 +14,7 @@ Check the [subject](Subject%20MyRPG.pdf) for more information.
 
 This repository is a duplicate of my private Epitech repository, so that I can continue to improve this project.
 
-To see what was done at the project deadline, see commit **3af943eca109e4d1c7d1fd8a6f53eaed2ed8b6fe**.
+To see what was done at the project deadline, see commit [3af943eca109e4d1c7d1fd8a6f53eaed2ed8b6fe](https://github.com/Chi-Iroh/my_rpg/tree/3af943eca109e4d1c7d1fd8a6f53eaed2ed8b6fe).
 
 <br>
 
@@ -60,7 +60,7 @@ Regardez le [sujet](Subject%20MyRPG.pdf) pour plus d'informations.
 
 Ce dépôt est une copie de mon dépôt privé Epitech, pour pouvoir continuer à l'améliorer.
 
-Pour voir ce qui a été rendu, regardez le commit **3af943eca109e4d1c7d1fd8a6f53eaed2ed8b6fe**.
+Pour voir ce qui a été rendu, regardez le commit [3af943eca109e4d1c7d1fd8a6f53eaed2ed8b6fe](https://github.com/Chi-Iroh/my_rpg/tree/3af943eca109e4d1c7d1fd8a6f53eaed2ed8b6fe).
 
 <br>
 
