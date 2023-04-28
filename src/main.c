@@ -8,6 +8,8 @@
 #include <my_rpg.h>
 #include <my_graphics.h>
 
+const unsigned NB_ALLIED_REQUIRED = 30;
+
 int main(int argc, char **argv)
 {
     sfVideoMode mode = {WD_WIDTH, WD_HEIGHT, 32};

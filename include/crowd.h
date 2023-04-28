@@ -106,7 +106,7 @@
         character_type_t type;
         weapon_t* weapon;
         dir_e dir;
-        int nb_allied;
+        unsigned nb_allied;
     } player_t;
 
     typedef struct crowd_s {

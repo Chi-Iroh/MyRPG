@@ -27,8 +27,7 @@
     #include <my_macros.h>
     #include <my.h>
 
-    #define NB_ALLIED_REQUIRED 30
-
+    extern const unsigned NB_ALLIED_REQUIRED;
     extern const char *const SAVE_PATH;
     extern const char *const INDICATOR_SAVE_LOAD_BUTTON;
     extern const char *const INDICATORS_STATS_INVENTORY_BUTTON;
