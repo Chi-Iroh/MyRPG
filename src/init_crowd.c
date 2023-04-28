@@ -10,7 +10,7 @@
 
 void init_boss_hp_bar(window_t *wd, cop_t * cop, sfVector2f pos)
 {
-    data_t *data_hp = create_data(set_3vector(pos.x, pos.y - 90, 2),
+    data_t *data_hp = create_data(set_3vector(pos.x, pos.y - 90, 100),
     set_2vector(600, 35), 0.f);
     shape_t *shape_hp = create_shape(RECT, sfRed, sfBlack, 3);
     init_progress_bar(wd, &cop->hp, data_hp, shape_hp);
@@ -25,7 +25,7 @@ draw_t *init_boss_draw(window_t* wd, sfVector2f pos)
 {
     sprite_t *sprite = init_sprite();
     sfTexture *texture = sfTexture_createFromFile
-    ("images/spritesheets/boss_spritesheet.png", NULL);
+        ("images/spritesheets/boss_spritesheet.png", NULL);
     data_t *data = create_data(set_3vector(pos.x, pos.y, 0),
     set_2vector(128, 144), 0.f);
     set_texture_sprite(sprite, texture, (sfIntRect) {0, 0, 128, 144});

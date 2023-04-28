@@ -17,7 +17,7 @@ void my_function0(game_src_t* g_src, sfClock * clock,
         sfClock_restart(clock); *step += 1;
         sfVector3f bb_pos = ami->draw->data->position;
         bb_pos.y -= 40;
-        speech_bubble_spawn(g_src->game, "Macron abuse.", bb_pos, 1);
+        speech_bubble_spawn(g_src->game, "Macrongue abuse.        ", bb_pos, 1);
         animation_off_draw(g_src->game->crowd->player->draw);
         animation_off_draw(ami->draw);
     }
