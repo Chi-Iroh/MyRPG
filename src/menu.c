@@ -20,7 +20,6 @@ void menu_core(window_t* wd, game_src_t* g_src)
             g_src->menu->show = false;
         } else
             audio_play_sfx(&g_src->audio, SFX_ERROR);
-        g_src->menu->b_resume->state = NONE;
     }
     if (IS_RELEASED(g_src->menu->b_start)) {
         if (init_crowd(wd, &g_src->all_btn, g_src, false))
