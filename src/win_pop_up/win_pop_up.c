@@ -46,14 +46,14 @@ void win_pop_up(void)
     sfVideoMode mode = {600, 400, 32};
     sfRenderWindow* pop_up_wd = sfRenderWindow_create(mode, "VOUS AVEZ GAGNE !",
     sfClose, NULL);
-    char text[255] = "Bravo, vous avez ralie plein de manifestant\na votre caus"
-    "e et avez vaincu le mechant\nMacrongue !!!\nMalheuresement, cela n'a pas s"
-    "uffit, et \nla reforme des retraites n'a pas ete\nretirees...\n\n\t\tBAD E"
-    "NDING";
+    wchar_t* text = L"Bravo, vous avez rallié plein de manifestants "
+    "\nà votre cause et avez vaincu le méchant\nMacrongue !!!\n"
+    "Malheureusement, cela n'a pas suffi, et\nla réforme des retraites "
+    "n'a pas été\nretirée...\n\n\t\tBAD ENDING";
     sfText* txt = sfText_create();
     sfFont* fnt = sfFont_createFromFile("./fonts/Arial.ttf");
     sfText_setFont(txt, fnt);
-    sfText_setString(txt, text);
+    sfText_setUnicodeString(txt, (sfUint32*)text);
     sfText_setColor(txt, sfBlack);
     win_pop_up_core(pop_up_wd, txt);
     free_win_pop_up(pop_up_wd, txt, fnt);
