@@ -4,6 +4,10 @@
 
 <br>
 
+### Spoiler : Contains politics <ins>only for fun</ins>
+
+<br>
+
 My_RPG is an Epitech Project which consists in creating a RPG in game almost from scratch.
 
 Only CSFML library (C binding for C++ SFML) and some C functions, and we must be compliant with the [Epitech Coding Style](Epitech%20C%20Coding%20Style.pdf).
@@ -47,6 +51,10 @@ SFX:
 # My_RPG (fr)
 ## Un projet de première année d'Epitech
 ### Mar-Avr. 2023
+
+<br>
+
+### Spoiler : Contenu politique <ins>à but d'amusement uniquement</ins>
 
 <br>
 
