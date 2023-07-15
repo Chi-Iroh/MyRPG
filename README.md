@@ -7,6 +7,19 @@
 ### Spoiler : Contains politics <ins>only for fun</ins>
 #### Display languages is only French
 
+<img src="images/splash.png" alt="game spash screen with trade union logos / écran de chargement avec des logos de syndicats">
+
+<div>
+    <img src="images/sprites/ouvrier/ouvrier.png" alt="Worker sprite / Personnage ouvrier">
+    <img src="images/sprites/fils_du_préfet/fils_du_préfet.png" alt="Prefect son sprite / Personnage fils du préfet">
+    <img src="images/sprites/casseur/casseur.png" alt="Troublemaker sprite / Personnage casseur">
+    <img src="images/sprites/cheminot/cheminot.png" alt="Railway worker sprite / Personnage cheminot">
+    <img src="images/sprites/docteur/docteur.png" alt="Doctor sprite / Personnage docteur">
+    <img src="images/sprites/étudiant_en_arts/étudiant_en_arts.png" alt="Arts student sprite / Personnage étudiant en arts">
+    <img src="images/sprites/étudiant_sciences_po/étudiant_sciences_po.png" alt="Sciences Po student sprite / Personnage étudiant à Sciences Po">
+    <img src="images/sprites/crs/crs_s.png" alt="CRS">
+</div>
+
 <br>
 
 My_RPG is an Epitech Project which consists in creating a RPG in game almost from scratch.
