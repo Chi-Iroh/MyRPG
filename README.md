@@ -28,6 +28,14 @@ Only CSFML library (C binding for C++ SFML) and some C functions, and we must be
 
 Check the [subject](Subject%20MyRPG.pdf) for more information.
 
+### SFML is more recent than CSFML and make fails !
+When I'm writing these lines, SFML is just updated to version 2.6, whereas CSFML is still version 2.5, so the Makefile failed at link time, because sfml-xxx.so.2.5.x wasn't found (CSFML uses SFML and looks for the binaries of the same version), so I downloaded SFML 2.5.x (exact same version with CSFML) and built it.
+There's one little thing to link these binaries instead of the more recent ones :
+```bash
+export LD_LIBRARY_PATH=path/to/old/SFML/lib:$LD_LIBRARY_PATH
+```
+And then you can make the project.
+
 <br>
 
 This repository is a duplicate of my private Epitech repository, so that I can continue to improve this project.
@@ -101,6 +109,14 @@ My_RPG est un projet d'Epitech qui consiste à développer un RPG à partir de p
 Seule la bibliothèque CSFML (le binding C de la SFML de C++) et quelques fonctions standards du C, tout en respectant de [Coding Style Epitech](Epitech%20C20Coding%20Style.pdf).
 
 Regardez le [sujet](Subject%20MyRPG.pdf) pour plus d'informations.
+
+### SFML est plus récent que CSFML et make ne fonctionne pas !
+Au moment où j'écris ces lignes, SFML est à la version 2.6 alors que CSFML en est encore à la 2.5, et le Makefile affiche des erreurs à l'édition des liens, car sfml-xxx.so.2.5.x est introuvable (CSFML utilise SFML et cherche les binaires de la même version), donc j'ai téléchargé les sources de SFML 2.5.x (même version que CSFML) et les ai compilé.
+Il n'y a plus qu'une petite manipulation à faire pour utiliser les anciens binaires plutôt que les récents :
+```bash
+export LD_LIBRARY_PATH=chemin/vers/les/anciens/binaires/de/SFML:$LD_LIBRARY_PATH
+```
+Et on peut regénérer le projet.
 
 <br>
 
