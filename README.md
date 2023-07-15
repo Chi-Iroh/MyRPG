@@ -5,6 +5,7 @@
 <br>
 
 ### Spoiler : Contains politics <ins>only for fun</ins>
+#### Display languages is only French
 
 <br>
 
@@ -19,6 +20,17 @@ Check the [subject](Subject%20MyRPG.pdf) for more information.
 This repository is a duplicate of my private Epitech repository, so that I can continue to improve this project.
 
 To see what was done at the project deadline, see commit [3af943eca109e4d1c7d1fd8a6f53eaed2ed8b6fe](https://github.com/Chi-Iroh/my_rpg/tree/3af943eca109e4d1c7d1fd8a6f53eaed2ed8b6fe).
+
+<br>
+
+#### Controls
+ZQSD - up, left, bottom, right
+Space or left click - attack
+Mouse wheel up / down - next / previous weapon
+Escape - pause menu (in game) / exit game (title screen)
+
+##### Warning : Slow tutorial
+The tutorial is very slow but functional, just hold down S to go to the bottom, it only take a few seconds.
 
 <br>
 
@@ -69,6 +81,17 @@ Regardez le [sujet](Subject%20MyRPG.pdf) pour plus d'informations.
 Ce dépôt est une copie de mon dépôt privé Epitech, pour pouvoir continuer à l'améliorer.
 
 Pour voir ce qui a été rendu, regardez le commit [3af943eca109e4d1c7d1fd8a6f53eaed2ed8b6fe](https://github.com/Chi-Iroh/my_rpg/tree/3af943eca109e4d1c7d1fd8a6f53eaed2ed8b6fe).
+
+<br>
+
+#### Contrôles
+ZQSD - haut, gauche, bas, droite
+Espace ou clic gauche - attaque
+Molette de souris haut / bas -  arme suivante / précédente
+Échap - menu pause (en jeu) / arrêter le jeu (écran titre)
+
+##### Avertissement : Tutoriel lent
+Le tutoriel est lent mais fonctionnel, maintenez simplement S pour aller vers le bas, cela prend juste quelques secondes.
 
 <br>
 
